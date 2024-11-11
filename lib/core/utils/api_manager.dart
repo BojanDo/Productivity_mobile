@@ -25,6 +25,7 @@ class APIManager {
     LocalDataManager localStorage,
   ) async {
     final APIManager manager = APIManager(dio);
+    manager._initializeErrorHandler();
     await manager._initializeCookieJar();
     return manager;
   }
@@ -39,22 +40,45 @@ class APIManager {
     }
   }
 
+  void _initializeErrorHandler() {
+    dio.interceptors.add(InterceptorsWrapper(
+      onResponse:
+          (Response<dynamic> response, ResponseInterceptorHandler handler) =>
+              handler.next(response),
+      onError: (DioException error, ErrorInterceptorHandler handler) {
+        if (error.response != null) {
+          switch (error.response?.statusCode) {
+            case 400:
+            case 401:
+              final String errorMessage =
+                  (error.response?.data['message'] as String) ?? '';
+              throw APIException(
+                message: errorMessage,
+                statusCode: error.response?.statusCode ?? 400,
+              );
+            default:
+              throw APIException(
+                message: 'There was an internal server error',
+                statusCode: error.response?.statusCode ?? 500,
+              );
+          }
+        } else {
+          throw APIException(
+            message: 'There was an internal server error',
+            statusCode: error.response?.statusCode ?? 500,
+          );
+        }
+      },
+    ));
+  }
+
   String _getUrl(String baseUrl, String endpoint) {
     if (endpoint.isNotEmpty) {
       return '$baseUrl$endpoint';
     }
     return baseUrl;
   }
-
-  void _throwCommonException(Response<dynamic> response) {
-    if (response.statusCode != 200) {
-      throw APIException(
-        message: response.data.toString(),
-        statusCode: response.statusCode ?? 500,
-      );
-    }
-  }
-
+  
   Future<dynamic> get(
     String baseUrl,
     String endpoint,
@@ -66,11 +90,12 @@ class APIManager {
         options: options,
         queryParameters: queryParameters,
       );
-
-      _throwCommonException(response);
+      
       return response.data;
-    } catch (e) {
-      throw APIException(message: e.toString(), statusCode: 505);
+    } on APIException {
+      rethrow;
+    }catch (e) {
+      throw const APIException(message: 'There was an unknown error', statusCode: 500);
     }
   }
 
@@ -85,11 +110,12 @@ class APIManager {
         data: FormData.fromMap(data),
         options: options,
       );
-
-      _throwCommonException(response);
+      
       return response.data;
-    } catch (e) {
-      throw APIException(message: e.toString(), statusCode: 505);
+    } on APIException {
+      rethrow;
+    }catch (e) {
+      throw const APIException(message: 'There was an unknown error', statusCode: 500);
     }
   }
 
@@ -104,11 +130,12 @@ class APIManager {
         data: jsonEncode(data),
         options: options,
       );
-
-      _throwCommonException(response);
+      
       return response.data;
-    } catch (e) {
-      throw APIException(message: e.toString(), statusCode: 505);
+    } on APIException {
+      rethrow;
+    }catch (e) {
+      throw const APIException(message: 'There was an unknown error', statusCode: 500);
     }
   }
 
@@ -123,11 +150,12 @@ class APIManager {
         data: jsonEncode(data),
         options: options,
       );
-
-      _throwCommonException(response);
+      
       return response.data;
-    } catch (e) {
-      throw APIException(message: e.toString(), statusCode: 505);
+    } on APIException {
+      rethrow;
+    }catch (e) {
+      throw const APIException(message: 'There was an unknown error', statusCode: 500);
     }
   }
 }

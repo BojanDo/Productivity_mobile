@@ -24,7 +24,7 @@ dependencies:
   get_it: ^8.0.2
   cached_network_image: ^3.4.1
   infinite_widgets: ^2.0.2
-  shared_preferences: ^2.3.2
+  shared_preferences: ^2.3.3
   flutter_secure_storage: ^9.2.2
   skeletonizer: ^1.4.2
   toastification: ^2.3.0
@@ -40,11 +40,18 @@ dependencies:
       url: https://github.com/BojanDo/form_bloc.git
       ref: master
       path: packages/flutter_form_bloc
+  colorize_text_avatar: ^1.0.2
+  open_file: ^3.5.9
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  freezed: ^2.5.7
+  build_runner: ^2.4.13
+  json_serializable: ^6.8.0
 
 
 flutter:
