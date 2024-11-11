@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'features/Auth/domain/entities/auth_response.dart';
 
 void main() {
-  AuthResponse a = AuthResponse(message: "message");
   runApp(const MyApp());
 }
 
