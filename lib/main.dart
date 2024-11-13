@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'features/Auth/domain/entities/auth_response.dart';
-
 void main() {
   runApp(const MyApp());
 }

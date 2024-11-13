@@ -23,7 +23,7 @@ class AuthRemoteDataSourceImplementation implements AuthRemoteDataSource {
     required Map<String, dynamic> values,
   }) async {
     try {
-      final response = await _apiManager.post(
+      final dynamic response = await _apiManager.post(
         kLoginUrl,
         '',
         values,
@@ -39,7 +39,7 @@ class AuthRemoteDataSourceImplementation implements AuthRemoteDataSource {
     required Map<String, dynamic> values,
   }) async {
     try {
-      final response = await _apiManager.post(
+      final dynamic response = await _apiManager.post(
         kRegisterUrl,
         '',
         values,

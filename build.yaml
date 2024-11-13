@@ -9,3 +9,4 @@ targets:
         options:
           build_extensions:
             '^lib/{{dir}}/{{file}}.dart': 'lib/{{dir}}/generated/{{file}}.freezed.dart'
+          generic_argument_factories: true

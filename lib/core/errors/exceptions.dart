@@ -7,5 +7,5 @@ class APIException extends Equatable implements Exception {
   final int statusCode;
 
   @override
-  List<Object> get props => [message, statusCode];
+  List<Object> get props => <Object>[message, statusCode];
 }

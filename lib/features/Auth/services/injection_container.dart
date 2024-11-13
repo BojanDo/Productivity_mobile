@@ -18,5 +18,6 @@ Future<void> initAuth(GetIt sl) async {
   sl.registerLazySingleton<AuthRepository>(() => AuthRepoImplementation(sl()));
   // Data Sources
   sl.registerLazySingleton<AuthRemoteDataSource>(
-          () => AuthRemoteDataSourceImplementation(sl()));
+    () => AuthRemoteDataSourceImplementation(sl()),
+  );
 }
