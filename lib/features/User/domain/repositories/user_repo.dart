@@ -6,6 +6,8 @@ import '../entities/users.dart';
 abstract class UserRepository {
   const UserRepository();
 
+  ResultFuture<Users> getUsers();
+
   ResultFuture<User> getUser(String id);
 
   ResultFuture<UserResponse> updateUser(

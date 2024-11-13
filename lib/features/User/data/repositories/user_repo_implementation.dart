@@ -15,6 +15,16 @@ class UserRepoImplementation implements UserRepository {
   final UserRemoteDataSource _remoteDataSource;
 
   @override
+  ResultFuture<Users> getUsers() async {
+    try {
+      final Users result = await _remoteDataSource.getUsers();
+      return Right<Failure, Users>(result);
+    } on APIException catch (e) {
+      return Left<Failure, Users>(APIFailure.fromException(e));
+    }
+  }
+
+  @override
   ResultFuture<User> getUser(String id) async {
     try {
       final User result = await _remoteDataSource.getUser(id);

@@ -7,6 +7,8 @@ import '../../domain/entities/user_response.dart';
 import '../../domain/entities/users.dart';
 
 abstract class UserRemoteDataSource {
+  Future<Users> getUsers();
+
   Future<User> getUser(String id);
 
   Future<UserResponse> updateUser(
@@ -36,11 +38,28 @@ abstract class UserRemoteDataSource {
   Future<UserResponse> declineInvitation(String organizationId);
 }
 
-class UserRemoteDataSourceImplementation
-    implements UserRemoteDataSource {
+class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
   const UserRemoteDataSourceImplementation(this._apiManager);
 
   final APIManager _apiManager;
+
+  @override
+  Future<Users> getUsers() async {
+    try {
+      final dynamic response = await _apiManager.get(
+        kUsersUrl,
+        '',
+        <String, dynamic>{},
+      );
+
+      return Users.fromJson(
+        response as DataMap,
+        (Object? item) => User.fromJson(item as DataMap),
+      );
+    } on APIException {
+      rethrow;
+    }
+  }
 
   @override
   Future<User> getUser(String id) async {
@@ -98,7 +117,7 @@ class UserRemoteDataSourceImplementation
       final dynamic response = await _apiManager.get(
         kOrganizationsUrl,
         id,
-        <String,dynamic>{},
+        <String, dynamic>{},
       );
 
       return Organization.fromJson(response as DataMap);
@@ -131,12 +150,12 @@ class UserRemoteDataSourceImplementation
       final dynamic response = await _apiManager.get(
         kInvitationUrl,
         '',
-        <String,dynamic>{},
+        <String, dynamic>{},
       );
 
       return Organizations.fromJson(
         response as DataMap,
-            (Object? item) => Organization.fromJson(item as DataMap),
+        (Object? item) => Organization.fromJson(item as DataMap),
       );
     } on APIException {
       rethrow;
@@ -149,12 +168,12 @@ class UserRemoteDataSourceImplementation
       final dynamic response = await _apiManager.get(
         kInvitationUrl,
         organizationId,
-        <String,dynamic>{},
+        <String, dynamic>{},
       );
 
       return Users.fromJson(
         response as DataMap,
-            (Object? item) => User.fromJson(item as DataMap),
+        (Object? item) => User.fromJson(item as DataMap),
       );
     } on APIException {
       rethrow;
@@ -167,7 +186,7 @@ class UserRemoteDataSourceImplementation
       final dynamic response = await _apiManager.post(
         kInvitationUrl,
         organizationId,
-        <String,dynamic>{},
+        <String, dynamic>{},
       );
 
       return UserResponse.fromJson(response as DataMap);
@@ -182,7 +201,7 @@ class UserRemoteDataSourceImplementation
       final dynamic response = await _apiManager.put(
         kInvitationUrl,
         organizationId,
-        <String,dynamic>{},
+        <String, dynamic>{},
       );
 
       return UserResponse.fromJson(response as DataMap);
@@ -197,7 +216,7 @@ class UserRemoteDataSourceImplementation
       final dynamic response = await _apiManager.delete(
         kInvitationUrl,
         organizationId,
-        <String,dynamic>{},
+        <String, dynamic>{},
       );
 
       return UserResponse.fromJson(response as DataMap);
