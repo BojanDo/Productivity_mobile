@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/entities/paginated_list.dart';
-import '../../../User/domain/entities/user.dart';
+import '../../../User/domain/entities/users.dart';
 
 part 'generated/notifications.freezed.dart';
 part 'generated/notifications.g.dart';

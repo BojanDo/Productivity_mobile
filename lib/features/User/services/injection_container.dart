@@ -1,11 +1,40 @@
 import 'package:get_it/get_it.dart';
 
+import '../data/datasources/user_remote_data_source.dart';
+import '../data/repositories/user_repo_implementation.dart';
+import '../domain/repositories/user_repo.dart';
+import '../domain/usecases/accept_invitation.dart';
+import '../domain/usecases/create_organization.dart';
+import '../domain/usecases/decline_invitation.dart';
+import '../domain/usecases/get_invitations.dart';
+import '../domain/usecases/get_invited_users.dart';
+import '../domain/usecases/get_organization.dart';
+import '../domain/usecases/get_user.dart';
+import '../domain/usecases/send_invitation.dart';
+import '../domain/usecases/update_organization.dart';
+import '../domain/usecases/update_user.dart';
+
 Future<void> initUserBlocs(GetIt sl) async {
   // App Logic
 }
 
 Future<void> initUser(GetIt sl) async {
   // Use cases
+  sl.registerLazySingleton(() => GetUser(sl()));
+  sl.registerLazySingleton(() => UpdateUser(sl()));
+  sl.registerLazySingleton(() => CreateOrganization(sl()));
+  sl.registerLazySingleton(() => GetOrganization(sl()));
+  sl.registerLazySingleton(() => UpdateOrganization(sl()));
+  sl.registerLazySingleton(() => GetInvitations(sl()));
+  sl.registerLazySingleton(() => GetInvitedUsers(sl()));
+  sl.registerLazySingleton(() => AcceptInvitation(sl()));
+  sl.registerLazySingleton(() => SendInvitation(sl()));
+  sl.registerLazySingleton(() => DeclineInvitation(sl()));
   // Repositories
+  sl.registerLazySingleton<UserRepository>(
+          () => UserRepoImplementation(sl()));
   // Data Sources
+  sl.registerLazySingleton<UserRemoteDataSource>(
+        () => UserRemoteDataSourceImplementation(sl()),
+  );
 }

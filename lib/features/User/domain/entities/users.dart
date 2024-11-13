@@ -1,7 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'generated/user.freezed.dart';
-part 'generated/user.g.dart';
+import '../../../../core/entities/paginated_list.dart';
+
+part 'generated/users.freezed.dart';
+part 'generated/users.g.dart';
 
 @freezed
 class User with _$User {
@@ -18,3 +20,5 @@ class User with _$User {
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
+
+typedef Users = PaginatedList<User>;
