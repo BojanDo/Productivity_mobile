@@ -12,7 +12,7 @@ class Organization with _$Organization {
     required int id,
     required String name,
     required String description,
-    @JsonKey(name: 'profile_picture') required String profilePicture,
+    @JsonKey(name: 'profile_picture') String? profilePicture,
 }) = _Organization;
 
   factory Organization.fromJson(Map<String, dynamic> json) =>

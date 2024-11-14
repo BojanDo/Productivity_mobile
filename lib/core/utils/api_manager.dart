@@ -74,13 +74,14 @@ class APIManager {
   Future<dynamic> post(
     String baseUrl,
     String endpoint,
-    Map<String, dynamic> data,
-  ) async {
+    Map<String, dynamic> data, {
+    Options? options,
+  }) async {
     try {
       final Response<dynamic> response = await dio.post(
         _getUrl(baseUrl, endpoint),
         data: FormData.fromMap(data),
-        options: options,
+        options: options ?? this.options,
       );
 
       return response.data;
@@ -94,10 +95,24 @@ class APIManager {
     }
   }
 
+  Future<dynamic> postMultipart(
+    String baseUrl,
+    String endpoint,
+    Map<String, dynamic> data,
+  ) async =>
+      await post(
+        baseUrl,
+        endpoint,
+        data,
+        options: options.copyWith(
+          contentType: 'multipart/form-data',
+        ),
+      );
+
   Future<dynamic> delete(
     String baseUrl,
     String endpoint,
-    dynamic data,
+    Map<String, dynamic> data,
   ) async {
     try {
       final Response<dynamic> response = await dio.delete(
@@ -120,12 +135,13 @@ class APIManager {
   Future<dynamic> put(
     String baseUrl,
     String endpoint,
-    dynamic data,
-  ) async {
+    Map<String, dynamic> data, {
+    Options? options,
+  }) async {
     try {
       final Response<dynamic> response = await dio.put(
         _getUrl(baseUrl, endpoint),
-        data: jsonEncode(data),
+        data: FormData.fromMap(data),
         options: options,
       );
 
@@ -139,4 +155,18 @@ class APIManager {
       );
     }
   }
+
+  Future<dynamic> putMultipart(
+    String baseUrl,
+    String endpoint,
+    Map<String, dynamic> data,
+  ) async =>
+      await put(
+        baseUrl,
+        endpoint,
+        data,
+        options: options.copyWith(
+          contentType: 'multipart/form-data',
+        ),
+      );
 }

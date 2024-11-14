@@ -11,7 +11,7 @@ _$UpdateProjectParamsImpl _$$UpdateProjectParamsImplFromJson(
     _$UpdateProjectParamsImpl(
       title: json['title'] as String,
       description: json['description'] as String,
-      profilePicture: json['profile_picture'] as String,
+      profilePicture: json['profile_picture'] as String?,
     );
 
 Map<String, dynamic> _$$UpdateProjectParamsImplToJson(

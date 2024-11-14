@@ -24,7 +24,7 @@ mixin _$CreateOrganizationParams {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_picture')
-  String get profilePicture => throw _privateConstructorUsedError;
+  String? get profilePicture => throw _privateConstructorUsedError;
 
   /// Serializes this CreateOrganizationParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $CreateOrganizationParamsCopyWith<$Res> {
   $Res call(
       {String name,
       String description,
-      @JsonKey(name: 'profile_picture') String profilePicture});
+      @JsonKey(name: 'profile_picture') String? profilePicture});
 }
 
 /// @nodoc
@@ -66,7 +66,7 @@ class _$CreateOrganizationParamsCopyWithImpl<$Res,
   $Res call({
     Object? name = null,
     Object? description = null,
-    Object? profilePicture = null,
+    Object? profilePicture = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -77,10 +77,10 @@ class _$CreateOrganizationParamsCopyWithImpl<$Res,
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      profilePicture: null == profilePicture
+      profilePicture: freezed == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -97,7 +97,7 @@ abstract class _$$CreateOrganizationParamsImplCopyWith<$Res>
   $Res call(
       {String name,
       String description,
-      @JsonKey(name: 'profile_picture') String profilePicture});
+      @JsonKey(name: 'profile_picture') String? profilePicture});
 }
 
 /// @nodoc
@@ -117,7 +117,7 @@ class __$$CreateOrganizationParamsImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? description = null,
-    Object? profilePicture = null,
+    Object? profilePicture = freezed,
   }) {
     return _then(_$CreateOrganizationParamsImpl(
       name: null == name
@@ -128,10 +128,10 @@ class __$$CreateOrganizationParamsImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      profilePicture: null == profilePicture
+      profilePicture: freezed == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -142,7 +142,7 @@ class _$CreateOrganizationParamsImpl implements _CreateOrganizationParams {
   const _$CreateOrganizationParamsImpl(
       {required this.name,
       required this.description,
-      @JsonKey(name: 'profile_picture') required this.profilePicture});
+      @JsonKey(name: 'profile_picture') this.profilePicture});
 
   factory _$CreateOrganizationParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateOrganizationParamsImplFromJson(json);
@@ -153,7 +153,7 @@ class _$CreateOrganizationParamsImpl implements _CreateOrganizationParams {
   final String description;
   @override
   @JsonKey(name: 'profile_picture')
-  final String profilePicture;
+  final String? profilePicture;
 
   @override
   String toString() {
@@ -196,10 +196,10 @@ class _$CreateOrganizationParamsImpl implements _CreateOrganizationParams {
 
 abstract class _CreateOrganizationParams implements CreateOrganizationParams {
   const factory _CreateOrganizationParams(
-      {required final String name,
-      required final String description,
-      @JsonKey(name: 'profile_picture')
-      required final String profilePicture}) = _$CreateOrganizationParamsImpl;
+          {required final String name,
+          required final String description,
+          @JsonKey(name: 'profile_picture') final String? profilePicture}) =
+      _$CreateOrganizationParamsImpl;
 
   factory _CreateOrganizationParams.fromJson(Map<String, dynamic> json) =
       _$CreateOrganizationParamsImpl.fromJson;
@@ -210,7 +210,7 @@ abstract class _CreateOrganizationParams implements CreateOrganizationParams {
   String get description;
   @override
   @JsonKey(name: 'profile_picture')
-  String get profilePicture;
+  String? get profilePicture;
 
   /// Create a copy of CreateOrganizationParams
   /// with the given fields replaced by the non-null parameter values.

@@ -12,6 +12,7 @@ _$TaskImpl _$$TaskImplFromJson(Map<String, dynamic> json) => _$TaskImpl(
       title: json['title'] as String,
       description: json['description'] as Map<String, dynamic>,
       status: json['status'] as String,
+      label: json['label'] as String,
       date: json['date'] as String,
       project: Project.fromJson(json['project'] as Map<String, dynamic>),
       users: paginatedListUserFromJson(
@@ -29,6 +30,7 @@ Map<String, dynamic> _$$TaskImplToJson(_$TaskImpl instance) =>
       'title': instance.title,
       'description': instance.description,
       'status': instance.status,
+      'label': instance.label,
       'date': instance.date,
       'project': instance.project,
       'assigned_users': paginatedListUserToJson(instance.users),
@@ -40,6 +42,9 @@ _$TaskSlimImpl _$$TaskSlimImplFromJson(Map<String, dynamic> json) =>
     _$TaskSlimImpl(
       id: (json['id'] as num).toInt(),
       title: json['title'] as String,
+      status: json['status'] as String,
+      label: json['label'] as String,
+      date: json['date'] as String,
       taskNumber: json['task_number'] as String,
     );
 
@@ -47,5 +52,8 @@ Map<String, dynamic> _$$TaskSlimImplToJson(_$TaskSlimImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'status': instance.status,
+      'label': instance.label,
+      'date': instance.date,
       'task_number': instance.taskNumber,
     };

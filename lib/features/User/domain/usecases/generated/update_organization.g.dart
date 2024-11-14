@@ -11,7 +11,7 @@ _$UpdateOrganizationParamsImpl _$$UpdateOrganizationParamsImplFromJson(
     _$UpdateOrganizationParamsImpl(
       name: json['name'] as String,
       description: json['description'] as String,
-      profilePicture: json['profile_picture'] as String,
+      profilePicture: json['profile_picture'] as String?,
     );
 
 Map<String, dynamic> _$$UpdateOrganizationParamsImplToJson(

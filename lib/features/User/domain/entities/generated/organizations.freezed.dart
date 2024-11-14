@@ -24,7 +24,7 @@ mixin _$Organization {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_picture')
-  String get profilePicture => throw _privateConstructorUsedError;
+  String? get profilePicture => throw _privateConstructorUsedError;
 
   /// Serializes this Organization to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $OrganizationCopyWith<$Res> {
       {int id,
       String name,
       String description,
-      @JsonKey(name: 'profile_picture') String profilePicture});
+      @JsonKey(name: 'profile_picture') String? profilePicture});
 }
 
 /// @nodoc
@@ -67,7 +67,7 @@ class _$OrganizationCopyWithImpl<$Res, $Val extends Organization>
     Object? id = null,
     Object? name = null,
     Object? description = null,
-    Object? profilePicture = null,
+    Object? profilePicture = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -82,10 +82,10 @@ class _$OrganizationCopyWithImpl<$Res, $Val extends Organization>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      profilePicture: null == profilePicture
+      profilePicture: freezed == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -102,7 +102,7 @@ abstract class _$$OrganizationImplCopyWith<$Res>
       {int id,
       String name,
       String description,
-      @JsonKey(name: 'profile_picture') String profilePicture});
+      @JsonKey(name: 'profile_picture') String? profilePicture});
 }
 
 /// @nodoc
@@ -121,7 +121,7 @@ class __$$OrganizationImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? description = null,
-    Object? profilePicture = null,
+    Object? profilePicture = freezed,
   }) {
     return _then(_$OrganizationImpl(
       id: null == id
@@ -136,10 +136,10 @@ class __$$OrganizationImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      profilePicture: null == profilePicture
+      profilePicture: freezed == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -151,7 +151,7 @@ class _$OrganizationImpl implements _Organization {
       {required this.id,
       required this.name,
       required this.description,
-      @JsonKey(name: 'profile_picture') required this.profilePicture});
+      @JsonKey(name: 'profile_picture') this.profilePicture});
 
   factory _$OrganizationImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrganizationImplFromJson(json);
@@ -164,7 +164,7 @@ class _$OrganizationImpl implements _Organization {
   final String description;
   @override
   @JsonKey(name: 'profile_picture')
-  final String profilePicture;
+  final String? profilePicture;
 
   @override
   String toString() {
@@ -207,11 +207,11 @@ class _$OrganizationImpl implements _Organization {
 
 abstract class _Organization implements Organization {
   const factory _Organization(
-      {required final int id,
-      required final String name,
-      required final String description,
-      @JsonKey(name: 'profile_picture')
-      required final String profilePicture}) = _$OrganizationImpl;
+          {required final int id,
+          required final String name,
+          required final String description,
+          @JsonKey(name: 'profile_picture') final String? profilePicture}) =
+      _$OrganizationImpl;
 
   factory _Organization.fromJson(Map<String, dynamic> json) =
       _$OrganizationImpl.fromJson;
@@ -224,7 +224,7 @@ abstract class _Organization implements Organization {
   String get description;
   @override
   @JsonKey(name: 'profile_picture')
-  String get profilePicture;
+  String? get profilePicture;
 
   /// Create a copy of Organization
   /// with the given fields replaced by the non-null parameter values.

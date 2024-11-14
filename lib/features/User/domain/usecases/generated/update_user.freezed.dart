@@ -23,7 +23,7 @@ mixin _$UpdateUserParams {
   String get firstname => throw _privateConstructorUsedError;
   String get lastname => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_picture')
-  String get profilePicture => throw _privateConstructorUsedError;
+  String? get profilePicture => throw _privateConstructorUsedError;
   @JsonKey(name: 'job_title')
   String get jobTitle => throw _privateConstructorUsedError;
 
@@ -46,7 +46,7 @@ abstract class $UpdateUserParamsCopyWith<$Res> {
   $Res call(
       {String firstname,
       String lastname,
-      @JsonKey(name: 'profile_picture') String profilePicture,
+      @JsonKey(name: 'profile_picture') String? profilePicture,
       @JsonKey(name: 'job_title') String jobTitle});
 }
 
@@ -67,7 +67,7 @@ class _$UpdateUserParamsCopyWithImpl<$Res, $Val extends UpdateUserParams>
   $Res call({
     Object? firstname = null,
     Object? lastname = null,
-    Object? profilePicture = null,
+    Object? profilePicture = freezed,
     Object? jobTitle = null,
   }) {
     return _then(_value.copyWith(
@@ -79,10 +79,10 @@ class _$UpdateUserParamsCopyWithImpl<$Res, $Val extends UpdateUserParams>
           ? _value.lastname
           : lastname // ignore: cast_nullable_to_non_nullable
               as String,
-      profilePicture: null == profilePicture
+      profilePicture: freezed == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       jobTitle: null == jobTitle
           ? _value.jobTitle
           : jobTitle // ignore: cast_nullable_to_non_nullable
@@ -102,7 +102,7 @@ abstract class _$$UpdateUserParamsImplCopyWith<$Res>
   $Res call(
       {String firstname,
       String lastname,
-      @JsonKey(name: 'profile_picture') String profilePicture,
+      @JsonKey(name: 'profile_picture') String? profilePicture,
       @JsonKey(name: 'job_title') String jobTitle});
 }
 
@@ -121,7 +121,7 @@ class __$$UpdateUserParamsImplCopyWithImpl<$Res>
   $Res call({
     Object? firstname = null,
     Object? lastname = null,
-    Object? profilePicture = null,
+    Object? profilePicture = freezed,
     Object? jobTitle = null,
   }) {
     return _then(_$UpdateUserParamsImpl(
@@ -133,10 +133,10 @@ class __$$UpdateUserParamsImplCopyWithImpl<$Res>
           ? _value.lastname
           : lastname // ignore: cast_nullable_to_non_nullable
               as String,
-      profilePicture: null == profilePicture
+      profilePicture: freezed == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       jobTitle: null == jobTitle
           ? _value.jobTitle
           : jobTitle // ignore: cast_nullable_to_non_nullable
@@ -151,7 +151,7 @@ class _$UpdateUserParamsImpl implements _UpdateUserParams {
   const _$UpdateUserParamsImpl(
       {required this.firstname,
       required this.lastname,
-      @JsonKey(name: 'profile_picture') required this.profilePicture,
+      @JsonKey(name: 'profile_picture') this.profilePicture,
       @JsonKey(name: 'job_title') required this.jobTitle});
 
   factory _$UpdateUserParamsImpl.fromJson(Map<String, dynamic> json) =>
@@ -163,7 +163,7 @@ class _$UpdateUserParamsImpl implements _UpdateUserParams {
   final String lastname;
   @override
   @JsonKey(name: 'profile_picture')
-  final String profilePicture;
+  final String? profilePicture;
   @override
   @JsonKey(name: 'job_title')
   final String jobTitle;
@@ -212,11 +212,11 @@ class _$UpdateUserParamsImpl implements _UpdateUserParams {
 
 abstract class _UpdateUserParams implements UpdateUserParams {
   const factory _UpdateUserParams(
-      {required final String firstname,
-      required final String lastname,
-      @JsonKey(name: 'profile_picture') required final String profilePicture,
-      @JsonKey(name: 'job_title')
-      required final String jobTitle}) = _$UpdateUserParamsImpl;
+          {required final String firstname,
+          required final String lastname,
+          @JsonKey(name: 'profile_picture') final String? profilePicture,
+          @JsonKey(name: 'job_title') required final String jobTitle}) =
+      _$UpdateUserParamsImpl;
 
   factory _UpdateUserParams.fromJson(Map<String, dynamic> json) =
       _$UpdateUserParamsImpl.fromJson;
@@ -227,7 +227,7 @@ abstract class _UpdateUserParams implements UpdateUserParams {
   String get lastname;
   @override
   @JsonKey(name: 'profile_picture')
-  String get profilePicture;
+  String? get profilePicture;
   @override
   @JsonKey(name: 'job_title')
   String get jobTitle;

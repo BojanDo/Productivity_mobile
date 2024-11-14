@@ -13,6 +13,7 @@ class Comment with _$Comment {
     required String date,
     required String description,
     required User user,
+    required String type,
   }) = _Comment;
 
   factory Comment.fromJson(Map<String, dynamic> json) => _$CommentFromJson(json);

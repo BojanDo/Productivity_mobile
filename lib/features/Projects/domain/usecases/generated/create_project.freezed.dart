@@ -14,59 +14,57 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-CreateOrganizationParams _$CreateOrganizationParamsFromJson(
-    Map<String, dynamic> json) {
-  return _CreateOrganizationParams.fromJson(json);
+CreateProjectParams _$CreateProjectParamsFromJson(Map<String, dynamic> json) {
+  return _CreateProjectParams.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CreateOrganizationParams {
+mixin _$CreateProjectParams {
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_picture')
-  String get profilePicture => throw _privateConstructorUsedError;
+  String? get profilePicture => throw _privateConstructorUsedError;
 
-  /// Serializes this CreateOrganizationParams to a JSON map.
+  /// Serializes this CreateProjectParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of CreateOrganizationParams
+  /// Create a copy of CreateProjectParams
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CreateOrganizationParamsCopyWith<CreateOrganizationParams> get copyWith =>
+  $CreateProjectParamsCopyWith<CreateProjectParams> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateOrganizationParamsCopyWith<$Res> {
-  factory $CreateOrganizationParamsCopyWith(CreateOrganizationParams value,
-          $Res Function(CreateOrganizationParams) then) =
-      _$CreateOrganizationParamsCopyWithImpl<$Res, CreateOrganizationParams>;
+abstract class $CreateProjectParamsCopyWith<$Res> {
+  factory $CreateProjectParamsCopyWith(
+          CreateProjectParams value, $Res Function(CreateProjectParams) then) =
+      _$CreateProjectParamsCopyWithImpl<$Res, CreateProjectParams>;
   @useResult
   $Res call(
       {String title,
       String description,
-      @JsonKey(name: 'profile_picture') String profilePicture});
+      @JsonKey(name: 'profile_picture') String? profilePicture});
 }
 
 /// @nodoc
-class _$CreateOrganizationParamsCopyWithImpl<$Res,
-        $Val extends CreateOrganizationParams>
-    implements $CreateOrganizationParamsCopyWith<$Res> {
-  _$CreateOrganizationParamsCopyWithImpl(this._value, this._then);
+class _$CreateProjectParamsCopyWithImpl<$Res, $Val extends CreateProjectParams>
+    implements $CreateProjectParamsCopyWith<$Res> {
+  _$CreateProjectParamsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CreateOrganizationParams
+  /// Create a copy of CreateProjectParams
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? title = null,
     Object? description = null,
-    Object? profilePicture = null,
+    Object? profilePicture = freezed,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -77,49 +75,46 @@ class _$CreateOrganizationParamsCopyWithImpl<$Res,
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      profilePicture: null == profilePicture
+      profilePicture: freezed == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$CreateOrganizationParamsImplCopyWith<$Res>
-    implements $CreateOrganizationParamsCopyWith<$Res> {
-  factory _$$CreateOrganizationParamsImplCopyWith(
-          _$CreateOrganizationParamsImpl value,
-          $Res Function(_$CreateOrganizationParamsImpl) then) =
-      __$$CreateOrganizationParamsImplCopyWithImpl<$Res>;
+abstract class _$$CreateProjectParamsImplCopyWith<$Res>
+    implements $CreateProjectParamsCopyWith<$Res> {
+  factory _$$CreateProjectParamsImplCopyWith(_$CreateProjectParamsImpl value,
+          $Res Function(_$CreateProjectParamsImpl) then) =
+      __$$CreateProjectParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String title,
       String description,
-      @JsonKey(name: 'profile_picture') String profilePicture});
+      @JsonKey(name: 'profile_picture') String? profilePicture});
 }
 
 /// @nodoc
-class __$$CreateOrganizationParamsImplCopyWithImpl<$Res>
-    extends _$CreateOrganizationParamsCopyWithImpl<$Res,
-        _$CreateOrganizationParamsImpl>
-    implements _$$CreateOrganizationParamsImplCopyWith<$Res> {
-  __$$CreateOrganizationParamsImplCopyWithImpl(
-      _$CreateOrganizationParamsImpl _value,
-      $Res Function(_$CreateOrganizationParamsImpl) _then)
+class __$$CreateProjectParamsImplCopyWithImpl<$Res>
+    extends _$CreateProjectParamsCopyWithImpl<$Res, _$CreateProjectParamsImpl>
+    implements _$$CreateProjectParamsImplCopyWith<$Res> {
+  __$$CreateProjectParamsImplCopyWithImpl(_$CreateProjectParamsImpl _value,
+      $Res Function(_$CreateProjectParamsImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateOrganizationParams
+  /// Create a copy of CreateProjectParams
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? title = null,
     Object? description = null,
-    Object? profilePicture = null,
+    Object? profilePicture = freezed,
   }) {
-    return _then(_$CreateOrganizationParamsImpl(
+    return _then(_$CreateProjectParamsImpl(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -128,24 +123,24 @@ class __$$CreateOrganizationParamsImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      profilePicture: null == profilePicture
+      profilePicture: freezed == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$CreateOrganizationParamsImpl implements _CreateOrganizationParams {
-  const _$CreateOrganizationParamsImpl(
+class _$CreateProjectParamsImpl implements _CreateProjectParams {
+  const _$CreateProjectParamsImpl(
       {required this.title,
       required this.description,
-      @JsonKey(name: 'profile_picture') required this.profilePicture});
+      @JsonKey(name: 'profile_picture') this.profilePicture});
 
-  factory _$CreateOrganizationParamsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CreateOrganizationParamsImplFromJson(json);
+  factory _$CreateProjectParamsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CreateProjectParamsImplFromJson(json);
 
   @override
   final String title;
@@ -153,18 +148,18 @@ class _$CreateOrganizationParamsImpl implements _CreateOrganizationParams {
   final String description;
   @override
   @JsonKey(name: 'profile_picture')
-  final String profilePicture;
+  final String? profilePicture;
 
   @override
   String toString() {
-    return 'CreateOrganizationParams(title: $title, description: $description, profilePicture: $profilePicture)';
+    return 'CreateProjectParams(title: $title, description: $description, profilePicture: $profilePicture)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreateOrganizationParamsImpl &&
+            other is _$CreateProjectParamsImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -177,32 +172,32 @@ class _$CreateOrganizationParamsImpl implements _CreateOrganizationParams {
   int get hashCode =>
       Object.hash(runtimeType, title, description, profilePicture);
 
-  /// Create a copy of CreateOrganizationParams
+  /// Create a copy of CreateProjectParams
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreateOrganizationParamsImplCopyWith<_$CreateOrganizationParamsImpl>
-      get copyWith => __$$CreateOrganizationParamsImplCopyWithImpl<
-          _$CreateOrganizationParamsImpl>(this, _$identity);
+  _$$CreateProjectParamsImplCopyWith<_$CreateProjectParamsImpl> get copyWith =>
+      __$$CreateProjectParamsImplCopyWithImpl<_$CreateProjectParamsImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CreateOrganizationParamsImplToJson(
+    return _$$CreateProjectParamsImplToJson(
       this,
     );
   }
 }
 
-abstract class _CreateOrganizationParams implements CreateOrganizationParams {
-  const factory _CreateOrganizationParams(
-      {required final String title,
-      required final String description,
-      @JsonKey(name: 'profile_picture')
-      required final String profilePicture}) = _$CreateOrganizationParamsImpl;
+abstract class _CreateProjectParams implements CreateProjectParams {
+  const factory _CreateProjectParams(
+          {required final String title,
+          required final String description,
+          @JsonKey(name: 'profile_picture') final String? profilePicture}) =
+      _$CreateProjectParamsImpl;
 
-  factory _CreateOrganizationParams.fromJson(Map<String, dynamic> json) =
-      _$CreateOrganizationParamsImpl.fromJson;
+  factory _CreateProjectParams.fromJson(Map<String, dynamic> json) =
+      _$CreateProjectParamsImpl.fromJson;
 
   @override
   String get title;
@@ -210,12 +205,12 @@ abstract class _CreateOrganizationParams implements CreateOrganizationParams {
   String get description;
   @override
   @JsonKey(name: 'profile_picture')
-  String get profilePicture;
+  String? get profilePicture;
 
-  /// Create a copy of CreateOrganizationParams
+  /// Create a copy of CreateProjectParams
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CreateOrganizationParamsImplCopyWith<_$CreateOrganizationParamsImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$CreateProjectParamsImplCopyWith<_$CreateProjectParamsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

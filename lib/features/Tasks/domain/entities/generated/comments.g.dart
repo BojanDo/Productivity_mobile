@@ -12,6 +12,7 @@ _$CommentImpl _$$CommentImplFromJson(Map<String, dynamic> json) =>
       date: json['date'] as String,
       description: json['description'] as String,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
+      type: json['type'] as String,
     );
 
 Map<String, dynamic> _$$CommentImplToJson(_$CommentImpl instance) =>
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$CommentImplToJson(_$CommentImpl instance) =>
       'date': instance.date,
       'description': instance.description,
       'user': instance.user,
+      'type': instance.type,
     };

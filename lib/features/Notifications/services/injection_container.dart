@@ -14,7 +14,7 @@ Future<void> initNotifications(GetIt sl) async {
   sl.registerLazySingleton(() => GetNotifications(sl()));
   // Repositories
   sl.registerLazySingleton<NotificationsRepository>(
-      () => NotificationsRepoImplementation(sl()));
+      () => NotificationsRepoImplementation(sl()),);
   // Data Sources
   sl.registerLazySingleton<NotificationsRemoteDataSource>(
     () => NotificationsRemoteDataSourceImplementation(sl()),

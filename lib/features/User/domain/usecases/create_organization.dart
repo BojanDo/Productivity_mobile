@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/usecase/usecase.dart';
@@ -14,10 +15,19 @@ class CreateOrganization extends UsecaseWithParams<UserResponse, CreateOrganizat
   final UserRepository _repository;
 
   @override
-  ResultFuture<UserResponse> call(CreateOrganizationParams params) async =>
-      _repository.createOrganization(
-        values: params.toJson(),
+  ResultFuture<UserResponse> call(CreateOrganizationParams params) async {
+    final Map<String, dynamic> jsonParams = params.toJson();
+
+    if (params.profilePicture != null) {
+      jsonParams['profile_picture'] = await MultipartFile.fromFile(
+        params.profilePicture!,
+        filename: params.profilePicture!.split('/').last,
       );
+    }
+    return _repository.createOrganization(
+      values: jsonParams,
+    );
+  }
 }
 
 @freezed
@@ -25,7 +35,7 @@ class CreateOrganizationParams with _$CreateOrganizationParams {
   const factory CreateOrganizationParams({
     required String name,
     required String description,
-    @JsonKey(name: 'profile_picture') required String profilePicture,
+    @JsonKey(name: 'profile_picture') String? profilePicture,
   }) = _CreateOrganizationParams;
 
   factory CreateOrganizationParams.fromJson(Map<String, dynamic> json) =>

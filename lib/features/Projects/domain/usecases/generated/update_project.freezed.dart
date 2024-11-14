@@ -23,7 +23,7 @@ mixin _$UpdateProjectParams {
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_picture')
-  String get profilePicture => throw _privateConstructorUsedError;
+  String? get profilePicture => throw _privateConstructorUsedError;
 
   /// Serializes this UpdateProjectParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $UpdateProjectParamsCopyWith<$Res> {
   $Res call(
       {String title,
       String description,
-      @JsonKey(name: 'profile_picture') String profilePicture});
+      @JsonKey(name: 'profile_picture') String? profilePicture});
 }
 
 /// @nodoc
@@ -64,7 +64,7 @@ class _$UpdateProjectParamsCopyWithImpl<$Res, $Val extends UpdateProjectParams>
   $Res call({
     Object? title = null,
     Object? description = null,
-    Object? profilePicture = null,
+    Object? profilePicture = freezed,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -75,10 +75,10 @@ class _$UpdateProjectParamsCopyWithImpl<$Res, $Val extends UpdateProjectParams>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      profilePicture: null == profilePicture
+      profilePicture: freezed == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -94,7 +94,7 @@ abstract class _$$UpdateProjectParamsImplCopyWith<$Res>
   $Res call(
       {String title,
       String description,
-      @JsonKey(name: 'profile_picture') String profilePicture});
+      @JsonKey(name: 'profile_picture') String? profilePicture});
 }
 
 /// @nodoc
@@ -112,7 +112,7 @@ class __$$UpdateProjectParamsImplCopyWithImpl<$Res>
   $Res call({
     Object? title = null,
     Object? description = null,
-    Object? profilePicture = null,
+    Object? profilePicture = freezed,
   }) {
     return _then(_$UpdateProjectParamsImpl(
       title: null == title
@@ -123,10 +123,10 @@ class __$$UpdateProjectParamsImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      profilePicture: null == profilePicture
+      profilePicture: freezed == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -137,7 +137,7 @@ class _$UpdateProjectParamsImpl implements _UpdateProjectParams {
   const _$UpdateProjectParamsImpl(
       {required this.title,
       required this.description,
-      @JsonKey(name: 'profile_picture') required this.profilePicture});
+      @JsonKey(name: 'profile_picture') this.profilePicture});
 
   factory _$UpdateProjectParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$UpdateProjectParamsImplFromJson(json);
@@ -148,7 +148,7 @@ class _$UpdateProjectParamsImpl implements _UpdateProjectParams {
   final String description;
   @override
   @JsonKey(name: 'profile_picture')
-  final String profilePicture;
+  final String? profilePicture;
 
   @override
   String toString() {
@@ -191,10 +191,10 @@ class _$UpdateProjectParamsImpl implements _UpdateProjectParams {
 
 abstract class _UpdateProjectParams implements UpdateProjectParams {
   const factory _UpdateProjectParams(
-      {required final String title,
-      required final String description,
-      @JsonKey(name: 'profile_picture')
-      required final String profilePicture}) = _$UpdateProjectParamsImpl;
+          {required final String title,
+          required final String description,
+          @JsonKey(name: 'profile_picture') final String? profilePicture}) =
+      _$UpdateProjectParamsImpl;
 
   factory _UpdateProjectParams.fromJson(Map<String, dynamic> json) =
       _$UpdateProjectParamsImpl.fromJson;
@@ -205,7 +205,7 @@ abstract class _UpdateProjectParams implements UpdateProjectParams {
   String get description;
   @override
   @JsonKey(name: 'profile_picture')
-  String get profilePicture;
+  String? get profilePicture;
 
   /// Create a copy of UpdateProjectParams
   /// with the given fields replaced by the non-null parameter values.

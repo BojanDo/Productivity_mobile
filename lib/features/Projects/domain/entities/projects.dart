@@ -11,7 +11,7 @@ class Project with _$Project {
     required int id,
     required String title,
     required String description,
-    @JsonKey(name: 'profile_picture') required String profilePicture,
+    @JsonKey(name: 'profile_picture') String? profilePicture,
   }) = _Project;
 
   factory Project.fromJson(Map<String, dynamic> json) => _$ProjectFromJson(json);

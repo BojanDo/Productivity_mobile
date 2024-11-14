@@ -12,7 +12,7 @@ class User with _$User {
     required String firstname,
     required String lastname,
     required String email,
-    @JsonKey(name: 'profile_picture') required String profilePicture,
+    @JsonKey(name: 'profile_picture') String? profilePicture,
     @JsonKey(name: 'job_title') required String jobTitle,
     @JsonKey(name: 'organization_id') required String organizationId,
     @JsonKey(name: 'role_name') required String roleName,

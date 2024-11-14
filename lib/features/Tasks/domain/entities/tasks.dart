@@ -6,8 +6,8 @@ import '../../../Documents/domain/entities/documents.dart';
 import '../../../Projects/domain/entities/projects.dart';
 import '../../../User/domain/entities/users.dart';
 import '../mappers/comment.dart';
-import '../mappers/document.dart';
-import '../mappers/user.dart';
+import '../../../Documents/domain/mappers/document.dart';
+import '../../../User/domain/mappers/user.dart';
 import 'comments.dart';
 
 part 'generated/tasks.freezed.dart';
@@ -21,6 +21,7 @@ class Task with _$Task {
     required String title,
     required DataMap description,
     required String status,
+    required String label,
     required String date,
     required Project project,
     @JsonKey(
@@ -46,6 +47,9 @@ class TaskSlim with _$TaskSlim{
   const factory TaskSlim({
     required int id,
     required String title,
+    required String status,
+    required String label,
+    required String date,
     @JsonKey(name: 'task_number') required String taskNumber,
   }) = _TaskSlim;
 

@@ -25,7 +25,7 @@ mixin _$User {
   String get lastname => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_picture')
-  String get profilePicture => throw _privateConstructorUsedError;
+  String? get profilePicture => throw _privateConstructorUsedError;
   @JsonKey(name: 'job_title')
   String get jobTitle => throw _privateConstructorUsedError;
   @JsonKey(name: 'organization_id')
@@ -52,7 +52,7 @@ abstract class $UserCopyWith<$Res> {
       String firstname,
       String lastname,
       String email,
-      @JsonKey(name: 'profile_picture') String profilePicture,
+      @JsonKey(name: 'profile_picture') String? profilePicture,
       @JsonKey(name: 'job_title') String jobTitle,
       @JsonKey(name: 'organization_id') String organizationId,
       @JsonKey(name: 'role_name') String roleName});
@@ -77,7 +77,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? firstname = null,
     Object? lastname = null,
     Object? email = null,
-    Object? profilePicture = null,
+    Object? profilePicture = freezed,
     Object? jobTitle = null,
     Object? organizationId = null,
     Object? roleName = null,
@@ -99,10 +99,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      profilePicture: null == profilePicture
+      profilePicture: freezed == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       jobTitle: null == jobTitle
           ? _value.jobTitle
           : jobTitle // ignore: cast_nullable_to_non_nullable
@@ -131,7 +131,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String firstname,
       String lastname,
       String email,
-      @JsonKey(name: 'profile_picture') String profilePicture,
+      @JsonKey(name: 'profile_picture') String? profilePicture,
       @JsonKey(name: 'job_title') String jobTitle,
       @JsonKey(name: 'organization_id') String organizationId,
       @JsonKey(name: 'role_name') String roleName});
@@ -153,7 +153,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? firstname = null,
     Object? lastname = null,
     Object? email = null,
-    Object? profilePicture = null,
+    Object? profilePicture = freezed,
     Object? jobTitle = null,
     Object? organizationId = null,
     Object? roleName = null,
@@ -175,10 +175,10 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      profilePicture: null == profilePicture
+      profilePicture: freezed == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       jobTitle: null == jobTitle
           ? _value.jobTitle
           : jobTitle // ignore: cast_nullable_to_non_nullable
@@ -203,7 +203,7 @@ class _$UserImpl implements _User {
       required this.firstname,
       required this.lastname,
       required this.email,
-      @JsonKey(name: 'profile_picture') required this.profilePicture,
+      @JsonKey(name: 'profile_picture') this.profilePicture,
       @JsonKey(name: 'job_title') required this.jobTitle,
       @JsonKey(name: 'organization_id') required this.organizationId,
       @JsonKey(name: 'role_name') required this.roleName});
@@ -221,7 +221,7 @@ class _$UserImpl implements _User {
   final String email;
   @override
   @JsonKey(name: 'profile_picture')
-  final String profilePicture;
+  final String? profilePicture;
   @override
   @JsonKey(name: 'job_title')
   final String jobTitle;
@@ -285,7 +285,7 @@ abstract class _User implements User {
       required final String firstname,
       required final String lastname,
       required final String email,
-      @JsonKey(name: 'profile_picture') required final String profilePicture,
+      @JsonKey(name: 'profile_picture') final String? profilePicture,
       @JsonKey(name: 'job_title') required final String jobTitle,
       @JsonKey(name: 'organization_id') required final String organizationId,
       @JsonKey(name: 'role_name') required final String roleName}) = _$UserImpl;
@@ -302,7 +302,7 @@ abstract class _User implements User {
   String get email;
   @override
   @JsonKey(name: 'profile_picture')
-  String get profilePicture;
+  String? get profilePicture;
   @override
   @JsonKey(name: 'job_title')
   String get jobTitle;

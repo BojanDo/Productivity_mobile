@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/usecase/usecase.dart';
@@ -13,12 +14,22 @@ class UpdateUser extends UsecaseIdWithParams<UserResponse, UpdateUserParams> {
 
   final UserRepository _repository;
 
+
   @override
-  ResultFuture<UserResponse> call(String id,UpdateUserParams params) async =>
-      _repository.updateUser(
-        id,
-        values: params.toJson(),
+  ResultFuture<UserResponse> call(String id,UpdateUserParams params) async {
+    final Map<String, dynamic> jsonParams = params.toJson();
+
+    if (params.profilePicture != null) {
+      jsonParams['profile_picture'] = await MultipartFile.fromFile(
+        params.profilePicture!,
+        filename: params.profilePicture!.split('/').last,
       );
+    }
+    return _repository.updateUser(
+      id,
+      values: jsonParams,
+    );
+  }
 }
 
 @freezed
@@ -26,7 +37,7 @@ class UpdateUserParams with _$UpdateUserParams {
   const factory UpdateUserParams({
     required String firstname,
     required String lastname,
-    @JsonKey(name: 'profile_picture') required String profilePicture,
+    @JsonKey(name: 'profile_picture') String? profilePicture,
     @JsonKey(name: 'job_title') required String jobTitle,
   }) = _UpdateUserParams;
 

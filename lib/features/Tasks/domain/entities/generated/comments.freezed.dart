@@ -24,6 +24,7 @@ mixin _$Comment {
   String get date => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
 
   /// Serializes this Comment to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +40,7 @@ abstract class $CommentCopyWith<$Res> {
   factory $CommentCopyWith(Comment value, $Res Function(Comment) then) =
       _$CommentCopyWithImpl<$Res, Comment>;
   @useResult
-  $Res call({int id, String date, String description, User user});
+  $Res call({int id, String date, String description, User user, String type});
 
   $UserCopyWith<$Res> get user;
 }
@@ -63,6 +64,7 @@ class _$CommentCopyWithImpl<$Res, $Val extends Comment>
     Object? date = null,
     Object? description = null,
     Object? user = null,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -81,6 +83,10 @@ class _$CommentCopyWithImpl<$Res, $Val extends Comment>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -102,7 +108,7 @@ abstract class _$$CommentImplCopyWith<$Res> implements $CommentCopyWith<$Res> {
       __$$CommentImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String date, String description, User user});
+  $Res call({int id, String date, String description, User user, String type});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -125,6 +131,7 @@ class __$$CommentImplCopyWithImpl<$Res>
     Object? date = null,
     Object? description = null,
     Object? user = null,
+    Object? type = null,
   }) {
     return _then(_$CommentImpl(
       id: null == id
@@ -143,6 +150,10 @@ class __$$CommentImplCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -154,7 +165,8 @@ class _$CommentImpl implements _Comment {
       {required this.id,
       required this.date,
       required this.description,
-      required this.user});
+      required this.user,
+      required this.type});
 
   factory _$CommentImpl.fromJson(Map<String, dynamic> json) =>
       _$$CommentImplFromJson(json);
@@ -167,10 +179,12 @@ class _$CommentImpl implements _Comment {
   final String description;
   @override
   final User user;
+  @override
+  final String type;
 
   @override
   String toString() {
-    return 'Comment(id: $id, date: $date, description: $description, user: $user)';
+    return 'Comment(id: $id, date: $date, description: $description, user: $user, type: $type)';
   }
 
   @override
@@ -182,12 +196,14 @@ class _$CommentImpl implements _Comment {
             (identical(other.date, date) || other.date == date) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, date, description, user);
+  int get hashCode =>
+      Object.hash(runtimeType, id, date, description, user, type);
 
   /// Create a copy of Comment
   /// with the given fields replaced by the non-null parameter values.
@@ -210,7 +226,8 @@ abstract class _Comment implements Comment {
       {required final int id,
       required final String date,
       required final String description,
-      required final User user}) = _$CommentImpl;
+      required final User user,
+      required final String type}) = _$CommentImpl;
 
   factory _Comment.fromJson(Map<String, dynamic> json) = _$CommentImpl.fromJson;
 
@@ -222,6 +239,8 @@ abstract class _Comment implements Comment {
   String get description;
   @override
   User get user;
+  @override
+  String get type;
 
   /// Create a copy of Comment
   /// with the given fields replaced by the non-null parameter values.

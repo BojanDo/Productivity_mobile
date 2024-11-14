@@ -11,7 +11,7 @@ _$RegisterParamsImpl _$$RegisterParamsImplFromJson(Map<String, dynamic> json) =>
       firstname: json['firstname'] as String,
       lastname: json['lastname'] as String,
       emial: json['emial'] as String,
-      profilePicture: json['profile_picture'] as String,
+      profilePicture: json['profile_picture'] as String?,
       password: json['password'] as String,
       jobTitle: json['job_title'] as String,
     );

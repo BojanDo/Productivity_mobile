@@ -11,7 +11,7 @@ _$UpdateUserParamsImpl _$$UpdateUserParamsImplFromJson(
     _$UpdateUserParamsImpl(
       firstname: json['firstname'] as String,
       lastname: json['lastname'] as String,
-      profilePicture: json['profile_picture'] as String,
+      profilePicture: json['profile_picture'] as String?,
       jobTitle: json['job_title'] as String,
     );
 

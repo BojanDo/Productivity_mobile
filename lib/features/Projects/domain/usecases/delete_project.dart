@@ -1,7 +1,6 @@
 import '../../../../core/usecase/usecase.dart';
 import '../../../../core/utils/typedef.dart';
 import '../entities/project_response.dart';
-import '../entities/projects.dart';
 import '../repositories/project_repo.dart';
 
 class DeleteProject extends UsecaseIdWithoutParams<ProjectResponse> {

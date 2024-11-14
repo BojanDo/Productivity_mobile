@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/usecase/usecase.dart';
@@ -9,26 +10,33 @@ import '../repositories/project_repo.dart';
 part 'generated/create_project.freezed.dart';
 part 'generated/create_project.g.dart';
 
-class CreateOrganization extends UsecaseWithParams<ProjectResponse, CreateOrganizationParams> {
-  const CreateOrganization(this._repository);
+class CreateProject extends UsecaseWithParams<ProjectResponse, CreateProjectParams> {
+  const CreateProject(this._repository);
 
   final ProjectRepository _repository;
 
   @override
-  ResultFuture<ProjectResponse> call(CreateOrganizationParams params) async =>
-      _repository.createProject(
-        values: params.toJson(),
+  ResultFuture<ProjectResponse> call(CreateProjectParams params) async {
+    final Map<String, dynamic> jsonParams = params.toJson();
+
+    if (params.profilePicture != null) {
+      jsonParams['profile_picture'] = await MultipartFile.fromFile(
+        params.profilePicture!,
+        filename: params.profilePicture!.split('/').last,
       );
+    }
+    return _repository.createProject(values: jsonParams);
+  }
 }
 
 @freezed
-class CreateOrganizationParams with _$CreateOrganizationParams {
-  const factory CreateOrganizationParams({
+class CreateProjectParams with _$CreateProjectParams {
+  const factory CreateProjectParams({
     required String title,
     required String description,
-    @JsonKey(name: 'profile_picture') required String profilePicture,
-  }) = _CreateOrganizationParams;
+    @JsonKey(name: 'profile_picture') String? profilePicture,
+  }) = _CreateProjectParams;
 
-  factory CreateOrganizationParams.fromJson(Map<String, dynamic> json) =>
-      _$CreateOrganizationParamsFromJson(json);
+  factory CreateProjectParams.fromJson(Map<String, dynamic> json) =>
+      _$CreateProjectParamsFromJson(json);
 }

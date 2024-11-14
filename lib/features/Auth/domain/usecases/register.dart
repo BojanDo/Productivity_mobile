@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/usecase/usecase.dart';
@@ -14,10 +15,17 @@ class Register extends UsecaseWithParams<AuthResponse, RegisterParams> {
   final AuthRepository _repository;
 
   @override
-  ResultFuture<AuthResponse> call(RegisterParams params) async =>
-      _repository.login(
-        values: params.toJson(),
+  ResultFuture<AuthResponse> call(RegisterParams params) async {
+    final Map<String, dynamic> jsonParams = params.toJson();
+
+    if (params.profilePicture != null) {
+      jsonParams['profile_picture'] = await MultipartFile.fromFile(
+        params.profilePicture!,
+        filename: params.profilePicture!.split('/').last,
       );
+    }
+    return _repository.register(values: jsonParams);
+  }
 }
 
 @freezed
@@ -26,7 +34,7 @@ const factory RegisterParams({
   required String firstname,
   required String lastname,
   required String emial,
-  @JsonKey(name: 'profile_picture') required String profilePicture,
+  @JsonKey(name: 'profile_picture') String? profilePicture,
   required String password,
   @JsonKey(name: 'job_title') required String jobTitle,
 }) = _RegisterParams;

@@ -11,7 +11,7 @@ _$CreateOrganizationParamsImpl _$$CreateOrganizationParamsImplFromJson(
     _$CreateOrganizationParamsImpl(
       name: json['name'] as String,
       description: json['description'] as String,
-      profilePicture: json['profile_picture'] as String,
+      profilePicture: json['profile_picture'] as String?,
     );
 
 Map<String, dynamic> _$$CreateOrganizationParamsImplToJson(

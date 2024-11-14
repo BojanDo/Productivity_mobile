@@ -6,16 +6,16 @@ part of '../create_project.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CreateOrganizationParamsImpl _$$CreateOrganizationParamsImplFromJson(
+_$CreateProjectParamsImpl _$$CreateProjectParamsImplFromJson(
         Map<String, dynamic> json) =>
-    _$CreateOrganizationParamsImpl(
+    _$CreateProjectParamsImpl(
       title: json['title'] as String,
       description: json['description'] as String,
-      profilePicture: json['profile_picture'] as String,
+      profilePicture: json['profile_picture'] as String?,
     );
 
-Map<String, dynamic> _$$CreateOrganizationParamsImplToJson(
-        _$CreateOrganizationParamsImpl instance) =>
+Map<String, dynamic> _$$CreateProjectParamsImplToJson(
+        _$CreateProjectParamsImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
