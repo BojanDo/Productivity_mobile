@@ -33,7 +33,7 @@ class RegisterParams with _$RegisterParams {
 const factory RegisterParams({
   required String firstname,
   required String lastname,
-  required String emial,
+  required String email,
   @JsonKey(name: 'profile_picture') String? profilePicture,
   required String password,
   @JsonKey(name: 'job_title') required String jobTitle,

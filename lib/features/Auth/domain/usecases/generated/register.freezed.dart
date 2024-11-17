@@ -22,7 +22,7 @@ RegisterParams _$RegisterParamsFromJson(Map<String, dynamic> json) {
 mixin _$RegisterParams {
   String get firstname => throw _privateConstructorUsedError;
   String get lastname => throw _privateConstructorUsedError;
-  String get emial => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_picture')
   String? get profilePicture => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
@@ -48,7 +48,7 @@ abstract class $RegisterParamsCopyWith<$Res> {
   $Res call(
       {String firstname,
       String lastname,
-      String emial,
+      String email,
       @JsonKey(name: 'profile_picture') String? profilePicture,
       String password,
       @JsonKey(name: 'job_title') String jobTitle});
@@ -71,7 +71,7 @@ class _$RegisterParamsCopyWithImpl<$Res, $Val extends RegisterParams>
   $Res call({
     Object? firstname = null,
     Object? lastname = null,
-    Object? emial = null,
+    Object? email = null,
     Object? profilePicture = freezed,
     Object? password = null,
     Object? jobTitle = null,
@@ -85,9 +85,9 @@ class _$RegisterParamsCopyWithImpl<$Res, $Val extends RegisterParams>
           ? _value.lastname
           : lastname // ignore: cast_nullable_to_non_nullable
               as String,
-      emial: null == emial
-          ? _value.emial
-          : emial // ignore: cast_nullable_to_non_nullable
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       profilePicture: freezed == profilePicture
           ? _value.profilePicture
@@ -116,7 +116,7 @@ abstract class _$$RegisterParamsImplCopyWith<$Res>
   $Res call(
       {String firstname,
       String lastname,
-      String emial,
+      String email,
       @JsonKey(name: 'profile_picture') String? profilePicture,
       String password,
       @JsonKey(name: 'job_title') String jobTitle});
@@ -137,7 +137,7 @@ class __$$RegisterParamsImplCopyWithImpl<$Res>
   $Res call({
     Object? firstname = null,
     Object? lastname = null,
-    Object? emial = null,
+    Object? email = null,
     Object? profilePicture = freezed,
     Object? password = null,
     Object? jobTitle = null,
@@ -151,9 +151,9 @@ class __$$RegisterParamsImplCopyWithImpl<$Res>
           ? _value.lastname
           : lastname // ignore: cast_nullable_to_non_nullable
               as String,
-      emial: null == emial
-          ? _value.emial
-          : emial // ignore: cast_nullable_to_non_nullable
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       profilePicture: freezed == profilePicture
           ? _value.profilePicture
@@ -177,7 +177,7 @@ class _$RegisterParamsImpl implements _RegisterParams {
   const _$RegisterParamsImpl(
       {required this.firstname,
       required this.lastname,
-      required this.emial,
+      required this.email,
       @JsonKey(name: 'profile_picture') this.profilePicture,
       required this.password,
       @JsonKey(name: 'job_title') required this.jobTitle});
@@ -190,7 +190,7 @@ class _$RegisterParamsImpl implements _RegisterParams {
   @override
   final String lastname;
   @override
-  final String emial;
+  final String email;
   @override
   @JsonKey(name: 'profile_picture')
   final String? profilePicture;
@@ -202,7 +202,7 @@ class _$RegisterParamsImpl implements _RegisterParams {
 
   @override
   String toString() {
-    return 'RegisterParams(firstname: $firstname, lastname: $lastname, emial: $emial, profilePicture: $profilePicture, password: $password, jobTitle: $jobTitle)';
+    return 'RegisterParams(firstname: $firstname, lastname: $lastname, email: $email, profilePicture: $profilePicture, password: $password, jobTitle: $jobTitle)';
   }
 
   @override
@@ -214,7 +214,7 @@ class _$RegisterParamsImpl implements _RegisterParams {
                 other.firstname == firstname) &&
             (identical(other.lastname, lastname) ||
                 other.lastname == lastname) &&
-            (identical(other.emial, emial) || other.emial == emial) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.profilePicture, profilePicture) ||
                 other.profilePicture == profilePicture) &&
             (identical(other.password, password) ||
@@ -225,7 +225,7 @@ class _$RegisterParamsImpl implements _RegisterParams {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, firstname, lastname, emial,
+  int get hashCode => Object.hash(runtimeType, firstname, lastname, email,
       profilePicture, password, jobTitle);
 
   /// Create a copy of RegisterParams
@@ -249,7 +249,7 @@ abstract class _RegisterParams implements RegisterParams {
   const factory _RegisterParams(
           {required final String firstname,
           required final String lastname,
-          required final String emial,
+          required final String email,
           @JsonKey(name: 'profile_picture') final String? profilePicture,
           required final String password,
           @JsonKey(name: 'job_title') required final String jobTitle}) =
@@ -263,7 +263,7 @@ abstract class _RegisterParams implements RegisterParams {
   @override
   String get lastname;
   @override
-  String get emial;
+  String get email;
   @override
   @JsonKey(name: 'profile_picture')
   String? get profilePicture;

@@ -31,7 +31,7 @@ mixin _$User {
   @JsonKey(name: 'organization_id')
   String get organizationId => throw _privateConstructorUsedError;
   @JsonKey(name: 'role_name')
-  String get roleName => throw _privateConstructorUsedError;
+  Role get roleName => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -55,7 +55,7 @@ abstract class $UserCopyWith<$Res> {
       @JsonKey(name: 'profile_picture') String? profilePicture,
       @JsonKey(name: 'job_title') String jobTitle,
       @JsonKey(name: 'organization_id') String organizationId,
-      @JsonKey(name: 'role_name') String roleName});
+      @JsonKey(name: 'role_name') Role roleName});
 }
 
 /// @nodoc
@@ -114,7 +114,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       roleName: null == roleName
           ? _value.roleName
           : roleName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Role,
     ) as $Val);
   }
 }
@@ -134,7 +134,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       @JsonKey(name: 'profile_picture') String? profilePicture,
       @JsonKey(name: 'job_title') String jobTitle,
       @JsonKey(name: 'organization_id') String organizationId,
-      @JsonKey(name: 'role_name') String roleName});
+      @JsonKey(name: 'role_name') Role roleName});
 }
 
 /// @nodoc
@@ -190,7 +190,7 @@ class __$$UserImplCopyWithImpl<$Res>
       roleName: null == roleName
           ? _value.roleName
           : roleName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Role,
     ));
   }
 }
@@ -230,7 +230,7 @@ class _$UserImpl implements _User {
   final String organizationId;
   @override
   @JsonKey(name: 'role_name')
-  final String roleName;
+  final Role roleName;
 
   @override
   String toString() {
@@ -288,7 +288,7 @@ abstract class _User implements User {
       @JsonKey(name: 'profile_picture') final String? profilePicture,
       @JsonKey(name: 'job_title') required final String jobTitle,
       @JsonKey(name: 'organization_id') required final String organizationId,
-      @JsonKey(name: 'role_name') required final String roleName}) = _$UserImpl;
+      @JsonKey(name: 'role_name') required final Role roleName}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -311,7 +311,7 @@ abstract class _User implements User {
   String get organizationId;
   @override
   @JsonKey(name: 'role_name')
-  String get roleName;
+  Role get roleName;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.

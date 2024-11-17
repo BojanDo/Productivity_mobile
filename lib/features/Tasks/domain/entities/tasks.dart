@@ -13,6 +13,29 @@ import 'comments.dart';
 part 'generated/tasks.freezed.dart';
 part 'generated/tasks.g.dart';
 
+@JsonEnum()
+enum Status {
+  @JsonValue('ToDo')
+  todo,
+  @JsonValue('In Progress')
+  inProgress,
+  @JsonValue('Review')
+  review,
+  @JsonValue('Test')
+  test,
+  @JsonValue('Closed')
+  closed,
+}
+@JsonEnum()
+enum Label {
+  @JsonValue('BUG')
+  bug,
+  @JsonValue('FEATURE')
+  feature,
+  @JsonValue('MAINTENANCE')
+  maintenance
+}
+
 @freezed
 class Task with _$Task {
   const factory Task({
@@ -20,8 +43,8 @@ class Task with _$Task {
     @JsonKey(name: 'task_number') required String taskNumber,
     required String title,
     required DataMap description,
-    required String status,
-    required String label,
+    required Status status,
+    required Label label,
     required String date,
     required Project project,
     @JsonKey(
@@ -47,8 +70,8 @@ class TaskSlim with _$TaskSlim{
   const factory TaskSlim({
     required int id,
     required String title,
-    required String status,
-    required String label,
+    required Status status,
+    required Label label,
     required String date,
     @JsonKey(name: 'task_number') required String taskNumber,
   }) = _TaskSlim;

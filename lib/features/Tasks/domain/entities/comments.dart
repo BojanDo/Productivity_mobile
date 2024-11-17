@@ -6,6 +6,12 @@ import '../../../User/domain/entities/users.dart';
 part 'generated/comments.freezed.dart';
 part 'generated/comments.g.dart';
 
+@JsonEnum()
+enum CommentType {
+  comment,
+  notification,
+}
+
 @freezed
 class Comment with _$Comment {
   const factory Comment({
@@ -13,7 +19,7 @@ class Comment with _$Comment {
     required String date,
     required String description,
     required User user,
-    required String type,
+    required CommentType type,
   }) = _Comment;
 
   factory Comment.fromJson(Map<String, dynamic> json) => _$CommentFromJson(json);

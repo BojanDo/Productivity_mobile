@@ -17,14 +17,16 @@ class UpdateTask extends UsecaseIdWithParams<TaskResponse, UpdateTaskParams> {
   @override
   ResultFuture<TaskResponse> call(String id, UpdateTaskParams params) async {
     final Map<String, dynamic> jsonParams = params.toJson();
-
-    jsonParams['attachments'] = await Future.wait(
-      params.attachments.map(
-        (String path) async =>
-            await MultipartFile.fromFile(path, filename: path.split('/').last),
-      ),
-    );
-
+    if (params.attachments != null) {
+      jsonParams['attachments'] = await Future.wait(
+        params.attachments!.map(
+          (String path) async => await MultipartFile.fromFile(
+            path,
+            filename: path.split('/').last,
+          ),
+        ),
+      );
+    }
     return _repository.updateTask(
       id,
       values: jsonParams,
@@ -42,9 +44,9 @@ class UpdateTaskParams with _$UpdateTaskParams {
     required String label,
     required String date,
     @JsonKey(name: 'project_id') required int projectId,
-    required List<int> assigned,
-    required List<String> attachments,
-    @JsonKey(name: 'deleted_attachments') required List<int> deletedAttachments,
+    List<int>? assigned,
+    List<String>? attachments,
+    @JsonKey(name: 'deleted_attachments') List<int>? deletedAttachments,
   }) = _UpdateTaskParams;
 
   factory UpdateTaskParams.fromJson(Map<String, dynamic> json) =>

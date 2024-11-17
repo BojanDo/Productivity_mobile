@@ -29,10 +29,10 @@ mixin _$UpdateTaskParams {
   String get date => throw _privateConstructorUsedError;
   @JsonKey(name: 'project_id')
   int get projectId => throw _privateConstructorUsedError;
-  List<int> get assigned => throw _privateConstructorUsedError;
-  List<String> get attachments => throw _privateConstructorUsedError;
+  List<int>? get assigned => throw _privateConstructorUsedError;
+  List<String>? get attachments => throw _privateConstructorUsedError;
   @JsonKey(name: 'deleted_attachments')
-  List<int> get deletedAttachments => throw _privateConstructorUsedError;
+  List<int>? get deletedAttachments => throw _privateConstructorUsedError;
 
   /// Serializes this UpdateTaskParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -58,9 +58,9 @@ abstract class $UpdateTaskParamsCopyWith<$Res> {
       String label,
       String date,
       @JsonKey(name: 'project_id') int projectId,
-      List<int> assigned,
-      List<String> attachments,
-      @JsonKey(name: 'deleted_attachments') List<int> deletedAttachments});
+      List<int>? assigned,
+      List<String>? attachments,
+      @JsonKey(name: 'deleted_attachments') List<int>? deletedAttachments});
 }
 
 /// @nodoc
@@ -85,9 +85,9 @@ class _$UpdateTaskParamsCopyWithImpl<$Res, $Val extends UpdateTaskParams>
     Object? label = null,
     Object? date = null,
     Object? projectId = null,
-    Object? assigned = null,
-    Object? attachments = null,
-    Object? deletedAttachments = null,
+    Object? assigned = freezed,
+    Object? attachments = freezed,
+    Object? deletedAttachments = freezed,
   }) {
     return _then(_value.copyWith(
       taskNumber: null == taskNumber
@@ -118,18 +118,18 @@ class _$UpdateTaskParamsCopyWithImpl<$Res, $Val extends UpdateTaskParams>
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as int,
-      assigned: null == assigned
+      assigned: freezed == assigned
           ? _value.assigned
           : assigned // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-      attachments: null == attachments
+              as List<int>?,
+      attachments: freezed == attachments
           ? _value.attachments
           : attachments // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      deletedAttachments: null == deletedAttachments
+              as List<String>?,
+      deletedAttachments: freezed == deletedAttachments
           ? _value.deletedAttachments
           : deletedAttachments // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<int>?,
     ) as $Val);
   }
 }
@@ -150,9 +150,9 @@ abstract class _$$UpdateTaskParamsImplCopyWith<$Res>
       String label,
       String date,
       @JsonKey(name: 'project_id') int projectId,
-      List<int> assigned,
-      List<String> attachments,
-      @JsonKey(name: 'deleted_attachments') List<int> deletedAttachments});
+      List<int>? assigned,
+      List<String>? attachments,
+      @JsonKey(name: 'deleted_attachments') List<int>? deletedAttachments});
 }
 
 /// @nodoc
@@ -175,9 +175,9 @@ class __$$UpdateTaskParamsImplCopyWithImpl<$Res>
     Object? label = null,
     Object? date = null,
     Object? projectId = null,
-    Object? assigned = null,
-    Object? attachments = null,
-    Object? deletedAttachments = null,
+    Object? assigned = freezed,
+    Object? attachments = freezed,
+    Object? deletedAttachments = freezed,
   }) {
     return _then(_$UpdateTaskParamsImpl(
       taskNumber: null == taskNumber
@@ -208,18 +208,18 @@ class __$$UpdateTaskParamsImplCopyWithImpl<$Res>
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as int,
-      assigned: null == assigned
+      assigned: freezed == assigned
           ? _value._assigned
           : assigned // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-      attachments: null == attachments
+              as List<int>?,
+      attachments: freezed == attachments
           ? _value._attachments
           : attachments // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      deletedAttachments: null == deletedAttachments
+              as List<String>?,
+      deletedAttachments: freezed == deletedAttachments
           ? _value._deletedAttachments
           : deletedAttachments // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<int>?,
     ));
   }
 }
@@ -235,10 +235,10 @@ class _$UpdateTaskParamsImpl implements _UpdateTaskParams {
       required this.label,
       required this.date,
       @JsonKey(name: 'project_id') required this.projectId,
-      required final List<int> assigned,
-      required final List<String> attachments,
+      final List<int>? assigned,
+      final List<String>? attachments,
       @JsonKey(name: 'deleted_attachments')
-      required final List<int> deletedAttachments})
+      final List<int>? deletedAttachments})
       : _description = description,
         _assigned = assigned,
         _attachments = attachments,
@@ -269,30 +269,36 @@ class _$UpdateTaskParamsImpl implements _UpdateTaskParams {
   @override
   @JsonKey(name: 'project_id')
   final int projectId;
-  final List<int> _assigned;
+  final List<int>? _assigned;
   @override
-  List<int> get assigned {
+  List<int>? get assigned {
+    final value = _assigned;
+    if (value == null) return null;
     if (_assigned is EqualUnmodifiableListView) return _assigned;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_assigned);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<String> _attachments;
+  final List<String>? _attachments;
   @override
-  List<String> get attachments {
+  List<String>? get attachments {
+    final value = _attachments;
+    if (value == null) return null;
     if (_attachments is EqualUnmodifiableListView) return _attachments;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_attachments);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<int> _deletedAttachments;
+  final List<int>? _deletedAttachments;
   @override
   @JsonKey(name: 'deleted_attachments')
-  List<int> get deletedAttachments {
+  List<int>? get deletedAttachments {
+    final value = _deletedAttachments;
+    if (value == null) return null;
     if (_deletedAttachments is EqualUnmodifiableListView)
       return _deletedAttachments;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_deletedAttachments);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -363,10 +369,10 @@ abstract class _UpdateTaskParams implements UpdateTaskParams {
       required final String label,
       required final String date,
       @JsonKey(name: 'project_id') required final int projectId,
-      required final List<int> assigned,
-      required final List<String> attachments,
+      final List<int>? assigned,
+      final List<String>? attachments,
       @JsonKey(name: 'deleted_attachments')
-      required final List<int> deletedAttachments}) = _$UpdateTaskParamsImpl;
+      final List<int>? deletedAttachments}) = _$UpdateTaskParamsImpl;
 
   factory _UpdateTaskParams.fromJson(Map<String, dynamic> json) =
       _$UpdateTaskParamsImpl.fromJson;
@@ -388,12 +394,12 @@ abstract class _UpdateTaskParams implements UpdateTaskParams {
   @JsonKey(name: 'project_id')
   int get projectId;
   @override
-  List<int> get assigned;
+  List<int>? get assigned;
   @override
-  List<String> get attachments;
+  List<String>? get attachments;
   @override
   @JsonKey(name: 'deleted_attachments')
-  List<int> get deletedAttachments;
+  List<int>? get deletedAttachments;
 
   /// Create a copy of UpdateTaskParams
   /// with the given fields replaced by the non-null parameter values.

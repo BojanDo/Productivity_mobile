@@ -9,25 +9,23 @@ part of '../create_task.dart';
 _$CreateTaskParamsImpl _$$CreateTaskParamsImplFromJson(
         Map<String, dynamic> json) =>
     _$CreateTaskParamsImpl(
-      taskNumber: json['task_number'] as String,
       title: json['title'] as String,
       description: json['description'] as Map<String, dynamic>,
       status: json['status'] as String,
       label: json['label'] as String,
       date: json['date'] as String,
       projectId: (json['project_id'] as num).toInt(),
-      assigned: (json['assigned'] as List<dynamic>)
-          .map((e) => (e as num).toInt())
+      assigned: (json['assigned'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
           .toList(),
-      attachments: (json['attachments'] as List<dynamic>)
-          .map((e) => e as String)
+      attachments: (json['attachments'] as List<dynamic>?)
+          ?.map((e) => e as String)
           .toList(),
     );
 
 Map<String, dynamic> _$$CreateTaskParamsImplToJson(
         _$CreateTaskParamsImpl instance) =>
     <String, dynamic>{
-      'task_number': instance.taskNumber,
       'title': instance.title,
       'description': instance.description,
       'status': instance.status,

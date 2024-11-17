@@ -21,10 +21,10 @@ GetDocumentsParams _$GetDocumentsParamsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GetDocumentsParams {
   String get page => throw _privateConstructorUsedError;
-  String get dateFrom => throw _privateConstructorUsedError;
-  String get dateUntil => throw _privateConstructorUsedError;
+  String? get dateFrom => throw _privateConstructorUsedError;
+  String? get dateUntil => throw _privateConstructorUsedError;
   @JsonKey(name: 'project_id')
-  String get projectId => throw _privateConstructorUsedError;
+  String? get projectId => throw _privateConstructorUsedError;
 
   /// Serializes this GetDocumentsParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,9 +44,9 @@ abstract class $GetDocumentsParamsCopyWith<$Res> {
   @useResult
   $Res call(
       {String page,
-      String dateFrom,
-      String dateUntil,
-      @JsonKey(name: 'project_id') String projectId});
+      String? dateFrom,
+      String? dateUntil,
+      @JsonKey(name: 'project_id') String? projectId});
 }
 
 /// @nodoc
@@ -65,27 +65,27 @@ class _$GetDocumentsParamsCopyWithImpl<$Res, $Val extends GetDocumentsParams>
   @override
   $Res call({
     Object? page = null,
-    Object? dateFrom = null,
-    Object? dateUntil = null,
-    Object? projectId = null,
+    Object? dateFrom = freezed,
+    Object? dateUntil = freezed,
+    Object? projectId = freezed,
   }) {
     return _then(_value.copyWith(
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as String,
-      dateFrom: null == dateFrom
+      dateFrom: freezed == dateFrom
           ? _value.dateFrom
           : dateFrom // ignore: cast_nullable_to_non_nullable
-              as String,
-      dateUntil: null == dateUntil
+              as String?,
+      dateUntil: freezed == dateUntil
           ? _value.dateUntil
           : dateUntil // ignore: cast_nullable_to_non_nullable
-              as String,
-      projectId: null == projectId
+              as String?,
+      projectId: freezed == projectId
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -100,9 +100,9 @@ abstract class _$$GetDocumentsParamsImplCopyWith<$Res>
   @useResult
   $Res call(
       {String page,
-      String dateFrom,
-      String dateUntil,
-      @JsonKey(name: 'project_id') String projectId});
+      String? dateFrom,
+      String? dateUntil,
+      @JsonKey(name: 'project_id') String? projectId});
 }
 
 /// @nodoc
@@ -119,27 +119,27 @@ class __$$GetDocumentsParamsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? page = null,
-    Object? dateFrom = null,
-    Object? dateUntil = null,
-    Object? projectId = null,
+    Object? dateFrom = freezed,
+    Object? dateUntil = freezed,
+    Object? projectId = freezed,
   }) {
     return _then(_$GetDocumentsParamsImpl(
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as String,
-      dateFrom: null == dateFrom
+      dateFrom: freezed == dateFrom
           ? _value.dateFrom
           : dateFrom // ignore: cast_nullable_to_non_nullable
-              as String,
-      dateUntil: null == dateUntil
+              as String?,
+      dateUntil: freezed == dateUntil
           ? _value.dateUntil
           : dateUntil // ignore: cast_nullable_to_non_nullable
-              as String,
-      projectId: null == projectId
+              as String?,
+      projectId: freezed == projectId
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -149,9 +149,9 @@ class __$$GetDocumentsParamsImplCopyWithImpl<$Res>
 class _$GetDocumentsParamsImpl implements _GetDocumentsParams {
   const _$GetDocumentsParamsImpl(
       {required this.page,
-      required this.dateFrom,
-      required this.dateUntil,
-      @JsonKey(name: 'project_id') required this.projectId});
+      this.dateFrom,
+      this.dateUntil,
+      @JsonKey(name: 'project_id') this.projectId});
 
   factory _$GetDocumentsParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$GetDocumentsParamsImplFromJson(json);
@@ -159,12 +159,12 @@ class _$GetDocumentsParamsImpl implements _GetDocumentsParams {
   @override
   final String page;
   @override
-  final String dateFrom;
+  final String? dateFrom;
   @override
-  final String dateUntil;
+  final String? dateUntil;
   @override
   @JsonKey(name: 'project_id')
-  final String projectId;
+  final String? projectId;
 
   @override
   String toString() {
@@ -210,9 +210,9 @@ class _$GetDocumentsParamsImpl implements _GetDocumentsParams {
 abstract class _GetDocumentsParams implements GetDocumentsParams {
   const factory _GetDocumentsParams(
           {required final String page,
-          required final String dateFrom,
-          required final String dateUntil,
-          @JsonKey(name: 'project_id') required final String projectId}) =
+          final String? dateFrom,
+          final String? dateUntil,
+          @JsonKey(name: 'project_id') final String? projectId}) =
       _$GetDocumentsParamsImpl;
 
   factory _GetDocumentsParams.fromJson(Map<String, dynamic> json) =
@@ -221,12 +221,12 @@ abstract class _GetDocumentsParams implements GetDocumentsParams {
   @override
   String get page;
   @override
-  String get dateFrom;
+  String? get dateFrom;
   @override
-  String get dateUntil;
+  String? get dateUntil;
   @override
   @JsonKey(name: 'project_id')
-  String get projectId;
+  String? get projectId;
 
   /// Create a copy of GetDocumentsParams
   /// with the given fields replaced by the non-null parameter values.
