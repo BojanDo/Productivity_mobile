@@ -16,9 +16,8 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
       (int index) => TaskSlim(
         id: index,
         title: _faker.lorem.words(3).join(' '),
-        status: _faker.randomGenerator.element(
-            <String>['ToDo', 'In Progress', 'Review', 'Test', 'Closed']),
-        label: _faker.randomGenerator.element(<String>['BUG', 'FEATURE']),
+        status: faker.randomGenerator.element(Status.values),
+        label: faker.randomGenerator.element(Label.values),
         date: DateFormat('dd.MM.yyyy')
             .format(faker.date.dateTime(minYear: 2000, maxYear: 2024)),
         taskNumber: '$index',
@@ -36,7 +35,7 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
         jobTitle:
             _faker.randomGenerator.element(<String>['Owner', 'Developer']),
         organizationId: '1',
-        roleName: faker.randomGenerator.element(<String>['Owner', 'Developer']),
+        roleName: faker.randomGenerator.element(Role.values),
       ),
     );
     final List<Comment> fakeComments = List<Comment>.generate(
@@ -47,8 +46,7 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
             .format(faker.date.dateTime(minYear: 2000, maxYear: 2024)),
         description: faker.lorem.sentences(2).join(' '),
         user: fakeUsers.first,
-        type:
-            faker.randomGenerator.element(<String>['comment', 'notification']),
+        type: faker.randomGenerator.element(CommentType.values),
       ),
     );
     final List<Document> fakeDocuments = List<Document>.generate(
@@ -68,7 +66,9 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
       id: fakeTasks.first.id,
       taskNumber: fakeTasks.first.taskNumber,
       title: fakeTasks.first.title,
-      description: <String, dynamic>{'description': faker.lorem.sentences(6).join(' ')},
+      description: <String, dynamic>{
+        'description': faker.lorem.sentences(6).join(' ')
+      },
       status: fakeTasks.first.status,
       label: fakeTasks.first.label,
       date: fakeTasks.first.date,
@@ -85,53 +85,54 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
   late Task task;
   late TaskResponse response;
 
-
   @override
-  Future<Tasks> getTasks({required Map<String, dynamic> values}) async{
+  Future<Tasks> getTasks({required Map<String, dynamic> values}) async {
     await Future.delayed(const Duration(seconds: 1));
     return tasks;
   }
 
   @override
-  Future<TaskResponse> createTask({required Map<String, dynamic> values}) async{
+  Future<TaskResponse> createTask(
+      {required Map<String, dynamic> values}) async {
     await Future.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
-  Future<Task> getTask(String id) async{
+  Future<Task> getTask(String id) async {
     await Future.delayed(const Duration(seconds: 1));
     return task;
   }
 
   @override
   Future<TaskResponse> updateTask(String id,
-      {required Map<String, dynamic> values}) async{
+      {required Map<String, dynamic> values}) async {
     await Future.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
-  Future<TaskResponse> deleteTask(String id) async{
+  Future<TaskResponse> deleteTask(String id) async {
     await Future.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
-  Future<TaskResponse> addComment({required Map<String, dynamic> values}) async{
+  Future<TaskResponse> addComment(
+      {required Map<String, dynamic> values}) async {
     await Future.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
   Future<TaskResponse> updateComment(String id,
-      {required Map<String, dynamic> values}) async{
+      {required Map<String, dynamic> values}) async {
     await Future.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
-  Future<TaskResponse> deleteComment(String id) async{
+  Future<TaskResponse> deleteComment(String id) async {
     await Future.delayed(const Duration(seconds: 1));
     return response;
   }
