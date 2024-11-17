@@ -1,130 +1,115 @@
-
 import 'package:flutter/material.dart';
 
-import 'features/Tasks/domain/entities/tasks.dart';
-
-void main() {
-  Status a = Status.inProgress;
-  print(a.displayName);
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+  Widget build(BuildContext context) => MaterialApp(
+    title: 'Pages',
+    home: Scaffold(
+      appBar: AppBar(title: const Text('Pages')),
+      body: _buildRoutesList(),
+    ),
+  );
+
+  Widget _buildRoutesList() {
+    final List<Map<String, String>> routes = <Map<String, String>>[
+      {'title': 'Home', 'description': ''},
+      {'title': 'Login', 'description': ''},
+      {'title': 'Register', 'description': ''},
+      {'title': 'Notifications', 'description': 'displays notifications list'},
+      {'title': 'Settings', 'description': 'settings list'},
+      {'title': 'User info', 'description': 'user details'},
+      {'title': 'Account', 'description': 'edit user account info'},
+      {'title': 'Organization', 'description': 'edit/create organization form'},
+      {'title': 'Documents', 'description': 'displays documents list'},
+      {'title': 'Projects', 'description': 'displays projects list'},
+      {'title': 'Project', 'description': 'edit/create project form'},
+      {'title': 'Tasks', 'description': 'displays tasks list'},
+      {'title': 'Task', 'description': 'edit/create/view task form'},
+    ];
+
+    return ListView.builder(
+      itemCount: routes.length,
+      itemBuilder: (BuildContext context, int index) {
+        final Map<String, String> route = routes[index];
+        return _route(route['title']!, route['description']!, context);
+      },
     );
   }
+
+  Widget _route(String title, String description, BuildContext context) =>
+      Container(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0), // Reduced padding
+        decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.grey[300]!, width: 1.0)), // Underline
+        ),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  switch (title) {
+                    case 'Home':
+                      return const Test(title: 'Home Page');
+                    case 'Login':
+                      return const Test(title: 'Login Page');
+                    case 'Register':
+                      return const Test(title: 'Register Page');
+                    case 'Settings':
+                      return const Test(title: 'Settings Page');
+                    case 'User info':
+                      return const Test(title: 'User Info Page');
+                    case 'Account':
+                      return const Test(title: 'Account Page');
+                    default:
+                      return const Test(title: 'Default Page');
+                  }
+                },
+              ),
+            );
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Text(
+                description,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12, // Smaller font size for the description
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
+class Test extends StatelessWidget {
   final String title;
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  const Test({super.key, required this.title});
 
   @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(
+      title: Text(title),
+    ),
+    body: const Center(
+      child: Text('This is a new page!'),
+    ),
+  );
 }
