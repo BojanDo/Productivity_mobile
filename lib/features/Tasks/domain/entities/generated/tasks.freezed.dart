@@ -25,8 +25,8 @@ mixin _$Task {
   String get taskNumber => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   Map<String, dynamic> get description => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
-  String get label => throw _privateConstructorUsedError;
+  Status get status => throw _privateConstructorUsedError;
+  Label get label => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
   Project get project => throw _privateConstructorUsedError;
   @JsonKey(
@@ -62,8 +62,8 @@ abstract class $TaskCopyWith<$Res> {
       @JsonKey(name: 'task_number') String taskNumber,
       String title,
       Map<String, dynamic> description,
-      String status,
-      String label,
+      Status status,
+      Label label,
       String date,
       Project project,
       @JsonKey(
@@ -133,11 +133,11 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Status,
       label: null == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Label,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -214,8 +214,8 @@ abstract class _$$TaskImplCopyWith<$Res> implements $TaskCopyWith<$Res> {
       @JsonKey(name: 'task_number') String taskNumber,
       String title,
       Map<String, dynamic> description,
-      String status,
-      String label,
+      Status status,
+      Label label,
       String date,
       Project project,
       @JsonKey(
@@ -286,11 +286,11 @@ class __$$TaskImplCopyWithImpl<$Res>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Status,
       label: null == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Label,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -361,9 +361,9 @@ class _$TaskImpl implements _Task {
   }
 
   @override
-  final String status;
+  final Status status;
   @override
-  final String label;
+  final Label label;
   @override
   final String date;
   @override
@@ -450,8 +450,8 @@ abstract class _Task implements Task {
       @JsonKey(name: 'task_number') required final String taskNumber,
       required final String title,
       required final Map<String, dynamic> description,
-      required final String status,
-      required final String label,
+      required final Status status,
+      required final Label label,
       required final String date,
       required final Project project,
       @JsonKey(
@@ -480,9 +480,9 @@ abstract class _Task implements Task {
   @override
   Map<String, dynamic> get description;
   @override
-  String get status;
+  Status get status;
   @override
-  String get label;
+  Label get label;
   @override
   String get date;
   @override
@@ -520,8 +520,8 @@ TaskSlim _$TaskSlimFromJson(Map<String, dynamic> json) {
 mixin _$TaskSlim {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
-  String get label => throw _privateConstructorUsedError;
+  Status get status => throw _privateConstructorUsedError;
+  Label get label => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
   @JsonKey(name: 'task_number')
   String get taskNumber => throw _privateConstructorUsedError;
@@ -544,8 +544,8 @@ abstract class $TaskSlimCopyWith<$Res> {
   $Res call(
       {int id,
       String title,
-      String status,
-      String label,
+      Status status,
+      Label label,
       String date,
       @JsonKey(name: 'task_number') String taskNumber});
 }
@@ -584,11 +584,11 @@ class _$TaskSlimCopyWithImpl<$Res, $Val extends TaskSlim>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Status,
       label: null == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Label,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -612,8 +612,8 @@ abstract class _$$TaskSlimImplCopyWith<$Res>
   $Res call(
       {int id,
       String title,
-      String status,
-      String label,
+      Status status,
+      Label label,
       String date,
       @JsonKey(name: 'task_number') String taskNumber});
 }
@@ -650,11 +650,11 @@ class __$$TaskSlimImplCopyWithImpl<$Res>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Status,
       label: null == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Label,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -686,9 +686,9 @@ class _$TaskSlimImpl implements _TaskSlim {
   @override
   final String title;
   @override
-  final String status;
+  final Status status;
   @override
-  final String label;
+  final Label label;
   @override
   final String date;
   @override
@@ -739,8 +739,8 @@ abstract class _TaskSlim implements TaskSlim {
   const factory _TaskSlim(
           {required final int id,
           required final String title,
-          required final String status,
-          required final String label,
+          required final Status status,
+          required final Label label,
           required final String date,
           @JsonKey(name: 'task_number') required final String taskNumber}) =
       _$TaskSlimImpl;
@@ -753,9 +753,9 @@ abstract class _TaskSlim implements TaskSlim {
   @override
   String get title;
   @override
-  String get status;
+  Status get status;
   @override
-  String get label;
+  Label get label;
   @override
   String get date;
   @override

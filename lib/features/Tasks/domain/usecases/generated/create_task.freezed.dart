@@ -20,8 +20,6 @@ CreateTaskParams _$CreateTaskParamsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CreateTaskParams {
-  @JsonKey(name: 'task_number')
-  String get taskNumber => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   Map<String, dynamic> get description => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
@@ -29,8 +27,8 @@ mixin _$CreateTaskParams {
   String get date => throw _privateConstructorUsedError;
   @JsonKey(name: 'project_id')
   int get projectId => throw _privateConstructorUsedError;
-  List<int> get assigned => throw _privateConstructorUsedError;
-  List<String> get attachments => throw _privateConstructorUsedError;
+  List<int>? get assigned => throw _privateConstructorUsedError;
+  List<String>? get attachments => throw _privateConstructorUsedError;
 
   /// Serializes this CreateTaskParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,15 +47,14 @@ abstract class $CreateTaskParamsCopyWith<$Res> {
       _$CreateTaskParamsCopyWithImpl<$Res, CreateTaskParams>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'task_number') String taskNumber,
-      String title,
+      {String title,
       Map<String, dynamic> description,
       String status,
       String label,
       String date,
       @JsonKey(name: 'project_id') int projectId,
-      List<int> assigned,
-      List<String> attachments});
+      List<int>? assigned,
+      List<String>? attachments});
 }
 
 /// @nodoc
@@ -75,21 +72,16 @@ class _$CreateTaskParamsCopyWithImpl<$Res, $Val extends CreateTaskParams>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? taskNumber = null,
     Object? title = null,
     Object? description = null,
     Object? status = null,
     Object? label = null,
     Object? date = null,
     Object? projectId = null,
-    Object? assigned = null,
-    Object? attachments = null,
+    Object? assigned = freezed,
+    Object? attachments = freezed,
   }) {
     return _then(_value.copyWith(
-      taskNumber: null == taskNumber
-          ? _value.taskNumber
-          : taskNumber // ignore: cast_nullable_to_non_nullable
-              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -114,14 +106,14 @@ class _$CreateTaskParamsCopyWithImpl<$Res, $Val extends CreateTaskParams>
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as int,
-      assigned: null == assigned
+      assigned: freezed == assigned
           ? _value.assigned
           : assigned // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-      attachments: null == attachments
+              as List<int>?,
+      attachments: freezed == attachments
           ? _value.attachments
           : attachments // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -135,15 +127,14 @@ abstract class _$$CreateTaskParamsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'task_number') String taskNumber,
-      String title,
+      {String title,
       Map<String, dynamic> description,
       String status,
       String label,
       String date,
       @JsonKey(name: 'project_id') int projectId,
-      List<int> assigned,
-      List<String> attachments});
+      List<int>? assigned,
+      List<String>? attachments});
 }
 
 /// @nodoc
@@ -159,21 +150,16 @@ class __$$CreateTaskParamsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? taskNumber = null,
     Object? title = null,
     Object? description = null,
     Object? status = null,
     Object? label = null,
     Object? date = null,
     Object? projectId = null,
-    Object? assigned = null,
-    Object? attachments = null,
+    Object? assigned = freezed,
+    Object? attachments = freezed,
   }) {
     return _then(_$CreateTaskParamsImpl(
-      taskNumber: null == taskNumber
-          ? _value.taskNumber
-          : taskNumber // ignore: cast_nullable_to_non_nullable
-              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -198,14 +184,14 @@ class __$$CreateTaskParamsImplCopyWithImpl<$Res>
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as int,
-      assigned: null == assigned
+      assigned: freezed == assigned
           ? _value._assigned
           : assigned // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-      attachments: null == attachments
+              as List<int>?,
+      attachments: freezed == attachments
           ? _value._attachments
           : attachments // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
     ));
   }
 }
@@ -214,15 +200,14 @@ class __$$CreateTaskParamsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CreateTaskParamsImpl implements _CreateTaskParams {
   const _$CreateTaskParamsImpl(
-      {@JsonKey(name: 'task_number') required this.taskNumber,
-      required this.title,
+      {required this.title,
       required final Map<String, dynamic> description,
       required this.status,
       required this.label,
       required this.date,
       @JsonKey(name: 'project_id') required this.projectId,
-      required final List<int> assigned,
-      required final List<String> attachments})
+      final List<int>? assigned,
+      final List<String>? attachments})
       : _description = description,
         _assigned = assigned,
         _attachments = attachments;
@@ -230,9 +215,6 @@ class _$CreateTaskParamsImpl implements _CreateTaskParams {
   factory _$CreateTaskParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateTaskParamsImplFromJson(json);
 
-  @override
-  @JsonKey(name: 'task_number')
-  final String taskNumber;
   @override
   final String title;
   final Map<String, dynamic> _description;
@@ -252,25 +234,29 @@ class _$CreateTaskParamsImpl implements _CreateTaskParams {
   @override
   @JsonKey(name: 'project_id')
   final int projectId;
-  final List<int> _assigned;
+  final List<int>? _assigned;
   @override
-  List<int> get assigned {
+  List<int>? get assigned {
+    final value = _assigned;
+    if (value == null) return null;
     if (_assigned is EqualUnmodifiableListView) return _assigned;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_assigned);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<String> _attachments;
+  final List<String>? _attachments;
   @override
-  List<String> get attachments {
+  List<String>? get attachments {
+    final value = _attachments;
+    if (value == null) return null;
     if (_attachments is EqualUnmodifiableListView) return _attachments;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_attachments);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'CreateTaskParams(taskNumber: $taskNumber, title: $title, description: $description, status: $status, label: $label, date: $date, projectId: $projectId, assigned: $assigned, attachments: $attachments)';
+    return 'CreateTaskParams(title: $title, description: $description, status: $status, label: $label, date: $date, projectId: $projectId, assigned: $assigned, attachments: $attachments)';
   }
 
   @override
@@ -278,8 +264,6 @@ class _$CreateTaskParamsImpl implements _CreateTaskParams {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateTaskParamsImpl &&
-            (identical(other.taskNumber, taskNumber) ||
-                other.taskNumber == taskNumber) &&
             (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality()
                 .equals(other._description, _description) &&
@@ -297,7 +281,6 @@ class _$CreateTaskParamsImpl implements _CreateTaskParams {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      taskNumber,
       title,
       const DeepCollectionEquality().hash(_description),
       status,
@@ -326,22 +309,18 @@ class _$CreateTaskParamsImpl implements _CreateTaskParams {
 
 abstract class _CreateTaskParams implements CreateTaskParams {
   const factory _CreateTaskParams(
-      {@JsonKey(name: 'task_number') required final String taskNumber,
-      required final String title,
+      {required final String title,
       required final Map<String, dynamic> description,
       required final String status,
       required final String label,
       required final String date,
       @JsonKey(name: 'project_id') required final int projectId,
-      required final List<int> assigned,
-      required final List<String> attachments}) = _$CreateTaskParamsImpl;
+      final List<int>? assigned,
+      final List<String>? attachments}) = _$CreateTaskParamsImpl;
 
   factory _CreateTaskParams.fromJson(Map<String, dynamic> json) =
       _$CreateTaskParamsImpl.fromJson;
 
-  @override
-  @JsonKey(name: 'task_number')
-  String get taskNumber;
   @override
   String get title;
   @override
@@ -356,9 +335,9 @@ abstract class _CreateTaskParams implements CreateTaskParams {
   @JsonKey(name: 'project_id')
   int get projectId;
   @override
-  List<int> get assigned;
+  List<int>? get assigned;
   @override
-  List<String> get attachments;
+  List<String>? get attachments;
 
   /// Create a copy of CreateTaskParams
   /// with the given fields replaced by the non-null parameter values.

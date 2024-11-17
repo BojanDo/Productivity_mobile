@@ -22,10 +22,10 @@ GetNotificationsParams _$GetNotificationsParamsFromJson(
 /// @nodoc
 mixin _$GetNotificationsParams {
   String get page => throw _privateConstructorUsedError;
-  String get dateFrom => throw _privateConstructorUsedError;
-  String get dateUntil => throw _privateConstructorUsedError;
+  String? get dateFrom => throw _privateConstructorUsedError;
+  String? get dateUntil => throw _privateConstructorUsedError;
   @JsonKey(name: 'project_id')
-  String get projectId => throw _privateConstructorUsedError;
+  String? get projectId => throw _privateConstructorUsedError;
 
   /// Serializes this GetNotificationsParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,9 +45,9 @@ abstract class $GetNotificationsParamsCopyWith<$Res> {
   @useResult
   $Res call(
       {String page,
-      String dateFrom,
-      String dateUntil,
-      @JsonKey(name: 'project_id') String projectId});
+      String? dateFrom,
+      String? dateUntil,
+      @JsonKey(name: 'project_id') String? projectId});
 }
 
 /// @nodoc
@@ -67,27 +67,27 @@ class _$GetNotificationsParamsCopyWithImpl<$Res,
   @override
   $Res call({
     Object? page = null,
-    Object? dateFrom = null,
-    Object? dateUntil = null,
-    Object? projectId = null,
+    Object? dateFrom = freezed,
+    Object? dateUntil = freezed,
+    Object? projectId = freezed,
   }) {
     return _then(_value.copyWith(
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as String,
-      dateFrom: null == dateFrom
+      dateFrom: freezed == dateFrom
           ? _value.dateFrom
           : dateFrom // ignore: cast_nullable_to_non_nullable
-              as String,
-      dateUntil: null == dateUntil
+              as String?,
+      dateUntil: freezed == dateUntil
           ? _value.dateUntil
           : dateUntil // ignore: cast_nullable_to_non_nullable
-              as String,
-      projectId: null == projectId
+              as String?,
+      projectId: freezed == projectId
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -103,9 +103,9 @@ abstract class _$$GetNotificationsParamsImplCopyWith<$Res>
   @useResult
   $Res call(
       {String page,
-      String dateFrom,
-      String dateUntil,
-      @JsonKey(name: 'project_id') String projectId});
+      String? dateFrom,
+      String? dateUntil,
+      @JsonKey(name: 'project_id') String? projectId});
 }
 
 /// @nodoc
@@ -124,27 +124,27 @@ class __$$GetNotificationsParamsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? page = null,
-    Object? dateFrom = null,
-    Object? dateUntil = null,
-    Object? projectId = null,
+    Object? dateFrom = freezed,
+    Object? dateUntil = freezed,
+    Object? projectId = freezed,
   }) {
     return _then(_$GetNotificationsParamsImpl(
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as String,
-      dateFrom: null == dateFrom
+      dateFrom: freezed == dateFrom
           ? _value.dateFrom
           : dateFrom // ignore: cast_nullable_to_non_nullable
-              as String,
-      dateUntil: null == dateUntil
+              as String?,
+      dateUntil: freezed == dateUntil
           ? _value.dateUntil
           : dateUntil // ignore: cast_nullable_to_non_nullable
-              as String,
-      projectId: null == projectId
+              as String?,
+      projectId: freezed == projectId
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -154,9 +154,9 @@ class __$$GetNotificationsParamsImplCopyWithImpl<$Res>
 class _$GetNotificationsParamsImpl implements _GetNotificationsParams {
   const _$GetNotificationsParamsImpl(
       {required this.page,
-      required this.dateFrom,
-      required this.dateUntil,
-      @JsonKey(name: 'project_id') required this.projectId});
+      this.dateFrom,
+      this.dateUntil,
+      @JsonKey(name: 'project_id') this.projectId});
 
   factory _$GetNotificationsParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$GetNotificationsParamsImplFromJson(json);
@@ -164,12 +164,12 @@ class _$GetNotificationsParamsImpl implements _GetNotificationsParams {
   @override
   final String page;
   @override
-  final String dateFrom;
+  final String? dateFrom;
   @override
-  final String dateUntil;
+  final String? dateUntil;
   @override
   @JsonKey(name: 'project_id')
-  final String projectId;
+  final String? projectId;
 
   @override
   String toString() {
@@ -215,9 +215,9 @@ class _$GetNotificationsParamsImpl implements _GetNotificationsParams {
 abstract class _GetNotificationsParams implements GetNotificationsParams {
   const factory _GetNotificationsParams(
           {required final String page,
-          required final String dateFrom,
-          required final String dateUntil,
-          @JsonKey(name: 'project_id') required final String projectId}) =
+          final String? dateFrom,
+          final String? dateUntil,
+          @JsonKey(name: 'project_id') final String? projectId}) =
       _$GetNotificationsParamsImpl;
 
   factory _GetNotificationsParams.fromJson(Map<String, dynamic> json) =
@@ -226,12 +226,12 @@ abstract class _GetNotificationsParams implements GetNotificationsParams {
   @override
   String get page;
   @override
-  String get dateFrom;
+  String? get dateFrom;
   @override
-  String get dateUntil;
+  String? get dateUntil;
   @override
   @JsonKey(name: 'project_id')
-  String get projectId;
+  String? get projectId;
 
   /// Create a copy of GetNotificationsParams
   /// with the given fields replaced by the non-null parameter values.

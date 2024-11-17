@@ -16,14 +16,14 @@ _$UpdateTaskParamsImpl _$$UpdateTaskParamsImplFromJson(
       label: json['label'] as String,
       date: json['date'] as String,
       projectId: (json['project_id'] as num).toInt(),
-      assigned: (json['assigned'] as List<dynamic>)
-          .map((e) => (e as num).toInt())
+      assigned: (json['assigned'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
           .toList(),
-      attachments: (json['attachments'] as List<dynamic>)
-          .map((e) => e as String)
+      attachments: (json['attachments'] as List<dynamic>?)
+          ?.map((e) => e as String)
           .toList(),
-      deletedAttachments: (json['deleted_attachments'] as List<dynamic>)
-          .map((e) => (e as num).toInt())
+      deletedAttachments: (json['deleted_attachments'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
           .toList(),
     );
 

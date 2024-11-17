@@ -10,9 +10,9 @@ _$GetDocumentsParamsImpl _$$GetDocumentsParamsImplFromJson(
         Map<String, dynamic> json) =>
     _$GetDocumentsParamsImpl(
       page: json['page'] as String,
-      dateFrom: json['dateFrom'] as String,
-      dateUntil: json['dateUntil'] as String,
-      projectId: json['project_id'] as String,
+      dateFrom: json['dateFrom'] as String?,
+      dateUntil: json['dateUntil'] as String?,
+      projectId: json['project_id'] as String?,
     );
 
 Map<String, dynamic> _$$GetDocumentsParamsImplToJson(

@@ -23,10 +23,10 @@ class GetTasks extends UsecaseWithParams<Tasks, GetTasksParams> {
 @freezed
 class GetTasksParams with _$GetTasksParams {
   const factory GetTasksParams({
-    required List<int> projects,
-    required String status,
-    required String label,
-    required List<int> assigned,
+    List<int>? projects,
+    String? status,
+    String? label,
+    List<int>? assigned,
   }) = _GetTasksParams;
 
   factory GetTasksParams.fromJson(Map<String, dynamic> json) =>

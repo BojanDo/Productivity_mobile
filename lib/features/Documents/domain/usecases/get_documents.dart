@@ -24,9 +24,9 @@ class GetDocuments extends UsecaseWithParams<Documents, GetDocumentsParams> {
 class GetDocumentsParams with _$GetDocumentsParams {
   const factory GetDocumentsParams({
     required String page,
-    required String dateFrom,
-    required String dateUntil,
-    @JsonKey(name: 'project_id') required String projectId,
+    String? dateFrom,
+    String? dateUntil,
+    @JsonKey(name: 'project_id') String? projectId,
   }) = _GetDocumentsParams;
 
   factory GetDocumentsParams.fromJson(Map<String, dynamic> json) =>

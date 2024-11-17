@@ -24,9 +24,9 @@ class GetNotifications extends UsecaseWithParams<Notifications, GetNotifications
 class GetNotificationsParams with _$GetNotificationsParams {
   const factory GetNotificationsParams({
     required String page,
-    required String dateFrom,
-    required String dateUntil,
-    @JsonKey(name: 'project_id') required String projectId,
+    String? dateFrom,
+    String? dateUntil,
+    @JsonKey(name: 'project_id') String? projectId,
   }) = _GetNotificationsParams;
 
   factory GetNotificationsParams.fromJson(Map<String, dynamic> json) =>

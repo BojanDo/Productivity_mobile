@@ -18,12 +18,16 @@ class CreateTask extends UsecaseWithParams<TaskResponse, CreateTaskParams> {
   ResultFuture<TaskResponse> call(CreateTaskParams params) async {
     final Map<String, dynamic> jsonParams = params.toJson();
 
-    jsonParams['attachments'] = await Future.wait(
-      params.attachments.map(
-        (String path) async =>
-            await MultipartFile.fromFile(path, filename: path.split('/').last),
-      ),
-    );
+    if (params.attachments != null) {
+      jsonParams['attachments'] = await Future.wait(
+        params.attachments!.map(
+          (String path) async => await MultipartFile.fromFile(
+            path,
+            filename: path.split('/').last,
+          ),
+        ),
+      );
+    }
 
     return _repository.createTask(values: jsonParams);
   }
@@ -32,15 +36,14 @@ class CreateTask extends UsecaseWithParams<TaskResponse, CreateTaskParams> {
 @freezed
 class CreateTaskParams with _$CreateTaskParams {
   const factory CreateTaskParams({
-    @JsonKey(name: 'task_number') required String taskNumber,
     required String title,
     required DataMap description,
     required String status,
     required String label,
     required String date,
     @JsonKey(name: 'project_id') required int projectId,
-    required List<int> assigned,
-    required List<String> attachments,
+    List<int>? assigned,
+    List<String>? attachments,
   }) = _CreateTaskParams;
 
   factory CreateTaskParams.fromJson(Map<String, dynamic> json) =>

@@ -11,8 +11,8 @@ _$TaskImpl _$$TaskImplFromJson(Map<String, dynamic> json) => _$TaskImpl(
       taskNumber: json['task_number'] as String,
       title: json['title'] as String,
       description: json['description'] as Map<String, dynamic>,
-      status: json['status'] as String,
-      label: json['label'] as String,
+      status: $enumDecode(_$StatusEnumMap, json['status']),
+      label: $enumDecode(_$LabelEnumMap, json['label']),
       date: json['date'] as String,
       project: Project.fromJson(json['project'] as Map<String, dynamic>),
       users: paginatedListUserFromJson(
@@ -29,8 +29,8 @@ Map<String, dynamic> _$$TaskImplToJson(_$TaskImpl instance) =>
       'task_number': instance.taskNumber,
       'title': instance.title,
       'description': instance.description,
-      'status': instance.status,
-      'label': instance.label,
+      'status': _$StatusEnumMap[instance.status]!,
+      'label': _$LabelEnumMap[instance.label]!,
       'date': instance.date,
       'project': instance.project,
       'assigned_users': paginatedListUserToJson(instance.users),
@@ -38,12 +38,26 @@ Map<String, dynamic> _$$TaskImplToJson(_$TaskImpl instance) =>
       'documents': paginatedListDocumentToJson(instance.documents),
     };
 
+const _$StatusEnumMap = {
+  Status.todo: 'ToDo',
+  Status.inProgress: 'In Progress',
+  Status.review: 'Review',
+  Status.test: 'Test',
+  Status.closed: 'Closed',
+};
+
+const _$LabelEnumMap = {
+  Label.bug: 'BUG',
+  Label.feature: 'FEATURE',
+  Label.maintenance: 'MAINTENANCE',
+};
+
 _$TaskSlimImpl _$$TaskSlimImplFromJson(Map<String, dynamic> json) =>
     _$TaskSlimImpl(
       id: (json['id'] as num).toInt(),
       title: json['title'] as String,
-      status: json['status'] as String,
-      label: json['label'] as String,
+      status: $enumDecode(_$StatusEnumMap, json['status']),
+      label: $enumDecode(_$LabelEnumMap, json['label']),
       date: json['date'] as String,
       taskNumber: json['task_number'] as String,
     );
@@ -52,8 +66,8 @@ Map<String, dynamic> _$$TaskSlimImplToJson(_$TaskSlimImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'status': instance.status,
-      'label': instance.label,
+      'status': _$StatusEnumMap[instance.status]!,
+      'label': _$LabelEnumMap[instance.label]!,
       'date': instance.date,
       'task_number': instance.taskNumber,
     };

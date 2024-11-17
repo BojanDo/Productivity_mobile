@@ -5,6 +5,14 @@ import '../../../../core/entities/paginated_list.dart';
 part 'generated/users.freezed.dart';
 part 'generated/users.g.dart';
 
+@JsonEnum()
+enum Role{
+  @JsonValue('Owner')
+  owner,
+  @JsonValue('Developer')
+  developer
+}
+
 @freezed
 class User with _$User {
   const factory User({
@@ -15,7 +23,7 @@ class User with _$User {
     @JsonKey(name: 'profile_picture') String? profilePicture,
     @JsonKey(name: 'job_title') required String jobTitle,
     @JsonKey(name: 'organization_id') required String organizationId,
-    @JsonKey(name: 'role_name') required String roleName,
+    @JsonKey(name: 'role_name') required Role roleName,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

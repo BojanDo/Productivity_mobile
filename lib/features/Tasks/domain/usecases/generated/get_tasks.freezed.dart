@@ -20,10 +20,10 @@ GetTasksParams _$GetTasksParamsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GetTasksParams {
-  List<int> get projects => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
-  String get label => throw _privateConstructorUsedError;
-  List<int> get assigned => throw _privateConstructorUsedError;
+  List<int>? get projects => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
+  String? get label => throw _privateConstructorUsedError;
+  List<int>? get assigned => throw _privateConstructorUsedError;
 
   /// Serializes this GetTasksParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,7 +42,10 @@ abstract class $GetTasksParamsCopyWith<$Res> {
       _$GetTasksParamsCopyWithImpl<$Res, GetTasksParams>;
   @useResult
   $Res call(
-      {List<int> projects, String status, String label, List<int> assigned});
+      {List<int>? projects,
+      String? status,
+      String? label,
+      List<int>? assigned});
 }
 
 /// @nodoc
@@ -60,28 +63,28 @@ class _$GetTasksParamsCopyWithImpl<$Res, $Val extends GetTasksParams>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projects = null,
-    Object? status = null,
-    Object? label = null,
-    Object? assigned = null,
+    Object? projects = freezed,
+    Object? status = freezed,
+    Object? label = freezed,
+    Object? assigned = freezed,
   }) {
     return _then(_value.copyWith(
-      projects: null == projects
+      projects: freezed == projects
           ? _value.projects
           : projects // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-      status: null == status
+              as List<int>?,
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      label: null == label
+              as String?,
+      label: freezed == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      assigned: null == assigned
+              as String?,
+      assigned: freezed == assigned
           ? _value.assigned
           : assigned // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<int>?,
     ) as $Val);
   }
 }
@@ -95,7 +98,10 @@ abstract class _$$GetTasksParamsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<int> projects, String status, String label, List<int> assigned});
+      {List<int>? projects,
+      String? status,
+      String? label,
+      List<int>? assigned});
 }
 
 /// @nodoc
@@ -111,28 +117,28 @@ class __$$GetTasksParamsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projects = null,
-    Object? status = null,
-    Object? label = null,
-    Object? assigned = null,
+    Object? projects = freezed,
+    Object? status = freezed,
+    Object? label = freezed,
+    Object? assigned = freezed,
   }) {
     return _then(_$GetTasksParamsImpl(
-      projects: null == projects
+      projects: freezed == projects
           ? _value._projects
           : projects // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-      status: null == status
+              as List<int>?,
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      label: null == label
+              as String?,
+      label: freezed == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      assigned: null == assigned
+              as String?,
+      assigned: freezed == assigned
           ? _value._assigned
           : assigned // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<int>?,
     ));
   }
 }
@@ -141,34 +147,38 @@ class __$$GetTasksParamsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GetTasksParamsImpl implements _GetTasksParams {
   const _$GetTasksParamsImpl(
-      {required final List<int> projects,
-      required this.status,
-      required this.label,
-      required final List<int> assigned})
+      {final List<int>? projects,
+      this.status,
+      this.label,
+      final List<int>? assigned})
       : _projects = projects,
         _assigned = assigned;
 
   factory _$GetTasksParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$GetTasksParamsImplFromJson(json);
 
-  final List<int> _projects;
+  final List<int>? _projects;
   @override
-  List<int> get projects {
+  List<int>? get projects {
+    final value = _projects;
+    if (value == null) return null;
     if (_projects is EqualUnmodifiableListView) return _projects;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_projects);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  final String status;
+  final String? status;
   @override
-  final String label;
-  final List<int> _assigned;
+  final String? label;
+  final List<int>? _assigned;
   @override
-  List<int> get assigned {
+  List<int>? get assigned {
+    final value = _assigned;
+    if (value == null) return null;
     if (_assigned is EqualUnmodifiableListView) return _assigned;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_assigned);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -215,22 +225,22 @@ class _$GetTasksParamsImpl implements _GetTasksParams {
 
 abstract class _GetTasksParams implements GetTasksParams {
   const factory _GetTasksParams(
-      {required final List<int> projects,
-      required final String status,
-      required final String label,
-      required final List<int> assigned}) = _$GetTasksParamsImpl;
+      {final List<int>? projects,
+      final String? status,
+      final String? label,
+      final List<int>? assigned}) = _$GetTasksParamsImpl;
 
   factory _GetTasksParams.fromJson(Map<String, dynamic> json) =
       _$GetTasksParamsImpl.fromJson;
 
   @override
-  List<int> get projects;
+  List<int>? get projects;
   @override
-  String get status;
+  String? get status;
   @override
-  String get label;
+  String? get label;
   @override
-  List<int> get assigned;
+  List<int>? get assigned;
 
   /// Create a copy of GetTasksParams
   /// with the given fields replaced by the non-null parameter values.
