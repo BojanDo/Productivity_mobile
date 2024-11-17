@@ -24,7 +24,22 @@ enum Status {
   @JsonValue('Test')
   test,
   @JsonValue('Closed')
-  closed,
+  closed;
+
+  String get displayName {
+    switch (this) {
+      case Status.todo:
+        return 'ToDo';
+      case Status.inProgress:
+        return 'In Progress';
+      case Status.review:
+        return 'Review';
+      case Status.test:
+        return 'Test';
+      case Status.closed:
+        return 'Closed';
+    }
+  }
 }
 @JsonEnum()
 enum Label {
@@ -33,7 +48,18 @@ enum Label {
   @JsonValue('FEATURE')
   feature,
   @JsonValue('MAINTENANCE')
-  maintenance
+  maintenance;
+
+  String get displayName {
+    switch (this) {
+      case Label.bug:
+        return 'BUG';
+      case Label.feature:
+        return 'FEATURE';
+      case Label.maintenance:
+        return 'MAINTENANCE';
+    }
+  }
 }
 
 @freezed

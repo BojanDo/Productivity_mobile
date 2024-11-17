@@ -10,7 +10,16 @@ enum Role{
   @JsonValue('Owner')
   owner,
   @JsonValue('Developer')
-  developer
+  developer;
+
+  String get displayName {
+    switch (this) {
+      case Role.owner:
+        return 'Owner';
+      case Role.developer:
+        return 'Developer';
+    }
+  }
 }
 
 @freezed
