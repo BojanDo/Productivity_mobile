@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+
+import 'colors.dart';
+
 const int kApiVersion = 1;
 
 const String kBaseUrl = '<base-url>';
@@ -13,3 +17,7 @@ const String kDocumentsUrl = '$kApiUrl/documents';
 const String kCommentsUrl = '$kApiUrl/comments';
 const String kNotificationsUrl = '$kApiUrl/notifications';
 const String kInvitationUrl = '$kApiUrl/documents';
+
+const BorderSide kBorderSide = BorderSide(
+  color: kBorderColor,
+);
