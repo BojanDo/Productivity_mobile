@@ -6,76 +6,121 @@ import '../features/User/domain/entities/user_response.dart';
 import '../features/User/domain/entities/users.dart';
 
 class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
-  const UserRemoteDataSourceImplementation(this._faker);
+  const UserRemoteDataSourceImplementation(this._faker){
+    final List<User> fakeUsers = List<User>.generate(
+      10,
+      (int index) => User(
+        id: index,
+        firstname: _faker.person.firstName(),
+        lastname: _faker.person.lastName(),
+        email: _faker.internet.email(),
+        jobTitle:
+            _faker.randomGenerator.element(<String>['Owner', 'Developer']),
+        organizationId: '1',
+        roleName: faker.randomGenerator.element(Role.values),
+      ),
+    );
+    users = Users(items: fakeUsers, total: fakeUsers.length);
+    final List<Organization> fakeOrganizations = List<Organization>.generate(
+      2,
+      (int index) => Organization(
+        id: index,
+        name: _faker.lorem.words(2).join(' '),
+        description: faker.lorem.sentences(6).join(' '),
+      ),
+    );
+    organizations = Organizations(items: fakeOrganizations, total: fakeOrganizations.length);
+    user = User(
+      id: fakeUsers.first.id,
+      firstname: fakeUsers.first.firstname,
+      lastname: fakeUsers.first.lastname,
+      email: fakeUsers.first.email,
+      jobTitle: fakeUsers.first.jobTitle,
+      organizationId: fakeUsers.first.organizationId,
+      roleName: fakeUsers.first.roleName,
+    );
+    organization = Organization(
+      id: fakeOrganizations.first.id,
+      name: fakeOrganizations.first.name,
+      description: fakeOrganizations.first.description,
+    ),
+    response = UserResponse(message: _faker.lorem.words(3).join(' '));
+  }
 
   final Faker _faker;
+  late Users users;
+  late User user;
+  late Organizations organizations;
+  late Organization organization;
+  late UserResponse response;
 
   @override
   Future<Users> getUsers() async {
-    // TODO: implement getUsers
-    throw UnimplementedError();
+    await Future.delayed(const Duration(seconds: 1));
+    return users;
   }
 
   @override
   Future<User> getUser(String id) async {
-    // TODO: implement getUser
-    throw UnimplementedError();
+    await Future.delayed(const Duration(seconds: 1));
+    return user;
   }
 
   @override
   Future<UserResponse> updateUser(String id,
       {required Map<String, dynamic> values}) async {
-    // TODO: implement updateUser
-    throw UnimplementedError();
+    await Future.delayed(const Duration(seconds: 1));
+    return response;
   }
 
   @override
   Future<UserResponse> createOrganization(
       {required Map<String, dynamic> values}) async {
-    // TODO: implement createOrganization
-    throw UnimplementedError();
+    await Future.delayed(const Duration(seconds: 1));
+    return response;
   }
 
   @override
   Future<Organization> getOrganization(String id) async {
-    // TODO: implement getOrganization
-    throw UnimplementedError();
+    await Future.delayed(const Duration(seconds: 1));
+    return organization;
   }
 
   @override
   Future<UserResponse> updateOrganization(String id,
       {required Map<String, dynamic> values}) async {
-    // TODO: implement updateOrganization
-    throw UnimplementedError();
+    await Future.delayed(const Duration(seconds: 1));
+    return response;
   }
 
   @override
   Future<Organizations> getInvitations() async {
+    await Future.delayed(const Duration(seconds: 1));
     // TODO: implement getInvitations
     throw UnimplementedError();
   }
 
   @override
   Future<Users> getInvitedUsers(String organizationId) async {
-    // TODO: implement getInvitedUsers
-    throw UnimplementedError();
+    await Future.delayed(const Duration(seconds: 1));
+    return users;
   }
 
   @override
   Future<UserResponse> acceptInvitation(String organizationId) async {
-    // TODO: implement acceptInvitation
-    throw UnimplementedError();
+    await Future.delayed(const Duration(seconds: 1));
+    return response;
   }
 
   @override
   Future<UserResponse> sendInvitation(String organizationId) async {
-    // TODO: implement sendInvitation
-    throw UnimplementedError();
+    await Future.delayed(const Duration(seconds: 1));
+    return response;
   }
 
   @override
   Future<UserResponse> declineInvitation(String organizationId) async {
-    // TODO: implement declineInvitation
-    throw UnimplementedError();
+    await Future.delayed(const Duration(seconds: 1));
+    return response;
   }
 }
