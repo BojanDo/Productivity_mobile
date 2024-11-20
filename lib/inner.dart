@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'features/App/presentation/bloc/app_bloc.dart';
 import 'features/Auth/presentation/views/auth.dart';
 import 'widgets/app_bar.dart';
+import 'widgets/drawer.dart';
 
 class InnerWrapper extends StatefulWidget {
   const InnerWrapper({super.key});
@@ -20,7 +21,11 @@ class _InnerWrapperState extends State<InnerWrapper> {
             IconButton(
               icon: const Icon(Icons.notifications_none_outlined),
               onPressed: () {
-                Navigator.pushNamed(context, '/notifications');
+                context
+                    .read<AppBloc>()
+                    .outerNavigator
+                    .currentState!
+                    .pushNamed('/notifications');
               },
             ),
           ],
@@ -33,33 +38,10 @@ class _InnerWrapperState extends State<InnerWrapper> {
             ),
           ),
         ),
-        drawer: Drawer(
-          // Add your drawer content here
-          child: Builder(
-            builder: (BuildContext context) => ListView(
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                const DrawerHeader(
-                  child: Text('Menu'),
-                ),
-                ListTile(
-                  title: const Text('Auth'),
-                  onTap: () {
-                    Scaffold.of(context).closeDrawer();
-                    context
-                        .read<AppBloc>()
-                        .innerNavigator
-                        .currentState!
-                        .pushReplacementNamed('/auth');
-                  },
-                ),
-                ListTile(
-                  title: const Text('Item 2'),
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ),
+        drawerEnableOpenDragGesture: false,
+        drawer: GlobalDrawer(
+          outerNavigator: context.read<AppBloc>().outerNavigator,
+          innerNavigator: context.read<AppBloc>().innerNavigator,
         ),
         body: Navigator(
           key: context.read<AppBloc>().innerNavigator,
@@ -71,7 +53,7 @@ class _InnerWrapperState extends State<InnerWrapper> {
                 builder = (BuildContext context) => _buildRoutesList();
                 break;
               case '/auth':
-                builder = (BuildContext context) => const AuthScreen();
+                builder = (BuildContext context) => const AuthPage();
                 break;
               default:
                 builder = (BuildContext context) => const Test(title: 'Page');

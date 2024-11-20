@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:productivity_mobile/widgets/pop_scope.dart';
 
 import 'core/config/theme_data.dart';
 import 'core/services/injection_container.dart';
@@ -40,10 +41,11 @@ class MyApp extends StatelessWidget {
         home: BlocProvider<AppBloc>(
           create: (BuildContext context) => sl<AppBloc>(),
           child: Builder(
-            builder: (BuildContext context) => PopScope(
-              key: context.read<AppBloc>().outerNavigator,
-              canPop: false,
+            builder: (BuildContext context) => GlobalPopScope(
+              outerNavigator: context.read<AppBloc>().outerNavigator,
+              innerNavigator: context.read<AppBloc>().innerNavigator,
               child: Navigator(
+                key: context.read<AppBloc>().outerNavigator,
                 onGenerateRoute: (RouteSettings settings) {
                   WidgetBuilder builder;
                   print('outer ${settings.name}');

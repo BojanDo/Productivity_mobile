@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nested/nested.dart';
 
 import 'core/config/theme_data.dart';
 import 'core/services/injection_container.dart';
-import 'features/Auth/presentation/bloc/auth_bloc.dart';
 import 'features/Auth/presentation/views/auth.dart';
 
 void main() async {
@@ -65,7 +62,7 @@ class MyApp extends StatelessWidget {
                     builder = (BuildContext context) => _buildRoutesList();
                     break;
                   case '/auth':
-                    builder = (BuildContext context) => AuthScreen();
+                    builder = (BuildContext context) => AuthPage();
                     break;
                   default:
                     builder = (BuildContext context) => Test(title: 'Page');
@@ -145,7 +142,7 @@ class MyApp extends StatelessWidget {
                 builder: (BuildContext context) {
                   switch (title) {
                     case 'Auth':
-                      return const AuthScreen();
+                      return const AuthPage();
 
                     default:
                       return Test(title: '$title Page');
