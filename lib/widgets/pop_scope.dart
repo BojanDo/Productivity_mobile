@@ -19,6 +19,7 @@ class GlobalPopScope extends StatelessWidget {
   Widget build(BuildContext context) => PopScope(
         canPop: false,
         onPopInvokedWithResult: (bool didPop, Object? dynamic) {
+          print("Global widget $didPop");
           if (didPop) return;
           if (routeCanPop(outerNavigator)) {
             routePop(outerNavigator);

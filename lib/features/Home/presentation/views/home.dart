@@ -7,6 +7,7 @@ import '../../../App/presentation/bloc/app_bloc.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
+
   final List<Map<String, String>> routes = <Map<String, String>>[
     <String, String>{'title': 'Home', 'description': '', 'route': '/'},
     <String, String>{
@@ -56,26 +57,25 @@ class HomePage extends StatelessWidget {
     },
   ];
 
-
-
   @override
   Widget build(BuildContext context) => Scaffold(
-      appBar: const GlobalAppBar(title: 'Home'),
-      body: ListView.builder(
-        itemCount: routes.length,
-        itemBuilder: (BuildContext context, int index) {
-          final Map<String, String> route = routes[index];
-          return _route(
-              route['title']!, route['description']!, route['route']!, context);
-        },
-      ),
-    );
+        appBar: const GlobalAppBar(title: 'Home'),
+        body: ListView.builder(
+          itemCount: routes.length,
+          itemBuilder: (BuildContext context, int index) {
+            final Map<String, String> route = routes[index];
+            return _route(route['title']!, route['description']!,
+                route['route']!, context);
+          },
+        ),
+      );
+
   Widget _route(
-      String title,
-      String description,
-      String routePath,
-      BuildContext context,
-      ) =>
+    String title,
+    String description,
+    String routePath,
+    BuildContext context,
+  ) =>
       Container(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
         // Reduced padding
@@ -112,19 +112,24 @@ class HomePage extends StatelessWidget {
       );
 }
 
-
 class Test extends StatelessWidget {
   final String title;
 
   const Test({super.key, required this.title});
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: GlobalAppBar(
-      title: title,
-    ),
-    body: const Center(
-      child: Text('This is a new page!'),
-    ),
+  Widget build(BuildContext context) => PopScope(
+    canPop: true,
+    onPopInvokedWithResult: (bool didPop,Object? dynamic){
+      print("Test widget $didPop");
+    },
+    child: Scaffold(
+          appBar: GlobalAppBar(
+            title: title,
+          ),
+          body: const Center(
+            child: Text('This is a new page!'),
+          ),
+        ),
   );
 }

@@ -34,6 +34,6 @@ class DrawerBloc extends Bloc<DrawerEvent, DrawerState> {
     DrawerVisibleList visibleList,
     Emitter<DrawerState> emit,
   ) {
-    emit(DrawerState(currentRoute: route, visibleList: visibleList));
+    emit(state.copyWith(currentRoute: route,visibleList: visibleList));
   }
 }

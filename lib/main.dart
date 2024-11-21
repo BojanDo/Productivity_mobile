@@ -10,6 +10,7 @@ import 'features/App/presentation/bloc/app_bloc.dart';
 import 'features/Auth/presentation/views/auth.dart';
 import 'features/Notifications/presentation/views/notifications.dart';
 import 'inner.dart';
+import 'widgets/drawer/drawer_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,12 +25,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        title: 'Pages',
         theme: theme,
         home: MultiBlocProvider(
           providers: <SingleChildWidget>[
             BlocProvider<AppBloc>(
               create: (BuildContext context) => sl<AppBloc>(),
+            ),
+            BlocProvider<DrawerBloc>(
+              create: (BuildContext context) => sl<DrawerBloc>(),
             ),
           ],
           child: Builder(
