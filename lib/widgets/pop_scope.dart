@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../core/functions/routes.dart';
+
 class GlobalPopScope extends StatelessWidget {
   const GlobalPopScope({
     super.key,
@@ -18,12 +20,12 @@ class GlobalPopScope extends StatelessWidget {
         canPop: false,
         onPopInvokedWithResult: (bool didPop, Object? dynamic) {
           if (didPop) return;
-          if (outerNavigator.currentState?.canPop() ?? false) {
-            outerNavigator.currentState?.pop();
+          if (routeCanPop(outerNavigator)) {
+            routePop(outerNavigator);
             return;
           }
-          if (innerNavigator.currentState?.canPop() ?? false) {
-            innerNavigator.currentState?.pop();
+          if (routeCanPop(innerNavigator)) {
+            routePop(innerNavigator);
             return;
           }
 

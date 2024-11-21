@@ -11,6 +11,7 @@ import '../../features/Notifications/services/injection_container.dart';
 import '../../features/Projects/services/injection_container.dart';
 import '../../features/Tasks/services/injection_container.dart';
 import '../../features/User/services/injection_container.dart';
+import '../../widgets/drawer/drawer_bloc.dart';
 import '../utils/api_manager.dart';
 import '../utils/localdata_manager.dart';
 
@@ -28,6 +29,7 @@ Future<void> initFeatures() async {
 }
 
 Future<void> initBlocs() async {
+  await initWidgetBlocs();
   await initAppBlocs(sl);
   await initAuthBlocs(sl);
   await initDocumentsBlocs(sl);
@@ -36,6 +38,10 @@ Future<void> initBlocs() async {
   await initProjectsBlocs(sl);
   await initTasksBlocs(sl);
   await initUserBlocs(sl);
+}
+
+Future<void> initWidgetBlocs() async {
+  sl.registerLazySingleton(() => DrawerBloc());
 }
 
 Future<void> initUtils() async {

@@ -25,6 +25,6 @@ final theme = ThemeData(
     ),
   ),
   drawerTheme: const DrawerThemeData(
-    backgroundColor: kSecondaryBackgroundColor,// Set your desired color here
+    backgroundColor: kSecondaryBackgroundColor,
   ),
 );

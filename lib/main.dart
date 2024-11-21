@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nested/nested.dart';
 import 'package:productivity_mobile/widgets/pop_scope.dart';
 
+import 'core/config/routes.dart';
 import 'core/config/theme_data.dart';
 import 'core/services/injection_container.dart';
 import 'features/App/presentation/bloc/app_bloc.dart';
+import 'features/Auth/presentation/views/auth.dart';
 import 'features/Notifications/presentation/views/notifications.dart';
 import 'inner.dart';
 
@@ -19,27 +22,16 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  /*@override
-  Widget build(BuildContext context) => MultiBlocProvider(
-        providers: <SingleChildWidget>[
-
-        ],
-        child: MaterialApp(
-          title: 'Pages',
-          routes: <String, WidgetBuilder>{
-          },
-          home: Scaffold(
-            appBar: AppBar(title: const Text('Pages')),
-            body: _buildRoutesList(),
-          ),
-        ),
-      );*/
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: 'Pages',
         theme: theme,
-        home: BlocProvider<AppBloc>(
-          create: (BuildContext context) => sl<AppBloc>(),
+        home: MultiBlocProvider(
+          providers: <SingleChildWidget>[
+            BlocProvider<AppBloc>(
+              create: (BuildContext context) => sl<AppBloc>(),
+            ),
+          ],
           child: Builder(
             builder: (BuildContext context) => GlobalPopScope(
               outerNavigator: context.read<AppBloc>().outerNavigator,
@@ -48,15 +40,18 @@ class MyApp extends StatelessWidget {
                 key: context.read<AppBloc>().outerNavigator,
                 onGenerateRoute: (RouteSettings settings) {
                   WidgetBuilder builder;
-                  print('outer ${settings.name}');
                   switch (settings.name) {
-                    case '/notifications':
-                      builder = (BuildContext context) => const Notifications();
+                    case kNotificationsRoute:
+                      builder =
+                          (BuildContext context) => const NotificationsPage();
+                      break;
+                    case kAuthRoute:
+                      builder = (BuildContext context) => const AuthPage();
                       break;
                     default:
                       builder = (BuildContext context) => const InnerWrapper();
                   }
-                  return MaterialPageRoute(builder: builder);
+                  return MaterialPageRoute<dynamic>(builder: builder);
                 },
               ),
             ),

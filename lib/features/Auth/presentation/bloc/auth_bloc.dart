@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:collection';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
