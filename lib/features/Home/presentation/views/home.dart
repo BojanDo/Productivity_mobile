@@ -118,18 +118,12 @@ class Test extends StatelessWidget {
   const Test({super.key, required this.title});
 
   @override
-  Widget build(BuildContext context) => PopScope(
-    canPop: true,
-    onPopInvokedWithResult: (bool didPop,Object? dynamic){
-      print("Test widget $didPop");
-    },
-    child: Scaffold(
-          appBar: GlobalAppBar(
-            title: title,
-          ),
-          body: const Center(
-            child: Text('This is a new page!'),
-          ),
+  Widget build(BuildContext context) => Scaffold(
+        appBar: GlobalAppBar(
+          title: title,
         ),
-  );
+        body: const Center(
+          child: Text('This is a new page!'),
+        ),
+      );
 }

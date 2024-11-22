@@ -12,6 +12,7 @@ import '../../features/Projects/services/injection_container.dart';
 import '../../features/Tasks/services/injection_container.dart';
 import '../../features/User/services/injection_container.dart';
 import '../../widgets/drawer/drawer_bloc.dart';
+import '../../widgets/pop_scope/pop_scope_bloc.dart';
 import '../utils/api_manager.dart';
 import '../utils/localdata_manager.dart';
 
@@ -42,6 +43,7 @@ Future<void> initBlocs() async {
 
 Future<void> initWidgetBlocs() async {
   sl.registerLazySingleton(() => DrawerBloc());
+  sl.registerLazySingleton(() => PopScopeBloc());
 }
 
 Future<void> initUtils() async {

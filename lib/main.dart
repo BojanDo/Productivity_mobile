@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nested/nested.dart';
-import 'package:productivity_mobile/widgets/pop_scope.dart';
+import 'package:productivity_mobile/widgets/pop_scope/pop_scope.dart';
+import 'package:productivity_mobile/widgets/pop_scope/pop_scope_bloc.dart';
 
 import 'core/config/routes.dart';
 import 'core/config/theme_data.dart';
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget {
             ),
             BlocProvider<DrawerBloc>(
               create: (BuildContext context) => sl<DrawerBloc>(),
+            ),
+            BlocProvider<PopScopeBloc>(
+              create: (BuildContext context) => sl<PopScopeBloc>(),
             ),
           ],
           child: Builder(
