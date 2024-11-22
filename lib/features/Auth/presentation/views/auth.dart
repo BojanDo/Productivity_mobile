@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/services/injection_container.dart';
 import '../bloc/auth_bloc.dart';
 import 'login.dart';
+import 'register.dart';
 
 
 class AuthPage extends StatefulWidget {
@@ -23,7 +24,7 @@ class _AuthPageState extends State<AuthPage> {
               physics: const NeverScrollableScrollPhysics(),
               children: const <Widget>[
                 LoginPage(),
-                Text('Register'),
+                RegisterPage(),
               ],
             ),
         ),

@@ -7,14 +7,14 @@ import '../../../App/presentation/bloc/app_bloc.dart';
 import '../bloc/auth_bloc.dart';
 import '../widgets/auth_box.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   void _onSubmitting(
       BuildContext context, FormBlocSubmitting<String, String> state) {
     context.read<AppBloc>().add(const AppEvent.overlayAdd());
@@ -27,8 +27,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _onSuccess(BuildContext context, FormBlocSuccess<String, String> state) {
     context.read<AppBloc>().add(const AppEvent.overlayRemove());
-    routePopAllPushReplacement(context.read<AppBloc>().outerNavigator, kHomeRoute);
-    //context.read<AppBloc>().add(const ToogleAuthenticated(true));
+    animateToPage(context.read<AuthBloc>().pageController, 0);
   }
 
   void _onFailure(BuildContext context, FormBlocFailure<String, String> state) {
@@ -42,17 +41,19 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final LoginFormBloc loginFormBloc = context.read<AuthBloc>().loginFormBloc;
-    print( loginFormBloc.state.isValid());
-    return BlocProvider<LoginFormBloc>.value(
-      value: loginFormBloc,
-      child: AuthBox<LoginFormBloc,FormBlocState<String,String>>(
-        formBloc: loginFormBloc,
-        buttonText: 'Login',
-        switchText: 'Don\'t have an account? Sign up',
-        switchPageId: 1,
-        submit: () {print('Login sent');},
-        page: FormBlocListener<LoginFormBloc, String, String>(
+    final RegisterFormBloc registerFormBloc =
+        context.read<AuthBloc>().registerFormBloc;
+    return BlocProvider<RegisterFormBloc>.value(
+      value: registerFormBloc,
+      child: AuthBox<RegisterFormBloc, FormBlocState<String, String>>(
+        formBloc: registerFormBloc,
+        buttonText: 'Register',
+        switchText: 'Already have an account? Login',
+        switchPageId: 0,
+        submit: () {
+          print('Register sent');
+        },
+        page: FormBlocListener<RegisterFormBloc, String, String>(
           onSubmitting: _onSubmitting,
           onSubmissionFailed: _onSubmissionFailed,
           onSuccess: _onSuccess,
@@ -62,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
             child: AutofillGroup(
               child: Column(
                 children: <Widget>[
-                  ..._fields(loginFormBloc),
+                  ..._fields(registerFormBloc),
                 ],
               ),
             ),
@@ -72,9 +73,9 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  List<Widget> _fields(LoginFormBloc loginFormBloc) => <Widget>[
+  List<Widget> _fields(RegisterFormBloc registerFormBloc) => <Widget>[
         TextFieldBlocBuilder(
-          textFieldBloc: loginFormBloc.email,
+          textFieldBloc: registerFormBloc.email,
           suffixButton: SuffixButton.clearText,
           keyboardType: TextInputType.emailAddress,
           autofillHints: const <String>[AutofillHints.email],
@@ -85,7 +86,29 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
         TextFieldBlocBuilder(
-          textFieldBloc: loginFormBloc.password,
+          textFieldBloc: registerFormBloc.firstname,
+          suffixButton: SuffixButton.clearText,
+          keyboardType: TextInputType.name,
+          autofillHints: const <String>[AutofillHints.name],
+          decoration: const InputDecoration(
+            labelText: 'First name',
+            prefixIcon: Icon(Icons.person_outline),
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+          ),
+        ),
+        TextFieldBlocBuilder(
+          textFieldBloc: registerFormBloc.lastname,
+          suffixButton: SuffixButton.clearText,
+          keyboardType: TextInputType.name,
+          autofillHints: const <String>[AutofillHints.familyName],
+          decoration: const InputDecoration(
+            labelText: 'Last name',
+            prefixIcon: Icon(Icons.person_outline),
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+          ),
+        ),
+        TextFieldBlocBuilder(
+          textFieldBloc: registerFormBloc.password,
           suffixButton: SuffixButton.obscureText,
           autofillHints: const <String>[AutofillHints.password],
           decoration: const InputDecoration(
@@ -94,5 +117,16 @@ class _LoginPageState extends State<LoginPage> {
             floatingLabelBehavior: FloatingLabelBehavior.always,
           ),
         ),
+    TextFieldBlocBuilder(
+      textFieldBloc: registerFormBloc.jobTitle,
+      suffixButton: SuffixButton.clearText,
+      keyboardType: TextInputType.text,
+      autofillHints: const <String>[AutofillHints.jobTitle],
+      decoration: const InputDecoration(
+        labelText: 'Last name',
+        prefixIcon: Icon(Icons.work_outline),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+      ),
+    ),
       ];
 }

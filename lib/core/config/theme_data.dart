@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 import 'constants.dart';
 
-final theme = ThemeData(
+final ThemeData theme = ThemeData(
   fontFamily: 'Poppins',
   useMaterial3: true,
   visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -45,6 +45,14 @@ final theme = ThemeData(
     errorBorder: OutlineInputBorder(
       borderRadius: kBorderRadius,
       borderSide: kBorderSide.copyWith(color: Colors.red), // Error border
+    ),
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      shape: RoundedRectangleBorder(
+        borderRadius: kBorderRadius,
+      ),
     ),
   ),
 );

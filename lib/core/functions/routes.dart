@@ -24,3 +24,12 @@ void routePop(GlobalKey<NavigatorState> navigatorKey) {
 
 bool routeCanPop(GlobalKey<NavigatorState> navigatorKey) =>
     navigatorKey.currentState?.canPop() ?? false;
+
+
+void animateToPage(PageController pageController, int index) {
+  pageController.animateToPage(
+    index,
+    duration: const Duration(milliseconds: 500),
+    curve: Curves.ease,
+  );
+}
