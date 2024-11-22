@@ -6,7 +6,7 @@ import '../features/Projects/domain/entities/projects.dart';
 
 class MockProjectRemoteDataSourceImplementation
     implements ProjectRemoteDataSource {
-  const MockProjectRemoteDataSourceImplementation(this._faker){
+  MockProjectRemoteDataSourceImplementation(this._faker) {
     final List<Project> fakeProjects = List<Project>.generate(
       5,
       (int index) => Project(
@@ -25,27 +25,30 @@ class MockProjectRemoteDataSourceImplementation
 
   @override
   Future<Projects> getProjects() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return projects;
   }
 
   @override
-  Future<ProjectResponse> createProject(
-      {required Map<String, dynamic> values}) async {
-    await Future.delayed(const Duration(seconds: 1));
+  Future<ProjectResponse> createProject({
+    required Map<String, dynamic> values,
+  }) async {
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
-  Future<ProjectResponse> updateProject(String id,
-      {required Map<String, dynamic> values}) async {
-    await Future.delayed(const Duration(seconds: 1));
+  Future<ProjectResponse> updateProject(
+    String id, {
+    required Map<String, dynamic> values,
+  }) async {
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
   Future<ProjectResponse> deleteProject(String id) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 }

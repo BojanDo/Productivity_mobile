@@ -6,7 +6,7 @@ import '../features/User/domain/entities/user_response.dart';
 import '../features/User/domain/entities/users.dart';
 
 class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
-  const UserRemoteDataSourceImplementation(this._faker){
+  UserRemoteDataSourceImplementation(this._faker) {
     final List<User> fakeUsers = List<User>.generate(
       10,
       (int index) => User(
@@ -29,7 +29,10 @@ class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
         description: faker.lorem.sentences(6).join(' '),
       ),
     );
-    organizations = Organizations(items: fakeOrganizations, total: fakeOrganizations.length);
+    organizations = Organizations(
+      items: fakeOrganizations,
+      total: fakeOrganizations.length,
+    );
     user = User(
       id: fakeUsers.first.id,
       firstname: fakeUsers.first.firstname,
@@ -43,7 +46,7 @@ class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
       id: fakeOrganizations.first.id,
       name: fakeOrganizations.first.name,
       description: fakeOrganizations.first.description,
-    ),
+    );
     response = UserResponse(message: _faker.lorem.words(3).join(' '));
   }
 
@@ -56,71 +59,75 @@ class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
 
   @override
   Future<Users> getUsers() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return users;
   }
 
   @override
   Future<User> getUser(String id) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return user;
   }
 
   @override
-  Future<UserResponse> updateUser(String id,
-      {required Map<String, dynamic> values}) async {
-    await Future.delayed(const Duration(seconds: 1));
+  Future<UserResponse> updateUser(
+    String id, {
+    required Map<String, dynamic> values,
+  }) async {
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
-  Future<UserResponse> createOrganization(
-      {required Map<String, dynamic> values}) async {
-    await Future.delayed(const Duration(seconds: 1));
+  Future<UserResponse> createOrganization({
+    required Map<String, dynamic> values,
+  }) async {
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
   Future<Organization> getOrganization(String id) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return organization;
   }
 
   @override
-  Future<UserResponse> updateOrganization(String id,
-      {required Map<String, dynamic> values}) async {
-    await Future.delayed(const Duration(seconds: 1));
+  Future<UserResponse> updateOrganization(
+    String id, {
+    required Map<String, dynamic> values,
+  }) async {
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
   Future<Organizations> getInvitations() async {
-    await Future.delayed(const Duration(seconds: 1));
-    // TODO: implement getInvitations
-    throw UnimplementedError();
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
+    return organizations;
   }
 
   @override
   Future<Users> getInvitedUsers(String organizationId) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return users;
   }
 
   @override
   Future<UserResponse> acceptInvitation(String organizationId) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
   Future<UserResponse> sendInvitation(String organizationId) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
   Future<UserResponse> declineInvitation(String organizationId) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 }

@@ -54,7 +54,7 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
       (int index) => Document(
         title: _faker.lorem.words(3).join(' '),
         path:
-            'https://cdn.discordapp.com/attachments/1306639426511704126/1307107451715194950/Productivity_Anonimizirano.pdf?ex=6739c2ed&is=6738716d&hm=9650790717caca53adf35b6c8300d914dd32b42a246b9de95a86b943ee254fe5&',
+            'https://www.fao.org/4/i0197e/i0197e09.pdf',
       ),
     );
     final Project fakeProject = Project(
@@ -87,53 +87,53 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
 
   @override
   Future<Tasks> getTasks({required Map<String, dynamic> values}) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return tasks;
   }
 
   @override
   Future<TaskResponse> createTask(
       {required Map<String, dynamic> values}) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
   Future<Task> getTask(String id) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return task;
   }
 
   @override
   Future<TaskResponse> updateTask(String id,
       {required Map<String, dynamic> values}) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
   Future<TaskResponse> deleteTask(String id) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
   Future<TaskResponse> addComment(
       {required Map<String, dynamic> values}) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
   Future<TaskResponse> updateComment(String id,
       {required Map<String, dynamic> values}) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
   Future<TaskResponse> deleteComment(String id) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 }
