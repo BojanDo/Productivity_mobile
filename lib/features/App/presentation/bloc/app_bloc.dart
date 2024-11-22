@@ -4,8 +4,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:side_effect_bloc/side_effect_bloc.dart';
 
 part 'app_event.dart';
+
 part 'app_side_effect.dart';
+
 part 'app_state.dart';
+
 part 'generated/app_bloc.freezed.dart';
 
 class AppBloc extends SideEffectBloc<AppEvent, AppState, AppSideEffect> {
@@ -16,6 +19,11 @@ class AppBloc extends SideEffectBloc<AppEvent, AppState, AppSideEffect> {
             produceSideEffect(AppSideEffect.error(message: message)),
         success: (String message) =>
             produceSideEffect(AppSideEffect.success(message: message)),
+        overlayAdd: (Widget? content) => produceSideEffect(
+          AppSideEffect.overlayAdd(content: content ?? const SizedBox.shrink()),
+        ),
+        overlayRemove: () =>
+            produceSideEffect(const AppSideEffect.overlayRemove()),
       ),
     );
   }

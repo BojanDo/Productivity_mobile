@@ -14,14 +14,14 @@ class LoginFormBloc extends FormBloc<String, String> {
 
   final Login _login;
 
-  final TextFieldBloc<dynamic> email = TextFieldBloc(
+  final TextFieldBloc<dynamic> email = TextFieldBloc<dynamic>(
     validators: <Validator<String>>[
       FieldBlocValidators.required,
       FieldBlocValidators.email
     ],
   );
 
-  final TextFieldBloc<dynamic> password = TextFieldBloc(
+  final TextFieldBloc<dynamic> password = TextFieldBloc<dynamic>(
     validators: <Validator<String>>[
       FieldBlocValidators.required,
     ],

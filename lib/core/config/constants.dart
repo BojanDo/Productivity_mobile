@@ -22,3 +22,4 @@ const String kInvitationUrl = '$kApiUrl/documents';
 const BorderSide kBorderSide = BorderSide(
   color: kBorderColor,
 );
+BorderRadius kBorderRadius = BorderRadius.circular(6);

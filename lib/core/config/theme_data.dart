@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 import 'constants.dart';
 
-
-
 final theme = ThemeData(
   fontFamily: 'Poppins',
   useMaterial3: true,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   actionIconTheme: ActionIconThemeData(
-    backButtonIconBuilder: (BuildContext context) => const Icon(Icons.arrow_back_ios_new_rounded),
+    backButtonIconBuilder: (BuildContext context) =>
+        const Icon(Icons.arrow_back_ios_new_rounded),
   ),
   scaffoldBackgroundColor: kPrimaryBackgroundColor,
   dividerTheme: const DividerThemeData(
@@ -25,5 +24,27 @@ final theme = ThemeData(
   ),
   drawerTheme: const DrawerThemeData(
     backgroundColor: kSecondaryBackgroundColor,
+  ),
+  inputDecorationTheme: InputDecorationTheme(
+    filled: true,
+    fillColor: Colors.white,
+    focusedBorder: OutlineInputBorder(
+      borderRadius: kBorderRadius,
+      borderSide:
+          kBorderSide.copyWith(color: Colors.black), // Your predefined border
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: kBorderRadius,
+      borderSide: kBorderSide, // Your predefined border
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: kBorderRadius,
+      borderSide:
+          kBorderSide.copyWith(color: Colors.red), // Error border when focused
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: kBorderRadius,
+      borderSide: kBorderSide.copyWith(color: Colors.red), // Error border
+    ),
   ),
 );

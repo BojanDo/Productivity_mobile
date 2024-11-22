@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/config/routes.dart';
 import 'core/functions/routes.dart';
 import 'features/App/presentation/bloc/app_bloc.dart';
+import 'features/Auth/presentation/views/auth.dart';
 import 'features/Home/presentation/views/home.dart';
 import 'widgets/drawer/drawer.dart';
 
@@ -48,6 +49,9 @@ class _InnerWrapperState extends State<InnerWrapper> {
             switch (settings.name) {
               case kHomeRoute:
                 builder = (BuildContext context) => HomePage();
+                break;
+              case kAuthRoute: //TODO: remove once the auth is finished
+                builder = (BuildContext context) => const AuthPage();
                 break;
               case kSettingsRoute:
                 builder =

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/config/routes.dart';
 import '../../../../core/functions/routes.dart';
 import '../../../../widgets/app_bar.dart';
 import '../../../App/presentation/bloc/app_bloc.dart';
@@ -10,49 +11,54 @@ class HomePage extends StatelessWidget {
 
   final List<Map<String, String>> routes = <Map<String, String>>[
     <String, String>{
+      'title': 'Auth',
+      'description': 'login and register',
+      'route': kAuthRoute,
+    },
+    <String, String>{
       'title': 'Settings',
       'description': 'settings list',
-      'route': '/settings',
+      'route': kSettingsRoute,
     },
     <String, String>{
       'title': 'User info',
       'description': 'user details',
-      'route': '/user',
+      'route': kUserRoute,
     },
     <String, String>{
       'title': 'Account',
       'description': 'edit user account info',
-      'route': '/account',
+      'route': kAccountRoute,
     },
     <String, String>{
       'title': 'Organization',
       'description': 'edit/create organization form',
-      'route': '/organization',
+      'route': kOrganizationRoute,
     },
     <String, String>{
       'title': 'Documents',
       'description': 'displays documents list',
-      'route': '/documents',
+      'route': kDocumentsRoute,
     },
     <String, String>{
       'title': 'Projects',
       'description': 'displays projects list',
-      'route': '/projects',
+      'route': kProjectsRoute,
     },
     <String, String>{
       'title': 'Project',
       'description': 'edit/create project form',
-      'route': '/project',
+      'route': kProjectRoute,
     },
     <String, String>{
       'title': 'Tasks',
       'description': 'displays tasks list',
-      'route': '/tasks',
+      'route': kTasksRoute,
     },
     <String, String>{
       'title': 'Task',
       'description': 'edit/create/view task form',
-      'route': '/task',
+      'route': kTaskRoute,
     },
   ];
 
