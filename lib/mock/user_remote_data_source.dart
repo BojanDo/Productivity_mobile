@@ -64,14 +64,14 @@ class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
   }
 
   @override
-  Future<User> getUser(String id) async {
+  Future<User> getUser(int id) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return user;
   }
 
   @override
   Future<UserResponse> updateUser(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   }) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
@@ -87,14 +87,14 @@ class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
   }
 
   @override
-  Future<Organization> getOrganization(String id) async {
+  Future<Organization> getOrganization(int id) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return organization;
   }
 
   @override
   Future<UserResponse> updateOrganization(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   }) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
@@ -108,25 +108,25 @@ class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
   }
 
   @override
-  Future<Users> getInvitedUsers(String organizationId) async {
+  Future<Users> getInvitedUsers(int organizationId) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return users;
   }
 
   @override
-  Future<UserResponse> acceptInvitation(String organizationId) async {
+  Future<UserResponse> acceptInvitation(int organizationId) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
-  Future<UserResponse> sendInvitation(String organizationId) async {
+  Future<UserResponse> sendInvitation(int organizationId) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
-  Future<UserResponse> declineInvitation(String organizationId) async {
+  Future<UserResponse> declineInvitation(int organizationId) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }

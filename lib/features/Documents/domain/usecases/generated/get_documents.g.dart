@@ -12,7 +12,7 @@ _$GetDocumentsParamsImpl _$$GetDocumentsParamsImplFromJson(
       page: json['page'] as String,
       dateFrom: json['dateFrom'] as String?,
       dateUntil: json['dateUntil'] as String?,
-      projectId: json['project_id'] as String?,
+      projectId: (json['project_id'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$GetDocumentsParamsImplToJson(

@@ -26,7 +26,7 @@ class GetDocumentsParams with _$GetDocumentsParams {
     required String page,
     String? dateFrom,
     String? dateUntil,
-    @JsonKey(name: 'project_id') String? projectId,
+    @JsonKey(name: 'project_id') int? projectId,
   }) = _GetDocumentsParams;
 
   factory GetDocumentsParams.fromJson(Map<String, dynamic> json) =>

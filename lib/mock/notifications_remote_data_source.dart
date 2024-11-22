@@ -21,7 +21,7 @@ class MockNotificationsRemoteDataSourceImplementation
       5,
       (int index) => Notification(
         user: fakeUser,
-        taskId: '1',
+        taskId: 1,
         description: faker.lorem.sentences(6).join(' '),
         date: _faker.lorem.words(2).join(':'),
       ),

@@ -9,6 +9,6 @@ class SendInvitation extends UsecaseIdWithoutParams<UserResponse> {
   final UserRepository _repository;
 
   @override
-  ResultFuture<UserResponse> call(String id) async => _repository.sendInvitation(id);
+  ResultFuture<UserResponse> call(int id) async => _repository.sendInvitation(id);
 }
 

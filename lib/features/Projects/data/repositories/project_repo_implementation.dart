@@ -39,7 +39,7 @@ class ProjectRepoImplementation implements ProjectRepository {
 
   @override
   ResultFuture<ProjectResponse> updateProject(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   }) async {
     try {
@@ -54,7 +54,7 @@ class ProjectRepoImplementation implements ProjectRepository {
   }
 
   @override
-  ResultFuture<ProjectResponse> deleteProject(String id) async {
+  ResultFuture<ProjectResponse> deleteProject(int id) async {
     try {
       final ProjectResponse result = await _remoteDataSource.deleteProject(id);
       return Right<Failure, ProjectResponse>(result);

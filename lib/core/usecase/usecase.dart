@@ -9,7 +9,7 @@ abstract class UsecaseWithParams<Type, Params> {
 abstract class UsecaseIdWithParams<Type, Params> {
   const UsecaseIdWithParams();
 
-  ResultFuture<Type> call(String id,Params params);
+  ResultFuture<Type> call(int id,Params params);
 }
 
 abstract class UsecaseWithoutParams<Type> {
@@ -21,5 +21,5 @@ abstract class UsecaseWithoutParams<Type> {
 abstract class UsecaseIdWithoutParams<Type> {
   const UsecaseIdWithoutParams();
 
-  ResultFuture<Type> call(String id);
+  ResultFuture<Type> call(int id);
 }

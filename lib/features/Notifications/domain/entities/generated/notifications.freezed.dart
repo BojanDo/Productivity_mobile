@@ -22,7 +22,7 @@ Notification _$NotificationFromJson(Map<String, dynamic> json) {
 mixin _$Notification {
   User get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'task_id')
-  String get taskId => throw _privateConstructorUsedError;
+  int get taskId => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
 
@@ -44,7 +44,7 @@ abstract class $NotificationCopyWith<$Res> {
   @useResult
   $Res call(
       {User user,
-      @JsonKey(name: 'task_id') String taskId,
+      @JsonKey(name: 'task_id') int taskId,
       String description,
       String date});
 
@@ -79,7 +79,7 @@ class _$NotificationCopyWithImpl<$Res, $Val extends Notification>
       taskId: null == taskId
           ? _value.taskId
           : taskId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -112,7 +112,7 @@ abstract class _$$NotificationImplCopyWith<$Res>
   @useResult
   $Res call(
       {User user,
-      @JsonKey(name: 'task_id') String taskId,
+      @JsonKey(name: 'task_id') int taskId,
       String description,
       String date});
 
@@ -146,7 +146,7 @@ class __$$NotificationImplCopyWithImpl<$Res>
       taskId: null == taskId
           ? _value.taskId
           : taskId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -175,7 +175,7 @@ class _$NotificationImpl implements _Notification {
   final User user;
   @override
   @JsonKey(name: 'task_id')
-  final String taskId;
+  final int taskId;
   @override
   final String description;
   @override
@@ -221,7 +221,7 @@ class _$NotificationImpl implements _Notification {
 abstract class _Notification implements Notification {
   const factory _Notification(
       {required final User user,
-      @JsonKey(name: 'task_id') required final String taskId,
+      @JsonKey(name: 'task_id') required final int taskId,
       required final String description,
       required final String date}) = _$NotificationImpl;
 
@@ -232,7 +232,7 @@ abstract class _Notification implements Notification {
   User get user;
   @override
   @JsonKey(name: 'task_id')
-  String get taskId;
+  int get taskId;
   @override
   String get description;
   @override

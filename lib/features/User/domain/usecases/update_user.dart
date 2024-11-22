@@ -16,7 +16,7 @@ class UpdateUser extends UsecaseIdWithParams<UserResponse, UpdateUserParams> {
 
 
   @override
-  ResultFuture<UserResponse> call(String id,UpdateUserParams params) async {
+  ResultFuture<UserResponse> call(int id,UpdateUserParams params) async {
     final Map<String, dynamic> jsonParams = params.toJson();
 
     if (params.profilePicture != null) {

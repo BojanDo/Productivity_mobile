@@ -9,6 +9,6 @@ class GetOrganization extends UsecaseIdWithoutParams<Organization> {
   final UserRepository _repository;
 
   @override
-  ResultFuture<Organization> call(String id) async => _repository.getOrganization(id);
+  ResultFuture<Organization> call(int id) async => _repository.getOrganization(id);
 }
 

@@ -9,10 +9,10 @@ import '../../domain/entities/users.dart';
 abstract class UserRemoteDataSource {
   Future<Users> getUsers();
 
-  Future<User> getUser(String id);
+  Future<User> getUser(int id);
 
   Future<UserResponse> updateUser(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   });
 
@@ -20,22 +20,22 @@ abstract class UserRemoteDataSource {
     required Map<String, dynamic> values,
   });
 
-  Future<Organization> getOrganization(String id);
+  Future<Organization> getOrganization(int id);
 
   Future<UserResponse> updateOrganization(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   });
 
   Future<Organizations> getInvitations();
 
-  Future<Users> getInvitedUsers(String organizationId);
+  Future<Users> getInvitedUsers(int organizationId);
 
-  Future<UserResponse> acceptInvitation(String organizationId);
+  Future<UserResponse> acceptInvitation(int organizationId);
 
-  Future<UserResponse> sendInvitation(String organizationId);
+  Future<UserResponse> sendInvitation(int organizationId);
 
-  Future<UserResponse> declineInvitation(String organizationId);
+  Future<UserResponse> declineInvitation(int organizationId);
 }
 
 class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
@@ -62,11 +62,11 @@ class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
   }
 
   @override
-  Future<User> getUser(String id) async {
+  Future<User> getUser(int id) async {
     try {
       final dynamic response = await _apiManager.get(
         kUsersUrl,
-        id,
+        '$id',
         <String, dynamic>{},
       );
 
@@ -78,13 +78,13 @@ class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
 
   @override
   Future<UserResponse> updateUser(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   }) async {
     try {
       final dynamic response = await _apiManager.put(
         kUsersUrl,
-        id,
+        '$id',
         values,
       );
 
@@ -112,11 +112,11 @@ class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
   }
 
   @override
-  Future<Organization> getOrganization(String id) async {
+  Future<Organization> getOrganization(int id) async {
     try {
       final dynamic response = await _apiManager.get(
         kOrganizationsUrl,
-        id,
+        '$id',
         <String, dynamic>{},
       );
 
@@ -128,13 +128,13 @@ class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
 
   @override
   Future<UserResponse> updateOrganization(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   }) async {
     try {
       final dynamic response = await _apiManager.put(
         kOrganizationsUrl,
-        id,
+        '$id',
         values,
       );
 
@@ -163,11 +163,11 @@ class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
   }
 
   @override
-  Future<Users> getInvitedUsers(String organizationId) async {
+  Future<Users> getInvitedUsers(int organizationId) async {
     try {
       final dynamic response = await _apiManager.get(
         kInvitationUrl,
-        organizationId,
+        '$organizationId',
         <String, dynamic>{},
       );
 
@@ -181,11 +181,11 @@ class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
   }
 
   @override
-  Future<UserResponse> acceptInvitation(String organizationId) async {
+  Future<UserResponse> acceptInvitation(int organizationId) async {
     try {
       final dynamic response = await _apiManager.post(
         kInvitationUrl,
-        organizationId,
+        '$organizationId',
         <String, dynamic>{},
       );
 
@@ -196,11 +196,11 @@ class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
   }
 
   @override
-  Future<UserResponse> sendInvitation(String organizationId) async {
+  Future<UserResponse> sendInvitation(int organizationId) async {
     try {
       final dynamic response = await _apiManager.put(
         kInvitationUrl,
-        organizationId,
+        '$organizationId',
         <String, dynamic>{},
       );
 
@@ -211,11 +211,11 @@ class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
   }
 
   @override
-  Future<UserResponse> declineInvitation(String organizationId) async {
+  Future<UserResponse> declineInvitation(int organizationId) async {
     try {
       final dynamic response = await _apiManager.delete(
         kInvitationUrl,
-        organizationId,
+        '$organizationId',
         <String, dynamic>{},
       );
 

@@ -13,11 +13,11 @@ abstract class ProjectRemoteDataSource {
   });
 
   Future<ProjectResponse> updateProject(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   });
 
-  Future<ProjectResponse> deleteProject(String id);
+  Future<ProjectResponse> deleteProject(int id);
 }
 
 class ProjectRemoteDataSourceImplementation implements ProjectRemoteDataSource {
@@ -62,13 +62,13 @@ class ProjectRemoteDataSourceImplementation implements ProjectRemoteDataSource {
 
   @override
   Future<ProjectResponse> updateProject(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   }) async {
     try {
       final dynamic response = await _apiManager.put(
         kProjectsUrl,
-        id,
+        '$id',
         values,
       );
 
@@ -79,11 +79,11 @@ class ProjectRemoteDataSourceImplementation implements ProjectRemoteDataSource {
   }
 
   @override
-  Future<ProjectResponse> deleteProject(String id) async {
+  Future<ProjectResponse> deleteProject(int id) async {
     try {
       final dynamic response = await _apiManager.delete(
         kProjectsUrl,
-        id,
+        '$id',
         <String, dynamic>{},
       );
 

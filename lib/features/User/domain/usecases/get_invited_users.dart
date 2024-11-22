@@ -9,6 +9,6 @@ class GetInvitedUsers extends UsecaseIdWithoutParams<Users> {
   final UserRepository _repository;
 
   @override
-  ResultFuture<Users> call(String id) async => _repository.getInvitedUsers(id);
+  ResultFuture<Users> call(int id) async => _repository.getInvitedUsers(id);
 }
 

@@ -15,7 +15,7 @@ class UpdateTask extends UsecaseIdWithParams<TaskResponse, UpdateTaskParams> {
   final TaskRepository _repository;
 
   @override
-  ResultFuture<TaskResponse> call(String id, UpdateTaskParams params) async {
+  ResultFuture<TaskResponse> call(int id, UpdateTaskParams params) async {
     final Map<String, dynamic> jsonParams = params.toJson();
     if (params.attachments != null) {
       jsonParams['attachments'] = await Future.wait(

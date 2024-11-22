@@ -9,6 +9,6 @@ class GetTask extends UsecaseIdWithoutParams<Task> {
   final TaskRepository _repository;
 
   @override
-  ResultFuture<Task> call(String id) async => _repository.getTask(id);
+  ResultFuture<Task> call(int id) async => _repository.getTask(id);
 }
 

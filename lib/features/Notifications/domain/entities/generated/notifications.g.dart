@@ -9,7 +9,7 @@ part of '../notifications.dart';
 _$NotificationImpl _$$NotificationImplFromJson(Map<String, dynamic> json) =>
     _$NotificationImpl(
       user: User.fromJson(json['user'] as Map<String, dynamic>),
-      taskId: json['task_id'] as String,
+      taskId: (json['task_id'] as num).toInt(),
       description: json['description'] as String,
       date: json['date'] as String,
     );

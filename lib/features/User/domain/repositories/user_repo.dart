@@ -8,10 +8,10 @@ abstract class UserRepository {
 
   ResultFuture<Users> getUsers();
 
-  ResultFuture<User> getUser(String id);
+  ResultFuture<User> getUser(int id);
 
   ResultFuture<UserResponse> updateUser(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   });
 
@@ -19,20 +19,20 @@ abstract class UserRepository {
     required Map<String, dynamic> values,
   });
 
-  ResultFuture<Organization> getOrganization(String id);
+  ResultFuture<Organization> getOrganization(int id);
 
   ResultFuture<UserResponse> updateOrganization(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   });
 
   ResultFuture<Organizations> getInvitations();
 
-  ResultFuture<Users> getInvitedUsers(String organizationId);
+  ResultFuture<Users> getInvitedUsers(int organizationId);
 
-  ResultFuture<UserResponse> acceptInvitation(String organizationId);
+  ResultFuture<UserResponse> acceptInvitation(int organizationId);
 
-  ResultFuture<UserResponse> sendInvitation(String organizationId);
+  ResultFuture<UserResponse> sendInvitation(int organizationId);
 
-  ResultFuture<UserResponse> declineInvitation(String organizationId);
+  ResultFuture<UserResponse> declineInvitation(int organizationId);
 }

@@ -9,6 +9,6 @@ class DeleteProject extends UsecaseIdWithoutParams<ProjectResponse> {
   final ProjectRepository _repository;
 
   @override
-  ResultFuture<ProjectResponse> call(String id) async => _repository.deleteProject(id);
+  ResultFuture<ProjectResponse> call(int id) async => _repository.deleteProject(id);
 }
 

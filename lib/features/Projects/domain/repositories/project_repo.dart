@@ -12,9 +12,9 @@ abstract class ProjectRepository {
   });
 
   ResultFuture<ProjectResponse> updateProject(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   });
 
-  ResultFuture<ProjectResponse> deleteProject(String id);
+  ResultFuture<ProjectResponse> deleteProject(int id);
 }

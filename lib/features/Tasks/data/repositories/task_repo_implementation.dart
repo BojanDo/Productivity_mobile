@@ -40,7 +40,7 @@ class TaskRepoImplementation implements TaskRepository {
   }
 
   @override
-  ResultFuture<Task> getTask(String id) async{
+  ResultFuture<Task> getTask(int id) async{
     try {
       final Task result = await _remoteDataSource.getTask(
         id,
@@ -53,7 +53,7 @@ class TaskRepoImplementation implements TaskRepository {
 
   @override
   ResultFuture<TaskResponse> updateTask(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   }) async {
     try {
@@ -68,7 +68,7 @@ class TaskRepoImplementation implements TaskRepository {
   }
 
   @override
-  ResultFuture<TaskResponse> deleteTask(String id) async {
+  ResultFuture<TaskResponse> deleteTask(int id) async {
     try {
       final TaskResponse result = await _remoteDataSource.deleteTask(id);
       return Right<Failure, TaskResponse>(result);
@@ -90,7 +90,7 @@ class TaskRepoImplementation implements TaskRepository {
   }
 
   @override
-  ResultFuture<TaskResponse> updateComment(String id, {required Map<String, dynamic> values}) async{
+  ResultFuture<TaskResponse> updateComment(int id, {required Map<String, dynamic> values}) async{
     try {
       final TaskResponse result = await _remoteDataSource.updateComment(
         id,
@@ -103,7 +103,7 @@ class TaskRepoImplementation implements TaskRepository {
   }
 
   @override
-  ResultFuture<TaskResponse> deleteComment(String id) async{
+  ResultFuture<TaskResponse> deleteComment(int id) async{
     try {
       final TaskResponse result = await _remoteDataSource.deleteComment(id);
       return Right<Failure, TaskResponse>(result);

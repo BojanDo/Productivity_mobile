@@ -99,20 +99,20 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
   }
 
   @override
-  Future<Task> getTask(String id) async {
+  Future<Task> getTask(int id) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return task;
   }
 
   @override
-  Future<TaskResponse> updateTask(String id,
+  Future<TaskResponse> updateTask(int id,
       {required Map<String, dynamic> values}) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
-  Future<TaskResponse> deleteTask(String id) async {
+  Future<TaskResponse> deleteTask(int id) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
@@ -125,14 +125,14 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
   }
 
   @override
-  Future<TaskResponse> updateComment(String id,
+  Future<TaskResponse> updateComment(int id,
       {required Map<String, dynamic> values}) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
-  Future<TaskResponse> deleteComment(String id) async {
+  Future<TaskResponse> deleteComment(int id) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }

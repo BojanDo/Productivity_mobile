@@ -25,7 +25,7 @@ mixin _$GetNotificationsParams {
   String? get dateFrom => throw _privateConstructorUsedError;
   String? get dateUntil => throw _privateConstructorUsedError;
   @JsonKey(name: 'project_id')
-  String? get projectId => throw _privateConstructorUsedError;
+  int? get projectId => throw _privateConstructorUsedError;
 
   /// Serializes this GetNotificationsParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ abstract class $GetNotificationsParamsCopyWith<$Res> {
       {String page,
       String? dateFrom,
       String? dateUntil,
-      @JsonKey(name: 'project_id') String? projectId});
+      @JsonKey(name: 'project_id') int? projectId});
 }
 
 /// @nodoc
@@ -87,7 +87,7 @@ class _$GetNotificationsParamsCopyWithImpl<$Res,
       projectId: freezed == projectId
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
     ) as $Val);
   }
 }
@@ -105,7 +105,7 @@ abstract class _$$GetNotificationsParamsImplCopyWith<$Res>
       {String page,
       String? dateFrom,
       String? dateUntil,
-      @JsonKey(name: 'project_id') String? projectId});
+      @JsonKey(name: 'project_id') int? projectId});
 }
 
 /// @nodoc
@@ -144,7 +144,7 @@ class __$$GetNotificationsParamsImplCopyWithImpl<$Res>
       projectId: freezed == projectId
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
     ));
   }
 }
@@ -169,7 +169,7 @@ class _$GetNotificationsParamsImpl implements _GetNotificationsParams {
   final String? dateUntil;
   @override
   @JsonKey(name: 'project_id')
-  final String? projectId;
+  final int? projectId;
 
   @override
   String toString() {
@@ -217,7 +217,7 @@ abstract class _GetNotificationsParams implements GetNotificationsParams {
           {required final String page,
           final String? dateFrom,
           final String? dateUntil,
-          @JsonKey(name: 'project_id') final String? projectId}) =
+          @JsonKey(name: 'project_id') final int? projectId}) =
       _$GetNotificationsParamsImpl;
 
   factory _GetNotificationsParams.fromJson(Map<String, dynamic> json) =
@@ -231,7 +231,7 @@ abstract class _GetNotificationsParams implements GetNotificationsParams {
   String? get dateUntil;
   @override
   @JsonKey(name: 'project_id')
-  String? get projectId;
+  int? get projectId;
 
   /// Create a copy of GetNotificationsParams
   /// with the given fields replaced by the non-null parameter values.

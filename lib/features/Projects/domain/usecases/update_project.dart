@@ -16,7 +16,7 @@ class UpdateProject extends UsecaseIdWithParams<ProjectResponse, UpdateProjectPa
 
 
   @override
-  ResultFuture<ProjectResponse> call(String id,UpdateProjectParams params) async {
+  ResultFuture<ProjectResponse> call(int id,UpdateProjectParams params) async {
     final Map<String, dynamic> jsonParams = params.toJson();
 
     if (params.profilePicture != null) {

@@ -10,7 +10,7 @@ part 'generated/notifications.g.dart';
 class Notification with _$Notification {
   const factory Notification({
     required User user,
-    @JsonKey(name: 'task_id') required String taskId,
+    @JsonKey(name: 'task_id') required int taskId,
     required String description,
     required String date,
 }) = _Notification;

@@ -9,6 +9,6 @@ class GetUser extends UsecaseIdWithoutParams<User> {
   final UserRepository _repository;
 
   @override
-  ResultFuture<User> call(String id) async => _repository.getUser(id);
+  ResultFuture<User> call(int id) async => _repository.getUser(id);
 }
 

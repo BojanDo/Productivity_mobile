@@ -26,7 +26,7 @@ class GetNotificationsParams with _$GetNotificationsParams {
     required String page,
     String? dateFrom,
     String? dateUntil,
-    @JsonKey(name: 'project_id') String? projectId,
+    @JsonKey(name: 'project_id') int? projectId,
   }) = _GetNotificationsParams;
 
   factory GetNotificationsParams.fromJson(Map<String, dynamic> json) =>

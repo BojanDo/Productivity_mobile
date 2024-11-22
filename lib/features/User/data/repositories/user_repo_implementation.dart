@@ -25,7 +25,7 @@ class UserRepoImplementation implements UserRepository {
   }
 
   @override
-  ResultFuture<User> getUser(String id) async {
+  ResultFuture<User> getUser(int id) async {
     try {
       final User result = await _remoteDataSource.getUser(id);
       return Right<Failure, User>(result);
@@ -35,7 +35,7 @@ class UserRepoImplementation implements UserRepository {
   }
 
   @override
-  ResultFuture<UserResponse> updateUser(String id, {
+  ResultFuture<UserResponse> updateUser(int id, {
     required Map<String, dynamic> values,
   }) async {
     try {
@@ -63,7 +63,7 @@ class UserRepoImplementation implements UserRepository {
   }
 
   @override
-  ResultFuture<Organization> getOrganization(String id) async {
+  ResultFuture<Organization> getOrganization(int id) async {
     try {
       final Organization result = await _remoteDataSource.getOrganization(id);
       return Right<Failure, Organization>(result);
@@ -73,7 +73,7 @@ class UserRepoImplementation implements UserRepository {
   }
 
   @override
-  ResultFuture<UserResponse> updateOrganization(String id, {
+  ResultFuture<UserResponse> updateOrganization(int id, {
     required Map<String, dynamic> values,
   }) async {
     try {
@@ -97,7 +97,7 @@ class UserRepoImplementation implements UserRepository {
   }
 
   @override
-  ResultFuture<Users> getInvitedUsers(String organizationId) async {
+  ResultFuture<Users> getInvitedUsers(int organizationId) async {
     try {
       final Users result = await _remoteDataSource.getInvitedUsers(
         organizationId,
@@ -109,7 +109,7 @@ class UserRepoImplementation implements UserRepository {
   }
 
   @override
-  ResultFuture<UserResponse> acceptInvitation(String organizationId) async {
+  ResultFuture<UserResponse> acceptInvitation(int organizationId) async {
     try {
       final UserResponse result = await _remoteDataSource.acceptInvitation(
         organizationId,
@@ -121,7 +121,7 @@ class UserRepoImplementation implements UserRepository {
   }
 
   @override
-  ResultFuture<UserResponse> sendInvitation(String organizationId) async {
+  ResultFuture<UserResponse> sendInvitation(int organizationId) async {
     try {
       final UserResponse result = await _remoteDataSource.sendInvitation(
         organizationId,
@@ -133,7 +133,7 @@ class UserRepoImplementation implements UserRepository {
   }
 
   @override
-  ResultFuture<UserResponse> declineInvitation(String organizationId) async {
+  ResultFuture<UserResponse> declineInvitation(int organizationId) async {
     try {
       final UserResponse result = await _remoteDataSource.declineInvitation(
         organizationId,

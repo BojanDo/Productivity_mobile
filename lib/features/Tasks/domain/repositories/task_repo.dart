@@ -13,23 +13,23 @@ abstract class TaskRepository {
     required Map<String, dynamic> values,
   });
 
-  ResultFuture<Task> getTask(String id);
+  ResultFuture<Task> getTask(int id);
 
   ResultFuture<TaskResponse> updateTask(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   });
 
-  ResultFuture<TaskResponse> deleteTask(String id);
+  ResultFuture<TaskResponse> deleteTask(int id);
 
   ResultFuture<TaskResponse> addComment({
     required Map<String, dynamic> values,
   });
 
   ResultFuture<TaskResponse> updateComment(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   });
 
-  ResultFuture<TaskResponse> deleteComment(String id);
+  ResultFuture<TaskResponse> deleteComment(int id);
 }

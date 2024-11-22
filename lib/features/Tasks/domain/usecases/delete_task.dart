@@ -9,6 +9,6 @@ class DeleteTask extends UsecaseIdWithoutParams<TaskResponse> {
   final TaskRepository _repository;
 
   @override
-  ResultFuture<TaskResponse> call(String id) async => _repository.deleteTask(id);
+  ResultFuture<TaskResponse> call(int id) async => _repository.deleteTask(id);
 }
 

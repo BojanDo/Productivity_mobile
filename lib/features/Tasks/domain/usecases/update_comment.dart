@@ -16,7 +16,7 @@ class UpdateComment
 
   @override
   ResultFuture<TaskResponse> call(
-    String id,
+    int id,
     UpdateCommentParams params,
   ) async =>
       _repository.updateComment(

@@ -24,7 +24,7 @@ mixin _$GetDocumentsParams {
   String? get dateFrom => throw _privateConstructorUsedError;
   String? get dateUntil => throw _privateConstructorUsedError;
   @JsonKey(name: 'project_id')
-  String? get projectId => throw _privateConstructorUsedError;
+  int? get projectId => throw _privateConstructorUsedError;
 
   /// Serializes this GetDocumentsParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $GetDocumentsParamsCopyWith<$Res> {
       {String page,
       String? dateFrom,
       String? dateUntil,
-      @JsonKey(name: 'project_id') String? projectId});
+      @JsonKey(name: 'project_id') int? projectId});
 }
 
 /// @nodoc
@@ -85,7 +85,7 @@ class _$GetDocumentsParamsCopyWithImpl<$Res, $Val extends GetDocumentsParams>
       projectId: freezed == projectId
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
     ) as $Val);
   }
 }
@@ -102,7 +102,7 @@ abstract class _$$GetDocumentsParamsImplCopyWith<$Res>
       {String page,
       String? dateFrom,
       String? dateUntil,
-      @JsonKey(name: 'project_id') String? projectId});
+      @JsonKey(name: 'project_id') int? projectId});
 }
 
 /// @nodoc
@@ -139,7 +139,7 @@ class __$$GetDocumentsParamsImplCopyWithImpl<$Res>
       projectId: freezed == projectId
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
     ));
   }
 }
@@ -164,7 +164,7 @@ class _$GetDocumentsParamsImpl implements _GetDocumentsParams {
   final String? dateUntil;
   @override
   @JsonKey(name: 'project_id')
-  final String? projectId;
+  final int? projectId;
 
   @override
   String toString() {
@@ -212,7 +212,7 @@ abstract class _GetDocumentsParams implements GetDocumentsParams {
           {required final String page,
           final String? dateFrom,
           final String? dateUntil,
-          @JsonKey(name: 'project_id') final String? projectId}) =
+          @JsonKey(name: 'project_id') final int? projectId}) =
       _$GetDocumentsParamsImpl;
 
   factory _GetDocumentsParams.fromJson(Map<String, dynamic> json) =
@@ -226,7 +226,7 @@ abstract class _GetDocumentsParams implements GetDocumentsParams {
   String? get dateUntil;
   @override
   @JsonKey(name: 'project_id')
-  String? get projectId;
+  int? get projectId;
 
   /// Create a copy of GetDocumentsParams
   /// with the given fields replaced by the non-null parameter values.

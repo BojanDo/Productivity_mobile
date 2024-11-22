@@ -39,7 +39,7 @@ class MockProjectRemoteDataSourceImplementation
 
   @override
   Future<ProjectResponse> updateProject(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   }) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
@@ -47,7 +47,7 @@ class MockProjectRemoteDataSourceImplementation
   }
 
   @override
-  Future<ProjectResponse> deleteProject(String id) async {
+  Future<ProjectResponse> deleteProject(int id) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }

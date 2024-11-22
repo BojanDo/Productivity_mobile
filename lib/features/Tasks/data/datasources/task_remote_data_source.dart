@@ -14,25 +14,25 @@ abstract class TaskRemoteDataSource {
     required Map<String, dynamic> values,
   });
 
-  Future<Task> getTask(String id);
+  Future<Task> getTask(int id);
 
   Future<TaskResponse> updateTask(
-      String id, {
+      int id, {
         required Map<String, dynamic> values,
       });
 
-  Future<TaskResponse> deleteTask(String id);
+  Future<TaskResponse> deleteTask(int id);
 
   Future<TaskResponse> addComment({
     required Map<String, dynamic> values,
   });
 
   Future<TaskResponse> updateComment(
-      String id, {
+      int id, {
         required Map<String, dynamic> values,
       });
 
-  Future<TaskResponse> deleteComment(String id);
+  Future<TaskResponse> deleteComment(int id);
 }
 
 class TaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
@@ -78,11 +78,11 @@ class TaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
   }
 
   @override
-  Future<Task> getTask(String id) async {
+  Future<Task> getTask(int id) async {
     try {
       final dynamic response = await _apiManager.get(
         kTasksUrl,
-        id,
+        '$id',
         <String, dynamic>{},
       );
 
@@ -94,13 +94,13 @@ class TaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
 
   @override
   Future<TaskResponse> updateTask(
-    String id, {
+    int id, {
     required Map<String, dynamic> values,
   }) async {
     try {
       final dynamic response = await _apiManager.put(
         kTasksUrl,
-        id,
+        '$id',
         values,
       );
 
@@ -111,11 +111,11 @@ class TaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
   }
 
   @override
-  Future<TaskResponse> deleteTask(String id) async {
+  Future<TaskResponse> deleteTask(int id) async {
     try {
       final dynamic response = await _apiManager.delete(
         kTasksUrl,
-        id,
+        '$id',
         <String, dynamic>{},
       );
 
@@ -144,13 +144,13 @@ class TaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
 
   @override
   Future<TaskResponse> updateComment(
-      String id, {
+      int id, {
         required Map<String, dynamic> values,
       }) async {
     try {
       final dynamic response = await _apiManager.put(
         kCommentsUrl,
-        id,
+        '$id',
         values,
       );
 
@@ -161,11 +161,11 @@ class TaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
   }
 
   @override
-  Future<TaskResponse> deleteComment(String id) async {
+  Future<TaskResponse> deleteComment(int id) async {
     try {
       final dynamic response = await _apiManager.delete(
         kCommentsUrl,
-        id,
+        '$id',
         <String, dynamic>{},
       );
 

@@ -16,7 +16,7 @@ class UpdateOrganization extends UsecaseIdWithParams<UserResponse, UpdateOrganiz
 
 
   @override
-  ResultFuture<UserResponse> call(String id,UpdateOrganizationParams params) async {
+  ResultFuture<UserResponse> call(int id,UpdateOrganizationParams params) async {
     final Map<String, dynamic> jsonParams = params.toJson();
 
     if (params.profilePicture != null) {
