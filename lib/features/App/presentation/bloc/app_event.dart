@@ -1,4 +1,7 @@
 part of 'app_bloc.dart';
 
-@immutable
-sealed class AppEvent {}
+@freezed
+class AppEvent with _$AppEvent {
+  const factory AppEvent.error({required String message}) = _AppEventError;
+  const factory AppEvent.success({required String message}) = _AppEventSuccess;
+}

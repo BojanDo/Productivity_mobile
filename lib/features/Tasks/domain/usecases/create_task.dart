@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../../../core/usecase/usecase.dart';
 import '../../../../core/utils/typedef.dart';
 import '../entities/task_response.dart';
 import '../repositories/task_repo.dart';
 
 part 'generated/create_task.freezed.dart';
-
 part 'generated/create_task.g.dart';
 
 class CreateTask extends UsecaseWithParams<TaskResponse, CreateTaskParams> {

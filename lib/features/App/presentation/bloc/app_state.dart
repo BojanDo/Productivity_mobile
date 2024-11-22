@@ -1,6 +1,7 @@
 part of 'app_bloc.dart';
 
-@immutable
-sealed class AppState {}
+@freezed
+class AppState with _$AppState {
+  const factory AppState() = _AppState;
 
-final class AppInitial extends AppState {}
+}

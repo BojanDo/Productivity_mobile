@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
 
+import '../../../core/config/constants.dart';
+import '../../../mock/user_remote_data_source.dart';
 import '../data/datasources/user_remote_data_source.dart';
 import '../data/repositories/user_repo_implementation.dart';
 import '../domain/repositories/user_repo.dart';
@@ -34,9 +36,16 @@ Future<void> initUser(GetIt sl) async {
   sl.registerLazySingleton(() => UpdateUser(sl()));
   // Repositories
   sl.registerLazySingleton<UserRepository>(
-          () => UserRepoImplementation(sl()),);
-  // Data Sources
-  sl.registerLazySingleton<UserRemoteDataSource>(
-        () => UserRemoteDataSourceImplementation(sl()),
+    () => UserRepoImplementation(sl()),
   );
+  // Data Sources
+  if (kUseMockData) {
+    sl.registerLazySingleton<UserRemoteDataSource>(
+      () => MockUserRemoteDataSourceImplementation(sl()),
+    );
+  } else {
+    sl.registerLazySingleton<UserRemoteDataSource>(
+      () => UserRemoteDataSourceImplementation(sl()),
+    );
+  }
 }

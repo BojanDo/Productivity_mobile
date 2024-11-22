@@ -9,7 +9,6 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final List<Map<String, String>> routes = <Map<String, String>>[
-    <String, String>{'title': 'Home', 'description': '', 'route': '/'},
     <String, String>{
       'title': 'Settings',
       'description': 'settings list',

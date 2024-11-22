@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../../../core/usecase/usecase.dart';
 import '../../../../core/utils/typedef.dart';
 import '../entities/task_response.dart';

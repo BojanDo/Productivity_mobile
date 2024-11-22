@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
 
+import '../../../core/config/constants.dart';
+import '../../../mock/project_remote_data_source.dart';
 import '../data/datasources/project_remote_data_source.dart';
 import '../data/repositories/project_repo_implementation.dart';
 import '../domain/repositories/project_repo.dart';
@@ -21,7 +23,13 @@ Future<void> initProjects(GetIt sl) async {
   // Repositories
   sl.registerLazySingleton<ProjectRepository>(() => ProjectRepoImplementation(sl()));
   // Data Sources
-  sl.registerLazySingleton<ProjectRemoteDataSource>(
-        () => ProjectRemoteDataSourceImplementation(sl()),
-  );
+  if (kUseMockData) {
+    sl.registerLazySingleton<ProjectRemoteDataSource>(
+          () => MockProjectRemoteDataSourceImplementation(sl()),
+    );
+  } else {
+    sl.registerLazySingleton<ProjectRemoteDataSource>(
+          () => ProjectRemoteDataSourceImplementation(sl()),
+    );
+  }
 }

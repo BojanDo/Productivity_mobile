@@ -5,7 +5,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:meta/meta.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../domain/entities/auth_response.dart';
@@ -14,11 +13,8 @@ import '../../domain/usecases/register.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
-
 part 'forms/login_form_bloc.dart';
 part 'forms/register_form_bloc.dart';
-
-
 part 'generated/auth_bloc.freezed.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
+const bool kUseMockData = true;
 const int kApiVersion = 1;
 
 const String kBaseUrl = '<base-url>';

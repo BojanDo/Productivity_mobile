@@ -6,7 +6,6 @@ import '../../../../core/utils/typedef.dart';
 import '../entities/project_response.dart';
 import '../repositories/project_repo.dart';
 
-
 part 'generated/create_project.freezed.dart';
 part 'generated/create_project.g.dart';
 

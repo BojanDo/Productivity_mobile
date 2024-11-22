@@ -5,8 +5,8 @@ import '../features/User/domain/entities/organizations.dart';
 import '../features/User/domain/entities/user_response.dart';
 import '../features/User/domain/entities/users.dart';
 
-class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
-  UserRemoteDataSourceImplementation(this._faker) {
+class MockUserRemoteDataSourceImplementation implements UserRemoteDataSource {
+  MockUserRemoteDataSourceImplementation(this._faker) {
     final List<User> fakeUsers = List<User>.generate(
       10,
       (int index) => User(

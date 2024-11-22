@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
 
+import '../../../core/config/constants.dart';
+import '../../../mock/notifications_remote_data_source.dart';
 import '../data/datasources/notifications_remote_data_source.dart';
 import '../data/repositories/notifications_repo_implementation.dart';
 import '../domain/repositories/notifications_repo.dart';
@@ -16,7 +18,13 @@ Future<void> initNotifications(GetIt sl) async {
   sl.registerLazySingleton<NotificationsRepository>(
       () => NotificationsRepoImplementation(sl()),);
   // Data Sources
-  sl.registerLazySingleton<NotificationsRemoteDataSource>(
-    () => NotificationsRemoteDataSourceImplementation(sl()),
-  );
+  if (kUseMockData) {
+    sl.registerLazySingleton<NotificationsRemoteDataSource>(
+          () => MockNotificationsRemoteDataSourceImplementation(sl()),
+    );
+  } else {
+    sl.registerLazySingleton<NotificationsRemoteDataSource>(
+          () => NotificationsRemoteDataSourceImplementation(sl()),
+    );
+  }
 }

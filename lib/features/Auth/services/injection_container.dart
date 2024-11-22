@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
 
+import '../../../core/config/constants.dart';
+import '../../../mock/auth_remote_data_source.dart';
 import '../data/datasources/auth_remote_data_source.dart';
 import '../data/repositories/auth_repo_implementation.dart';
 import '../domain/repositories/auth_repo.dart';
@@ -29,9 +31,16 @@ Future<void> initAuth(GetIt sl) async {
   sl.registerLazySingleton(() => Login(sl()));
   sl.registerLazySingleton(() => Register(sl()));
   // Repositories
+
   sl.registerLazySingleton<AuthRepository>(() => AuthRepoImplementation(sl()));
   // Data Sources
-  sl.registerLazySingleton<AuthRemoteDataSource>(
-    () => AuthRemoteDataSourceImplementation(sl()),
-  );
+  if (kUseMockData) {
+    sl.registerLazySingleton<AuthRemoteDataSource>(
+      () => MockAuthRemoteDataSourceImplementation(sl()),
+    );
+  } else {
+    sl.registerLazySingleton<AuthRemoteDataSource>(
+      () => AuthRemoteDataSourceImplementation(sl()),
+    );
+  }
 }

@@ -3,11 +3,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../../core/entities/paginated_list.dart';
 import '../../../../core/utils/typedef.dart';
 import '../../../Documents/domain/entities/documents.dart';
+import '../../../Documents/domain/mappers/document.dart';
 import '../../../Projects/domain/entities/projects.dart';
 import '../../../User/domain/entities/users.dart';
-import '../mappers/comment.dart';
-import '../../../Documents/domain/mappers/document.dart';
 import '../../../User/domain/mappers/user.dart';
+import '../mappers/comment.dart';
 import 'comments.dart';
 
 part 'generated/tasks.freezed.dart';

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/config/colors.dart';
 import '../../core/config/routes.dart';
 import '../../core/functions/routes.dart';
-import '../../core/services/injection_container.dart';
+import '../../features/App/presentation/bloc/app_bloc.dart';
 import 'drawer_bloc.dart';
 
 class GlobalDrawer extends StatefulWidget {
@@ -29,6 +29,7 @@ class _GlobalDrawerState extends State<GlobalDrawer>
   @override
   void initState() {
     super.initState();
+
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 300),
@@ -37,7 +38,6 @@ class _GlobalDrawerState extends State<GlobalDrawer>
       begin: const Offset(0, -1),
       end: const Offset(0, 0),
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
-
     if (context.read<DrawerBloc>().state.visibleList ==
         DrawerVisibleList.second) {
       _controller.forward();
