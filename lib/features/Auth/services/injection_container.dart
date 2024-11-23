@@ -31,7 +31,6 @@ Future<void> initAuth(GetIt sl) async {
   sl.registerLazySingleton(() => Login(sl()));
   sl.registerLazySingleton(() => Register(sl()));
   // Repositories
-
   sl.registerLazySingleton<AuthRepository>(() => AuthRepoImplementation(sl()));
   // Data Sources
   if (kUseMockData) {

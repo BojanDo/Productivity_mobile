@@ -67,7 +67,7 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
       taskNumber: fakeTasks.first.taskNumber,
       title: fakeTasks.first.title,
       description: <String, dynamic>{
-        'description': faker.lorem.sentences(6).join(' ')
+        'description': faker.lorem.sentences(6).join(' '),
       },
       status: fakeTasks.first.status,
       label: fakeTasks.first.label,
@@ -93,7 +93,7 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
 
   @override
   Future<TaskResponse> createTask(
-      {required Map<String, dynamic> values}) async {
+      {required Map<String, dynamic> values,}) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
@@ -106,7 +106,7 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
 
   @override
   Future<TaskResponse> updateTask(int id,
-      {required Map<String, dynamic> values}) async {
+      {required Map<String, dynamic> values,}) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
@@ -119,14 +119,14 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
 
   @override
   Future<TaskResponse> addComment(
-      {required Map<String, dynamic> values}) async {
+      {required Map<String, dynamic> values,}) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
   Future<TaskResponse> updateComment(int id,
-      {required Map<String, dynamic> values}) async {
+      {required Map<String, dynamic> values,}) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }

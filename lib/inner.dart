@@ -23,7 +23,8 @@ class _InnerWrapperState extends State<InnerWrapper> {
             IconButton(
               icon: const Icon(Icons.notifications_none_outlined),
               onPressed: () {
-                route(context.read<AppBloc>().outerNavigator, kNotificationsRoute);
+                route(context.read<AppBloc>().outerNavigator,
+                    kNotificationsRoute);
               },
             ),
           ],
@@ -37,10 +38,7 @@ class _InnerWrapperState extends State<InnerWrapper> {
           ),
         ),
         drawerEnableOpenDragGesture: false,
-        drawer: GlobalDrawer(
-          outerNavigator: context.read<AppBloc>().outerNavigator,
-          innerNavigator: context.read<AppBloc>().innerNavigator,
-        ),
+        drawer: GlobalDrawer(),
         body: Navigator(
           key: context.read<AppBloc>().innerNavigator,
           onGenerateRoute: (RouteSettings settings) {
@@ -94,4 +92,3 @@ class _InnerWrapperState extends State<InnerWrapper> {
         ),
       );
 }
-

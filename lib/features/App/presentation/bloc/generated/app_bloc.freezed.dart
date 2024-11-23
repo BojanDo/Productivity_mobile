@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AppEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() toAuthenticated,
+    required TResult Function() toNotAuthenticated,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -26,6 +28,8 @@ mixin _$AppEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? toAuthenticated,
+    TResult? Function()? toNotAuthenticated,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -34,6 +38,8 @@ mixin _$AppEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? toAuthenticated,
+    TResult Function()? toNotAuthenticated,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -43,6 +49,9 @@ mixin _$AppEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_AppEventToAuthenticated value) toAuthenticated,
+    required TResult Function(_AppEventToNotAuthenticated value)
+        toNotAuthenticated,
     required TResult Function(_AppEventError value) error,
     required TResult Function(_AppEventSuccess value) success,
     required TResult Function(_AppEventOverlayAdd value) overlayAdd,
@@ -51,6 +60,8 @@ mixin _$AppEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppEventToAuthenticated value)? toAuthenticated,
+    TResult? Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
     TResult? Function(_AppEventError value)? error,
     TResult? Function(_AppEventSuccess value)? success,
     TResult? Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -59,6 +70,8 @@ mixin _$AppEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppEventToAuthenticated value)? toAuthenticated,
+    TResult Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
     TResult Function(_AppEventError value)? error,
     TResult Function(_AppEventSuccess value)? success,
     TResult Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -86,6 +99,273 @@ class _$AppEventCopyWithImpl<$Res, $Val extends AppEvent>
 
   /// Create a copy of AppEvent
   /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$AppEventToAuthenticatedImplCopyWith<$Res> {
+  factory _$$AppEventToAuthenticatedImplCopyWith(
+          _$AppEventToAuthenticatedImpl value,
+          $Res Function(_$AppEventToAuthenticatedImpl) then) =
+      __$$AppEventToAuthenticatedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AppEventToAuthenticatedImplCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res, _$AppEventToAuthenticatedImpl>
+    implements _$$AppEventToAuthenticatedImplCopyWith<$Res> {
+  __$$AppEventToAuthenticatedImplCopyWithImpl(
+      _$AppEventToAuthenticatedImpl _value,
+      $Res Function(_$AppEventToAuthenticatedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AppEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AppEventToAuthenticatedImpl implements _AppEventToAuthenticated {
+  const _$AppEventToAuthenticatedImpl();
+
+  @override
+  String toString() {
+    return 'AppEvent.toAuthenticated()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AppEventToAuthenticatedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() toAuthenticated,
+    required TResult Function() toNotAuthenticated,
+    required TResult Function(String message) error,
+    required TResult Function(String message) success,
+    required TResult Function(Widget? content) overlayAdd,
+    required TResult Function() overlayRemove,
+  }) {
+    return toAuthenticated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? toAuthenticated,
+    TResult? Function()? toNotAuthenticated,
+    TResult? Function(String message)? error,
+    TResult? Function(String message)? success,
+    TResult? Function(Widget? content)? overlayAdd,
+    TResult? Function()? overlayRemove,
+  }) {
+    return toAuthenticated?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? toAuthenticated,
+    TResult Function()? toNotAuthenticated,
+    TResult Function(String message)? error,
+    TResult Function(String message)? success,
+    TResult Function(Widget? content)? overlayAdd,
+    TResult Function()? overlayRemove,
+    required TResult orElse(),
+  }) {
+    if (toAuthenticated != null) {
+      return toAuthenticated();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AppEventToAuthenticated value) toAuthenticated,
+    required TResult Function(_AppEventToNotAuthenticated value)
+        toNotAuthenticated,
+    required TResult Function(_AppEventError value) error,
+    required TResult Function(_AppEventSuccess value) success,
+    required TResult Function(_AppEventOverlayAdd value) overlayAdd,
+    required TResult Function(_AppEventOverlayRemove value) overlayRemove,
+  }) {
+    return toAuthenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppEventToAuthenticated value)? toAuthenticated,
+    TResult? Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult? Function(_AppEventError value)? error,
+    TResult? Function(_AppEventSuccess value)? success,
+    TResult? Function(_AppEventOverlayAdd value)? overlayAdd,
+    TResult? Function(_AppEventOverlayRemove value)? overlayRemove,
+  }) {
+    return toAuthenticated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppEventToAuthenticated value)? toAuthenticated,
+    TResult Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult Function(_AppEventError value)? error,
+    TResult Function(_AppEventSuccess value)? success,
+    TResult Function(_AppEventOverlayAdd value)? overlayAdd,
+    TResult Function(_AppEventOverlayRemove value)? overlayRemove,
+    required TResult orElse(),
+  }) {
+    if (toAuthenticated != null) {
+      return toAuthenticated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AppEventToAuthenticated implements AppEvent {
+  const factory _AppEventToAuthenticated() = _$AppEventToAuthenticatedImpl;
+}
+
+/// @nodoc
+abstract class _$$AppEventToNotAuthenticatedImplCopyWith<$Res> {
+  factory _$$AppEventToNotAuthenticatedImplCopyWith(
+          _$AppEventToNotAuthenticatedImpl value,
+          $Res Function(_$AppEventToNotAuthenticatedImpl) then) =
+      __$$AppEventToNotAuthenticatedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AppEventToNotAuthenticatedImplCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res, _$AppEventToNotAuthenticatedImpl>
+    implements _$$AppEventToNotAuthenticatedImplCopyWith<$Res> {
+  __$$AppEventToNotAuthenticatedImplCopyWithImpl(
+      _$AppEventToNotAuthenticatedImpl _value,
+      $Res Function(_$AppEventToNotAuthenticatedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AppEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AppEventToNotAuthenticatedImpl implements _AppEventToNotAuthenticated {
+  const _$AppEventToNotAuthenticatedImpl();
+
+  @override
+  String toString() {
+    return 'AppEvent.toNotAuthenticated()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AppEventToNotAuthenticatedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() toAuthenticated,
+    required TResult Function() toNotAuthenticated,
+    required TResult Function(String message) error,
+    required TResult Function(String message) success,
+    required TResult Function(Widget? content) overlayAdd,
+    required TResult Function() overlayRemove,
+  }) {
+    return toNotAuthenticated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? toAuthenticated,
+    TResult? Function()? toNotAuthenticated,
+    TResult? Function(String message)? error,
+    TResult? Function(String message)? success,
+    TResult? Function(Widget? content)? overlayAdd,
+    TResult? Function()? overlayRemove,
+  }) {
+    return toNotAuthenticated?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? toAuthenticated,
+    TResult Function()? toNotAuthenticated,
+    TResult Function(String message)? error,
+    TResult Function(String message)? success,
+    TResult Function(Widget? content)? overlayAdd,
+    TResult Function()? overlayRemove,
+    required TResult orElse(),
+  }) {
+    if (toNotAuthenticated != null) {
+      return toNotAuthenticated();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AppEventToAuthenticated value) toAuthenticated,
+    required TResult Function(_AppEventToNotAuthenticated value)
+        toNotAuthenticated,
+    required TResult Function(_AppEventError value) error,
+    required TResult Function(_AppEventSuccess value) success,
+    required TResult Function(_AppEventOverlayAdd value) overlayAdd,
+    required TResult Function(_AppEventOverlayRemove value) overlayRemove,
+  }) {
+    return toNotAuthenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppEventToAuthenticated value)? toAuthenticated,
+    TResult? Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult? Function(_AppEventError value)? error,
+    TResult? Function(_AppEventSuccess value)? success,
+    TResult? Function(_AppEventOverlayAdd value)? overlayAdd,
+    TResult? Function(_AppEventOverlayRemove value)? overlayRemove,
+  }) {
+    return toNotAuthenticated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppEventToAuthenticated value)? toAuthenticated,
+    TResult Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult Function(_AppEventError value)? error,
+    TResult Function(_AppEventSuccess value)? success,
+    TResult Function(_AppEventOverlayAdd value)? overlayAdd,
+    TResult Function(_AppEventOverlayRemove value)? overlayRemove,
+    required TResult orElse(),
+  }) {
+    if (toNotAuthenticated != null) {
+      return toNotAuthenticated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AppEventToNotAuthenticated implements AppEvent {
+  const factory _AppEventToNotAuthenticated() =
+      _$AppEventToNotAuthenticatedImpl;
 }
 
 /// @nodoc
@@ -156,6 +436,8 @@ class _$AppEventErrorImpl implements _AppEventError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() toAuthenticated,
+    required TResult Function() toNotAuthenticated,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -167,6 +449,8 @@ class _$AppEventErrorImpl implements _AppEventError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? toAuthenticated,
+    TResult? Function()? toNotAuthenticated,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -178,6 +462,8 @@ class _$AppEventErrorImpl implements _AppEventError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? toAuthenticated,
+    TResult Function()? toNotAuthenticated,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -193,6 +479,9 @@ class _$AppEventErrorImpl implements _AppEventError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_AppEventToAuthenticated value) toAuthenticated,
+    required TResult Function(_AppEventToNotAuthenticated value)
+        toNotAuthenticated,
     required TResult Function(_AppEventError value) error,
     required TResult Function(_AppEventSuccess value) success,
     required TResult Function(_AppEventOverlayAdd value) overlayAdd,
@@ -204,6 +493,8 @@ class _$AppEventErrorImpl implements _AppEventError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppEventToAuthenticated value)? toAuthenticated,
+    TResult? Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
     TResult? Function(_AppEventError value)? error,
     TResult? Function(_AppEventSuccess value)? success,
     TResult? Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -215,6 +506,8 @@ class _$AppEventErrorImpl implements _AppEventError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppEventToAuthenticated value)? toAuthenticated,
+    TResult Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
     TResult Function(_AppEventError value)? error,
     TResult Function(_AppEventSuccess value)? success,
     TResult Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -310,6 +603,8 @@ class _$AppEventSuccessImpl implements _AppEventSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() toAuthenticated,
+    required TResult Function() toNotAuthenticated,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -321,6 +616,8 @@ class _$AppEventSuccessImpl implements _AppEventSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? toAuthenticated,
+    TResult? Function()? toNotAuthenticated,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -332,6 +629,8 @@ class _$AppEventSuccessImpl implements _AppEventSuccess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? toAuthenticated,
+    TResult Function()? toNotAuthenticated,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -347,6 +646,9 @@ class _$AppEventSuccessImpl implements _AppEventSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_AppEventToAuthenticated value) toAuthenticated,
+    required TResult Function(_AppEventToNotAuthenticated value)
+        toNotAuthenticated,
     required TResult Function(_AppEventError value) error,
     required TResult Function(_AppEventSuccess value) success,
     required TResult Function(_AppEventOverlayAdd value) overlayAdd,
@@ -358,6 +660,8 @@ class _$AppEventSuccessImpl implements _AppEventSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppEventToAuthenticated value)? toAuthenticated,
+    TResult? Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
     TResult? Function(_AppEventError value)? error,
     TResult? Function(_AppEventSuccess value)? success,
     TResult? Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -369,6 +673,8 @@ class _$AppEventSuccessImpl implements _AppEventSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppEventToAuthenticated value)? toAuthenticated,
+    TResult Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
     TResult Function(_AppEventError value)? error,
     TResult Function(_AppEventSuccess value)? success,
     TResult Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -464,6 +770,8 @@ class _$AppEventOverlayAddImpl implements _AppEventOverlayAdd {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() toAuthenticated,
+    required TResult Function() toNotAuthenticated,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -475,6 +783,8 @@ class _$AppEventOverlayAddImpl implements _AppEventOverlayAdd {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? toAuthenticated,
+    TResult? Function()? toNotAuthenticated,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -486,6 +796,8 @@ class _$AppEventOverlayAddImpl implements _AppEventOverlayAdd {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? toAuthenticated,
+    TResult Function()? toNotAuthenticated,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -501,6 +813,9 @@ class _$AppEventOverlayAddImpl implements _AppEventOverlayAdd {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_AppEventToAuthenticated value) toAuthenticated,
+    required TResult Function(_AppEventToNotAuthenticated value)
+        toNotAuthenticated,
     required TResult Function(_AppEventError value) error,
     required TResult Function(_AppEventSuccess value) success,
     required TResult Function(_AppEventOverlayAdd value) overlayAdd,
@@ -512,6 +827,8 @@ class _$AppEventOverlayAddImpl implements _AppEventOverlayAdd {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppEventToAuthenticated value)? toAuthenticated,
+    TResult? Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
     TResult? Function(_AppEventError value)? error,
     TResult? Function(_AppEventSuccess value)? success,
     TResult? Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -523,6 +840,8 @@ class _$AppEventOverlayAddImpl implements _AppEventOverlayAdd {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppEventToAuthenticated value)? toAuthenticated,
+    TResult Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
     TResult Function(_AppEventError value)? error,
     TResult Function(_AppEventSuccess value)? success,
     TResult Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -592,6 +911,8 @@ class _$AppEventOverlayRemoveImpl implements _AppEventOverlayRemove {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() toAuthenticated,
+    required TResult Function() toNotAuthenticated,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -603,6 +924,8 @@ class _$AppEventOverlayRemoveImpl implements _AppEventOverlayRemove {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? toAuthenticated,
+    TResult? Function()? toNotAuthenticated,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -614,6 +937,8 @@ class _$AppEventOverlayRemoveImpl implements _AppEventOverlayRemove {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? toAuthenticated,
+    TResult Function()? toNotAuthenticated,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -629,6 +954,9 @@ class _$AppEventOverlayRemoveImpl implements _AppEventOverlayRemove {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_AppEventToAuthenticated value) toAuthenticated,
+    required TResult Function(_AppEventToNotAuthenticated value)
+        toNotAuthenticated,
     required TResult Function(_AppEventError value) error,
     required TResult Function(_AppEventSuccess value) success,
     required TResult Function(_AppEventOverlayAdd value) overlayAdd,
@@ -640,6 +968,8 @@ class _$AppEventOverlayRemoveImpl implements _AppEventOverlayRemove {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppEventToAuthenticated value)? toAuthenticated,
+    TResult? Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
     TResult? Function(_AppEventError value)? error,
     TResult? Function(_AppEventSuccess value)? success,
     TResult? Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -651,6 +981,8 @@ class _$AppEventOverlayRemoveImpl implements _AppEventOverlayRemove {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppEventToAuthenticated value)? toAuthenticated,
+    TResult Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
     TResult Function(_AppEventError value)? error,
     TResult Function(_AppEventSuccess value)? success,
     TResult Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -1330,7 +1662,46 @@ abstract class _AppSideEffectOverlayRemove implements AppSideEffect {
 }
 
 /// @nodoc
-mixin _$AppState {}
+mixin _$AppState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() authenticated,
+    required TResult Function() notAuthenticated,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? authenticated,
+    TResult? Function()? notAuthenticated,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authenticated,
+    TResult Function()? notAuthenticated,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AppStateAuthenticated value) authenticated,
+    required TResult Function(_AppStateNotAuthenticated value) notAuthenticated,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppStateAuthenticated value)? authenticated,
+    TResult? Function(_AppStateNotAuthenticated value)? notAuthenticated,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppStateAuthenticated value)? authenticated,
+    TResult Function(_AppStateNotAuthenticated value)? notAuthenticated,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $AppStateCopyWith<$Res> {
@@ -1353,18 +1724,19 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
 }
 
 /// @nodoc
-abstract class _$$AppStateImplCopyWith<$Res> {
-  factory _$$AppStateImplCopyWith(
-          _$AppStateImpl value, $Res Function(_$AppStateImpl) then) =
-      __$$AppStateImplCopyWithImpl<$Res>;
+abstract class _$$AppStateAuthenticatedImplCopyWith<$Res> {
+  factory _$$AppStateAuthenticatedImplCopyWith(
+          _$AppStateAuthenticatedImpl value,
+          $Res Function(_$AppStateAuthenticatedImpl) then) =
+      __$$AppStateAuthenticatedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AppStateImplCopyWithImpl<$Res>
-    extends _$AppStateCopyWithImpl<$Res, _$AppStateImpl>
-    implements _$$AppStateImplCopyWith<$Res> {
-  __$$AppStateImplCopyWithImpl(
-      _$AppStateImpl _value, $Res Function(_$AppStateImpl) _then)
+class __$$AppStateAuthenticatedImplCopyWithImpl<$Res>
+    extends _$AppStateCopyWithImpl<$Res, _$AppStateAuthenticatedImpl>
+    implements _$$AppStateAuthenticatedImplCopyWith<$Res> {
+  __$$AppStateAuthenticatedImplCopyWithImpl(_$AppStateAuthenticatedImpl _value,
+      $Res Function(_$AppStateAuthenticatedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AppState
@@ -1373,24 +1745,195 @@ class __$$AppStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AppStateImpl implements _AppState {
-  const _$AppStateImpl();
+class _$AppStateAuthenticatedImpl implements _AppStateAuthenticated {
+  const _$AppStateAuthenticatedImpl();
 
   @override
   String toString() {
-    return 'AppState()';
+    return 'AppState.authenticated()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AppStateImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$AppStateAuthenticatedImpl);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() authenticated,
+    required TResult Function() notAuthenticated,
+  }) {
+    return authenticated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? authenticated,
+    TResult? Function()? notAuthenticated,
+  }) {
+    return authenticated?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authenticated,
+    TResult Function()? notAuthenticated,
+    required TResult orElse(),
+  }) {
+    if (authenticated != null) {
+      return authenticated();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AppStateAuthenticated value) authenticated,
+    required TResult Function(_AppStateNotAuthenticated value) notAuthenticated,
+  }) {
+    return authenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppStateAuthenticated value)? authenticated,
+    TResult? Function(_AppStateNotAuthenticated value)? notAuthenticated,
+  }) {
+    return authenticated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppStateAuthenticated value)? authenticated,
+    TResult Function(_AppStateNotAuthenticated value)? notAuthenticated,
+    required TResult orElse(),
+  }) {
+    if (authenticated != null) {
+      return authenticated(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _AppState implements AppState {
-  const factory _AppState() = _$AppStateImpl;
+abstract class _AppStateAuthenticated implements AppState {
+  const factory _AppStateAuthenticated() = _$AppStateAuthenticatedImpl;
+}
+
+/// @nodoc
+abstract class _$$AppStateNotAuthenticatedImplCopyWith<$Res> {
+  factory _$$AppStateNotAuthenticatedImplCopyWith(
+          _$AppStateNotAuthenticatedImpl value,
+          $Res Function(_$AppStateNotAuthenticatedImpl) then) =
+      __$$AppStateNotAuthenticatedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AppStateNotAuthenticatedImplCopyWithImpl<$Res>
+    extends _$AppStateCopyWithImpl<$Res, _$AppStateNotAuthenticatedImpl>
+    implements _$$AppStateNotAuthenticatedImplCopyWith<$Res> {
+  __$$AppStateNotAuthenticatedImplCopyWithImpl(
+      _$AppStateNotAuthenticatedImpl _value,
+      $Res Function(_$AppStateNotAuthenticatedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AppStateNotAuthenticatedImpl implements _AppStateNotAuthenticated {
+  const _$AppStateNotAuthenticatedImpl();
+
+  @override
+  String toString() {
+    return 'AppState.notAuthenticated()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AppStateNotAuthenticatedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() authenticated,
+    required TResult Function() notAuthenticated,
+  }) {
+    return notAuthenticated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? authenticated,
+    TResult? Function()? notAuthenticated,
+  }) {
+    return notAuthenticated?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authenticated,
+    TResult Function()? notAuthenticated,
+    required TResult orElse(),
+  }) {
+    if (notAuthenticated != null) {
+      return notAuthenticated();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AppStateAuthenticated value) authenticated,
+    required TResult Function(_AppStateNotAuthenticated value) notAuthenticated,
+  }) {
+    return notAuthenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppStateAuthenticated value)? authenticated,
+    TResult? Function(_AppStateNotAuthenticated value)? notAuthenticated,
+  }) {
+    return notAuthenticated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppStateAuthenticated value)? authenticated,
+    TResult Function(_AppStateNotAuthenticated value)? notAuthenticated,
+    required TResult orElse(),
+  }) {
+    if (notAuthenticated != null) {
+      return notAuthenticated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AppStateNotAuthenticated implements AppState {
+  const factory _AppStateNotAuthenticated() = _$AppStateNotAuthenticatedImpl;
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
-import '../../../../core/config/routes.dart';
 import '../../../../core/functions/routes.dart';
+import '../../../../widgets/image_picker.dart';
 import '../../../App/presentation/bloc/app_bloc.dart';
 import '../bloc/auth_bloc.dart';
 import '../widgets/auth_box.dart';
@@ -16,12 +16,16 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   void _onSubmitting(
-      BuildContext context, FormBlocSubmitting<String, String> state) {
+    BuildContext context,
+    FormBlocSubmitting<String, String> state,
+  ) {
     context.read<AppBloc>().add(const AppEvent.overlayAdd());
   }
 
   void _onSubmissionFailed(
-      BuildContext context, FormBlocSubmissionFailed<String, String> state) {
+    BuildContext context,
+    FormBlocSubmissionFailed<String, String> state,
+  ) {
     context.read<AppBloc>().add(const AppEvent.overlayRemove());
   }
 
@@ -51,7 +55,7 @@ class _RegisterPageState extends State<RegisterPage> {
         switchText: 'Already have an account? Login',
         switchPageId: 0,
         submit: () {
-          print('Register sent');
+          context.read<AuthBloc>().add(const AuthEvent.register());
         },
         page: FormBlocListener<RegisterFormBloc, String, String>(
           onSubmitting: _onSubmitting,
@@ -74,6 +78,12 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   List<Widget> _fields(RegisterFormBloc registerFormBloc) => <Widget>[
+        ImagePickerFieldBlocBuilder(
+          fileFieldBloc: registerFormBloc.profilePicture,
+          decoration: const InputDecoration(
+            labelText: 'Profile picture',
+          ),
+        ),
         TextFieldBlocBuilder(
           textFieldBloc: registerFormBloc.email,
           suffixButton: SuffixButton.clearText,
@@ -117,16 +127,16 @@ class _RegisterPageState extends State<RegisterPage> {
             floatingLabelBehavior: FloatingLabelBehavior.always,
           ),
         ),
-    TextFieldBlocBuilder(
-      textFieldBloc: registerFormBloc.jobTitle,
-      suffixButton: SuffixButton.clearText,
-      keyboardType: TextInputType.text,
-      autofillHints: const <String>[AutofillHints.jobTitle],
-      decoration: const InputDecoration(
-        labelText: 'Last name',
-        prefixIcon: Icon(Icons.work_outline),
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-      ),
-    ),
+        TextFieldBlocBuilder(
+          textFieldBloc: registerFormBloc.jobTitle,
+          suffixButton: SuffixButton.clearText,
+          keyboardType: TextInputType.text,
+          autofillHints: const <String>[AutofillHints.jobTitle],
+          decoration: const InputDecoration(
+            labelText: 'Last name',
+            prefixIcon: Icon(Icons.work_outline),
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+          ),
+        ),
       ];
 }

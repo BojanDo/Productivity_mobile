@@ -11,11 +11,6 @@ class HomePage extends StatelessWidget {
 
   final List<Map<String, String>> routes = <Map<String, String>>[
     <String, String>{
-      'title': 'Auth',
-      'description': 'login and register',
-      'route': kAuthRoute,
-    },
-    <String, String>{
       'title': 'Settings',
       'description': 'settings list',
       'route': kSettingsRoute,
@@ -70,7 +65,7 @@ class HomePage extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             final Map<String, String> route = routes[index];
             return _route(route['title']!, route['description']!,
-                route['route']!, context);
+                route['route']!, context,);
           },
         ),
       );

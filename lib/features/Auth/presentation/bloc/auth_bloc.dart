@@ -25,7 +25,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthEvent>((AuthEvent event, Emitter<AuthState> emit) => event.when(
       login: () => loginFormBloc.submit(),
       register: () => registerFormBloc.submit(),
-    ));
+    ),);
 
   }
 

@@ -16,18 +16,22 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   void _onSubmitting(
-      BuildContext context, FormBlocSubmitting<String, String> state) {
+    BuildContext context,
+    FormBlocSubmitting<String, String> state,
+  ) {
     context.read<AppBloc>().add(const AppEvent.overlayAdd());
   }
 
   void _onSubmissionFailed(
-      BuildContext context, FormBlocSubmissionFailed<String, String> state) {
+    BuildContext context,
+    FormBlocSubmissionFailed<String, String> state,
+  ) {
     context.read<AppBloc>().add(const AppEvent.overlayRemove());
   }
 
   void _onSuccess(BuildContext context, FormBlocSuccess<String, String> state) {
     context.read<AppBloc>().add(const AppEvent.overlayRemove());
-    routePopAllPushReplacement(context.read<AppBloc>().outerNavigator, kHomeRoute);
+    context.read<AppBloc>().add(const AppEvent.toAuthenticated());
     //context.read<AppBloc>().add(const ToogleAuthenticated(true));
   }
 
@@ -43,15 +47,16 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final LoginFormBloc loginFormBloc = context.read<AuthBloc>().loginFormBloc;
-    print( loginFormBloc.state.isValid());
     return BlocProvider<LoginFormBloc>.value(
       value: loginFormBloc,
-      child: AuthBox<LoginFormBloc,FormBlocState<String,String>>(
+      child: AuthBox<LoginFormBloc, FormBlocState<String, String>>(
         formBloc: loginFormBloc,
         buttonText: 'Login',
         switchText: 'Don\'t have an account? Sign up',
         switchPageId: 1,
-        submit: () {print('Login sent');},
+        submit: () {
+          context.read<AuthBloc>().add(const AuthEvent.login());
+        },
         page: FormBlocListener<LoginFormBloc, String, String>(
           onSubmitting: _onSubmitting,
           onSubmissionFailed: _onSubmissionFailed,

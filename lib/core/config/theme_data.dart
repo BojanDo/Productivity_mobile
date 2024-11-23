@@ -55,4 +55,8 @@ final ThemeData theme = ThemeData(
       ),
     ),
   ),
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: kSecondaryBackgroundColor, // Set your desired background color
+      modalBackgroundColor: kSecondaryBackgroundColor, // For modal bottom sheets
+    )
 );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nested/nested.dart';
-import 'package:productivity_mobile/widgets/pop_scope/pop_scope.dart';
-import 'package:productivity_mobile/widgets/pop_scope/pop_scope_bloc.dart';
+import 'widgets/pop_scope/pop_scope.dart';
+import 'widgets/pop_scope/pop_scope_bloc.dart';
 
 import 'core/config/routes.dart';
 import 'core/config/theme_data.dart';
@@ -16,9 +16,9 @@ import 'widgets/drawer/drawer_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  initUtils();
-  initFeatures();
-  initBlocs();
+  await initUtils();
+  await initFeatures();
+  await initBlocs();
   runApp(const MyApp());
 }
 
@@ -40,29 +40,30 @@ class MyApp extends StatelessWidget {
               create: (BuildContext context) => sl<PopScopeBloc>(),
             ),
           ],
-          child: Builder(
-            builder: (BuildContext context) => AppListeners(
-              child: GlobalPopScope(
-                outerNavigator: context.read<AppBloc>().outerNavigator,
-                innerNavigator: context.read<AppBloc>().innerNavigator,
-                child: Navigator(
-                  key: context.read<AppBloc>().outerNavigator,
-                  onGenerateRoute: (RouteSettings settings) {
-                    WidgetBuilder builder;
-                    switch (settings.name) {
-                      case kNotificationsRoute:
-                        builder =
-                            (BuildContext context) => const NotificationsPage();
-                        break;
-                      case kAuthRoute:
-                        builder = (BuildContext context) => const AuthPage();
-                        break;
-                      default:
-                        builder = (BuildContext context) => const InnerWrapper();
-                    }
-                    return MaterialPageRoute<dynamic>(builder: builder);
-                  },
+          child: BlocBuilder<AppBloc, AppState>(
+            builder: (BuildContext context, AppState state) => state.when(
+              authenticated: () => AppListeners(
+                child: GlobalPopScope.defaultScope(
+                  child: Navigator(
+                    key: context.read<AppBloc>().outerNavigator,
+                    onGenerateRoute: (RouteSettings settings) {
+                      WidgetBuilder builder;
+                      switch (settings.name) {
+                        case kNotificationsRoute:
+                          builder = (BuildContext context) =>
+                              const NotificationsPage();
+                          break;
+                        default:
+                          builder =
+                              (BuildContext context) => const InnerWrapper();
+                      }
+                      return MaterialPageRoute<dynamic>(builder: builder);
+                    },
+                  ),
                 ),
+              ),
+              notAuthenticated: () => GlobalPopScope.authScope(
+                child: const AuthPage(),
               ),
             ),
           ),

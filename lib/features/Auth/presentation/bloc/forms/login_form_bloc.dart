@@ -17,7 +17,7 @@ class LoginFormBloc extends FormBloc<String, String> {
   final TextFieldBloc<dynamic> email = TextFieldBloc<dynamic>(
     validators: <Validator<String>>[
       FieldBlocValidators.required,
-      FieldBlocValidators.email
+      FieldBlocValidators.email,
     ],
   );
 

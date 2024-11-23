@@ -3,19 +3,33 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/functions/routes.dart';
+import '../../core/services/injection_container.dart';
+import '../../features/App/presentation/bloc/app_bloc.dart';
 import 'pop_scope_bloc.dart';
 
 class GlobalPopScope extends StatelessWidget {
   const GlobalPopScope({
     super.key,
     required this.child,
-    required this.outerNavigator,
-    required this.innerNavigator,
+    this.outerNavigator,
+    this.innerNavigator,
   });
 
+  factory GlobalPopScope.defaultScope({required Widget child}) =>
+      GlobalPopScope(
+        outerNavigator: sl<AppBloc>().outerNavigator,
+        innerNavigator: sl<AppBloc>().innerNavigator,
+        child: child,
+      );
+
+  factory GlobalPopScope.authScope({required Widget child}) => GlobalPopScope(
+        outerNavigator: sl<AppBloc>().outerNavigator,
+        child: child,
+      );
+
   final Widget child;
-  final GlobalKey<NavigatorState> outerNavigator;
-  final GlobalKey<NavigatorState> innerNavigator;
+  final GlobalKey<NavigatorState>? outerNavigator;
+  final GlobalKey<NavigatorState>? innerNavigator;
 
   @override
   Widget build(BuildContext context) =>
@@ -24,18 +38,20 @@ class GlobalPopScope extends StatelessWidget {
           canPop: false,
           onPopInvokedWithResult: (bool didPop, Object? dynamic) {
             if (didPop) return;
-            if(!state.canPop){
+            if (!state.canPop) {
               state.onPop();
               return;
             }
-            if (routeCanPop(outerNavigator)) {
-              routePop(outerNavigator);
+
+            if (outerNavigator != null && routeCanPop(outerNavigator!)) {
+              routePop(outerNavigator!);
               return;
             }
-            if (routeCanPop(innerNavigator)) {
-              routePop(innerNavigator);
+            if (innerNavigator != null && routeCanPop(innerNavigator!)) {
+              routePop(innerNavigator!);
               return;
             }
+
 
             showDialog(
               context: context,

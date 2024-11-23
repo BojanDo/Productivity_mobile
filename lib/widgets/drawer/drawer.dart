@@ -4,18 +4,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/config/colors.dart';
 import '../../core/config/routes.dart';
 import '../../core/functions/routes.dart';
+import '../../core/services/injection_container.dart';
 import '../../features/App/presentation/bloc/app_bloc.dart';
 import 'drawer_bloc.dart';
 
 class GlobalDrawer extends StatefulWidget {
-  const GlobalDrawer({
+  GlobalDrawer({
     super.key,
-    required this.outerNavigator,
-    required this.innerNavigator,
   });
 
-  final GlobalKey<NavigatorState> outerNavigator;
-  final GlobalKey<NavigatorState> innerNavigator;
+  final GlobalKey<NavigatorState> outerNavigator = sl<AppBloc>().outerNavigator;
+  final GlobalKey<NavigatorState> innerNavigator = sl<AppBloc>().innerNavigator;
 
   @override
   State<GlobalDrawer> createState() => _GlobalDrawerState();
@@ -29,7 +28,6 @@ class _GlobalDrawerState extends State<GlobalDrawer>
   @override
   void initState() {
     super.initState();
-
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 300),
@@ -65,7 +63,7 @@ class _GlobalDrawerState extends State<GlobalDrawer>
 
     context.read<DrawerBloc>().add(
           DrawerEvent.route(
-              route: state.currentRoute, visibleList: visibleList),
+              route: state.currentRoute, visibleList: visibleList,),
         );
   }
 
@@ -132,7 +130,10 @@ class _GlobalDrawerState extends State<GlobalDrawer>
                               ),
                               '',
                               DrawerVisibleList.second,
-                              () {},
+                              () {
+                                context.read<AppBloc>().add(const AppEvent.toNotAuthenticated());
+                                routePopAllPushReplacement(widget.outerNavigator, kAuthRoute);
+                              },
                             ),
                           ),
                         ],
