@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../User/domain/entities/users.dart';
+
 part 'generated/auth_response.freezed.dart';
 part 'generated/auth_response.g.dart';
 
@@ -7,10 +9,10 @@ part 'generated/auth_response.g.dart';
 class AuthResponse with _$AuthResponse {
   const factory AuthResponse({
     @Default(true) bool status,
-    required String message,
+    @Default('') String message,
+    User? user
 }) = _AuthResponse;
 
   factory AuthResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthResponseFromJson(json);
 }
-

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
-import '../../../../core/config/routes.dart';
-import '../../../../core/functions/routes.dart';
 import '../../../App/presentation/bloc/app_bloc.dart';
+import '../../../User/domain/entities/users.dart';
 import '../bloc/auth_bloc.dart';
 import '../widgets/auth_box.dart';
 
@@ -17,25 +16,32 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   void _onSubmitting(
     BuildContext context,
-    FormBlocSubmitting<String, String> state,
+    FormBlocSubmitting<User, String> state,
   ) {
     context.read<AppBloc>().add(const AppEvent.overlayAdd());
   }
 
   void _onSubmissionFailed(
     BuildContext context,
-    FormBlocSubmissionFailed<String, String> state,
+    FormBlocSubmissionFailed<User, String> state,
   ) {
     context.read<AppBloc>().add(const AppEvent.overlayRemove());
   }
 
-  void _onSuccess(BuildContext context, FormBlocSuccess<String, String> state) {
+  void _onSuccess(BuildContext context, FormBlocSuccess<User, String> state) {
     context.read<AppBloc>().add(const AppEvent.overlayRemove());
-    context.read<AppBloc>().add(const AppEvent.toAuthenticated());
-    //context.read<AppBloc>().add(const ToogleAuthenticated(true));
+    if (state.hasSuccessResponse) {
+      context
+          .read<AppBloc>()
+          .add(AppEvent.toAuthenticated(user: state.successResponse!));
+    } else {
+      context
+          .read<AppBloc>()
+          .add(const AppEvent.error(message: 'Unknown error occurd'));
+    }
   }
 
-  void _onFailure(BuildContext context, FormBlocFailure<String, String> state) {
+  void _onFailure(BuildContext context, FormBlocFailure<User, String> state) {
     context.read<AppBloc>().add(const AppEvent.overlayRemove());
     if (state.hasFailureResponse) {
       context
@@ -49,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
     final LoginFormBloc loginFormBloc = context.read<AuthBloc>().loginFormBloc;
     return BlocProvider<LoginFormBloc>.value(
       value: loginFormBloc,
-      child: AuthBox<LoginFormBloc, FormBlocState<String, String>>(
+      child: AuthBox<LoginFormBloc, FormBlocState<User, String>>(
         formBloc: loginFormBloc,
         buttonText: 'Login',
         switchText: 'Don\'t have an account? Sign up',
@@ -57,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
         submit: () {
           context.read<AuthBloc>().add(const AuthEvent.login());
         },
-        page: FormBlocListener<LoginFormBloc, String, String>(
+        page: FormBlocListener<LoginFormBloc, User, String>(
           onSubmitting: _onSubmitting,
           onSubmissionFailed: _onSubmissionFailed,
           onSuccess: _onSuccess,

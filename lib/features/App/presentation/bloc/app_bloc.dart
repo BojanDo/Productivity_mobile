@@ -1,7 +1,17 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
+import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:side_effect_bloc/side_effect_bloc.dart';
+
+import '../../../../core/errors/failure.dart';
+import '../../../../core/events/unauthorized.dart';
+import '../../../../core/utils/localdata_manager.dart';
+import '../../../User/domain/entities/users.dart';
+import '../../../User/domain/usecases/get_user.dart';
 
 part 'app_event.dart';
 
@@ -12,11 +22,20 @@ part 'app_state.dart';
 part 'generated/app_bloc.freezed.dart';
 
 class AppBloc extends SideEffectBloc<AppEvent, AppState, AppSideEffect> {
-  AppBloc() : super(const AppState.notAuthenticated()) {
+  AppBloc._(
+    super.initialState,
+    EventBus eventBus,
+    LocalDataManager localStorage,
+  ) {
     on<AppEvent>(
       (AppEvent event, Emitter<AppState> emit) => event.when(
-        toAuthenticated: () => emit(const AppState.authenticated()),
-        toNotAuthenticated: () => emit(const AppState.notAuthenticated()),
+        toAuthenticated: (User user) =>
+            emit(AppState.authenticated(user: user)),
+        toNotAuthenticated: () async {
+          await localStorage.removeData('jwt');
+          await localStorage.removeData('user_id');
+          return emit(const AppState.notAuthenticated());
+        },
         error: (String message) =>
             produceSideEffect(AppSideEffect.error(message: message)),
         success: (String message) =>
@@ -28,8 +47,42 @@ class AppBloc extends SideEffectBloc<AppEvent, AppState, AppSideEffect> {
             produceSideEffect(const AppSideEffect.overlayRemove()),
       ),
     );
+
+    _authErrorSubscription = eventBus.on<UnAuthorizedEvent>().listen(
+      (UnAuthorizedEvent event) {
+        add(
+          const AppEvent.toNotAuthenticated(),
+        );
+      },
+    );
+  }
+
+  static Future<AppBloc> create(
+    LocalDataManager localStorage,
+    GetUser getUser,
+    EventBus eventBus,
+  ) async {
+    final dynamic userId = await localStorage.getData('user_id');
+    if (userId != null) {
+      final int id = userId as int;
+      final Either<Failure, User> result = await getUser(id);
+      return result.fold(
+        (Failure failure) =>
+            AppBloc._(const AppState.notAuthenticated(), eventBus,localStorage),
+        (User user) => AppBloc._(AppState.authenticated(user: user), eventBus, localStorage),
+      );
+    }
+
+    return AppBloc._(const AppState.notAuthenticated(), eventBus, localStorage);
   }
 
   final GlobalKey<NavigatorState> outerNavigator = GlobalKey<NavigatorState>();
   final GlobalKey<NavigatorState> innerNavigator = GlobalKey<NavigatorState>();
+  late final StreamSubscription<UnAuthorizedEvent> _authErrorSubscription;
+
+  @override
+  Future<void> close() {
+    _authErrorSubscription.cancel();
+    return super.close();
+  }
 }

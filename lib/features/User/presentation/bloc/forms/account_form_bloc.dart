@@ -1,6 +1,6 @@
 part of '../auth_bloc.dart';
 
-class RegisterFormBloc extends FormBloc<User, String> {
+class RegisterFormBloc extends FormBloc<String, String> {
   RegisterFormBloc({
     required Register register,
   }) : _register = register {

@@ -1,9 +1,11 @@
 part of '../auth_bloc.dart';
 
-class LoginFormBloc extends FormBloc<String, String> {
+class LoginFormBloc extends FormBloc<User, String> {
   LoginFormBloc({
     required Login login,
-  }) : _login = login {
+    required LocalDataManager localStorage,
+  }) : _login = login,
+        _localStorage = localStorage{
     addFieldBlocs(
       fieldBlocs: <FieldBloc<FieldBlocStateBase>>[
         email,
@@ -13,6 +15,7 @@ class LoginFormBloc extends FormBloc<String, String> {
   }
 
   final Login _login;
+  final LocalDataManager _localStorage;
 
   final TextFieldBloc<dynamic> email = TextFieldBloc<dynamic>(
     validators: <Validator<String>>[
@@ -38,7 +41,10 @@ class LoginFormBloc extends FormBloc<String, String> {
 
     result.fold(
       (Failure failure) => emitFailure(failureResponse: failure.message),
-      (AuthResponse response) => emitSuccess(),
+      (AuthResponse response) {
+        _localStorage.saveData('user_id', response.user!.id, true);
+        emitSuccess(successResponse: response.user);
+      },
     );
   }
 }

@@ -2,7 +2,7 @@ part of 'app_bloc.dart';
 
 @freezed
 class AppEvent with _$AppEvent {
-  const factory AppEvent.toAuthenticated() = _AppEventToAuthenticated;
+  const factory AppEvent.toAuthenticated({required User user}) = _AppEventToAuthenticated;
   const factory AppEvent.toNotAuthenticated() = _AppEventToNotAuthenticated;
   const factory AppEvent.error({required String message}) = _AppEventError;
   const factory AppEvent.success({required String message}) = _AppEventSuccess;

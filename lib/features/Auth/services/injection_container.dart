@@ -17,6 +17,7 @@ Future<void> initAuthBlocs(GetIt sl) async {
   sl.registerFactory(
     () => LoginFormBloc(
       login: sl(),
+      localStorage: sl(),
     ),
   );
   sl.registerFactory(

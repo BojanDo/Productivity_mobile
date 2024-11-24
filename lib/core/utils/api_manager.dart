@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:event_bus/event_bus.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../errors/exceptions.dart';
@@ -11,6 +12,8 @@ import '../interceptors/status.dart';
 import 'localdata_manager.dart';
 
 class APIManager {
+  final LocalDataManager _localStorage;
+
   final Dio dio;
   late PersistCookieJar cookieJar;
 
@@ -18,16 +21,26 @@ class APIManager {
     contentType: 'application/x-www-form-urlencoded',
   );
 
-  APIManager(this.dio);
+  APIManager(this.dio, this._localStorage);
 
-  static Future<APIManager> createInstance(
-    Dio dio,
-    LocalDataManager localStorage,
-  ) async {
-    final APIManager manager = APIManager(dio);
-    await manager._initializeInterceptors();
-    return manager;
+  Future<void> _initializeToken() async {
+    final dynamic token = await _localStorage.getData('jwt');
+    if (token != null) {
+      options.headers!['Authorization'] = 'Bearer $token';
+    }
   }
+
+  Future<void> storeToken(String token) async {
+    await _localStorage.saveData('jwt', token, true);
+    options.headers!['Authorization'] = 'Bearer $token';
+  }
+
+  Future<void> removeToken() async {
+    await _localStorage.removeData('jwt');
+    options.headers?.remove('Authorization');
+  }
+
+  bool hasToken() => options.headers?.containsKey('Authorization') ?? false;
 
   Future<void> _initializeCookieJar() async {
     final Directory appDocDir = await getApplicationDocumentsDirectory();
@@ -36,9 +49,20 @@ class APIManager {
     dio.interceptors.add(CookieManager(cookieJar));
   }
 
-  Future<void> _initializeInterceptors() async {
-    dio.interceptors.add(StatusInterceptor());
+  Future<void> _initializeInterceptors(EventBus eventBus) async {
+    dio.interceptors.add(StatusInterceptor(eventBus: eventBus));
     await _initializeCookieJar();
+  }
+
+  static Future<APIManager> createInstance(
+    Dio dio,
+    LocalDataManager localStorage,
+    EventBus eventBus,
+  ) async {
+    final APIManager manager = APIManager(dio, localStorage);
+    await manager._initializeInterceptors(eventBus);
+    await manager._initializeToken();
+    return manager;
   }
 
   static String _getUrl(String baseUrl, String endpoint) {
@@ -142,7 +166,7 @@ class APIManager {
       final Response<dynamic> response = await dio.put(
         _getUrl(baseUrl, endpoint),
         data: FormData.fromMap(data),
-        options: options,
+        options: options ?? this.options,
       );
 
       return response.data;

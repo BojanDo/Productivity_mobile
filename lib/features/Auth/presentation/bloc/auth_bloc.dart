@@ -7,6 +7,9 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/errors/failure.dart';
+import '../../../../core/utils/localdata_manager.dart';
+import '../../../User/domain/entities/users.dart';
+import '../../../User/presentation/bloc/user_bloc.dart';
 import '../../domain/entities/auth_response.dart';
 import '../../domain/usecases/login.dart';
 import '../../domain/usecases/register.dart';

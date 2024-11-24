@@ -16,9 +16,13 @@ import '../domain/usecases/get_users.dart';
 import '../domain/usecases/send_invitation.dart';
 import '../domain/usecases/update_organization.dart';
 import '../domain/usecases/update_user.dart';
+import '../presentation/bloc/user_bloc.dart';
 
 Future<void> initUserBlocs(GetIt sl) async {
   // App Logic
+  sl.registerLazySingleton(
+        () => UserBloc(),
+  );
 }
 
 Future<void> initUser(GetIt sl) async {

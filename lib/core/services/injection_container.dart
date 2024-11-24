@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:event_bus/event_bus.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -48,6 +49,10 @@ Future<void> initWidgetBlocs() async {
 }
 
 Future<void> initUtils() async {
+  //register faker
+  sl.registerLazySingleton(() => Faker());
+  //event bus
+  sl.registerLazySingleton(() => EventBus());
   // Initialize and register LocalDataManager
   final SharedPreferences sharedPref = await SharedPreferences.getInstance();
   sl.registerLazySingleton<SharedPreferences>(() => sharedPref);
@@ -56,8 +61,7 @@ Future<void> initUtils() async {
 
   // Register external dependencies
   sl.registerLazySingleton(() => Dio());
-  final APIManager apiManager = await APIManager.createInstance(sl(), sl());
+  final APIManager apiManager =
+      await APIManager.createInstance(sl(), sl(), sl());
   sl.registerLazySingleton(() => apiManager);
-  //register faker
-  sl.registerLazySingleton(()=> Faker());
 }

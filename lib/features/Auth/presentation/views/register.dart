@@ -4,6 +4,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import '../../../../core/functions/routes.dart';
 import '../../../../widgets/image_picker.dart';
 import '../../../App/presentation/bloc/app_bloc.dart';
+import '../../../User/domain/entities/users.dart';
 import '../bloc/auth_bloc.dart';
 import '../widgets/auth_box.dart';
 
@@ -17,24 +18,24 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   void _onSubmitting(
     BuildContext context,
-    FormBlocSubmitting<String, String> state,
+    FormBlocSubmitting<User, String> state,
   ) {
     context.read<AppBloc>().add(const AppEvent.overlayAdd());
   }
 
   void _onSubmissionFailed(
     BuildContext context,
-    FormBlocSubmissionFailed<String, String> state,
+    FormBlocSubmissionFailed<User, String> state,
   ) {
     context.read<AppBloc>().add(const AppEvent.overlayRemove());
   }
 
-  void _onSuccess(BuildContext context, FormBlocSuccess<String, String> state) {
+  void _onSuccess(BuildContext context, FormBlocSuccess<User, String> state) {
     context.read<AppBloc>().add(const AppEvent.overlayRemove());
     animateToPage(context.read<AuthBloc>().pageController, 0);
   }
 
-  void _onFailure(BuildContext context, FormBlocFailure<String, String> state) {
+  void _onFailure(BuildContext context, FormBlocFailure<User, String> state) {
     context.read<AppBloc>().add(const AppEvent.overlayRemove());
     if (state.hasFailureResponse) {
       context
@@ -49,7 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
         context.read<AuthBloc>().registerFormBloc;
     return BlocProvider<RegisterFormBloc>.value(
       value: registerFormBloc,
-      child: AuthBox<RegisterFormBloc, FormBlocState<String, String>>(
+      child: AuthBox<RegisterFormBloc, FormBlocState<User, String>>(
         formBloc: registerFormBloc,
         buttonText: 'Register',
         switchText: 'Already have an account? Login',
@@ -57,7 +58,7 @@ class _RegisterPageState extends State<RegisterPage> {
         submit: () {
           context.read<AuthBloc>().add(const AuthEvent.register());
         },
-        page: FormBlocListener<RegisterFormBloc, String, String>(
+        page: FormBlocListener<RegisterFormBloc, User, String>(
           onSubmitting: _onSubmitting,
           onSubmissionFailed: _onSubmissionFailed,
           onSuccess: _onSuccess,

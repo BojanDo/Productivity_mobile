@@ -4,11 +4,12 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import '../../../../core/config/colors.dart';
 import '../../../../core/config/constants.dart';
 import '../../../../core/functions/routes.dart';
+import '../../../User/domain/entities/users.dart';
 import '../bloc/auth_bloc.dart';
 
 class AuthBox<BlocT extends StateStreamable<BlocState>,
-    BlocState extends FormBlocState<String, String>> extends StatelessWidget {
-  final FormBloc<String, String> formBloc;
+    BlocState extends FormBlocState<User, String>> extends StatelessWidget {
+  final FormBloc<User, String> formBloc;
   final Widget page;
   final String buttonText;
   final String switchText;

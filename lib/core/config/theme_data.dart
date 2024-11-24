@@ -31,20 +31,20 @@ final ThemeData theme = ThemeData(
     focusedBorder: OutlineInputBorder(
       borderRadius: kBorderRadius,
       borderSide:
-          kBorderSide.copyWith(color: Colors.black), // Your predefined border
+          kBorderSide.copyWith(color: Colors.black),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: kBorderRadius,
-      borderSide: kBorderSide, // Your predefined border
+      borderSide: kBorderSide,
     ),
     focusedErrorBorder: OutlineInputBorder(
       borderRadius: kBorderRadius,
       borderSide:
-          kBorderSide.copyWith(color: Colors.red), // Error border when focused
+          kBorderSide.copyWith(color: Colors.red),
     ),
     errorBorder: OutlineInputBorder(
       borderRadius: kBorderRadius,
-      borderSide: kBorderSide.copyWith(color: Colors.red), // Error border
+      borderSide: kBorderSide.copyWith(color: Colors.red),
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
@@ -56,7 +56,7 @@ final ThemeData theme = ThemeData(
     ),
   ),
     bottomSheetTheme: const BottomSheetThemeData(
-      backgroundColor: kSecondaryBackgroundColor, // Set your desired background color
-      modalBackgroundColor: kSecondaryBackgroundColor, // For modal bottom sheets
+      backgroundColor: kSecondaryBackgroundColor,
+      modalBackgroundColor: kSecondaryBackgroundColor,
     )
 );
