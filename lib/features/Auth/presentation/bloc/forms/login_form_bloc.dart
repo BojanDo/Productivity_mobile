@@ -4,8 +4,10 @@ class LoginFormBloc extends FormBloc<User, String> {
   LoginFormBloc({
     required Login login,
     required LocalDataManager localStorage,
+    required APIManager apiManager,
   }) : _login = login,
-        _localStorage = localStorage{
+        _localStorage = localStorage,
+        _apiManager = apiManager{
     addFieldBlocs(
       fieldBlocs: <FieldBloc<FieldBlocStateBase>>[
         email,
@@ -16,6 +18,7 @@ class LoginFormBloc extends FormBloc<User, String> {
 
   final Login _login;
   final LocalDataManager _localStorage;
+  final APIManager _apiManager;
 
   final TextFieldBloc<dynamic> email = TextFieldBloc<dynamic>(
     validators: <Validator<String>>[
@@ -43,6 +46,7 @@ class LoginFormBloc extends FormBloc<User, String> {
       (Failure failure) => emitFailure(failureResponse: failure.message),
       (AuthResponse response) {
         _localStorage.saveData('user_id', response.user!.id, true);
+        _apiManager.storeToken(response.jwt!);
         emitSuccess(successResponse: response.user);
       },
     );

@@ -20,7 +20,7 @@ class AuthRepoImplementation implements AuthRepository {
       final AuthResponse result = await _remoteDataSource.login(
         values: values,
       );
-      if (result.user == null) {
+      if (result.user == null || result.jwt==null) {
         throw const APIException(
           message: 'There was an unknown error processing your data',
           statusCode: 500,

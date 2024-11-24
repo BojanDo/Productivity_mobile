@@ -10,7 +10,8 @@ class AuthResponse with _$AuthResponse {
   const factory AuthResponse({
     @Default(true) bool status,
     @Default('') String message,
-    User? user
+    User? user,
+    String? jwt
 }) = _AuthResponse;
 
   factory AuthResponse.fromJson(Map<String, dynamic> json) =>

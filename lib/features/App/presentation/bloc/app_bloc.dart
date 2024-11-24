@@ -9,6 +9,7 @@ import 'package:side_effect_bloc/side_effect_bloc.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/events/unauthorized.dart';
+import '../../../../core/utils/api_manager.dart';
 import '../../../../core/utils/localdata_manager.dart';
 import '../../../User/domain/entities/users.dart';
 import '../../../User/domain/usecases/get_user.dart';
@@ -25,6 +26,7 @@ class AppBloc extends SideEffectBloc<AppEvent, AppState, AppSideEffect> {
   AppBloc._(
     super.initialState,
     EventBus eventBus,
+    APIManager apiManager,
     LocalDataManager localStorage,
   ) {
     on<AppEvent>(
@@ -32,7 +34,7 @@ class AppBloc extends SideEffectBloc<AppEvent, AppState, AppSideEffect> {
         toAuthenticated: (User user) =>
             emit(AppState.authenticated(user: user)),
         toNotAuthenticated: () async {
-          await localStorage.removeData('jwt');
+          await apiManager.removeToken();
           await localStorage.removeData('user_id');
           return emit(const AppState.notAuthenticated());
         },
@@ -59,6 +61,7 @@ class AppBloc extends SideEffectBloc<AppEvent, AppState, AppSideEffect> {
 
   static Future<AppBloc> create(
     LocalDataManager localStorage,
+    APIManager apiManager,
     GetUser getUser,
     EventBus eventBus,
   ) async {
@@ -67,13 +70,27 @@ class AppBloc extends SideEffectBloc<AppEvent, AppState, AppSideEffect> {
       final int id = userId as int;
       final Either<Failure, User> result = await getUser(id);
       return result.fold(
-        (Failure failure) =>
-            AppBloc._(const AppState.notAuthenticated(), eventBus,localStorage),
-        (User user) => AppBloc._(AppState.authenticated(user: user), eventBus, localStorage),
+        (Failure failure) => AppBloc._(
+          const AppState.notAuthenticated(),
+          eventBus,
+          apiManager,
+          localStorage,
+        ),
+        (User user) => AppBloc._(
+          AppState.authenticated(user: user),
+          eventBus,
+          apiManager,
+          localStorage,
+        ),
       );
     }
 
-    return AppBloc._(const AppState.notAuthenticated(), eventBus, localStorage);
+    return AppBloc._(
+      const AppState.notAuthenticated(),
+      eventBus,
+      apiManager,
+      localStorage,
+    );
   }
 
   final GlobalKey<NavigatorState> outerNavigator = GlobalKey<NavigatorState>();
