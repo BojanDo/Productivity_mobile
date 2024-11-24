@@ -16,36 +16,36 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserEvent {
-  User get user => throw _privateConstructorUsedError;
+  UpdateUserParams get params => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user) setUser,
+    required TResult Function(UpdateUserParams params) updateUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(User user)? setUser,
+    TResult? Function(UpdateUserParams params)? updateUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user)? setUser,
+    TResult Function(UpdateUserParams params)? updateUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UserEventSetUser value) setUser,
+    required TResult Function(_UserEventUpdateUser value) updateUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UserEventSetUser value)? setUser,
+    TResult? Function(_UserEventUpdateUser value)? updateUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UserEventSetUser value)? setUser,
+    TResult Function(_UserEventUpdateUser value)? updateUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -62,9 +62,9 @@ abstract class $UserEventCopyWith<$Res> {
   factory $UserEventCopyWith(UserEvent value, $Res Function(UserEvent) then) =
       _$UserEventCopyWithImpl<$Res, UserEvent>;
   @useResult
-  $Res call({User user});
+  $Res call({UpdateUserParams params});
 
-  $UserCopyWith<$Res> get user;
+  $UpdateUserParamsCopyWith<$Res> get params;
 }
 
 /// @nodoc
@@ -82,13 +82,13 @@ class _$UserEventCopyWithImpl<$Res, $Val extends UserEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? params = null,
   }) {
     return _then(_value.copyWith(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
+      params: null == params
+          ? _value.params
+          : params // ignore: cast_nullable_to_non_nullable
+              as UpdateUserParams,
     ) as $Val);
   }
 
@@ -96,33 +96,33 @@ class _$UserEventCopyWithImpl<$Res, $Val extends UserEvent>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
+  $UpdateUserParamsCopyWith<$Res> get params {
+    return $UpdateUserParamsCopyWith<$Res>(_value.params, (value) {
+      return _then(_value.copyWith(params: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$UserEventSetUserImplCopyWith<$Res>
+abstract class _$$UserEventUpdateUserImplCopyWith<$Res>
     implements $UserEventCopyWith<$Res> {
-  factory _$$UserEventSetUserImplCopyWith(_$UserEventSetUserImpl value,
-          $Res Function(_$UserEventSetUserImpl) then) =
-      __$$UserEventSetUserImplCopyWithImpl<$Res>;
+  factory _$$UserEventUpdateUserImplCopyWith(_$UserEventUpdateUserImpl value,
+          $Res Function(_$UserEventUpdateUserImpl) then) =
+      __$$UserEventUpdateUserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({User user});
+  $Res call({UpdateUserParams params});
 
   @override
-  $UserCopyWith<$Res> get user;
+  $UpdateUserParamsCopyWith<$Res> get params;
 }
 
 /// @nodoc
-class __$$UserEventSetUserImplCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$UserEventSetUserImpl>
-    implements _$$UserEventSetUserImplCopyWith<$Res> {
-  __$$UserEventSetUserImplCopyWithImpl(_$UserEventSetUserImpl _value,
-      $Res Function(_$UserEventSetUserImpl) _then)
+class __$$UserEventUpdateUserImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserEventUpdateUserImpl>
+    implements _$$UserEventUpdateUserImplCopyWith<$Res> {
+  __$$UserEventUpdateUserImplCopyWithImpl(_$UserEventUpdateUserImpl _value,
+      $Res Function(_$UserEventUpdateUserImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of UserEvent
@@ -130,74 +130,74 @@ class __$$UserEventSetUserImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? params = null,
   }) {
-    return _then(_$UserEventSetUserImpl(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
+    return _then(_$UserEventUpdateUserImpl(
+      params: null == params
+          ? _value.params
+          : params // ignore: cast_nullable_to_non_nullable
+              as UpdateUserParams,
     ));
   }
 }
 
 /// @nodoc
 
-class _$UserEventSetUserImpl implements _UserEventSetUser {
-  const _$UserEventSetUserImpl({required this.user});
+class _$UserEventUpdateUserImpl implements _UserEventUpdateUser {
+  const _$UserEventUpdateUserImpl({required this.params});
 
   @override
-  final User user;
+  final UpdateUserParams params;
 
   @override
   String toString() {
-    return 'UserEvent.setUser(user: $user)';
+    return 'UserEvent.updateUser(params: $params)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserEventSetUserImpl &&
-            (identical(other.user, user) || other.user == user));
+            other is _$UserEventUpdateUserImpl &&
+            (identical(other.params, params) || other.params == params));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode => Object.hash(runtimeType, params);
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserEventSetUserImplCopyWith<_$UserEventSetUserImpl> get copyWith =>
-      __$$UserEventSetUserImplCopyWithImpl<_$UserEventSetUserImpl>(
+  _$$UserEventUpdateUserImplCopyWith<_$UserEventUpdateUserImpl> get copyWith =>
+      __$$UserEventUpdateUserImplCopyWithImpl<_$UserEventUpdateUserImpl>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user) setUser,
+    required TResult Function(UpdateUserParams params) updateUser,
   }) {
-    return setUser(user);
+    return updateUser(params);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(User user)? setUser,
+    TResult? Function(UpdateUserParams params)? updateUser,
   }) {
-    return setUser?.call(user);
+    return updateUser?.call(params);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user)? setUser,
+    TResult Function(UpdateUserParams params)? updateUser,
     required TResult orElse(),
   }) {
-    if (setUser != null) {
-      return setUser(user);
+    if (updateUser != null) {
+      return updateUser(params);
     }
     return orElse();
   }
@@ -205,86 +205,55 @@ class _$UserEventSetUserImpl implements _UserEventSetUser {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UserEventSetUser value) setUser,
+    required TResult Function(_UserEventUpdateUser value) updateUser,
   }) {
-    return setUser(this);
+    return updateUser(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UserEventSetUser value)? setUser,
+    TResult? Function(_UserEventUpdateUser value)? updateUser,
   }) {
-    return setUser?.call(this);
+    return updateUser?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UserEventSetUser value)? setUser,
+    TResult Function(_UserEventUpdateUser value)? updateUser,
     required TResult orElse(),
   }) {
-    if (setUser != null) {
-      return setUser(this);
+    if (updateUser != null) {
+      return updateUser(this);
     }
     return orElse();
   }
 }
 
-abstract class _UserEventSetUser implements UserEvent {
-  const factory _UserEventSetUser({required final User user}) =
-      _$UserEventSetUserImpl;
+abstract class _UserEventUpdateUser implements UserEvent {
+  const factory _UserEventUpdateUser({required final UpdateUserParams params}) =
+      _$UserEventUpdateUserImpl;
 
   @override
-  User get user;
+  UpdateUserParams get params;
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserEventSetUserImplCopyWith<_$UserEventSetUserImpl> get copyWith =>
+  _$$UserEventUpdateUserImplCopyWith<_$UserEventUpdateUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$UserState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(User user) $default, {
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(User user)? $default, {
-    TResult? Function()? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(User user)? $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_UserState value) $default, {
-    required TResult Function(_UserStateInitial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_UserState value)? $default, {
-    TResult? Function(_UserStateInitial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_UserState value)? $default, {
-    TResult Function(_UserStateInitial value)? initial,
-    required TResult orElse(),
-  }) =>
+  User get user => throw _privateConstructorUsedError;
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $UserStateCopyWith<UserState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -292,6 +261,10 @@ mixin _$UserState {
 abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res, UserState>;
+  @useResult
+  $Res call({User user});
+
+  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -306,16 +279,41 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_value.copyWith(
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ) as $Val);
+  }
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get user {
+    return $UserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$UserStateImplCopyWith<$Res> {
+abstract class _$$UserStateImplCopyWith<$Res>
+    implements $UserStateCopyWith<$Res> {
   factory _$$UserStateImplCopyWith(
           _$UserStateImpl value, $Res Function(_$UserStateImpl) then) =
       __$$UserStateImplCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({User user});
 
+  @override
   $UserCopyWith<$Res> get user;
 }
 
@@ -340,16 +338,6 @@ class __$$UserStateImplCopyWithImpl<$Res>
           : user // ignore: cast_nullable_to_non_nullable
               as User,
     ));
-  }
-
-  /// Create a copy of UserState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
   }
 }
 
@@ -384,183 +372,18 @@ class _$UserStateImpl implements _UserState {
   @pragma('vm:prefer-inline')
   _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>
       __$$UserStateImplCopyWithImpl<_$UserStateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(User user) $default, {
-    required TResult Function() initial,
-  }) {
-    return $default(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(User user)? $default, {
-    TResult? Function()? initial,
-  }) {
-    return $default?.call(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(User user)? $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(user);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_UserState value) $default, {
-    required TResult Function(_UserStateInitial value) initial,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_UserState value)? $default, {
-    TResult? Function(_UserStateInitial value)? initial,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_UserState value)? $default, {
-    TResult Function(_UserStateInitial value)? initial,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
 }
 
 abstract class _UserState implements UserState {
   const factory _UserState({required final User user}) = _$UserStateImpl;
 
+  @override
   User get user;
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UserStateInitialImplCopyWith<$Res> {
-  factory _$$UserStateInitialImplCopyWith(_$UserStateInitialImpl value,
-          $Res Function(_$UserStateInitialImpl) then) =
-      __$$UserStateInitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$UserStateInitialImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$UserStateInitialImpl>
-    implements _$$UserStateInitialImplCopyWith<$Res> {
-  __$$UserStateInitialImplCopyWithImpl(_$UserStateInitialImpl _value,
-      $Res Function(_$UserStateInitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of UserState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$UserStateInitialImpl implements _UserStateInitial {
-  const _$UserStateInitialImpl();
-
-  @override
-  String toString() {
-    return 'UserState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UserStateInitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(User user) $default, {
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(User user)? $default, {
-    TResult? Function()? initial,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(User user)? $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_UserState value) $default, {
-    required TResult Function(_UserStateInitial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_UserState value)? $default, {
-    TResult? Function(_UserStateInitial value)? initial,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_UserState value)? $default, {
-    TResult Function(_UserStateInitial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UserStateInitial implements UserState {
-  const factory _UserStateInitial() = _$UserStateInitialImpl;
 }

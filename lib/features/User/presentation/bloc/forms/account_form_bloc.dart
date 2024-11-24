@@ -1,6 +1,6 @@
 part of '../auth_bloc.dart';
 
-class RegisterFormBloc extends FormBloc<String, String> {
+class RegisterFormBloc extends FormBloc<User, String> {
   RegisterFormBloc({
     required Register register,
   }) : _register = register {
@@ -9,7 +9,9 @@ class RegisterFormBloc extends FormBloc<String, String> {
         firstname,
         lastname,
         email,
+        profilePicture,
         password,
+        jobTitle,
       ],
     );
   }
@@ -32,7 +34,7 @@ class RegisterFormBloc extends FormBloc<String, String> {
     ],
   );
   final InputFieldBloc<File?, dynamic> profilePicture =
-      InputFieldBloc<File?, dynamic>(initialValue: null);
+  InputFieldBloc<File?, dynamic>(initialValue: null);
 
   final TextFieldBloc<dynamic> password = TextFieldBloc<dynamic>(
     validators: <Validator<String>>[
@@ -60,8 +62,8 @@ class RegisterFormBloc extends FormBloc<String, String> {
     );
 
     result.fold(
-      (Failure failure) => emitFailure(failureResponse: failure.message),
-      (AuthResponse response) => emitSuccess(),
+          (Failure failure) => emitFailure(failureResponse: failure.message),
+          (AuthResponse response) => emitSuccess(),
     );
   }
 }

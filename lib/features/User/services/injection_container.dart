@@ -4,6 +4,7 @@ import '../../../core/config/constants.dart';
 import '../../../mock/user_remote_data_source.dart';
 import '../data/datasources/user_remote_data_source.dart';
 import '../data/repositories/user_repo_implementation.dart';
+import '../domain/entities/users.dart';
 import '../domain/repositories/user_repo.dart';
 import '../domain/usecases/accept_invitation.dart';
 import '../domain/usecases/create_organization.dart';
@@ -23,6 +24,7 @@ Future<void> initUserBlocs(GetIt sl) async {
   sl.registerLazySingleton(
         () => UserBloc(),
   );
+  sl.registerFactoryParam<UserBloc, User>((user) => UserBloc(user));
 }
 
 Future<void> initUser(GetIt sl) async {

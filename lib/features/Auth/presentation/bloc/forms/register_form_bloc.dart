@@ -9,7 +9,9 @@ class RegisterFormBloc extends FormBloc<User, String> {
         firstname,
         lastname,
         email,
+        profilePicture,
         password,
+        jobTitle,
       ],
     );
   }
