@@ -135,7 +135,7 @@ class _RegisterPageState extends State<RegisterPage> {
           keyboardType: TextInputType.text,
           autofillHints: const <String>[AutofillHints.jobTitle],
           decoration: const InputDecoration(
-            labelText: 'Last name',
+            labelText: 'Job title',
             prefixIcon: Icon(Icons.work_outline),
             floatingLabelBehavior: FloatingLabelBehavior.always,
           ),

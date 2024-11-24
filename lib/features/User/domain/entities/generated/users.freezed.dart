@@ -29,9 +29,9 @@ mixin _$User {
   @JsonKey(name: 'job_title')
   String get jobTitle => throw _privateConstructorUsedError;
   @JsonKey(name: 'organization_id')
-  String get organizationId => throw _privateConstructorUsedError;
+  String? get organizationId => throw _privateConstructorUsedError;
   @JsonKey(name: 'role_name')
-  Role get roleName => throw _privateConstructorUsedError;
+  Role? get roleName => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,8 +54,8 @@ abstract class $UserCopyWith<$Res> {
       String email,
       @JsonKey(name: 'profile_picture') String? profilePicture,
       @JsonKey(name: 'job_title') String jobTitle,
-      @JsonKey(name: 'organization_id') String organizationId,
-      @JsonKey(name: 'role_name') Role roleName});
+      @JsonKey(name: 'organization_id') String? organizationId,
+      @JsonKey(name: 'role_name') Role? roleName});
 }
 
 /// @nodoc
@@ -79,8 +79,8 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? email = null,
     Object? profilePicture = freezed,
     Object? jobTitle = null,
-    Object? organizationId = null,
-    Object? roleName = null,
+    Object? organizationId = freezed,
+    Object? roleName = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -107,14 +107,14 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.jobTitle
           : jobTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      organizationId: null == organizationId
+      organizationId: freezed == organizationId
           ? _value.organizationId
           : organizationId // ignore: cast_nullable_to_non_nullable
-              as String,
-      roleName: null == roleName
+              as String?,
+      roleName: freezed == roleName
           ? _value.roleName
           : roleName // ignore: cast_nullable_to_non_nullable
-              as Role,
+              as Role?,
     ) as $Val);
   }
 }
@@ -133,8 +133,8 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String email,
       @JsonKey(name: 'profile_picture') String? profilePicture,
       @JsonKey(name: 'job_title') String jobTitle,
-      @JsonKey(name: 'organization_id') String organizationId,
-      @JsonKey(name: 'role_name') Role roleName});
+      @JsonKey(name: 'organization_id') String? organizationId,
+      @JsonKey(name: 'role_name') Role? roleName});
 }
 
 /// @nodoc
@@ -155,8 +155,8 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? email = null,
     Object? profilePicture = freezed,
     Object? jobTitle = null,
-    Object? organizationId = null,
-    Object? roleName = null,
+    Object? organizationId = freezed,
+    Object? roleName = freezed,
   }) {
     return _then(_$UserImpl(
       id: null == id
@@ -183,14 +183,14 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.jobTitle
           : jobTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      organizationId: null == organizationId
+      organizationId: freezed == organizationId
           ? _value.organizationId
           : organizationId // ignore: cast_nullable_to_non_nullable
-              as String,
-      roleName: null == roleName
+              as String?,
+      roleName: freezed == roleName
           ? _value.roleName
           : roleName // ignore: cast_nullable_to_non_nullable
-              as Role,
+              as Role?,
     ));
   }
 }
@@ -205,8 +205,8 @@ class _$UserImpl implements _User {
       required this.email,
       @JsonKey(name: 'profile_picture') this.profilePicture,
       @JsonKey(name: 'job_title') required this.jobTitle,
-      @JsonKey(name: 'organization_id') required this.organizationId,
-      @JsonKey(name: 'role_name') required this.roleName});
+      @JsonKey(name: 'organization_id') this.organizationId,
+      @JsonKey(name: 'role_name') this.roleName});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -227,10 +227,10 @@ class _$UserImpl implements _User {
   final String jobTitle;
   @override
   @JsonKey(name: 'organization_id')
-  final String organizationId;
+  final String? organizationId;
   @override
   @JsonKey(name: 'role_name')
-  final Role roleName;
+  final Role? roleName;
 
   @override
   String toString() {
@@ -287,8 +287,8 @@ abstract class _User implements User {
       required final String email,
       @JsonKey(name: 'profile_picture') final String? profilePicture,
       @JsonKey(name: 'job_title') required final String jobTitle,
-      @JsonKey(name: 'organization_id') required final String organizationId,
-      @JsonKey(name: 'role_name') required final Role roleName}) = _$UserImpl;
+      @JsonKey(name: 'organization_id') final String? organizationId,
+      @JsonKey(name: 'role_name') final Role? roleName}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -308,10 +308,10 @@ abstract class _User implements User {
   String get jobTitle;
   @override
   @JsonKey(name: 'organization_id')
-  String get organizationId;
+  String? get organizationId;
   @override
   @JsonKey(name: 'role_name')
-  Role get roleName;
+  Role? get roleName;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.

@@ -4,9 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/config/routes.dart';
 import 'core/functions/routes.dart';
 import 'features/App/presentation/bloc/app_bloc.dart';
+import 'features/App/presentation/views/settings.dart';
 import 'features/Auth/presentation/views/auth.dart';
 import 'features/Home/presentation/views/home.dart';
 import 'features/User/presentation/views/account.dart';
+import 'features/User/presentation/views/user.dart';
 import 'widgets/drawer/drawer.dart';
 
 class InnerWrapper extends StatefulWidget {
@@ -48,15 +50,12 @@ class _InnerWrapperState extends State<InnerWrapper> {
               case kHomeRoute:
                 builder = (BuildContext context) => HomePage();
                 break;
-              case kAuthRoute: //TODO: remove once the auth is finished
-                builder = (BuildContext context) => const AuthPage();
-                break;
               case kSettingsRoute:
                 builder =
-                    (BuildContext context) => const Test(title: 'Settings');
+                    (BuildContext context) => SettingsPage();
                 break;
               case kUserRoute:
-                builder = (BuildContext context) => const Test(title: 'User');
+                builder = (BuildContext context) => const UserInfo();
                 break;
               case kAccountRoute:
                 builder =

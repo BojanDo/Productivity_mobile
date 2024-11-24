@@ -24,6 +24,8 @@ mixin _$UpdateUserParams {
   String get lastname => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_picture')
   String? get profilePicture => throw _privateConstructorUsedError;
+  @JsonKey(name: 'delete_picture')
+  bool get deletePicture => throw _privateConstructorUsedError;
   @JsonKey(name: 'job_title')
   String get jobTitle => throw _privateConstructorUsedError;
 
@@ -47,6 +49,7 @@ abstract class $UpdateUserParamsCopyWith<$Res> {
       {String firstname,
       String lastname,
       @JsonKey(name: 'profile_picture') String? profilePicture,
+      @JsonKey(name: 'delete_picture') bool deletePicture,
       @JsonKey(name: 'job_title') String jobTitle});
 }
 
@@ -68,6 +71,7 @@ class _$UpdateUserParamsCopyWithImpl<$Res, $Val extends UpdateUserParams>
     Object? firstname = null,
     Object? lastname = null,
     Object? profilePicture = freezed,
+    Object? deletePicture = null,
     Object? jobTitle = null,
   }) {
     return _then(_value.copyWith(
@@ -83,6 +87,10 @@ class _$UpdateUserParamsCopyWithImpl<$Res, $Val extends UpdateUserParams>
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
               as String?,
+      deletePicture: null == deletePicture
+          ? _value.deletePicture
+          : deletePicture // ignore: cast_nullable_to_non_nullable
+              as bool,
       jobTitle: null == jobTitle
           ? _value.jobTitle
           : jobTitle // ignore: cast_nullable_to_non_nullable
@@ -103,6 +111,7 @@ abstract class _$$UpdateUserParamsImplCopyWith<$Res>
       {String firstname,
       String lastname,
       @JsonKey(name: 'profile_picture') String? profilePicture,
+      @JsonKey(name: 'delete_picture') bool deletePicture,
       @JsonKey(name: 'job_title') String jobTitle});
 }
 
@@ -122,6 +131,7 @@ class __$$UpdateUserParamsImplCopyWithImpl<$Res>
     Object? firstname = null,
     Object? lastname = null,
     Object? profilePicture = freezed,
+    Object? deletePicture = null,
     Object? jobTitle = null,
   }) {
     return _then(_$UpdateUserParamsImpl(
@@ -137,6 +147,10 @@ class __$$UpdateUserParamsImplCopyWithImpl<$Res>
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
               as String?,
+      deletePicture: null == deletePicture
+          ? _value.deletePicture
+          : deletePicture // ignore: cast_nullable_to_non_nullable
+              as bool,
       jobTitle: null == jobTitle
           ? _value.jobTitle
           : jobTitle // ignore: cast_nullable_to_non_nullable
@@ -152,6 +166,7 @@ class _$UpdateUserParamsImpl implements _UpdateUserParams {
       {required this.firstname,
       required this.lastname,
       @JsonKey(name: 'profile_picture') this.profilePicture,
+      @JsonKey(name: 'delete_picture') required this.deletePicture,
       @JsonKey(name: 'job_title') required this.jobTitle});
 
   factory _$UpdateUserParamsImpl.fromJson(Map<String, dynamic> json) =>
@@ -165,12 +180,15 @@ class _$UpdateUserParamsImpl implements _UpdateUserParams {
   @JsonKey(name: 'profile_picture')
   final String? profilePicture;
   @override
+  @JsonKey(name: 'delete_picture')
+  final bool deletePicture;
+  @override
   @JsonKey(name: 'job_title')
   final String jobTitle;
 
   @override
   String toString() {
-    return 'UpdateUserParams(firstname: $firstname, lastname: $lastname, profilePicture: $profilePicture, jobTitle: $jobTitle)';
+    return 'UpdateUserParams(firstname: $firstname, lastname: $lastname, profilePicture: $profilePicture, deletePicture: $deletePicture, jobTitle: $jobTitle)';
   }
 
   @override
@@ -184,14 +202,16 @@ class _$UpdateUserParamsImpl implements _UpdateUserParams {
                 other.lastname == lastname) &&
             (identical(other.profilePicture, profilePicture) ||
                 other.profilePicture == profilePicture) &&
+            (identical(other.deletePicture, deletePicture) ||
+                other.deletePicture == deletePicture) &&
             (identical(other.jobTitle, jobTitle) ||
                 other.jobTitle == jobTitle));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, firstname, lastname, profilePicture, jobTitle);
+  int get hashCode => Object.hash(runtimeType, firstname, lastname,
+      profilePicture, deletePicture, jobTitle);
 
   /// Create a copy of UpdateUserParams
   /// with the given fields replaced by the non-null parameter values.
@@ -215,6 +235,7 @@ abstract class _UpdateUserParams implements UpdateUserParams {
           {required final String firstname,
           required final String lastname,
           @JsonKey(name: 'profile_picture') final String? profilePicture,
+          @JsonKey(name: 'delete_picture') required final bool deletePicture,
           @JsonKey(name: 'job_title') required final String jobTitle}) =
       _$UpdateUserParamsImpl;
 
@@ -228,6 +249,9 @@ abstract class _UpdateUserParams implements UpdateUserParams {
   @override
   @JsonKey(name: 'profile_picture')
   String? get profilePicture;
+  @override
+  @JsonKey(name: 'delete_picture')
+  bool get deletePicture;
   @override
   @JsonKey(name: 'job_title')
   String get jobTitle;

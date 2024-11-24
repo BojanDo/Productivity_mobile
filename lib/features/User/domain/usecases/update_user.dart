@@ -38,6 +38,7 @@ class UpdateUserParams with _$UpdateUserParams {
     required String firstname,
     required String lastname,
     @JsonKey(name: 'profile_picture') String? profilePicture,
+    @JsonKey(name: 'delete_picture') required bool deletePicture,
     @JsonKey(name: 'job_title') required String jobTitle,
   }) = _UpdateUserParams;
 

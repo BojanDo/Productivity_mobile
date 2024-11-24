@@ -12,6 +12,7 @@ _$UpdateUserParamsImpl _$$UpdateUserParamsImplFromJson(
       firstname: json['firstname'] as String,
       lastname: json['lastname'] as String,
       profilePicture: json['profile_picture'] as String?,
+      deletePicture: json['delete_picture'] as bool,
       jobTitle: json['job_title'] as String,
     );
 
@@ -21,5 +22,6 @@ Map<String, dynamic> _$$UpdateUserParamsImplToJson(
       'firstname': instance.firstname,
       'lastname': instance.lastname,
       'profile_picture': instance.profilePicture,
+      'delete_picture': instance.deletePicture,
       'job_title': instance.jobTitle,
     };

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
+import '../core/config/colors.dart';
 import '../core/config/constants.dart';
 import '../core/functions/routes.dart';
 import '../features/App/presentation/bloc/app_bloc.dart';
@@ -63,7 +64,8 @@ class GlobalForm<BlocT extends FormBloc<String,String>> extends StatelessWidget 
                   },
                   canSave: state.isValid(),
                 ),
-                body: Padding(
+                body: Container(
+                  color: kSecondaryBackgroundColor,
                   padding: const EdgeInsets.all(kDefaultPadding),
                   child: SingleChildScrollView(
                     child: Column(

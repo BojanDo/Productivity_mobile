@@ -44,7 +44,7 @@ Future<void> initBlocs() async {
 }
 
 Future<void> initWidgetBlocs() async {
-  sl.registerLazySingleton(() => DrawerBloc());
+  sl.registerFactory(() => DrawerBloc());
   sl.registerLazySingleton(() => PopScopeBloc());
 }
 

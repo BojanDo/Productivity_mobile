@@ -11,11 +11,6 @@ class HomePage extends StatelessWidget {
 
   final List<Map<String, String>> routes = <Map<String, String>>[
     <String, String>{
-      'title': 'Settings',
-      'description': 'settings list',
-      'route': kSettingsRoute,
-    },
-    <String, String>{
       'title': 'User info',
       'description': 'user details',
       'route': kUserRoute,

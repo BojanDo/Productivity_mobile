@@ -8,6 +8,7 @@ import '../../core/services/injection_container.dart';
 import '../../features/App/presentation/bloc/app_bloc.dart';
 import '../../features/User/domain/entities/users.dart';
 import '../../features/User/presentation/bloc/user_bloc.dart';
+import '../profile_picture.dart';
 import 'drawer_bloc.dart';
 
 class GlobalDrawer extends StatefulWidget {
@@ -170,9 +171,10 @@ class _GlobalDrawerState extends State<GlobalDrawer>
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    const CircleAvatar(
-                      radius: 20,
-                      child: Icon(Icons.person),
+                    SizedBox(
+                      width: 40,
+                      height: 40,
+                      child: ProfilePicture(user: user),
                     ),
                     const SizedBox(width: 16.0),
                     Expanded(
