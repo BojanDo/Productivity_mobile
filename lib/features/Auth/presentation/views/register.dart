@@ -32,6 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void _onSuccess(BuildContext context, FormBlocSuccess<User, String> state) {
     context.read<AppBloc>().add(const AppEvent.overlayRemove());
+    context.read<AppBloc>().add(const AppEvent.success(message: 'Successfuly created an account'));
     animateToPage(context.read<AuthBloc>().pageController, 0);
   }
 

@@ -12,6 +12,7 @@ class MockAuthRemoteDataSourceImplementation implements AuthRemoteDataSource {
       firstname: _faker.person.firstName(),
       lastname: _faker.person.lastName(),
       email: _faker.internet.email(),
+      profilePicture: 'https://pbs.twimg.com/profile_images/1138626153424408576/GosXfwQ7_400x400.jpg',
       jobTitle:
       _faker.randomGenerator.element(<String>['Owner', 'Developer']),
       organizationId: '1',

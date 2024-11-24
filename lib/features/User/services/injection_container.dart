@@ -21,10 +21,10 @@ import '../presentation/bloc/user_bloc.dart';
 
 Future<void> initUserBlocs(GetIt sl) async {
   // App Logic
-  sl.registerLazySingleton(
-        () => UserBloc(),
+  sl.registerFactoryParam<UserBloc, User, dynamic>(
+    (User user, _) => UserBloc(user, sl(), sl()),
   );
-  sl.registerFactoryParam<UserBloc, User>((user) => UserBloc(user));
+  sl.registerFactory(() => AccountFormBloc(updateUser: sl()));
 }
 
 Future<void> initUser(GetIt sl) async {

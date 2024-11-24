@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
+import '../core/entities/profile_picture.dart';
 
 class ImagePickerFieldBlocBuilder extends StatelessWidget {
   const ImagePickerFieldBlocBuilder({
@@ -17,7 +20,7 @@ class ImagePickerFieldBlocBuilder extends StatelessWidget {
     this.onChanged,
   });
 
-  final InputFieldBloc<File?, dynamic> fileFieldBloc;
+  final InputFieldBloc<File?, ProfilePicture> fileFieldBloc;
   final String? label;
   final FieldBlocErrorBuilder? errorBuilder;
   final bool isEnabled;
@@ -82,99 +85,126 @@ class ImagePickerFieldBlocBuilder extends StatelessWidget {
   }
 
   void _resetToInitialValue() {
-    fileFieldBloc.updateValue(fileFieldBloc.state.initialValue);
+    fileFieldBloc.updateValue(null);
+    if (fileFieldBloc.state.extraData != null) {
+      fileFieldBloc.updateExtraData(
+        fileFieldBloc.state.extraData!.copyWith(
+          current: fileFieldBloc.state.extraData!.initial,
+        ),
+      );
+    }
     if (onChanged != null) {
-      onChanged!(fileFieldBloc.state.initialValue);
+      onChanged!(null);
     }
   }
 
   void _deleteImage() {
     fileFieldBloc.updateValue(null);
+    if (fileFieldBloc.state.extraData != null) {
+      fileFieldBloc.updateExtraData(
+        fileFieldBloc.state.extraData!.copyWith(
+          current: null,
+        ),
+      );
+    }
     if (onChanged != null) {
       onChanged!(null);
     }
   }
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<InputFieldBloc<File?, dynamic>, InputFieldBlocState<File?, dynamic>>(
-    bloc: fileFieldBloc,
-    builder: (BuildContext context, InputFieldBlocState<File?, dynamic> state) {
-      final InputDecoration effectiveDecoration = decoration ??
-          InputDecoration(
-            labelText: label,
-            border: InputBorder.none,
-          );
+  Widget build(BuildContext context) => BlocBuilder<
+          InputFieldBloc<File?, ProfilePicture>,
+          InputFieldBlocState<File?, ProfilePicture>>(
+        bloc: fileFieldBloc,
+        builder: (BuildContext context,
+            InputFieldBlocState<File?, ProfilePicture> state) {
+          final InputDecoration effectiveDecoration = decoration ??
+              InputDecoration(
+                labelText: label,
+                border: InputBorder.none,
+              );
 
-      return Padding(
-        padding: padding ?? EdgeInsets.zero,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            // Label
-            if (effectiveDecoration.labelText != null)
-              Text(
-                effectiveDecoration.labelText!,
-                style: const TextStyle(fontSize: 16),
-              ),
-            const SizedBox(height: 8),
-            // Image Upload Area
-            GestureDetector(
-              onTap: isEnabled ? () => _pickImage(context) : null,
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey,
-                      style: BorderStyle.solid,
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                    color: state.value == null ? Colors.grey[200] : null,
+          return Padding(
+            padding: padding ?? EdgeInsets.zero,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                // Label
+                if (effectiveDecoration.labelText != null)
+                  Text(
+                    effectiveDecoration.labelText!,
+                    style: const TextStyle(fontSize: 16),
                   ),
-                  child: state.value == null
-                      ? const Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.add, size: 40, color: Colors.grey),
-                        Text(
-                          'Tap to add image',
-                          style: TextStyle(color: Colors.grey),
+                const SizedBox(height: 8),
+                // Image Upload Area
+                GestureDetector(
+                  onTap: isEnabled ? () => _pickImage(context) : null,
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          style: BorderStyle.solid,
+                          width: 2,
                         ),
-                      ],
-                    ),
-                  )
-                      : ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.file(
-                      state.value!,
-                      fit: BoxFit.cover,
+                        borderRadius: BorderRadius.circular(10),
+                        color: state.value == null ? Colors.grey[200] : null,
+                      ),
+                      child: state.value != null
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.file(
+                                state.value!,
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                          : state.extraData?.current != null
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: CachedNetworkImage(
+                                    imageUrl: state.extraData!.current!,
+                                  ),
+                                )
+                              : const Center(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.add,
+                                          size: 40, color: Colors.grey),
+                                      Text(
+                                        'Tap to add image',
+                                        style: TextStyle(color: Colors.grey),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                     ),
                   ),
                 ),
-              ),
+                // Reset and Delete Buttons
+                if (isEnabled)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton.icon(
+                        onPressed: _resetToInitialValue,
+                        icon: const Icon(Icons.restart_alt, color: Colors.blue),
+                        label: const Text('Reset',
+                            style: TextStyle(color: Colors.blue)),
+                      ),
+                      TextButton.icon(
+                        onPressed: _deleteImage,
+                        icon: const Icon(Icons.delete, color: Colors.red),
+                        label: const Text('Delete',
+                            style: TextStyle(color: Colors.red)),
+                      ),
+                    ],
+                  ),
+              ],
             ),
-            // Reset and Delete Buttons
-            if (isEnabled)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextButton.icon(
-                    onPressed: _resetToInitialValue,
-                    icon: const Icon(Icons.restart_alt, color: Colors.blue),
-                    label: const Text('Reset', style: TextStyle(color: Colors.blue)),
-                  ),
-                  TextButton.icon(
-                    onPressed: _deleteImage,
-                    icon: const Icon(Icons.delete, color: Colors.red),
-                    label: const Text('Delete', style: TextStyle(color: Colors.red)),
-                  ),
-                ],
-              ),
-          ],
-        ),
+          );
+        },
       );
-    },
-  );
 }

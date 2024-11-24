@@ -6,6 +6,7 @@ import 'core/functions/routes.dart';
 import 'features/App/presentation/bloc/app_bloc.dart';
 import 'features/Auth/presentation/views/auth.dart';
 import 'features/Home/presentation/views/home.dart';
+import 'features/User/presentation/views/account.dart';
 import 'widgets/drawer/drawer.dart';
 
 class InnerWrapper extends StatefulWidget {
@@ -43,7 +44,6 @@ class _InnerWrapperState extends State<InnerWrapper> {
           key: context.read<AppBloc>().innerNavigator,
           onGenerateRoute: (RouteSettings settings) {
             WidgetBuilder builder;
-            print('inner ${settings.name}');
             switch (settings.name) {
               case kHomeRoute:
                 builder = (BuildContext context) => HomePage();
@@ -60,7 +60,7 @@ class _InnerWrapperState extends State<InnerWrapper> {
                 break;
               case kAccountRoute:
                 builder =
-                    (BuildContext context) => const Test(title: 'Account');
+                    (BuildContext context) => const Account();
                 break;
               case kOrganizationRoute:
                 builder =

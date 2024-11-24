@@ -33,8 +33,8 @@ class RegisterFormBloc extends FormBloc<User, String> {
       FieldBlocValidators.email,
     ],
   );
-  final InputFieldBloc<File?, dynamic> profilePicture =
-      InputFieldBloc<File?, dynamic>(initialValue: null);
+  final InputFieldBloc<File?, ProfilePicture> profilePicture =
+      InputFieldBloc<File?, ProfilePicture>(initialValue: null);
 
   final TextFieldBloc<dynamic> password = TextFieldBloc<dynamic>(
     validators: <Validator<String>>[

@@ -23,3 +23,4 @@ const BorderSide kBorderSide = BorderSide(
   color: kBorderColor,
 );
 BorderRadius kBorderRadius = BorderRadius.circular(6);
+const double kDefaultPadding = 34.0;

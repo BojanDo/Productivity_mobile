@@ -42,7 +42,7 @@ class AuthBox<BlocT extends StateStreamable<BlocState>,
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(34.0),
+                padding: const EdgeInsets.all(kDefaultPadding),
                 child: Column(
                   children: <Widget>[
                     page,

@@ -16,44 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserEvent {
-  UpdateUserParams get params => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UpdateUserParams params) updateUser,
+    required TResult Function() loadAccount,
+    required TResult Function() getUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(UpdateUserParams params)? updateUser,
+    TResult? Function()? loadAccount,
+    TResult? Function()? getUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UpdateUserParams params)? updateUser,
+    TResult Function()? loadAccount,
+    TResult Function()? getUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UserEventUpdateUser value) updateUser,
+    required TResult Function(_UserEventLoadAccount value) loadAccount,
+    required TResult Function(_UserEventGetUser value) getUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UserEventUpdateUser value)? updateUser,
+    TResult? Function(_UserEventLoadAccount value)? loadAccount,
+    TResult? Function(_UserEventGetUser value)? getUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UserEventUpdateUser value)? updateUser,
+    TResult Function(_UserEventLoadAccount value)? loadAccount,
+    TResult Function(_UserEventGetUser value)? getUser,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of UserEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $UserEventCopyWith<UserEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -61,10 +60,6 @@ mixin _$UserEvent {
 abstract class $UserEventCopyWith<$Res> {
   factory $UserEventCopyWith(UserEvent value, $Res Function(UserEvent) then) =
       _$UserEventCopyWithImpl<$Res, UserEvent>;
-  @useResult
-  $Res call({UpdateUserParams params});
-
-  $UpdateUserParamsCopyWith<$Res> get params;
 }
 
 /// @nodoc
@@ -79,125 +74,74 @@ class _$UserEventCopyWithImpl<$Res, $Val extends UserEvent>
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? params = null,
-  }) {
-    return _then(_value.copyWith(
-      params: null == params
-          ? _value.params
-          : params // ignore: cast_nullable_to_non_nullable
-              as UpdateUserParams,
-    ) as $Val);
-  }
-
-  /// Create a copy of UserEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UpdateUserParamsCopyWith<$Res> get params {
-    return $UpdateUserParamsCopyWith<$Res>(_value.params, (value) {
-      return _then(_value.copyWith(params: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$UserEventUpdateUserImplCopyWith<$Res>
-    implements $UserEventCopyWith<$Res> {
-  factory _$$UserEventUpdateUserImplCopyWith(_$UserEventUpdateUserImpl value,
-          $Res Function(_$UserEventUpdateUserImpl) then) =
-      __$$UserEventUpdateUserImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({UpdateUserParams params});
-
-  @override
-  $UpdateUserParamsCopyWith<$Res> get params;
+abstract class _$$UserEventLoadAccountImplCopyWith<$Res> {
+  factory _$$UserEventLoadAccountImplCopyWith(_$UserEventLoadAccountImpl value,
+          $Res Function(_$UserEventLoadAccountImpl) then) =
+      __$$UserEventLoadAccountImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$UserEventUpdateUserImplCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$UserEventUpdateUserImpl>
-    implements _$$UserEventUpdateUserImplCopyWith<$Res> {
-  __$$UserEventUpdateUserImplCopyWithImpl(_$UserEventUpdateUserImpl _value,
-      $Res Function(_$UserEventUpdateUserImpl) _then)
+class __$$UserEventLoadAccountImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserEventLoadAccountImpl>
+    implements _$$UserEventLoadAccountImplCopyWith<$Res> {
+  __$$UserEventLoadAccountImplCopyWithImpl(_$UserEventLoadAccountImpl _value,
+      $Res Function(_$UserEventLoadAccountImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? params = null,
-  }) {
-    return _then(_$UserEventUpdateUserImpl(
-      params: null == params
-          ? _value.params
-          : params // ignore: cast_nullable_to_non_nullable
-              as UpdateUserParams,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$UserEventUpdateUserImpl implements _UserEventUpdateUser {
-  const _$UserEventUpdateUserImpl({required this.params});
-
-  @override
-  final UpdateUserParams params;
+class _$UserEventLoadAccountImpl implements _UserEventLoadAccount {
+  const _$UserEventLoadAccountImpl();
 
   @override
   String toString() {
-    return 'UserEvent.updateUser(params: $params)';
+    return 'UserEvent.loadAccount()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserEventUpdateUserImpl &&
-            (identical(other.params, params) || other.params == params));
+            other is _$UserEventLoadAccountImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, params);
-
-  /// Create a copy of UserEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserEventUpdateUserImplCopyWith<_$UserEventUpdateUserImpl> get copyWith =>
-      __$$UserEventUpdateUserImplCopyWithImpl<_$UserEventUpdateUserImpl>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UpdateUserParams params) updateUser,
+    required TResult Function() loadAccount,
+    required TResult Function() getUser,
   }) {
-    return updateUser(params);
+    return loadAccount();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(UpdateUserParams params)? updateUser,
+    TResult? Function()? loadAccount,
+    TResult? Function()? getUser,
   }) {
-    return updateUser?.call(params);
+    return loadAccount?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UpdateUserParams params)? updateUser,
+    TResult Function()? loadAccount,
+    TResult Function()? getUser,
     required TResult orElse(),
   }) {
-    if (updateUser != null) {
-      return updateUser(params);
+    if (loadAccount != null) {
+      return loadAccount();
     }
     return orElse();
   }
@@ -205,45 +149,142 @@ class _$UserEventUpdateUserImpl implements _UserEventUpdateUser {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UserEventUpdateUser value) updateUser,
+    required TResult Function(_UserEventLoadAccount value) loadAccount,
+    required TResult Function(_UserEventGetUser value) getUser,
   }) {
-    return updateUser(this);
+    return loadAccount(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UserEventUpdateUser value)? updateUser,
+    TResult? Function(_UserEventLoadAccount value)? loadAccount,
+    TResult? Function(_UserEventGetUser value)? getUser,
   }) {
-    return updateUser?.call(this);
+    return loadAccount?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UserEventUpdateUser value)? updateUser,
+    TResult Function(_UserEventLoadAccount value)? loadAccount,
+    TResult Function(_UserEventGetUser value)? getUser,
     required TResult orElse(),
   }) {
-    if (updateUser != null) {
-      return updateUser(this);
+    if (loadAccount != null) {
+      return loadAccount(this);
     }
     return orElse();
   }
 }
 
-abstract class _UserEventUpdateUser implements UserEvent {
-  const factory _UserEventUpdateUser({required final UpdateUserParams params}) =
-      _$UserEventUpdateUserImpl;
+abstract class _UserEventLoadAccount implements UserEvent {
+  const factory _UserEventLoadAccount() = _$UserEventLoadAccountImpl;
+}
 
-  @override
-  UpdateUserParams get params;
+/// @nodoc
+abstract class _$$UserEventGetUserImplCopyWith<$Res> {
+  factory _$$UserEventGetUserImplCopyWith(_$UserEventGetUserImpl value,
+          $Res Function(_$UserEventGetUserImpl) then) =
+      __$$UserEventGetUserImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserEventGetUserImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserEventGetUserImpl>
+    implements _$$UserEventGetUserImplCopyWith<$Res> {
+  __$$UserEventGetUserImplCopyWithImpl(_$UserEventGetUserImpl _value,
+      $Res Function(_$UserEventGetUserImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$UserEventGetUserImpl implements _UserEventGetUser {
+  const _$UserEventGetUserImpl();
+
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserEventUpdateUserImplCopyWith<_$UserEventUpdateUserImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  String toString() {
+    return 'UserEvent.getUser()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UserEventGetUserImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadAccount,
+    required TResult Function() getUser,
+  }) {
+    return getUser();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadAccount,
+    TResult? Function()? getUser,
+  }) {
+    return getUser?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadAccount,
+    TResult Function()? getUser,
+    required TResult orElse(),
+  }) {
+    if (getUser != null) {
+      return getUser();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserEventLoadAccount value) loadAccount,
+    required TResult Function(_UserEventGetUser value) getUser,
+  }) {
+    return getUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserEventLoadAccount value)? loadAccount,
+    TResult? Function(_UserEventGetUser value)? getUser,
+  }) {
+    return getUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserEventLoadAccount value)? loadAccount,
+    TResult Function(_UserEventGetUser value)? getUser,
+    required TResult orElse(),
+  }) {
+    if (getUser != null) {
+      return getUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserEventGetUser implements UserEvent {
+  const factory _UserEventGetUser() = _$UserEventGetUserImpl;
 }
 
 /// @nodoc

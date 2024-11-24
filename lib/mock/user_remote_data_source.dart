@@ -14,6 +14,7 @@ class MockUserRemoteDataSourceImplementation implements UserRemoteDataSource {
         firstname: _faker.person.firstName(),
         lastname: _faker.person.lastName(),
         email: _faker.internet.email(),
+        profilePicture: 'https://pbs.twimg.com/profile_images/1138626153424408576/GosXfwQ7_400x400.jpg',
         jobTitle:
             _faker.randomGenerator.element(<String>['Owner', 'Developer']),
         organizationId: '1',
@@ -38,6 +39,7 @@ class MockUserRemoteDataSourceImplementation implements UserRemoteDataSource {
       firstname: fakeUsers.first.firstname,
       lastname: fakeUsers.first.lastname,
       email: fakeUsers.first.email,
+      profilePicture: fakeUsers.first.profilePicture,
       jobTitle: fakeUsers.first.jobTitle,
       organizationId: fakeUsers.first.organizationId,
       roleName: fakeUsers.first.roleName,

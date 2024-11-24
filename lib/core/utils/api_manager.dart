@@ -27,7 +27,6 @@ class APIManager {
   Future<void> _initializeToken() async {
     final dynamic token = await _localStorage.getData('jwt');
     if (token != null) {
-      print(token);
       options.headers!['Authorization'] = 'Bearer $token';
     }
   }

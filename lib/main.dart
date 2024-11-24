@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
                       create: (BuildContext context) => sl<DrawerBloc>(),
                     ),
                     BlocProvider<UserBloc>(
-                      create: (BuildContext context) => sl<UserBloc>(),
+                      create: (BuildContext context) => sl<UserBloc>(param1: user),
                     ),
                   ],
                   child: GlobalPopScope.defaultScope(

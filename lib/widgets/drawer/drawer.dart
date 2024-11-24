@@ -6,6 +6,8 @@ import '../../core/config/routes.dart';
 import '../../core/functions/routes.dart';
 import '../../core/services/injection_container.dart';
 import '../../features/App/presentation/bloc/app_bloc.dart';
+import '../../features/User/domain/entities/users.dart';
+import '../../features/User/presentation/bloc/user_bloc.dart';
 import 'drawer_bloc.dart';
 
 class GlobalDrawer extends StatefulWidget {
@@ -63,7 +65,9 @@ class _GlobalDrawerState extends State<GlobalDrawer>
 
     context.read<DrawerBloc>().add(
           DrawerEvent.route(
-              route: state.currentRoute, visibleList: visibleList,),
+            route: state.currentRoute,
+            visibleList: visibleList,
+          ),
         );
   }
 
@@ -103,7 +107,12 @@ class _GlobalDrawerState extends State<GlobalDrawer>
   ];
 
   @override
-  Widget build(BuildContext context) => Drawer(
+  Widget build(BuildContext context) => BlocBuilder<UserBloc, UserState>(
+        builder: (BuildContext context, UserState state) =>
+            _drawer(context, state.user),
+      );
+
+  Drawer _drawer(BuildContext context, User user) => Drawer(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           verticalDirection: VerticalDirection.up,
@@ -131,8 +140,11 @@ class _GlobalDrawerState extends State<GlobalDrawer>
                               '',
                               DrawerVisibleList.second,
                               () {
-                                context.read<AppBloc>().add(const AppEvent.toNotAuthenticated());
-                                routePopAllPushReplacement(widget.outerNavigator, kAuthRoute);
+                                context
+                                    .read<AppBloc>()
+                                    .add(const AppEvent.toNotAuthenticated());
+                                routePopAllPushReplacement(
+                                    widget.outerNavigator, kAuthRoute);
                               },
                             ),
                           ),
@@ -143,12 +155,12 @@ class _GlobalDrawerState extends State<GlobalDrawer>
                 ],
               ),
             ),
-            _header(),
+            _header(user),
           ],
         ),
       );
 
-  Widget _header() => BlocBuilder<DrawerBloc, DrawerState>(
+  Widget _header(User user) => BlocBuilder<DrawerBloc, DrawerState>(
         builder: (BuildContext context, DrawerState state) => SizedBox(
           height: MediaQuery.paddingOf(context).top + 80,
           child: DrawerHeader(
@@ -163,30 +175,27 @@ class _GlobalDrawerState extends State<GlobalDrawer>
                       child: Icon(Icons.person),
                     ),
                     const SizedBox(width: 16.0),
-                    const Expanded(
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Bojan',
-                            style: TextStyle(
+                            '${user.firstname} ${user.lastname}',
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
                             overflow: TextOverflow.ellipsis,
-                            // Added to handle overflow
-                            maxLines:
-                                1, // Ensure it doesn't wrap and uses ellipsis
+                            maxLines: 1,
                           ),
-                          SizedBox(height: 4),
+                          const SizedBox(height: 4),
                           Text(
-                            'FRI',
-                            style: TextStyle(
+                            user.jobTitle,
+                            style: const TextStyle(
                               fontSize: 14,
                               color: Colors.grey,
                             ),
                             overflow: TextOverflow.ellipsis,
-                            // Added to handle overflow
                             maxLines: 1,
                           ),
                         ],
