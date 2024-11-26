@@ -23,7 +23,7 @@ class GetDocuments extends UsecaseWithParams<Documents, GetDocumentsParams> {
 @freezed
 class GetDocumentsParams with _$GetDocumentsParams {
   const factory GetDocumentsParams({
-    required String page,
+    @Default(1) int page,
     String? dateFrom,
     String? dateUntil,
     @JsonKey(name: 'project_id') int? projectId,

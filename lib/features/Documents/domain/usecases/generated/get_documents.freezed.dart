@@ -20,7 +20,7 @@ GetDocumentsParams _$GetDocumentsParamsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GetDocumentsParams {
-  String get page => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
   String? get dateFrom => throw _privateConstructorUsedError;
   String? get dateUntil => throw _privateConstructorUsedError;
   @JsonKey(name: 'project_id')
@@ -43,7 +43,7 @@ abstract class $GetDocumentsParamsCopyWith<$Res> {
       _$GetDocumentsParamsCopyWithImpl<$Res, GetDocumentsParams>;
   @useResult
   $Res call(
-      {String page,
+      {int page,
       String? dateFrom,
       String? dateUntil,
       @JsonKey(name: 'project_id') int? projectId});
@@ -73,7 +73,7 @@ class _$GetDocumentsParamsCopyWithImpl<$Res, $Val extends GetDocumentsParams>
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       dateFrom: freezed == dateFrom
           ? _value.dateFrom
           : dateFrom // ignore: cast_nullable_to_non_nullable
@@ -99,7 +99,7 @@ abstract class _$$GetDocumentsParamsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String page,
+      {int page,
       String? dateFrom,
       String? dateUntil,
       @JsonKey(name: 'project_id') int? projectId});
@@ -127,7 +127,7 @@ class __$$GetDocumentsParamsImplCopyWithImpl<$Res>
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       dateFrom: freezed == dateFrom
           ? _value.dateFrom
           : dateFrom // ignore: cast_nullable_to_non_nullable
@@ -148,7 +148,7 @@ class __$$GetDocumentsParamsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GetDocumentsParamsImpl implements _GetDocumentsParams {
   const _$GetDocumentsParamsImpl(
-      {required this.page,
+      {this.page = 1,
       this.dateFrom,
       this.dateUntil,
       @JsonKey(name: 'project_id') this.projectId});
@@ -157,7 +157,8 @@ class _$GetDocumentsParamsImpl implements _GetDocumentsParams {
       _$$GetDocumentsParamsImplFromJson(json);
 
   @override
-  final String page;
+  @JsonKey()
+  final int page;
   @override
   final String? dateFrom;
   @override
@@ -209,7 +210,7 @@ class _$GetDocumentsParamsImpl implements _GetDocumentsParams {
 
 abstract class _GetDocumentsParams implements GetDocumentsParams {
   const factory _GetDocumentsParams(
-          {required final String page,
+          {final int page,
           final String? dateFrom,
           final String? dateUntil,
           @JsonKey(name: 'project_id') final int? projectId}) =
@@ -219,7 +220,7 @@ abstract class _GetDocumentsParams implements GetDocumentsParams {
       _$GetDocumentsParamsImpl.fromJson;
 
   @override
-  String get page;
+  int get page;
   @override
   String? get dateFrom;
   @override

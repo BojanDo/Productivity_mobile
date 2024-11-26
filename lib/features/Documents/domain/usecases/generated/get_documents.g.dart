@@ -9,7 +9,7 @@ part of '../get_documents.dart';
 _$GetDocumentsParamsImpl _$$GetDocumentsParamsImplFromJson(
         Map<String, dynamic> json) =>
     _$GetDocumentsParamsImpl(
-      page: json['page'] as String,
+      page: (json['page'] as num?)?.toInt() ?? 1,
       dateFrom: json['dateFrom'] as String?,
       dateUntil: json['dateUntil'] as String?,
       projectId: (json['project_id'] as num?)?.toInt(),
