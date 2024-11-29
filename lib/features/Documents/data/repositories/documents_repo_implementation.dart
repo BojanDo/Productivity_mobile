@@ -6,6 +6,7 @@ import '../../../../core/utils/typedef.dart';
 import '../../domain/entities/documents.dart';
 import '../../domain/repositories/documents_repo.dart';
 import '../datasources/documents_remote_data_source.dart';
+
 class DocumentsRepoImplementation implements DocumentsRepository {
   const DocumentsRepoImplementation(this._remoteDataSource);
 
@@ -22,6 +23,19 @@ class DocumentsRepoImplementation implements DocumentsRepository {
       return Right<Failure, Documents>(result);
     } on APIException catch (e) {
       return Left<Failure, Documents>(APIFailure.fromException(e));
+    }
+  }
+
+  @override
+  ResultVoid downloadFile({
+    required String url,
+    required String filePath,
+  }) async {
+    try {
+      await _remoteDataSource.downloadFile(url: url, filePath: filePath);
+      return const Right<Failure, void>(null);
+    } on APIException catch (e) {
+      return Left<Failure, void>(APIFailure.fromException(e));
     }
   }
 }

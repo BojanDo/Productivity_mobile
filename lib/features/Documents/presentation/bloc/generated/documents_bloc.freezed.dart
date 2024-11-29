@@ -16,9 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DocumentsEvent {
-  String? get dateFrom => throw _privateConstructorUsedError;
-  String? get dateUntil => throw _privateConstructorUsedError;
-  int? get projectId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -27,6 +24,7 @@ mixin _$DocumentsEvent {
     required TResult Function(PaginatedList<Document> currentDocuments,
             int page, String? dateFrom, String? dateUntil, int? projectId)
         getNext,
+    required TResult Function(Document document) downloadFile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +33,7 @@ mixin _$DocumentsEvent {
     TResult? Function(PaginatedList<Document> currentDocuments, int page,
             String? dateFrom, String? dateUntil, int? projectId)?
         getNext,
+    TResult? Function(Document document)? downloadFile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,6 +42,7 @@ mixin _$DocumentsEvent {
     TResult Function(PaginatedList<Document> currentDocuments, int page,
             String? dateFrom, String? dateUntil, int? projectId)?
         getNext,
+    TResult Function(Document document)? downloadFile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -50,26 +50,23 @@ mixin _$DocumentsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_DocumentsEventGet value) get,
     required TResult Function(_DocumentsEventGetNext value) getNext,
+    required TResult Function(_DocumentsEventDownloadFile value) downloadFile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_DocumentsEventGet value)? get,
     TResult? Function(_DocumentsEventGetNext value)? getNext,
+    TResult? Function(_DocumentsEventDownloadFile value)? downloadFile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_DocumentsEventGet value)? get,
     TResult Function(_DocumentsEventGetNext value)? getNext,
+    TResult Function(_DocumentsEventDownloadFile value)? downloadFile,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of DocumentsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $DocumentsEventCopyWith<DocumentsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -78,8 +75,6 @@ abstract class $DocumentsEventCopyWith<$Res> {
   factory $DocumentsEventCopyWith(
           DocumentsEvent value, $Res Function(DocumentsEvent) then) =
       _$DocumentsEventCopyWithImpl<$Res, DocumentsEvent>;
-  @useResult
-  $Res call({String? dateFrom, String? dateUntil, int? projectId});
 }
 
 /// @nodoc
@@ -94,37 +89,13 @@ class _$DocumentsEventCopyWithImpl<$Res, $Val extends DocumentsEvent>
 
   /// Create a copy of DocumentsEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? dateFrom = freezed,
-    Object? dateUntil = freezed,
-    Object? projectId = freezed,
-  }) {
-    return _then(_value.copyWith(
-      dateFrom: freezed == dateFrom
-          ? _value.dateFrom
-          : dateFrom // ignore: cast_nullable_to_non_nullable
-              as String?,
-      dateUntil: freezed == dateUntil
-          ? _value.dateUntil
-          : dateUntil // ignore: cast_nullable_to_non_nullable
-              as String?,
-      projectId: freezed == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$DocumentsEventGetImplCopyWith<$Res>
-    implements $DocumentsEventCopyWith<$Res> {
+abstract class _$$DocumentsEventGetImplCopyWith<$Res> {
   factory _$$DocumentsEventGetImplCopyWith(_$DocumentsEventGetImpl value,
           $Res Function(_$DocumentsEventGetImpl) then) =
       __$$DocumentsEventGetImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String? dateFrom, String? dateUntil, int? projectId});
 }
@@ -215,6 +186,7 @@ class _$DocumentsEventGetImpl implements _DocumentsEventGet {
     required TResult Function(PaginatedList<Document> currentDocuments,
             int page, String? dateFrom, String? dateUntil, int? projectId)
         getNext,
+    required TResult Function(Document document) downloadFile,
   }) {
     return get(dateFrom, dateUntil, projectId);
   }
@@ -226,6 +198,7 @@ class _$DocumentsEventGetImpl implements _DocumentsEventGet {
     TResult? Function(PaginatedList<Document> currentDocuments, int page,
             String? dateFrom, String? dateUntil, int? projectId)?
         getNext,
+    TResult? Function(Document document)? downloadFile,
   }) {
     return get?.call(dateFrom, dateUntil, projectId);
   }
@@ -237,6 +210,7 @@ class _$DocumentsEventGetImpl implements _DocumentsEventGet {
     TResult Function(PaginatedList<Document> currentDocuments, int page,
             String? dateFrom, String? dateUntil, int? projectId)?
         getNext,
+    TResult Function(Document document)? downloadFile,
     required TResult orElse(),
   }) {
     if (get != null) {
@@ -250,6 +224,7 @@ class _$DocumentsEventGetImpl implements _DocumentsEventGet {
   TResult map<TResult extends Object?>({
     required TResult Function(_DocumentsEventGet value) get,
     required TResult Function(_DocumentsEventGetNext value) getNext,
+    required TResult Function(_DocumentsEventDownloadFile value) downloadFile,
   }) {
     return get(this);
   }
@@ -259,6 +234,7 @@ class _$DocumentsEventGetImpl implements _DocumentsEventGet {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_DocumentsEventGet value)? get,
     TResult? Function(_DocumentsEventGetNext value)? getNext,
+    TResult? Function(_DocumentsEventDownloadFile value)? downloadFile,
   }) {
     return get?.call(this);
   }
@@ -268,6 +244,7 @@ class _$DocumentsEventGetImpl implements _DocumentsEventGet {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_DocumentsEventGet value)? get,
     TResult Function(_DocumentsEventGetNext value)? getNext,
+    TResult Function(_DocumentsEventDownloadFile value)? downloadFile,
     required TResult orElse(),
   }) {
     if (get != null) {
@@ -283,29 +260,23 @@ abstract class _DocumentsEventGet implements DocumentsEvent {
       final String? dateUntil,
       final int? projectId}) = _$DocumentsEventGetImpl;
 
-  @override
   String? get dateFrom;
-  @override
   String? get dateUntil;
-  @override
   int? get projectId;
 
   /// Create a copy of DocumentsEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DocumentsEventGetImplCopyWith<_$DocumentsEventGetImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DocumentsEventGetNextImplCopyWith<$Res>
-    implements $DocumentsEventCopyWith<$Res> {
+abstract class _$$DocumentsEventGetNextImplCopyWith<$Res> {
   factory _$$DocumentsEventGetNextImplCopyWith(
           _$DocumentsEventGetNextImpl value,
           $Res Function(_$DocumentsEventGetNextImpl) then) =
       __$$DocumentsEventGetNextImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call(
       {PaginatedList<Document> currentDocuments,
@@ -436,6 +407,7 @@ class _$DocumentsEventGetNextImpl implements _DocumentsEventGetNext {
     required TResult Function(PaginatedList<Document> currentDocuments,
             int page, String? dateFrom, String? dateUntil, int? projectId)
         getNext,
+    required TResult Function(Document document) downloadFile,
   }) {
     return getNext(currentDocuments, page, dateFrom, dateUntil, projectId);
   }
@@ -447,6 +419,7 @@ class _$DocumentsEventGetNextImpl implements _DocumentsEventGetNext {
     TResult? Function(PaginatedList<Document> currentDocuments, int page,
             String? dateFrom, String? dateUntil, int? projectId)?
         getNext,
+    TResult? Function(Document document)? downloadFile,
   }) {
     return getNext?.call(
         currentDocuments, page, dateFrom, dateUntil, projectId);
@@ -459,6 +432,7 @@ class _$DocumentsEventGetNextImpl implements _DocumentsEventGetNext {
     TResult Function(PaginatedList<Document> currentDocuments, int page,
             String? dateFrom, String? dateUntil, int? projectId)?
         getNext,
+    TResult Function(Document document)? downloadFile,
     required TResult orElse(),
   }) {
     if (getNext != null) {
@@ -472,6 +446,7 @@ class _$DocumentsEventGetNextImpl implements _DocumentsEventGetNext {
   TResult map<TResult extends Object?>({
     required TResult Function(_DocumentsEventGet value) get,
     required TResult Function(_DocumentsEventGetNext value) getNext,
+    required TResult Function(_DocumentsEventDownloadFile value) downloadFile,
   }) {
     return getNext(this);
   }
@@ -481,6 +456,7 @@ class _$DocumentsEventGetNextImpl implements _DocumentsEventGetNext {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_DocumentsEventGet value)? get,
     TResult? Function(_DocumentsEventGetNext value)? getNext,
+    TResult? Function(_DocumentsEventDownloadFile value)? downloadFile,
   }) {
     return getNext?.call(this);
   }
@@ -490,6 +466,7 @@ class _$DocumentsEventGetNextImpl implements _DocumentsEventGetNext {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_DocumentsEventGet value)? get,
     TResult Function(_DocumentsEventGetNext value)? getNext,
+    TResult Function(_DocumentsEventDownloadFile value)? downloadFile,
     required TResult orElse(),
   }) {
     if (getNext != null) {
@@ -509,18 +486,185 @@ abstract class _DocumentsEventGetNext implements DocumentsEvent {
 
   PaginatedList<Document> get currentDocuments;
   int get page;
-  @override
   String? get dateFrom;
-  @override
   String? get dateUntil;
-  @override
   int? get projectId;
 
   /// Create a copy of DocumentsEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DocumentsEventGetNextImplCopyWith<_$DocumentsEventGetNextImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DocumentsEventDownloadFileImplCopyWith<$Res> {
+  factory _$$DocumentsEventDownloadFileImplCopyWith(
+          _$DocumentsEventDownloadFileImpl value,
+          $Res Function(_$DocumentsEventDownloadFileImpl) then) =
+      __$$DocumentsEventDownloadFileImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Document document});
+
+  $DocumentCopyWith<$Res> get document;
+}
+
+/// @nodoc
+class __$$DocumentsEventDownloadFileImplCopyWithImpl<$Res>
+    extends _$DocumentsEventCopyWithImpl<$Res, _$DocumentsEventDownloadFileImpl>
+    implements _$$DocumentsEventDownloadFileImplCopyWith<$Res> {
+  __$$DocumentsEventDownloadFileImplCopyWithImpl(
+      _$DocumentsEventDownloadFileImpl _value,
+      $Res Function(_$DocumentsEventDownloadFileImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of DocumentsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? document = null,
+  }) {
+    return _then(_$DocumentsEventDownloadFileImpl(
+      document: null == document
+          ? _value.document
+          : document // ignore: cast_nullable_to_non_nullable
+              as Document,
+    ));
+  }
+
+  /// Create a copy of DocumentsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DocumentCopyWith<$Res> get document {
+    return $DocumentCopyWith<$Res>(_value.document, (value) {
+      return _then(_value.copyWith(document: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$DocumentsEventDownloadFileImpl implements _DocumentsEventDownloadFile {
+  const _$DocumentsEventDownloadFileImpl({required this.document});
+
+  @override
+  final Document document;
+
+  @override
+  String toString() {
+    return 'DocumentsEvent.downloadFile(document: $document)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DocumentsEventDownloadFileImpl &&
+            (identical(other.document, document) ||
+                other.document == document));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, document);
+
+  /// Create a copy of DocumentsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DocumentsEventDownloadFileImplCopyWith<_$DocumentsEventDownloadFileImpl>
+      get copyWith => __$$DocumentsEventDownloadFileImplCopyWithImpl<
+          _$DocumentsEventDownloadFileImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String? dateFrom, String? dateUntil, int? projectId)
+        get,
+    required TResult Function(PaginatedList<Document> currentDocuments,
+            int page, String? dateFrom, String? dateUntil, int? projectId)
+        getNext,
+    required TResult Function(Document document) downloadFile,
+  }) {
+    return downloadFile(document);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? dateFrom, String? dateUntil, int? projectId)? get,
+    TResult? Function(PaginatedList<Document> currentDocuments, int page,
+            String? dateFrom, String? dateUntil, int? projectId)?
+        getNext,
+    TResult? Function(Document document)? downloadFile,
+  }) {
+    return downloadFile?.call(document);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? dateFrom, String? dateUntil, int? projectId)? get,
+    TResult Function(PaginatedList<Document> currentDocuments, int page,
+            String? dateFrom, String? dateUntil, int? projectId)?
+        getNext,
+    TResult Function(Document document)? downloadFile,
+    required TResult orElse(),
+  }) {
+    if (downloadFile != null) {
+      return downloadFile(document);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_DocumentsEventGet value) get,
+    required TResult Function(_DocumentsEventGetNext value) getNext,
+    required TResult Function(_DocumentsEventDownloadFile value) downloadFile,
+  }) {
+    return downloadFile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_DocumentsEventGet value)? get,
+    TResult? Function(_DocumentsEventGetNext value)? getNext,
+    TResult? Function(_DocumentsEventDownloadFile value)? downloadFile,
+  }) {
+    return downloadFile?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_DocumentsEventGet value)? get,
+    TResult Function(_DocumentsEventGetNext value)? getNext,
+    TResult Function(_DocumentsEventDownloadFile value)? downloadFile,
+    required TResult orElse(),
+  }) {
+    if (downloadFile != null) {
+      return downloadFile(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DocumentsEventDownloadFile implements DocumentsEvent {
+  const factory _DocumentsEventDownloadFile(
+      {required final Document document}) = _$DocumentsEventDownloadFileImpl;
+
+  Document get document;
+
+  /// Create a copy of DocumentsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DocumentsEventDownloadFileImplCopyWith<_$DocumentsEventDownloadFileImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -528,32 +672,29 @@ abstract class _DocumentsEventGetNext implements DocumentsEvent {
 mixin _$DocumentsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function(PaginatedList<Document> documents) getting,
-    required TResult Function(PaginatedList<Document> documents) loaded,
+    required TResult Function(PaginatedList<Document> documents, int page)
+        loaded,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function(PaginatedList<Document> documents)? getting,
-    TResult? Function(PaginatedList<Document> documents)? loaded,
+    TResult? Function(PaginatedList<Document> documents, int page)? loaded,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function(PaginatedList<Document> documents)? getting,
-    TResult Function(PaginatedList<Document> documents)? loaded,
+    TResult Function(PaginatedList<Document> documents, int page)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_DocumentsStateInitial value) initial,
     required TResult Function(_DocumentsStateGetting value) getting,
     required TResult Function(_DocumentsStateLoaded value) loaded,
     required TResult Function(_DocumentsStateError value) error,
@@ -561,7 +702,6 @@ mixin _$DocumentsState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DocumentsStateInitial value)? initial,
     TResult? Function(_DocumentsStateGetting value)? getting,
     TResult? Function(_DocumentsStateLoaded value)? loaded,
     TResult? Function(_DocumentsStateError value)? error,
@@ -569,7 +709,6 @@ mixin _$DocumentsState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DocumentsStateInitial value)? initial,
     TResult Function(_DocumentsStateGetting value)? getting,
     TResult Function(_DocumentsStateLoaded value)? loaded,
     TResult Function(_DocumentsStateError value)? error,
@@ -597,125 +736,6 @@ class _$DocumentsStateCopyWithImpl<$Res, $Val extends DocumentsState>
 
   /// Create a copy of DocumentsState
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$DocumentsStateInitialImplCopyWith<$Res> {
-  factory _$$DocumentsStateInitialImplCopyWith(
-          _$DocumentsStateInitialImpl value,
-          $Res Function(_$DocumentsStateInitialImpl) then) =
-      __$$DocumentsStateInitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$DocumentsStateInitialImplCopyWithImpl<$Res>
-    extends _$DocumentsStateCopyWithImpl<$Res, _$DocumentsStateInitialImpl>
-    implements _$$DocumentsStateInitialImplCopyWith<$Res> {
-  __$$DocumentsStateInitialImplCopyWithImpl(_$DocumentsStateInitialImpl _value,
-      $Res Function(_$DocumentsStateInitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DocumentsState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$DocumentsStateInitialImpl implements _DocumentsStateInitial {
-  const _$DocumentsStateInitialImpl();
-
-  @override
-  String toString() {
-    return 'DocumentsState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$DocumentsStateInitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(PaginatedList<Document> documents) getting,
-    required TResult Function(PaginatedList<Document> documents) loaded,
-    required TResult Function() error,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(PaginatedList<Document> documents)? getting,
-    TResult? Function(PaginatedList<Document> documents)? loaded,
-    TResult? Function()? error,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(PaginatedList<Document> documents)? getting,
-    TResult Function(PaginatedList<Document> documents)? loaded,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_DocumentsStateInitial value) initial,
-    required TResult Function(_DocumentsStateGetting value) getting,
-    required TResult Function(_DocumentsStateLoaded value) loaded,
-    required TResult Function(_DocumentsStateError value) error,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DocumentsStateInitial value)? initial,
-    TResult? Function(_DocumentsStateGetting value)? getting,
-    TResult? Function(_DocumentsStateLoaded value)? loaded,
-    TResult? Function(_DocumentsStateError value)? error,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DocumentsStateInitial value)? initial,
-    TResult Function(_DocumentsStateGetting value)? getting,
-    TResult Function(_DocumentsStateLoaded value)? loaded,
-    TResult Function(_DocumentsStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _DocumentsStateInitial implements DocumentsState {
-  const factory _DocumentsStateInitial() = _$DocumentsStateInitialImpl;
 }
 
 /// @nodoc
@@ -801,9 +821,9 @@ class _$DocumentsStateGettingImpl implements _DocumentsStateGetting {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function(PaginatedList<Document> documents) getting,
-    required TResult Function(PaginatedList<Document> documents) loaded,
+    required TResult Function(PaginatedList<Document> documents, int page)
+        loaded,
     required TResult Function() error,
   }) {
     return getting(documents);
@@ -812,9 +832,8 @@ class _$DocumentsStateGettingImpl implements _DocumentsStateGetting {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function(PaginatedList<Document> documents)? getting,
-    TResult? Function(PaginatedList<Document> documents)? loaded,
+    TResult? Function(PaginatedList<Document> documents, int page)? loaded,
     TResult? Function()? error,
   }) {
     return getting?.call(documents);
@@ -823,9 +842,8 @@ class _$DocumentsStateGettingImpl implements _DocumentsStateGetting {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function(PaginatedList<Document> documents)? getting,
-    TResult Function(PaginatedList<Document> documents)? loaded,
+    TResult Function(PaginatedList<Document> documents, int page)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -838,7 +856,6 @@ class _$DocumentsStateGettingImpl implements _DocumentsStateGetting {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_DocumentsStateInitial value) initial,
     required TResult Function(_DocumentsStateGetting value) getting,
     required TResult Function(_DocumentsStateLoaded value) loaded,
     required TResult Function(_DocumentsStateError value) error,
@@ -849,7 +866,6 @@ class _$DocumentsStateGettingImpl implements _DocumentsStateGetting {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DocumentsStateInitial value)? initial,
     TResult? Function(_DocumentsStateGetting value)? getting,
     TResult? Function(_DocumentsStateLoaded value)? loaded,
     TResult? Function(_DocumentsStateError value)? error,
@@ -860,7 +876,6 @@ class _$DocumentsStateGettingImpl implements _DocumentsStateGetting {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DocumentsStateInitial value)? initial,
     TResult Function(_DocumentsStateGetting value)? getting,
     TResult Function(_DocumentsStateLoaded value)? loaded,
     TResult Function(_DocumentsStateError value)? error,
@@ -893,7 +908,7 @@ abstract class _$$DocumentsStateLoadedImplCopyWith<$Res> {
           $Res Function(_$DocumentsStateLoadedImpl) then) =
       __$$DocumentsStateLoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PaginatedList<Document> documents});
+  $Res call({PaginatedList<Document> documents, int page});
 
   $PaginatedListCopyWith<Document, $Res> get documents;
 }
@@ -912,12 +927,17 @@ class __$$DocumentsStateLoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? documents = null,
+    Object? page = null,
   }) {
     return _then(_$DocumentsStateLoadedImpl(
       documents: null == documents
           ? _value.documents
           : documents // ignore: cast_nullable_to_non_nullable
               as PaginatedList<Document>,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 
@@ -935,14 +955,17 @@ class __$$DocumentsStateLoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DocumentsStateLoadedImpl implements _DocumentsStateLoaded {
-  const _$DocumentsStateLoadedImpl({required this.documents});
+  const _$DocumentsStateLoadedImpl(
+      {required this.documents, required this.page});
 
   @override
   final PaginatedList<Document> documents;
+  @override
+  final int page;
 
   @override
   String toString() {
-    return 'DocumentsState.loaded(documents: $documents)';
+    return 'DocumentsState.loaded(documents: $documents, page: $page)';
   }
 
   @override
@@ -951,11 +974,12 @@ class _$DocumentsStateLoadedImpl implements _DocumentsStateLoaded {
         (other.runtimeType == runtimeType &&
             other is _$DocumentsStateLoadedImpl &&
             (identical(other.documents, documents) ||
-                other.documents == documents));
+                other.documents == documents) &&
+            (identical(other.page, page) || other.page == page));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, documents);
+  int get hashCode => Object.hash(runtimeType, documents, page);
 
   /// Create a copy of DocumentsState
   /// with the given fields replaced by the non-null parameter values.
@@ -970,36 +994,34 @@ class _$DocumentsStateLoadedImpl implements _DocumentsStateLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function(PaginatedList<Document> documents) getting,
-    required TResult Function(PaginatedList<Document> documents) loaded,
+    required TResult Function(PaginatedList<Document> documents, int page)
+        loaded,
     required TResult Function() error,
   }) {
-    return loaded(documents);
+    return loaded(documents, page);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function(PaginatedList<Document> documents)? getting,
-    TResult? Function(PaginatedList<Document> documents)? loaded,
+    TResult? Function(PaginatedList<Document> documents, int page)? loaded,
     TResult? Function()? error,
   }) {
-    return loaded?.call(documents);
+    return loaded?.call(documents, page);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function(PaginatedList<Document> documents)? getting,
-    TResult Function(PaginatedList<Document> documents)? loaded,
+    TResult Function(PaginatedList<Document> documents, int page)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(documents);
+      return loaded(documents, page);
     }
     return orElse();
   }
@@ -1007,7 +1029,6 @@ class _$DocumentsStateLoadedImpl implements _DocumentsStateLoaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_DocumentsStateInitial value) initial,
     required TResult Function(_DocumentsStateGetting value) getting,
     required TResult Function(_DocumentsStateLoaded value) loaded,
     required TResult Function(_DocumentsStateError value) error,
@@ -1018,7 +1039,6 @@ class _$DocumentsStateLoadedImpl implements _DocumentsStateLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DocumentsStateInitial value)? initial,
     TResult? Function(_DocumentsStateGetting value)? getting,
     TResult? Function(_DocumentsStateLoaded value)? loaded,
     TResult? Function(_DocumentsStateError value)? error,
@@ -1029,7 +1049,6 @@ class _$DocumentsStateLoadedImpl implements _DocumentsStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DocumentsStateInitial value)? initial,
     TResult Function(_DocumentsStateGetting value)? getting,
     TResult Function(_DocumentsStateLoaded value)? loaded,
     TResult Function(_DocumentsStateError value)? error,
@@ -1044,10 +1063,11 @@ class _$DocumentsStateLoadedImpl implements _DocumentsStateLoaded {
 
 abstract class _DocumentsStateLoaded implements DocumentsState {
   const factory _DocumentsStateLoaded(
-          {required final PaginatedList<Document> documents}) =
-      _$DocumentsStateLoadedImpl;
+      {required final PaginatedList<Document> documents,
+      required final int page}) = _$DocumentsStateLoadedImpl;
 
   PaginatedList<Document> get documents;
+  int get page;
 
   /// Create a copy of DocumentsState
   /// with the given fields replaced by the non-null parameter values.
@@ -1098,9 +1118,9 @@ class _$DocumentsStateErrorImpl implements _DocumentsStateError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function(PaginatedList<Document> documents) getting,
-    required TResult Function(PaginatedList<Document> documents) loaded,
+    required TResult Function(PaginatedList<Document> documents, int page)
+        loaded,
     required TResult Function() error,
   }) {
     return error();
@@ -1109,9 +1129,8 @@ class _$DocumentsStateErrorImpl implements _DocumentsStateError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function(PaginatedList<Document> documents)? getting,
-    TResult? Function(PaginatedList<Document> documents)? loaded,
+    TResult? Function(PaginatedList<Document> documents, int page)? loaded,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -1120,9 +1139,8 @@ class _$DocumentsStateErrorImpl implements _DocumentsStateError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function(PaginatedList<Document> documents)? getting,
-    TResult Function(PaginatedList<Document> documents)? loaded,
+    TResult Function(PaginatedList<Document> documents, int page)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -1135,7 +1153,6 @@ class _$DocumentsStateErrorImpl implements _DocumentsStateError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_DocumentsStateInitial value) initial,
     required TResult Function(_DocumentsStateGetting value) getting,
     required TResult Function(_DocumentsStateLoaded value) loaded,
     required TResult Function(_DocumentsStateError value) error,
@@ -1146,7 +1163,6 @@ class _$DocumentsStateErrorImpl implements _DocumentsStateError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DocumentsStateInitial value)? initial,
     TResult? Function(_DocumentsStateGetting value)? getting,
     TResult? Function(_DocumentsStateLoaded value)? loaded,
     TResult? Function(_DocumentsStateError value)? error,
@@ -1157,7 +1173,6 @@ class _$DocumentsStateErrorImpl implements _DocumentsStateError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DocumentsStateInitial value)? initial,
     TResult Function(_DocumentsStateGetting value)? getting,
     TResult Function(_DocumentsStateLoaded value)? loaded,
     TResult Function(_DocumentsStateError value)? error,

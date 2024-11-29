@@ -194,4 +194,15 @@ class APIManager {
           contentType: 'multipart/form-data',
         ),
       );
+
+  Future<void> downloadFile(String url, String filePath) async {
+    try{
+      await dio.download(url, filePath);
+    }catch(e){
+      throw const APIException(
+        message: 'There was an error downloading your file',
+        statusCode: 500,
+      );
+    }
+  }
 }

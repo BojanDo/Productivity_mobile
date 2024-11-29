@@ -8,6 +8,11 @@ abstract class DocumentsRemoteDataSource {
   Future<Documents> getDocuments({
     required Map<String, dynamic> values,
   });
+
+  Future<void> downloadFile({
+    required String url,
+    required String filePath,
+  });
 }
 
 class DocumentsRemoteDataSourceImplementation
@@ -31,6 +36,15 @@ class DocumentsRemoteDataSourceImplementation
         response as DataMap,
         (Object? item) => Document.fromJson(item as DataMap),
       );
+    } on APIException {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> downloadFile({required String url, required String filePath}) async{
+    try {
+      await _apiManager.downloadFile(url, filePath);
     } on APIException {
       rethrow;
     }

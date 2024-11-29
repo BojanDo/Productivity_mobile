@@ -7,6 +7,7 @@ class DocumentsEvent with _$DocumentsEvent {
     String? dateUntil,
     int? projectId,
   }) = _DocumentsEventGet;
+
   const factory DocumentsEvent.getNext({
     required Documents currentDocuments,
     required int page,
@@ -14,4 +15,7 @@ class DocumentsEvent with _$DocumentsEvent {
     String? dateUntil,
     int? projectId,
   }) = _DocumentsEventGetNext;
+
+  const factory DocumentsEvent.downloadFile({required Document document}) =
+      _DocumentsEventDownloadFile;
 }

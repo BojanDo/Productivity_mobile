@@ -7,4 +7,9 @@ abstract class DocumentsRepository {
   ResultFuture<Documents> getDocuments({
     required Map<String, dynamic> values,
   });
+
+  ResultVoid downloadFile({
+    required String url,
+    required String filePath,
+  });
 }
