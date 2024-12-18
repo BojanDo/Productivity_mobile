@@ -55,8 +55,6 @@ class AccountFormBloc extends FormBloc<String, String> {
 
   @override
   FutureOr<void> onSubmitting() async {
-    print(profilePicture.state.extraData!.current == null &&
-        profilePicture.value?.path == null);
     final Either<Failure, UserResponse> result = await _updateUser(
       id,
       UpdateUserParams(

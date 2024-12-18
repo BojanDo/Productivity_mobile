@@ -22,9 +22,10 @@ import '../presentation/bloc/user_bloc.dart';
 Future<void> initUserBlocs(GetIt sl) async {
   // App Logic
   sl.registerFactoryParam<UserBloc, User, dynamic>(
-    (User user, _) => UserBloc(user, sl(), sl()),
+    (User user, _) => UserBloc(user, sl(), sl(), sl()),
   );
   sl.registerFactory(() => AccountFormBloc(updateUser: sl()));
+  sl.registerFactory(() => OrganizationFormBloc(createOrganization: sl()));
 }
 
 Future<void> initUser(GetIt sl) async {

@@ -18,39 +18,46 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadAccount,
     required TResult Function() getUser,
+    required TResult Function() loadAccount,
+    required TResult Function() loadOrganization,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadAccount,
     TResult? Function()? getUser,
+    TResult? Function()? loadAccount,
+    TResult? Function()? loadOrganization,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadAccount,
     TResult Function()? getUser,
+    TResult Function()? loadAccount,
+    TResult Function()? loadOrganization,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UserEventLoadAccount value) loadAccount,
     required TResult Function(_UserEventGetUser value) getUser,
+    required TResult Function(_UserEventLoadAccount value) loadAccount,
+    required TResult Function(_UserEventLoadOrganization value)
+        loadOrganization,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UserEventLoadAccount value)? loadAccount,
     TResult? Function(_UserEventGetUser value)? getUser,
+    TResult? Function(_UserEventLoadAccount value)? loadAccount,
+    TResult? Function(_UserEventLoadOrganization value)? loadOrganization,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UserEventLoadAccount value)? loadAccount,
     TResult Function(_UserEventGetUser value)? getUser,
+    TResult Function(_UserEventLoadAccount value)? loadAccount,
+    TResult Function(_UserEventLoadOrganization value)? loadOrganization,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -74,6 +81,118 @@ class _$UserEventCopyWithImpl<$Res, $Val extends UserEvent>
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$UserEventGetUserImplCopyWith<$Res> {
+  factory _$$UserEventGetUserImplCopyWith(_$UserEventGetUserImpl value,
+          $Res Function(_$UserEventGetUserImpl) then) =
+      __$$UserEventGetUserImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserEventGetUserImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserEventGetUserImpl>
+    implements _$$UserEventGetUserImplCopyWith<$Res> {
+  __$$UserEventGetUserImplCopyWithImpl(_$UserEventGetUserImpl _value,
+      $Res Function(_$UserEventGetUserImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$UserEventGetUserImpl implements _UserEventGetUser {
+  const _$UserEventGetUserImpl();
+
+  @override
+  String toString() {
+    return 'UserEvent.getUser()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UserEventGetUserImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getUser,
+    required TResult Function() loadAccount,
+    required TResult Function() loadOrganization,
+  }) {
+    return getUser();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getUser,
+    TResult? Function()? loadAccount,
+    TResult? Function()? loadOrganization,
+  }) {
+    return getUser?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getUser,
+    TResult Function()? loadAccount,
+    TResult Function()? loadOrganization,
+    required TResult orElse(),
+  }) {
+    if (getUser != null) {
+      return getUser();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserEventGetUser value) getUser,
+    required TResult Function(_UserEventLoadAccount value) loadAccount,
+    required TResult Function(_UserEventLoadOrganization value)
+        loadOrganization,
+  }) {
+    return getUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserEventGetUser value)? getUser,
+    TResult? Function(_UserEventLoadAccount value)? loadAccount,
+    TResult? Function(_UserEventLoadOrganization value)? loadOrganization,
+  }) {
+    return getUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserEventGetUser value)? getUser,
+    TResult Function(_UserEventLoadAccount value)? loadAccount,
+    TResult Function(_UserEventLoadOrganization value)? loadOrganization,
+    required TResult orElse(),
+  }) {
+    if (getUser != null) {
+      return getUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserEventGetUser implements UserEvent {
+  const factory _UserEventGetUser() = _$UserEventGetUserImpl;
 }
 
 /// @nodoc
@@ -118,8 +237,9 @@ class _$UserEventLoadAccountImpl implements _UserEventLoadAccount {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadAccount,
     required TResult Function() getUser,
+    required TResult Function() loadAccount,
+    required TResult Function() loadOrganization,
   }) {
     return loadAccount();
   }
@@ -127,8 +247,9 @@ class _$UserEventLoadAccountImpl implements _UserEventLoadAccount {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadAccount,
     TResult? Function()? getUser,
+    TResult? Function()? loadAccount,
+    TResult? Function()? loadOrganization,
   }) {
     return loadAccount?.call();
   }
@@ -136,8 +257,9 @@ class _$UserEventLoadAccountImpl implements _UserEventLoadAccount {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadAccount,
     TResult Function()? getUser,
+    TResult Function()? loadAccount,
+    TResult Function()? loadOrganization,
     required TResult orElse(),
   }) {
     if (loadAccount != null) {
@@ -149,8 +271,10 @@ class _$UserEventLoadAccountImpl implements _UserEventLoadAccount {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UserEventLoadAccount value) loadAccount,
     required TResult Function(_UserEventGetUser value) getUser,
+    required TResult Function(_UserEventLoadAccount value) loadAccount,
+    required TResult Function(_UserEventLoadOrganization value)
+        loadOrganization,
   }) {
     return loadAccount(this);
   }
@@ -158,8 +282,9 @@ class _$UserEventLoadAccountImpl implements _UserEventLoadAccount {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UserEventLoadAccount value)? loadAccount,
     TResult? Function(_UserEventGetUser value)? getUser,
+    TResult? Function(_UserEventLoadAccount value)? loadAccount,
+    TResult? Function(_UserEventLoadOrganization value)? loadOrganization,
   }) {
     return loadAccount?.call(this);
   }
@@ -167,8 +292,9 @@ class _$UserEventLoadAccountImpl implements _UserEventLoadAccount {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UserEventLoadAccount value)? loadAccount,
     TResult Function(_UserEventGetUser value)? getUser,
+    TResult Function(_UserEventLoadAccount value)? loadAccount,
+    TResult Function(_UserEventLoadOrganization value)? loadOrganization,
     required TResult orElse(),
   }) {
     if (loadAccount != null) {
@@ -183,18 +309,20 @@ abstract class _UserEventLoadAccount implements UserEvent {
 }
 
 /// @nodoc
-abstract class _$$UserEventGetUserImplCopyWith<$Res> {
-  factory _$$UserEventGetUserImplCopyWith(_$UserEventGetUserImpl value,
-          $Res Function(_$UserEventGetUserImpl) then) =
-      __$$UserEventGetUserImplCopyWithImpl<$Res>;
+abstract class _$$UserEventLoadOrganizationImplCopyWith<$Res> {
+  factory _$$UserEventLoadOrganizationImplCopyWith(
+          _$UserEventLoadOrganizationImpl value,
+          $Res Function(_$UserEventLoadOrganizationImpl) then) =
+      __$$UserEventLoadOrganizationImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$UserEventGetUserImplCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$UserEventGetUserImpl>
-    implements _$$UserEventGetUserImplCopyWith<$Res> {
-  __$$UserEventGetUserImplCopyWithImpl(_$UserEventGetUserImpl _value,
-      $Res Function(_$UserEventGetUserImpl) _then)
+class __$$UserEventLoadOrganizationImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserEventLoadOrganizationImpl>
+    implements _$$UserEventLoadOrganizationImplCopyWith<$Res> {
+  __$$UserEventLoadOrganizationImplCopyWithImpl(
+      _$UserEventLoadOrganizationImpl _value,
+      $Res Function(_$UserEventLoadOrganizationImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of UserEvent
@@ -203,18 +331,19 @@ class __$$UserEventGetUserImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UserEventGetUserImpl implements _UserEventGetUser {
-  const _$UserEventGetUserImpl();
+class _$UserEventLoadOrganizationImpl implements _UserEventLoadOrganization {
+  const _$UserEventLoadOrganizationImpl();
 
   @override
   String toString() {
-    return 'UserEvent.getUser()';
+    return 'UserEvent.loadOrganization()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UserEventGetUserImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$UserEventLoadOrganizationImpl);
   }
 
   @override
@@ -223,30 +352,33 @@ class _$UserEventGetUserImpl implements _UserEventGetUser {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadAccount,
     required TResult Function() getUser,
+    required TResult Function() loadAccount,
+    required TResult Function() loadOrganization,
   }) {
-    return getUser();
+    return loadOrganization();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadAccount,
     TResult? Function()? getUser,
+    TResult? Function()? loadAccount,
+    TResult? Function()? loadOrganization,
   }) {
-    return getUser?.call();
+    return loadOrganization?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadAccount,
     TResult Function()? getUser,
+    TResult Function()? loadAccount,
+    TResult Function()? loadOrganization,
     required TResult orElse(),
   }) {
-    if (getUser != null) {
-      return getUser();
+    if (loadOrganization != null) {
+      return loadOrganization();
     }
     return orElse();
   }
@@ -254,37 +386,41 @@ class _$UserEventGetUserImpl implements _UserEventGetUser {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UserEventLoadAccount value) loadAccount,
     required TResult Function(_UserEventGetUser value) getUser,
+    required TResult Function(_UserEventLoadAccount value) loadAccount,
+    required TResult Function(_UserEventLoadOrganization value)
+        loadOrganization,
   }) {
-    return getUser(this);
+    return loadOrganization(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UserEventLoadAccount value)? loadAccount,
     TResult? Function(_UserEventGetUser value)? getUser,
+    TResult? Function(_UserEventLoadAccount value)? loadAccount,
+    TResult? Function(_UserEventLoadOrganization value)? loadOrganization,
   }) {
-    return getUser?.call(this);
+    return loadOrganization?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UserEventLoadAccount value)? loadAccount,
     TResult Function(_UserEventGetUser value)? getUser,
+    TResult Function(_UserEventLoadAccount value)? loadAccount,
+    TResult Function(_UserEventLoadOrganization value)? loadOrganization,
     required TResult orElse(),
   }) {
-    if (getUser != null) {
-      return getUser(this);
+    if (loadOrganization != null) {
+      return loadOrganization(this);
     }
     return orElse();
   }
 }
 
-abstract class _UserEventGetUser implements UserEvent {
-  const factory _UserEventGetUser() = _$UserEventGetUserImpl;
+abstract class _UserEventLoadOrganization implements UserEvent {
+  const factory _UserEventLoadOrganization() = _$UserEventLoadOrganizationImpl;
 }
 
 /// @nodoc

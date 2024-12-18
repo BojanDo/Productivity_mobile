@@ -31,7 +31,7 @@ class User with _$User {
     required String email,
     @JsonKey(name: 'profile_picture') String? profilePicture,
     @JsonKey(name: 'job_title') required String jobTitle,
-    @JsonKey(name: 'organization_id') String? organizationId,
+    @JsonKey(name: 'organization_id') int? organizationId,
     @JsonKey(name: 'role_name') Role? roleName,
   }) = _User;
 

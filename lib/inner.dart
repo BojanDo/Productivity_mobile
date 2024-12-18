@@ -9,6 +9,7 @@ import 'features/Auth/presentation/views/auth.dart';
 import 'features/Documents/presentation/views/documents.dart';
 import 'features/Home/presentation/views/home.dart';
 import 'features/User/presentation/views/account.dart';
+import 'features/User/presentation/views/organization.dart';
 import 'features/User/presentation/views/user.dart';
 import 'widgets/drawer/drawer.dart';
 
@@ -64,7 +65,7 @@ class _InnerWrapperState extends State<InnerWrapper> {
                 break;
               case kOrganizationRoute:
                 builder =
-                    (BuildContext context) => const Test(title: 'Organization');
+                    (BuildContext context) => const Organization();
                 break;
               case kDocumentsRoute:
                 builder =

@@ -34,7 +34,7 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
         email: _faker.internet.email(),
         jobTitle:
             _faker.randomGenerator.element(<String>['Owner', 'Developer']),
-        organizationId: '1',
+        organizationId: 1,
         roleName: faker.randomGenerator.element(Role.values),
       ),
     );

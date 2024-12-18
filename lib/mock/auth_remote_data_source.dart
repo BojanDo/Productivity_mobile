@@ -15,7 +15,7 @@ class MockAuthRemoteDataSourceImplementation implements AuthRemoteDataSource {
       profilePicture: 'https://pbs.twimg.com/profile_images/1138626153424408576/GosXfwQ7_400x400.jpg',
       jobTitle:
       _faker.randomGenerator.element(<String>['Owner', 'Developer']),
-      organizationId: '1',
+      organizationId: 1,
       roleName: faker.randomGenerator.element(Role.values),
     );
   }

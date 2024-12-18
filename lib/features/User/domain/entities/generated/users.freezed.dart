@@ -29,7 +29,7 @@ mixin _$User {
   @JsonKey(name: 'job_title')
   String get jobTitle => throw _privateConstructorUsedError;
   @JsonKey(name: 'organization_id')
-  String? get organizationId => throw _privateConstructorUsedError;
+  int? get organizationId => throw _privateConstructorUsedError;
   @JsonKey(name: 'role_name')
   Role? get roleName => throw _privateConstructorUsedError;
 
@@ -54,7 +54,7 @@ abstract class $UserCopyWith<$Res> {
       String email,
       @JsonKey(name: 'profile_picture') String? profilePicture,
       @JsonKey(name: 'job_title') String jobTitle,
-      @JsonKey(name: 'organization_id') String? organizationId,
+      @JsonKey(name: 'organization_id') int? organizationId,
       @JsonKey(name: 'role_name') Role? roleName});
 }
 
@@ -110,7 +110,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       organizationId: freezed == organizationId
           ? _value.organizationId
           : organizationId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       roleName: freezed == roleName
           ? _value.roleName
           : roleName // ignore: cast_nullable_to_non_nullable
@@ -133,7 +133,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String email,
       @JsonKey(name: 'profile_picture') String? profilePicture,
       @JsonKey(name: 'job_title') String jobTitle,
-      @JsonKey(name: 'organization_id') String? organizationId,
+      @JsonKey(name: 'organization_id') int? organizationId,
       @JsonKey(name: 'role_name') Role? roleName});
 }
 
@@ -186,7 +186,7 @@ class __$$UserImplCopyWithImpl<$Res>
       organizationId: freezed == organizationId
           ? _value.organizationId
           : organizationId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       roleName: freezed == roleName
           ? _value.roleName
           : roleName // ignore: cast_nullable_to_non_nullable
@@ -227,7 +227,7 @@ class _$UserImpl implements _User {
   final String jobTitle;
   @override
   @JsonKey(name: 'organization_id')
-  final String? organizationId;
+  final int? organizationId;
   @override
   @JsonKey(name: 'role_name')
   final Role? roleName;
@@ -287,7 +287,7 @@ abstract class _User implements User {
       required final String email,
       @JsonKey(name: 'profile_picture') final String? profilePicture,
       @JsonKey(name: 'job_title') required final String jobTitle,
-      @JsonKey(name: 'organization_id') final String? organizationId,
+      @JsonKey(name: 'organization_id') final int? organizationId,
       @JsonKey(name: 'role_name') final Role? roleName}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
@@ -308,7 +308,7 @@ abstract class _User implements User {
   String get jobTitle;
   @override
   @JsonKey(name: 'organization_id')
-  String? get organizationId;
+  int? get organizationId;
   @override
   @JsonKey(name: 'role_name')
   Role? get roleName;

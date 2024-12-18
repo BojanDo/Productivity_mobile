@@ -13,7 +13,7 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       email: json['email'] as String,
       profilePicture: json['profile_picture'] as String?,
       jobTitle: json['job_title'] as String,
-      organizationId: json['organization_id'] as String?,
+      organizationId: (json['organization_id'] as num?)?.toInt(),
       roleName: $enumDecodeNullable(_$RoleEnumMap, json['role_name']),
     );
 
