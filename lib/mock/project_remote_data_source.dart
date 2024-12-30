@@ -13,6 +13,7 @@ class MockProjectRemoteDataSourceImplementation
         id: index,
         title: _faker.lorem.words(2).join(' '),
         description: faker.lorem.sentences(6).join(' '),
+        profilePicture: 'https://pbs.twimg.com/profile_images/1138626153424408576/GosXfwQ7_400x400.jpg',
       ),
     );
     projects = Projects(items: fakeProjects, total: fakeProjects.length);

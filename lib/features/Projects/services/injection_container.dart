@@ -9,9 +9,11 @@ import '../domain/usecases/create_project.dart';
 import '../domain/usecases/delete_project.dart';
 import '../domain/usecases/get_projects.dart';
 import '../domain/usecases/update_project.dart';
+import '../presentation/bloc/projects_bloc.dart';
 
 Future<void> initProjectsBlocs(GetIt sl) async {
   // App Logic
+  sl.registerFactory(() => ProjectsBloc(getProjects: sl()));
 }
 
 Future<void> initProjects(GetIt sl) async {

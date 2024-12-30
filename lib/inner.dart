@@ -8,6 +8,7 @@ import 'features/App/presentation/views/settings.dart';
 import 'features/Auth/presentation/views/auth.dart';
 import 'features/Documents/presentation/views/documents.dart';
 import 'features/Home/presentation/views/home.dart';
+import 'features/Projects/presentation/views/projects.dart';
 import 'features/User/presentation/views/account.dart';
 import 'features/User/presentation/views/organization.dart';
 import 'features/User/presentation/views/user.dart';
@@ -73,7 +74,7 @@ class _InnerWrapperState extends State<InnerWrapper> {
                 break;
               case kProjectsRoute:
                 builder =
-                    (BuildContext context) => const Test(title: 'Projects');
+                    (BuildContext context) => const ProjectsPage();
                 break;
               case kProjectRoute:
                 builder =
