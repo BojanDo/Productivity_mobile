@@ -8,8 +8,9 @@ import '../features/App/presentation/bloc/app_bloc.dart';
 import 'app_bar.dart';
 
 class GlobalForm<BlocT extends FormBloc<String,String>> extends StatelessWidget {
-  const GlobalForm({super.key, required this.fields, required this.formBloc,this.onSuccess});
+  const GlobalForm({super.key, required this.fields, required this.formBloc,this.onSuccess, required this.title});
 
+  final String title;
   final FormBloc<String, String> formBloc;
   final List<Widget> fields;
   final VoidCallback? onSuccess;
@@ -58,7 +59,7 @@ class GlobalForm<BlocT extends FormBloc<String,String>> extends StatelessWidget 
           builder: (BuildContext context, FormBlocState<String, String> state) =>
               Scaffold(
                 appBar: GlobalAppBar(
-                  title: 'Account',
+                  title: title,
                   save: () {
                     formBloc.submit();
                   },

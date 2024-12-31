@@ -26,6 +26,7 @@ class _AccountState extends State<Account> {
     return BlocProvider<AccountFormBloc>.value(
       value: accountFormBloc,
       child: GlobalForm<AccountFormBloc>(
+        title: 'Account',
         onSuccess: (){
           context.read<UserBloc>().add(const UserEvent.getUser());
         },

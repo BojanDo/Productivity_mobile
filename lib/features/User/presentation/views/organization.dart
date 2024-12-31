@@ -3,6 +3,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
 import '../../../../widgets/form.dart';
 import '../../../../widgets/image_picker.dart';
+import '../../domain/entities/users.dart';
 import '../bloc/user_bloc.dart';
 
 class Organization extends StatefulWidget {
@@ -26,7 +27,8 @@ class _OrganizationState extends State<Organization> {
     return BlocProvider<OrganizationFormBloc>.value(
       value: organizationFormBloc,
       child: GlobalForm<OrganizationFormBloc>(
-        onSuccess: (){
+        title: 'Organization',
+        onSuccess: () {
           context.read<UserBloc>().add(const UserEvent.getUser());
         },
         formBloc: organizationFormBloc,
@@ -42,6 +44,28 @@ class _OrganizationState extends State<Organization> {
             labelText: 'Profile picture',
           ),
         ),
-//TODO: add name and description fields (can make text field bigger with minLines and maxLines)
+        TextFieldBlocBuilder(
+          isEnabled: !organizationFormBloc.isViewMode(),
+          textFieldBloc: organizationFormBloc.name,
+          keyboardType: TextInputType.text,
+          autofillHints: const <String>[AutofillHints.organizationName],
+          decoration: const InputDecoration(
+            labelText: 'Organization name',
+            prefixIcon: Icon(Icons.business_outlined),
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+          ),
+        ),
+        TextFieldBlocBuilder(
+          isEnabled: !organizationFormBloc.isViewMode(),
+          minLines: 1,
+          maxLines: 10,
+          textFieldBloc: organizationFormBloc.description,
+          keyboardType: TextInputType.text,
+          decoration: const InputDecoration(
+            labelText: 'Description',
+            prefixIcon: Icon(Icons.notes_outlined),
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+          ),
+        ),
       ];
 }

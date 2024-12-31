@@ -71,6 +71,7 @@ class _DocumentsPageInnerState extends State<DocumentsPageInner> {
 
   Widget _documentsList(BuildContext context, Documents documents, int page) =>
       InfiniteList(
+        padding: EdgeInsets.zero,
         count: documents.items.length,
         total: documents.total,
         itemBuilder: (BuildContext context, int index) =>
@@ -85,14 +86,28 @@ class _DocumentsPageInnerState extends State<DocumentsPageInner> {
         },
       );
 
-  ListTile _listItem(Document document) => ListTile(
+  Widget _listItem(Document document) => Column(
+    children: [
+      ListTile(
+        leading: const Icon(Icons.description_outlined),
         visualDensity: const VisualDensity(vertical: -4),
         dense: true,
-        title: Text(document.title),
+        title: Text(
+          document.title,
+          style: const TextStyle(
+            fontSize: 14.0,
+          ),
+        ),
         onTap: () async {
           context
               .read<DocumentsBloc>()
               .add(DocumentsEvent.downloadFile(document: document));
         },
-      );
+      ),
+      const Divider(),
+    ],
+  );
+
+
+
 }

@@ -355,22 +355,22 @@ mixin _$TasksState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_TasksStateGetting value) getting,
-    required TResult Function(_TasksStateGetting value) loaded,
-    required TResult Function(_TasksStateGetting value) error,
+    required TResult Function(_TasksStateLoaded value) loaded,
+    required TResult Function(_TasksStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_TasksStateGetting value)? getting,
-    TResult? Function(_TasksStateGetting value)? loaded,
-    TResult? Function(_TasksStateGetting value)? error,
+    TResult? Function(_TasksStateLoaded value)? loaded,
+    TResult? Function(_TasksStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TasksStateGetting value)? getting,
-    TResult Function(_TasksStateGetting value)? loaded,
-    TResult Function(_TasksStateGetting value)? error,
+    TResult Function(_TasksStateLoaded value)? loaded,
+    TResult Function(_TasksStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -513,8 +513,8 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_TasksStateGetting value) getting,
-    required TResult Function(_TasksStateGetting value) loaded,
-    required TResult Function(_TasksStateGetting value) error,
+    required TResult Function(_TasksStateLoaded value) loaded,
+    required TResult Function(_TasksStateError value) error,
   }) {
     return getting(this);
   }
@@ -523,8 +523,8 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_TasksStateGetting value)? getting,
-    TResult? Function(_TasksStateGetting value)? loaded,
-    TResult? Function(_TasksStateGetting value)? error,
+    TResult? Function(_TasksStateLoaded value)? loaded,
+    TResult? Function(_TasksStateError value)? error,
   }) {
     return getting?.call(this);
   }
@@ -533,8 +533,8 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TasksStateGetting value)? getting,
-    TResult Function(_TasksStateGetting value)? loaded,
-    TResult Function(_TasksStateGetting value)? error,
+    TResult Function(_TasksStateLoaded value)? loaded,
+    TResult Function(_TasksStateError value)? error,
     required TResult orElse(),
   }) {
     if (getting != null) {
@@ -558,10 +558,10 @@ abstract class _TasksStateGetting implements TasksState {
 }
 
 /// @nodoc
-abstract class _$$TasksStateGettingImplCopyWith<$Res> {
-  factory _$$TasksStateGettingImplCopyWith(_$TasksStateGettingImpl value,
-          $Res Function(_$TasksStateGettingImpl) then) =
-      __$$TasksStateGettingImplCopyWithImpl<$Res>;
+abstract class _$$TasksStateLoadedImplCopyWith<$Res> {
+  factory _$$TasksStateLoadedImplCopyWith(_$TasksStateLoadedImpl value,
+          $Res Function(_$TasksStateLoadedImpl) then) =
+      __$$TasksStateLoadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({PaginatedList<TaskSlim> tasks});
 
@@ -569,11 +569,11 @@ abstract class _$$TasksStateGettingImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$TasksStateGettingImplCopyWithImpl<$Res>
-    extends _$TasksStateCopyWithImpl<$Res, _$TasksStateGettingImpl>
-    implements _$$TasksStateGettingImplCopyWith<$Res> {
-  __$$TasksStateGettingImplCopyWithImpl(_$TasksStateGettingImpl _value,
-      $Res Function(_$TasksStateGettingImpl) _then)
+class __$$TasksStateLoadedImplCopyWithImpl<$Res>
+    extends _$TasksStateCopyWithImpl<$Res, _$TasksStateLoadedImpl>
+    implements _$$TasksStateLoadedImplCopyWith<$Res> {
+  __$$TasksStateLoadedImplCopyWithImpl(_$TasksStateLoadedImpl _value,
+      $Res Function(_$TasksStateLoadedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of TasksState
@@ -583,7 +583,7 @@ class __$$TasksStateGettingImplCopyWithImpl<$Res>
   $Res call({
     Object? tasks = null,
   }) {
-    return _then(_$TasksStateGettingImpl(
+    return _then(_$TasksStateLoadedImpl(
       tasks: null == tasks
           ? _value.tasks
           : tasks // ignore: cast_nullable_to_non_nullable
@@ -604,8 +604,8 @@ class __$$TasksStateGettingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TasksStateGettingImpl implements _TasksStateGetting {
-  const _$TasksStateGettingImpl({required this.tasks});
+class _$TasksStateLoadedImpl implements _TasksStateLoaded {
+  const _$TasksStateLoadedImpl({required this.tasks});
 
   @override
   final PaginatedList<TaskSlim> tasks;
@@ -619,7 +619,7 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TasksStateGettingImpl &&
+            other is _$TasksStateLoadedImpl &&
             (identical(other.tasks, tasks) || other.tasks == tasks));
   }
 
@@ -631,8 +631,8 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$TasksStateGettingImplCopyWith<_$TasksStateGettingImpl> get copyWith =>
-      __$$TasksStateGettingImplCopyWithImpl<_$TasksStateGettingImpl>(
+  _$$TasksStateLoadedImplCopyWith<_$TasksStateLoadedImpl> get copyWith =>
+      __$$TasksStateLoadedImplCopyWithImpl<_$TasksStateLoadedImpl>(
           this, _$identity);
 
   @override
@@ -673,8 +673,8 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_TasksStateGetting value) getting,
-    required TResult Function(_TasksStateGetting value) loaded,
-    required TResult Function(_TasksStateGetting value) error,
+    required TResult Function(_TasksStateLoaded value) loaded,
+    required TResult Function(_TasksStateError value) error,
   }) {
     return loaded(this);
   }
@@ -683,8 +683,8 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_TasksStateGetting value)? getting,
-    TResult? Function(_TasksStateGetting value)? loaded,
-    TResult? Function(_TasksStateGetting value)? error,
+    TResult? Function(_TasksStateLoaded value)? loaded,
+    TResult? Function(_TasksStateError value)? error,
   }) {
     return loaded?.call(this);
   }
@@ -693,8 +693,8 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TasksStateGetting value)? getting,
-    TResult Function(_TasksStateGetting value)? loaded,
-    TResult Function(_TasksStateGetting value)? error,
+    TResult Function(_TasksStateLoaded value)? loaded,
+    TResult Function(_TasksStateError value)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -704,32 +704,32 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   }
 }
 
-abstract class _TasksStateGetting implements TasksState {
-  const factory _TasksStateGetting(
-      {required final PaginatedList<TaskSlim> tasks}) = _$TasksStateGettingImpl;
+abstract class _TasksStateLoaded implements TasksState {
+  const factory _TasksStateLoaded(
+      {required final PaginatedList<TaskSlim> tasks}) = _$TasksStateLoadedImpl;
 
   PaginatedList<TaskSlim> get tasks;
 
   /// Create a copy of TasksState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TasksStateGettingImplCopyWith<_$TasksStateGettingImpl> get copyWith =>
+  _$$TasksStateLoadedImplCopyWith<_$TasksStateLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$TasksStateGettingImplCopyWith<$Res> {
-  factory _$$TasksStateGettingImplCopyWith(_$TasksStateGettingImpl value,
-          $Res Function(_$TasksStateGettingImpl) then) =
-      __$$TasksStateGettingImplCopyWithImpl<$Res>;
+abstract class _$$TasksStateErrorImplCopyWith<$Res> {
+  factory _$$TasksStateErrorImplCopyWith(_$TasksStateErrorImpl value,
+          $Res Function(_$TasksStateErrorImpl) then) =
+      __$$TasksStateErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$TasksStateGettingImplCopyWithImpl<$Res>
-    extends _$TasksStateCopyWithImpl<$Res, _$TasksStateGettingImpl>
-    implements _$$TasksStateGettingImplCopyWith<$Res> {
-  __$$TasksStateGettingImplCopyWithImpl(_$TasksStateGettingImpl _value,
-      $Res Function(_$TasksStateGettingImpl) _then)
+class __$$TasksStateErrorImplCopyWithImpl<$Res>
+    extends _$TasksStateCopyWithImpl<$Res, _$TasksStateErrorImpl>
+    implements _$$TasksStateErrorImplCopyWith<$Res> {
+  __$$TasksStateErrorImplCopyWithImpl(
+      _$TasksStateErrorImpl _value, $Res Function(_$TasksStateErrorImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of TasksState
@@ -738,8 +738,8 @@ class __$$TasksStateGettingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TasksStateGettingImpl implements _TasksStateGetting {
-  const _$TasksStateGettingImpl();
+class _$TasksStateErrorImpl implements _TasksStateError {
+  const _$TasksStateErrorImpl();
 
   @override
   String toString() {
@@ -749,7 +749,7 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$TasksStateGettingImpl);
+        (other.runtimeType == runtimeType && other is _$TasksStateErrorImpl);
   }
 
   @override
@@ -793,8 +793,8 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_TasksStateGetting value) getting,
-    required TResult Function(_TasksStateGetting value) loaded,
-    required TResult Function(_TasksStateGetting value) error,
+    required TResult Function(_TasksStateLoaded value) loaded,
+    required TResult Function(_TasksStateError value) error,
   }) {
     return error(this);
   }
@@ -803,8 +803,8 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_TasksStateGetting value)? getting,
-    TResult? Function(_TasksStateGetting value)? loaded,
-    TResult? Function(_TasksStateGetting value)? error,
+    TResult? Function(_TasksStateLoaded value)? loaded,
+    TResult? Function(_TasksStateError value)? error,
   }) {
     return error?.call(this);
   }
@@ -813,8 +813,8 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TasksStateGetting value)? getting,
-    TResult Function(_TasksStateGetting value)? loaded,
-    TResult Function(_TasksStateGetting value)? error,
+    TResult Function(_TasksStateLoaded value)? loaded,
+    TResult Function(_TasksStateError value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -824,6 +824,6 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   }
 }
 
-abstract class _TasksStateGetting implements TasksState {
-  const factory _TasksStateGetting() = _$TasksStateGettingImpl;
+abstract class _TasksStateError implements TasksState {
+  const factory _TasksStateError() = _$TasksStateErrorImpl;
 }

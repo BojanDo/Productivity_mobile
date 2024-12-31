@@ -13,9 +13,11 @@ import '../domain/usecases/get_task.dart';
 import '../domain/usecases/get_tasks.dart';
 import '../domain/usecases/update_comment.dart';
 import '../domain/usecases/update_task.dart';
+import '../presentation/bloc/tasks/tasks_bloc.dart';
 
 Future<void> initTasksBlocs(GetIt sl) async {
   // App Logic
+  sl.registerFactory(() => TasksBloc(getTasks: sl()));
 }
 
 Future<void> initTasks(GetIt sl) async {

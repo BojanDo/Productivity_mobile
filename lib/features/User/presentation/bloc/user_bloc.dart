@@ -14,7 +14,9 @@ import '../../domain/entities/organizations.dart';
 import '../../domain/entities/user_response.dart';
 import '../../domain/entities/users.dart';
 import '../../domain/usecases/create_organization.dart';
+import '../../domain/usecases/get_organization.dart';
 import '../../domain/usecases/get_user.dart';
+import '../../domain/usecases/update_organization.dart';
 import '../../domain/usecases/update_user.dart';
 
 part 'forms/account_form_bloc.dart';
@@ -31,17 +33,24 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc(
     User user,
     GetUser getUser,
-      this.accountFormBloc,
-      this.organizationFormBloc,
+    GetOrganization getOrganization,
+    this.accountFormBloc,
+    this.organizationFormBloc,
   )   : _getUser = getUser,
+        _getOrganization = getOrganization,
         super(UserState(user: user)) {
     on<UserEvent>(
       (UserEvent event, Emitter<UserState> emit) => event.when(
         getUser: () async {
-          final Either<Failure, User> result = await _getUser(state.user.id);
+          final Either<Failure, User> result = await _getUser(
+            state.user.id,
+          );
           return result.fold(
             (Failure failure) => sl<AppBloc>().add(
-                const AppEvent.error(message: 'There was an unknown error')),
+              const AppEvent.error(
+                message: 'There was an unknown error',
+              ),
+            ),
             (User user) {
               emit(UserState(user: user));
               routePop(sl<AppBloc>().innerNavigator);
@@ -56,12 +65,28 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }
 
   Future<void> _handleLoadOrganization(Emitter<UserState> emit) async {
-    if(state.user.organizationId != null) {
-      //TODO: add logic for switching between edit and create.
+    if (state.user.organizationId == null) {
+      organizationFormBloc.resetFields();
+    } else {
+      if (state.user.roleName == Role.developer) {
+        organizationFormBloc.setViewMode();
+      } else {
+        sl<AppBloc>().add(const AppEvent.overlayAdd());
+        final Either<Failure, Organization> result = await _getOrganization(
+          state.user.id,
+        );
+        result.fold(
+          (Failure failure) => null,
+          (Organization organization) =>
+              organizationFormBloc.setFields(organization),
+        );
+        sl<AppBloc>().add(const AppEvent.overlayRemove());
+      }
     }
   }
 
   final AccountFormBloc accountFormBloc;
   final OrganizationFormBloc organizationFormBloc;
   final GetUser _getUser;
+  final GetOrganization _getOrganization;
 }
