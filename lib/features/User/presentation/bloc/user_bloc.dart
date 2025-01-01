@@ -68,20 +68,16 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     if (state.user.organizationId == null) {
       organizationFormBloc.resetFields();
     } else {
-      if (state.user.roleName == Role.developer) {
-        organizationFormBloc.setViewMode();
-      } else {
         sl<AppBloc>().add(const AppEvent.overlayAdd());
         final Either<Failure, Organization> result = await _getOrganization(
-          state.user.id,
+          state.user.organizationId!,
         );
         result.fold(
           (Failure failure) => null,
           (Organization organization) =>
-              organizationFormBloc.setFields(organization),
+              organizationFormBloc.setFields(organization, state.user.roleName!),
         );
         sl<AppBloc>().add(const AppEvent.overlayRemove());
-      }
     }
   }
 

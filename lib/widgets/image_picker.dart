@@ -167,8 +167,8 @@ class ImagePickerFieldBlocBuilder extends StatelessWidget {
                                     imageUrl: state.extraData!.current!,
                                   ),
                                 )
-                              : const Center(
-                                  child: Column(
+                              : Center(
+                                  child: isEnabled ? const Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Icon(Icons.add,
@@ -178,6 +178,9 @@ class ImagePickerFieldBlocBuilder extends StatelessWidget {
                                         style: TextStyle(color: Colors.grey),
                                       ),
                                     ],
+                                  ): const Text(
+                                    'No image added',
+                                    style: TextStyle(color: Colors.grey),
                                   ),
                                 ),
                     ),

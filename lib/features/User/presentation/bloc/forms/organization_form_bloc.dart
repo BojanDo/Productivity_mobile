@@ -6,7 +6,8 @@ class OrganizationFormBloc extends FormBloc<String, String> {
   OrganizationFormBloc({
     required CreateOrganization createOrganization,
     required UpdateOrganization updateOrganization,
-  })  : _createOrganization = createOrganization,
+  })
+      : _createOrganization = createOrganization,
         _updateOrganization = updateOrganization {
     addFieldBlocs(
       fieldBlocs: <FieldBloc<FieldBlocStateBase>>[
@@ -20,8 +21,15 @@ class OrganizationFormBloc extends FormBloc<String, String> {
   final CreateOrganization _createOrganization;
   final UpdateOrganization _updateOrganization;
 
-  int? id;
-  OrganizationFormMode mode = OrganizationFormMode.create;
+
+  final InputFieldBloc<int?, dynamic> id = InputFieldBloc<int?, dynamic>(
+    initialValue: null,
+  );
+
+  final InputFieldBloc<OrganizationFormMode, dynamic> mode =
+  InputFieldBloc<OrganizationFormMode, dynamic>(
+    initialValue: OrganizationFormMode.create,
+  );
 
   final TextFieldBloc<dynamic> name = TextFieldBloc<dynamic>(
     validators: <Validator<String>>[
@@ -34,27 +42,24 @@ class OrganizationFormBloc extends FormBloc<String, String> {
     ],
   );
   final InputFieldBloc<File?, ProfilePicture> profilePicture =
-      InputFieldBloc<File?, ProfilePicture>(
+  InputFieldBloc<File?, ProfilePicture>(
     initialValue: null,
   );
 
-  void setViewMode() {
-    mode = OrganizationFormMode.view;
-  }
 
-  bool isViewMode() => mode == OrganizationFormMode.view;
+  bool isViewMode() => mode.value == OrganizationFormMode.view;
 
   void resetFields() {
-    mode = OrganizationFormMode.create;
-    id = null;
+    mode.updateValue(OrganizationFormMode.create);
+    id.updateValue(null);
     name.updateInitialValue('');
     description.updateInitialValue('');
     profilePicture.updateExtraData(null);
   }
 
-  void setFields(Organization organization) {
-    mode = OrganizationFormMode.edit;
-    id = organization.id;
+  void setFields(Organization organization, Role userRole) {
+    mode.updateValue(userRole == Role.developer ? OrganizationFormMode.view : OrganizationFormMode.edit);
+    id.updateValue(organization.id);
     name.updateInitialValue(organization.name);
     description.updateInitialValue(organization.description);
     if (organization.profilePicture != null) {
@@ -71,7 +76,7 @@ class OrganizationFormBloc extends FormBloc<String, String> {
   FutureOr<void> onSubmitting() async {
     final Either<Failure, UserResponse> result;
 
-    if (mode == OrganizationFormMode.create) {
+    if (mode.value == OrganizationFormMode.create) {
       result = await _createOrganization(
         CreateOrganizationParams(
           name: name.value,
@@ -81,7 +86,7 @@ class OrganizationFormBloc extends FormBloc<String, String> {
       );
     } else {
       result = await _updateOrganization(
-        id!,
+        id.value!,
         UpdateOrganizationParams(
           name: name.value,
           description: description.value,
@@ -91,8 +96,8 @@ class OrganizationFormBloc extends FormBloc<String, String> {
     }
 
     result.fold(
-      (Failure failure) => emitFailure(failureResponse: failure.message),
-      (UserResponse response) {
+          (Failure failure) => emitFailure(failureResponse: failure.message),
+          (UserResponse response) {
         emitSuccess(successResponse: response.message);
       },
     );

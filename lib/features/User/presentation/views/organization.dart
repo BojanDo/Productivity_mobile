@@ -21,31 +21,39 @@ class _OrganizationState extends State<Organization> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final OrganizationFormBloc organizationFormBloc =
-        context.read<UserBloc>().organizationFormBloc;
-    return BlocProvider<OrganizationFormBloc>.value(
-      value: organizationFormBloc,
-      child: GlobalForm<OrganizationFormBloc>(
-        title: 'Organization',
-        onSuccess: () {
-          context.read<UserBloc>().add(const UserEvent.getUser());
+  Widget build(BuildContext context) => BlocBuilder<UserBloc, UserState>(
+        builder: (BuildContext context, UserState state) {
+          final OrganizationFormBloc organizationFormBloc =
+              context.read<UserBloc>().organizationFormBloc;
+          final bool isEnabled = state.user.roleName == null ||
+              state.user.roleName != Role.developer;
+          return BlocProvider<OrganizationFormBloc>.value(
+            value: organizationFormBloc,
+            child: GlobalForm<OrganizationFormBloc>(
+              isViewOnly: !isEnabled,
+              title: 'Organization',
+              onSuccess: isEnabled ? () {
+                context.read<UserBloc>().add(const UserEvent.getUser());
+              }: null,
+              formBloc: organizationFormBloc,
+              fields: _fields(isEnabled, organizationFormBloc),
+            ),
+          );
         },
-        formBloc: organizationFormBloc,
-        fields: _fields(organizationFormBloc),
-      ),
-    );
-  }
+      );
 
-  List<Widget> _fields(OrganizationFormBloc organizationFormBloc) => <Widget>[
+  List<Widget> _fields(
+          bool isEnabled, OrganizationFormBloc organizationFormBloc) =>
+      <Widget>[
         ImagePickerFieldBlocBuilder(
+          isEnabled: isEnabled,
           fileFieldBloc: organizationFormBloc.profilePicture,
           decoration: const InputDecoration(
             labelText: 'Profile picture',
           ),
         ),
         TextFieldBlocBuilder(
-          isEnabled: !organizationFormBloc.isViewMode(),
+          isEnabled: isEnabled,
           textFieldBloc: organizationFormBloc.name,
           keyboardType: TextInputType.text,
           autofillHints: const <String>[AutofillHints.organizationName],
@@ -56,7 +64,7 @@ class _OrganizationState extends State<Organization> {
           ),
         ),
         TextFieldBlocBuilder(
-          isEnabled: !organizationFormBloc.isViewMode(),
+          isEnabled: isEnabled,
           minLines: 1,
           maxLines: 10,
           textFieldBloc: organizationFormBloc.description,

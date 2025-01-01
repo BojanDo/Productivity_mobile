@@ -192,7 +192,7 @@ class _GlobalDrawerState extends State<GlobalDrawer>
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            user.jobTitle,
+                            user.roleName?.displayName ?? '',
                             style: const TextStyle(
                               fontSize: 14,
                               color: Colors.grey,
