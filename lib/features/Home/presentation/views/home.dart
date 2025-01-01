@@ -11,25 +11,30 @@ class HomePage extends StatelessWidget {
 
   final List<Map<String, String>> routes = <Map<String, String>>[
     <String, String>{
+      'title': 'Home',
+      'description': '',
+      'route': kHomeRoute,
+    },
+    <String, String>{
       'title': 'User info',
       'description': 'user details',
       'route': kUserRoute,
     },
-    <String, String>{
+    /*<String, String>{
       'title': 'Account',
       'description': 'edit user account info',
       'route': kAccountRoute,
-    },
-    <String, String>{
+    },*/
+    /*<String, String>{
       'title': 'Organization',
       'description': 'edit/create organization form',
       'route': kOrganizationRoute,
-    },
-    <String, String>{
+    },*/
+    /*<String, String>{
       'title': 'Documents',
       'description': 'displays documents list',
       'route': kDocumentsRoute,
-    },
+    },*/
     <String, String>{
       'title': 'Projects',
       'description': 'displays projects list',
