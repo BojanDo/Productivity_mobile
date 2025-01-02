@@ -40,7 +40,7 @@ class SettingsPage extends StatelessWidget {
                 state.user.roleName == Role.owner)
               Setting(
                 icon: Icons.group_add_outlined,
-                title: 'Invite user',
+                title: 'Invite users',
                 desc: 'Invite users to your organization',
                 route: kInviteUsersRoute,
               ),
@@ -57,10 +57,20 @@ class SettingsPage extends StatelessWidget {
                   children: settings
                       .map((Setting setting) => GestureDetector(
                             onTap: () {
-                              route(
-                                context.read<AppBloc>().innerNavigator,
-                                setting.route,
-                              );
+
+                              routeWithResult(
+                                  context.read<AppBloc>().innerNavigator,
+                                  setting.route, (Object? result) {
+                                print('result: $result');
+                                if (result is! bool) {
+                                  return;
+                                }
+                                if (result) {
+                                  context
+                                      .read<UserBloc>()
+                                      .add(const UserEvent.getUser());
+                                }
+                              });
                             },
                             child: Container(
                               margin: const EdgeInsets.only(

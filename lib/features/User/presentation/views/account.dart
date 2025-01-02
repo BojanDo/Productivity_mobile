@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
+import '../../../../core/functions/routes.dart';
+import '../../../../core/services/injection_container.dart';
 import '../../../../widgets/form.dart';
 import '../../../../widgets/image_picker.dart';
+import '../../../App/presentation/bloc/app_bloc.dart';
 import '../bloc/user_bloc.dart';
 
 class Account extends StatefulWidget {
@@ -27,8 +30,8 @@ class _AccountState extends State<Account> {
       value: accountFormBloc,
       child: GlobalForm<AccountFormBloc>(
         title: 'Account',
-        onSuccess: (){
-          context.read<UserBloc>().add(const UserEvent.getUser());
+        onSuccess: () {
+          routePopWithResult(sl<AppBloc>().innerNavigator, true);
         },
         formBloc: accountFormBloc,
         fields: _fields(accountFormBloc),

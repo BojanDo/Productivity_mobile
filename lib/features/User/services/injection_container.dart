@@ -22,11 +22,28 @@ import '../presentation/bloc/user_bloc.dart';
 Future<void> initUserBlocs(GetIt sl) async {
   // App Logic
   sl.registerFactoryParam<UserBloc, User, dynamic>(
-    (User user, _) => UserBloc(user, sl(), sl(), sl(), sl(), sl(), sl()),
+    (User user, _) => UserBloc(
+      user,
+      sl(),
+      sl(),
+      sl(),
+      sl(),
+      sl(),
+      sl(),
+      sl(),
+      sl(),
+      sl<InviteUsersFormBloc>(param1: user.organizationId),
+    ),
   );
   sl.registerFactory(() => AccountFormBloc(updateUser: sl()));
   sl.registerFactory(() =>
       OrganizationFormBloc(createOrganization: sl(), updateOrganization: sl()));
+  sl.registerFactoryParam<InviteUsersFormBloc, int?, dynamic>(
+    (int? organizationId, _) => InviteUsersFormBloc(
+      organizationId: organizationId,
+      sendInvitation: sl(),
+    ),
+  );
 }
 
 Future<void> initUser(GetIt sl) async {

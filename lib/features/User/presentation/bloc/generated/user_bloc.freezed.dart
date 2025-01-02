@@ -23,6 +23,8 @@ mixin _$UserEvent {
     required TResult Function() loadOrganization,
     required TResult Function() loadInvitations,
     required TResult Function() loadInvitedUsers,
+    required TResult Function(int id) acceptInvitations,
+    required TResult Function(int id) declineInvitations,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +34,8 @@ mixin _$UserEvent {
     TResult? Function()? loadOrganization,
     TResult? Function()? loadInvitations,
     TResult? Function()? loadInvitedUsers,
+    TResult? Function(int id)? acceptInvitations,
+    TResult? Function(int id)? declineInvitations,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +45,8 @@ mixin _$UserEvent {
     TResult Function()? loadOrganization,
     TResult Function()? loadInvitations,
     TResult Function()? loadInvitedUsers,
+    TResult Function(int id)? acceptInvitations,
+    TResult Function(int id)? declineInvitations,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -53,6 +59,10 @@ mixin _$UserEvent {
     required TResult Function(_UserEventLoadInvitations value) loadInvitations,
     required TResult Function(_UserEventLoadInvitedUsers value)
         loadInvitedUsers,
+    required TResult Function(_UserEventAcceptInvitation value)
+        acceptInvitations,
+    required TResult Function(_UserEventDeclineInvitation value)
+        declineInvitations,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +72,8 @@ mixin _$UserEvent {
     TResult? Function(_UserEventLoadOrganization value)? loadOrganization,
     TResult? Function(_UserEventLoadInvitations value)? loadInvitations,
     TResult? Function(_UserEventLoadInvitedUsers value)? loadInvitedUsers,
+    TResult? Function(_UserEventAcceptInvitation value)? acceptInvitations,
+    TResult? Function(_UserEventDeclineInvitation value)? declineInvitations,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,6 +83,8 @@ mixin _$UserEvent {
     TResult Function(_UserEventLoadOrganization value)? loadOrganization,
     TResult Function(_UserEventLoadInvitations value)? loadInvitations,
     TResult Function(_UserEventLoadInvitedUsers value)? loadInvitedUsers,
+    TResult Function(_UserEventAcceptInvitation value)? acceptInvitations,
+    TResult Function(_UserEventDeclineInvitation value)? declineInvitations,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -142,6 +156,8 @@ class _$UserEventGetUserImpl implements _UserEventGetUser {
     required TResult Function() loadOrganization,
     required TResult Function() loadInvitations,
     required TResult Function() loadInvitedUsers,
+    required TResult Function(int id) acceptInvitations,
+    required TResult Function(int id) declineInvitations,
   }) {
     return getUser();
   }
@@ -154,6 +170,8 @@ class _$UserEventGetUserImpl implements _UserEventGetUser {
     TResult? Function()? loadOrganization,
     TResult? Function()? loadInvitations,
     TResult? Function()? loadInvitedUsers,
+    TResult? Function(int id)? acceptInvitations,
+    TResult? Function(int id)? declineInvitations,
   }) {
     return getUser?.call();
   }
@@ -166,6 +184,8 @@ class _$UserEventGetUserImpl implements _UserEventGetUser {
     TResult Function()? loadOrganization,
     TResult Function()? loadInvitations,
     TResult Function()? loadInvitedUsers,
+    TResult Function(int id)? acceptInvitations,
+    TResult Function(int id)? declineInvitations,
     required TResult orElse(),
   }) {
     if (getUser != null) {
@@ -184,6 +204,10 @@ class _$UserEventGetUserImpl implements _UserEventGetUser {
     required TResult Function(_UserEventLoadInvitations value) loadInvitations,
     required TResult Function(_UserEventLoadInvitedUsers value)
         loadInvitedUsers,
+    required TResult Function(_UserEventAcceptInvitation value)
+        acceptInvitations,
+    required TResult Function(_UserEventDeclineInvitation value)
+        declineInvitations,
   }) {
     return getUser(this);
   }
@@ -196,6 +220,8 @@ class _$UserEventGetUserImpl implements _UserEventGetUser {
     TResult? Function(_UserEventLoadOrganization value)? loadOrganization,
     TResult? Function(_UserEventLoadInvitations value)? loadInvitations,
     TResult? Function(_UserEventLoadInvitedUsers value)? loadInvitedUsers,
+    TResult? Function(_UserEventAcceptInvitation value)? acceptInvitations,
+    TResult? Function(_UserEventDeclineInvitation value)? declineInvitations,
   }) {
     return getUser?.call(this);
   }
@@ -208,6 +234,8 @@ class _$UserEventGetUserImpl implements _UserEventGetUser {
     TResult Function(_UserEventLoadOrganization value)? loadOrganization,
     TResult Function(_UserEventLoadInvitations value)? loadInvitations,
     TResult Function(_UserEventLoadInvitedUsers value)? loadInvitedUsers,
+    TResult Function(_UserEventAcceptInvitation value)? acceptInvitations,
+    TResult Function(_UserEventDeclineInvitation value)? declineInvitations,
     required TResult orElse(),
   }) {
     if (getUser != null) {
@@ -268,6 +296,8 @@ class _$UserEventLoadAccountImpl implements _UserEventLoadAccount {
     required TResult Function() loadOrganization,
     required TResult Function() loadInvitations,
     required TResult Function() loadInvitedUsers,
+    required TResult Function(int id) acceptInvitations,
+    required TResult Function(int id) declineInvitations,
   }) {
     return loadAccount();
   }
@@ -280,6 +310,8 @@ class _$UserEventLoadAccountImpl implements _UserEventLoadAccount {
     TResult? Function()? loadOrganization,
     TResult? Function()? loadInvitations,
     TResult? Function()? loadInvitedUsers,
+    TResult? Function(int id)? acceptInvitations,
+    TResult? Function(int id)? declineInvitations,
   }) {
     return loadAccount?.call();
   }
@@ -292,6 +324,8 @@ class _$UserEventLoadAccountImpl implements _UserEventLoadAccount {
     TResult Function()? loadOrganization,
     TResult Function()? loadInvitations,
     TResult Function()? loadInvitedUsers,
+    TResult Function(int id)? acceptInvitations,
+    TResult Function(int id)? declineInvitations,
     required TResult orElse(),
   }) {
     if (loadAccount != null) {
@@ -310,6 +344,10 @@ class _$UserEventLoadAccountImpl implements _UserEventLoadAccount {
     required TResult Function(_UserEventLoadInvitations value) loadInvitations,
     required TResult Function(_UserEventLoadInvitedUsers value)
         loadInvitedUsers,
+    required TResult Function(_UserEventAcceptInvitation value)
+        acceptInvitations,
+    required TResult Function(_UserEventDeclineInvitation value)
+        declineInvitations,
   }) {
     return loadAccount(this);
   }
@@ -322,6 +360,8 @@ class _$UserEventLoadAccountImpl implements _UserEventLoadAccount {
     TResult? Function(_UserEventLoadOrganization value)? loadOrganization,
     TResult? Function(_UserEventLoadInvitations value)? loadInvitations,
     TResult? Function(_UserEventLoadInvitedUsers value)? loadInvitedUsers,
+    TResult? Function(_UserEventAcceptInvitation value)? acceptInvitations,
+    TResult? Function(_UserEventDeclineInvitation value)? declineInvitations,
   }) {
     return loadAccount?.call(this);
   }
@@ -334,6 +374,8 @@ class _$UserEventLoadAccountImpl implements _UserEventLoadAccount {
     TResult Function(_UserEventLoadOrganization value)? loadOrganization,
     TResult Function(_UserEventLoadInvitations value)? loadInvitations,
     TResult Function(_UserEventLoadInvitedUsers value)? loadInvitedUsers,
+    TResult Function(_UserEventAcceptInvitation value)? acceptInvitations,
+    TResult Function(_UserEventDeclineInvitation value)? declineInvitations,
     required TResult orElse(),
   }) {
     if (loadAccount != null) {
@@ -396,6 +438,8 @@ class _$UserEventLoadOrganizationImpl implements _UserEventLoadOrganization {
     required TResult Function() loadOrganization,
     required TResult Function() loadInvitations,
     required TResult Function() loadInvitedUsers,
+    required TResult Function(int id) acceptInvitations,
+    required TResult Function(int id) declineInvitations,
   }) {
     return loadOrganization();
   }
@@ -408,6 +452,8 @@ class _$UserEventLoadOrganizationImpl implements _UserEventLoadOrganization {
     TResult? Function()? loadOrganization,
     TResult? Function()? loadInvitations,
     TResult? Function()? loadInvitedUsers,
+    TResult? Function(int id)? acceptInvitations,
+    TResult? Function(int id)? declineInvitations,
   }) {
     return loadOrganization?.call();
   }
@@ -420,6 +466,8 @@ class _$UserEventLoadOrganizationImpl implements _UserEventLoadOrganization {
     TResult Function()? loadOrganization,
     TResult Function()? loadInvitations,
     TResult Function()? loadInvitedUsers,
+    TResult Function(int id)? acceptInvitations,
+    TResult Function(int id)? declineInvitations,
     required TResult orElse(),
   }) {
     if (loadOrganization != null) {
@@ -438,6 +486,10 @@ class _$UserEventLoadOrganizationImpl implements _UserEventLoadOrganization {
     required TResult Function(_UserEventLoadInvitations value) loadInvitations,
     required TResult Function(_UserEventLoadInvitedUsers value)
         loadInvitedUsers,
+    required TResult Function(_UserEventAcceptInvitation value)
+        acceptInvitations,
+    required TResult Function(_UserEventDeclineInvitation value)
+        declineInvitations,
   }) {
     return loadOrganization(this);
   }
@@ -450,6 +502,8 @@ class _$UserEventLoadOrganizationImpl implements _UserEventLoadOrganization {
     TResult? Function(_UserEventLoadOrganization value)? loadOrganization,
     TResult? Function(_UserEventLoadInvitations value)? loadInvitations,
     TResult? Function(_UserEventLoadInvitedUsers value)? loadInvitedUsers,
+    TResult? Function(_UserEventAcceptInvitation value)? acceptInvitations,
+    TResult? Function(_UserEventDeclineInvitation value)? declineInvitations,
   }) {
     return loadOrganization?.call(this);
   }
@@ -462,6 +516,8 @@ class _$UserEventLoadOrganizationImpl implements _UserEventLoadOrganization {
     TResult Function(_UserEventLoadOrganization value)? loadOrganization,
     TResult Function(_UserEventLoadInvitations value)? loadInvitations,
     TResult Function(_UserEventLoadInvitedUsers value)? loadInvitedUsers,
+    TResult Function(_UserEventAcceptInvitation value)? acceptInvitations,
+    TResult Function(_UserEventDeclineInvitation value)? declineInvitations,
     required TResult orElse(),
   }) {
     if (loadOrganization != null) {
@@ -524,6 +580,8 @@ class _$UserEventLoadInvitationsImpl implements _UserEventLoadInvitations {
     required TResult Function() loadOrganization,
     required TResult Function() loadInvitations,
     required TResult Function() loadInvitedUsers,
+    required TResult Function(int id) acceptInvitations,
+    required TResult Function(int id) declineInvitations,
   }) {
     return loadInvitations();
   }
@@ -536,6 +594,8 @@ class _$UserEventLoadInvitationsImpl implements _UserEventLoadInvitations {
     TResult? Function()? loadOrganization,
     TResult? Function()? loadInvitations,
     TResult? Function()? loadInvitedUsers,
+    TResult? Function(int id)? acceptInvitations,
+    TResult? Function(int id)? declineInvitations,
   }) {
     return loadInvitations?.call();
   }
@@ -548,6 +608,8 @@ class _$UserEventLoadInvitationsImpl implements _UserEventLoadInvitations {
     TResult Function()? loadOrganization,
     TResult Function()? loadInvitations,
     TResult Function()? loadInvitedUsers,
+    TResult Function(int id)? acceptInvitations,
+    TResult Function(int id)? declineInvitations,
     required TResult orElse(),
   }) {
     if (loadInvitations != null) {
@@ -566,6 +628,10 @@ class _$UserEventLoadInvitationsImpl implements _UserEventLoadInvitations {
     required TResult Function(_UserEventLoadInvitations value) loadInvitations,
     required TResult Function(_UserEventLoadInvitedUsers value)
         loadInvitedUsers,
+    required TResult Function(_UserEventAcceptInvitation value)
+        acceptInvitations,
+    required TResult Function(_UserEventDeclineInvitation value)
+        declineInvitations,
   }) {
     return loadInvitations(this);
   }
@@ -578,6 +644,8 @@ class _$UserEventLoadInvitationsImpl implements _UserEventLoadInvitations {
     TResult? Function(_UserEventLoadOrganization value)? loadOrganization,
     TResult? Function(_UserEventLoadInvitations value)? loadInvitations,
     TResult? Function(_UserEventLoadInvitedUsers value)? loadInvitedUsers,
+    TResult? Function(_UserEventAcceptInvitation value)? acceptInvitations,
+    TResult? Function(_UserEventDeclineInvitation value)? declineInvitations,
   }) {
     return loadInvitations?.call(this);
   }
@@ -590,6 +658,8 @@ class _$UserEventLoadInvitationsImpl implements _UserEventLoadInvitations {
     TResult Function(_UserEventLoadOrganization value)? loadOrganization,
     TResult Function(_UserEventLoadInvitations value)? loadInvitations,
     TResult Function(_UserEventLoadInvitedUsers value)? loadInvitedUsers,
+    TResult Function(_UserEventAcceptInvitation value)? acceptInvitations,
+    TResult Function(_UserEventDeclineInvitation value)? declineInvitations,
     required TResult orElse(),
   }) {
     if (loadInvitations != null) {
@@ -652,6 +722,8 @@ class _$UserEventLoadInvitedUsersImpl implements _UserEventLoadInvitedUsers {
     required TResult Function() loadOrganization,
     required TResult Function() loadInvitations,
     required TResult Function() loadInvitedUsers,
+    required TResult Function(int id) acceptInvitations,
+    required TResult Function(int id) declineInvitations,
   }) {
     return loadInvitedUsers();
   }
@@ -664,6 +736,8 @@ class _$UserEventLoadInvitedUsersImpl implements _UserEventLoadInvitedUsers {
     TResult? Function()? loadOrganization,
     TResult? Function()? loadInvitations,
     TResult? Function()? loadInvitedUsers,
+    TResult? Function(int id)? acceptInvitations,
+    TResult? Function(int id)? declineInvitations,
   }) {
     return loadInvitedUsers?.call();
   }
@@ -676,6 +750,8 @@ class _$UserEventLoadInvitedUsersImpl implements _UserEventLoadInvitedUsers {
     TResult Function()? loadOrganization,
     TResult Function()? loadInvitations,
     TResult Function()? loadInvitedUsers,
+    TResult Function(int id)? acceptInvitations,
+    TResult Function(int id)? declineInvitations,
     required TResult orElse(),
   }) {
     if (loadInvitedUsers != null) {
@@ -694,6 +770,10 @@ class _$UserEventLoadInvitedUsersImpl implements _UserEventLoadInvitedUsers {
     required TResult Function(_UserEventLoadInvitations value) loadInvitations,
     required TResult Function(_UserEventLoadInvitedUsers value)
         loadInvitedUsers,
+    required TResult Function(_UserEventAcceptInvitation value)
+        acceptInvitations,
+    required TResult Function(_UserEventDeclineInvitation value)
+        declineInvitations,
   }) {
     return loadInvitedUsers(this);
   }
@@ -706,6 +786,8 @@ class _$UserEventLoadInvitedUsersImpl implements _UserEventLoadInvitedUsers {
     TResult? Function(_UserEventLoadOrganization value)? loadOrganization,
     TResult? Function(_UserEventLoadInvitations value)? loadInvitations,
     TResult? Function(_UserEventLoadInvitedUsers value)? loadInvitedUsers,
+    TResult? Function(_UserEventAcceptInvitation value)? acceptInvitations,
+    TResult? Function(_UserEventDeclineInvitation value)? declineInvitations,
   }) {
     return loadInvitedUsers?.call(this);
   }
@@ -718,6 +800,8 @@ class _$UserEventLoadInvitedUsersImpl implements _UserEventLoadInvitedUsers {
     TResult Function(_UserEventLoadOrganization value)? loadOrganization,
     TResult Function(_UserEventLoadInvitations value)? loadInvitations,
     TResult Function(_UserEventLoadInvitedUsers value)? loadInvitedUsers,
+    TResult Function(_UserEventAcceptInvitation value)? acceptInvitations,
+    TResult Function(_UserEventDeclineInvitation value)? declineInvitations,
     required TResult orElse(),
   }) {
     if (loadInvitedUsers != null) {
@@ -732,36 +816,392 @@ abstract class _UserEventLoadInvitedUsers implements UserEvent {
 }
 
 /// @nodoc
+abstract class _$$UserEventAcceptInvitationImplCopyWith<$Res> {
+  factory _$$UserEventAcceptInvitationImplCopyWith(
+          _$UserEventAcceptInvitationImpl value,
+          $Res Function(_$UserEventAcceptInvitationImpl) then) =
+      __$$UserEventAcceptInvitationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$UserEventAcceptInvitationImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserEventAcceptInvitationImpl>
+    implements _$$UserEventAcceptInvitationImplCopyWith<$Res> {
+  __$$UserEventAcceptInvitationImplCopyWithImpl(
+      _$UserEventAcceptInvitationImpl _value,
+      $Res Function(_$UserEventAcceptInvitationImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$UserEventAcceptInvitationImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UserEventAcceptInvitationImpl implements _UserEventAcceptInvitation {
+  const _$UserEventAcceptInvitationImpl(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'UserEvent.acceptInvitations(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserEventAcceptInvitationImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserEventAcceptInvitationImplCopyWith<_$UserEventAcceptInvitationImpl>
+      get copyWith => __$$UserEventAcceptInvitationImplCopyWithImpl<
+          _$UserEventAcceptInvitationImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getUser,
+    required TResult Function() loadAccount,
+    required TResult Function() loadOrganization,
+    required TResult Function() loadInvitations,
+    required TResult Function() loadInvitedUsers,
+    required TResult Function(int id) acceptInvitations,
+    required TResult Function(int id) declineInvitations,
+  }) {
+    return acceptInvitations(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getUser,
+    TResult? Function()? loadAccount,
+    TResult? Function()? loadOrganization,
+    TResult? Function()? loadInvitations,
+    TResult? Function()? loadInvitedUsers,
+    TResult? Function(int id)? acceptInvitations,
+    TResult? Function(int id)? declineInvitations,
+  }) {
+    return acceptInvitations?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getUser,
+    TResult Function()? loadAccount,
+    TResult Function()? loadOrganization,
+    TResult Function()? loadInvitations,
+    TResult Function()? loadInvitedUsers,
+    TResult Function(int id)? acceptInvitations,
+    TResult Function(int id)? declineInvitations,
+    required TResult orElse(),
+  }) {
+    if (acceptInvitations != null) {
+      return acceptInvitations(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserEventGetUser value) getUser,
+    required TResult Function(_UserEventLoadAccount value) loadAccount,
+    required TResult Function(_UserEventLoadOrganization value)
+        loadOrganization,
+    required TResult Function(_UserEventLoadInvitations value) loadInvitations,
+    required TResult Function(_UserEventLoadInvitedUsers value)
+        loadInvitedUsers,
+    required TResult Function(_UserEventAcceptInvitation value)
+        acceptInvitations,
+    required TResult Function(_UserEventDeclineInvitation value)
+        declineInvitations,
+  }) {
+    return acceptInvitations(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserEventGetUser value)? getUser,
+    TResult? Function(_UserEventLoadAccount value)? loadAccount,
+    TResult? Function(_UserEventLoadOrganization value)? loadOrganization,
+    TResult? Function(_UserEventLoadInvitations value)? loadInvitations,
+    TResult? Function(_UserEventLoadInvitedUsers value)? loadInvitedUsers,
+    TResult? Function(_UserEventAcceptInvitation value)? acceptInvitations,
+    TResult? Function(_UserEventDeclineInvitation value)? declineInvitations,
+  }) {
+    return acceptInvitations?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserEventGetUser value)? getUser,
+    TResult Function(_UserEventLoadAccount value)? loadAccount,
+    TResult Function(_UserEventLoadOrganization value)? loadOrganization,
+    TResult Function(_UserEventLoadInvitations value)? loadInvitations,
+    TResult Function(_UserEventLoadInvitedUsers value)? loadInvitedUsers,
+    TResult Function(_UserEventAcceptInvitation value)? acceptInvitations,
+    TResult Function(_UserEventDeclineInvitation value)? declineInvitations,
+    required TResult orElse(),
+  }) {
+    if (acceptInvitations != null) {
+      return acceptInvitations(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserEventAcceptInvitation implements UserEvent {
+  const factory _UserEventAcceptInvitation(final int id) =
+      _$UserEventAcceptInvitationImpl;
+
+  int get id;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserEventAcceptInvitationImplCopyWith<_$UserEventAcceptInvitationImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UserEventDeclineInvitationImplCopyWith<$Res> {
+  factory _$$UserEventDeclineInvitationImplCopyWith(
+          _$UserEventDeclineInvitationImpl value,
+          $Res Function(_$UserEventDeclineInvitationImpl) then) =
+      __$$UserEventDeclineInvitationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$UserEventDeclineInvitationImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserEventDeclineInvitationImpl>
+    implements _$$UserEventDeclineInvitationImplCopyWith<$Res> {
+  __$$UserEventDeclineInvitationImplCopyWithImpl(
+      _$UserEventDeclineInvitationImpl _value,
+      $Res Function(_$UserEventDeclineInvitationImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$UserEventDeclineInvitationImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UserEventDeclineInvitationImpl implements _UserEventDeclineInvitation {
+  const _$UserEventDeclineInvitationImpl(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'UserEvent.declineInvitations(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserEventDeclineInvitationImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserEventDeclineInvitationImplCopyWith<_$UserEventDeclineInvitationImpl>
+      get copyWith => __$$UserEventDeclineInvitationImplCopyWithImpl<
+          _$UserEventDeclineInvitationImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getUser,
+    required TResult Function() loadAccount,
+    required TResult Function() loadOrganization,
+    required TResult Function() loadInvitations,
+    required TResult Function() loadInvitedUsers,
+    required TResult Function(int id) acceptInvitations,
+    required TResult Function(int id) declineInvitations,
+  }) {
+    return declineInvitations(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getUser,
+    TResult? Function()? loadAccount,
+    TResult? Function()? loadOrganization,
+    TResult? Function()? loadInvitations,
+    TResult? Function()? loadInvitedUsers,
+    TResult? Function(int id)? acceptInvitations,
+    TResult? Function(int id)? declineInvitations,
+  }) {
+    return declineInvitations?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getUser,
+    TResult Function()? loadAccount,
+    TResult Function()? loadOrganization,
+    TResult Function()? loadInvitations,
+    TResult Function()? loadInvitedUsers,
+    TResult Function(int id)? acceptInvitations,
+    TResult Function(int id)? declineInvitations,
+    required TResult orElse(),
+  }) {
+    if (declineInvitations != null) {
+      return declineInvitations(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserEventGetUser value) getUser,
+    required TResult Function(_UserEventLoadAccount value) loadAccount,
+    required TResult Function(_UserEventLoadOrganization value)
+        loadOrganization,
+    required TResult Function(_UserEventLoadInvitations value) loadInvitations,
+    required TResult Function(_UserEventLoadInvitedUsers value)
+        loadInvitedUsers,
+    required TResult Function(_UserEventAcceptInvitation value)
+        acceptInvitations,
+    required TResult Function(_UserEventDeclineInvitation value)
+        declineInvitations,
+  }) {
+    return declineInvitations(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserEventGetUser value)? getUser,
+    TResult? Function(_UserEventLoadAccount value)? loadAccount,
+    TResult? Function(_UserEventLoadOrganization value)? loadOrganization,
+    TResult? Function(_UserEventLoadInvitations value)? loadInvitations,
+    TResult? Function(_UserEventLoadInvitedUsers value)? loadInvitedUsers,
+    TResult? Function(_UserEventAcceptInvitation value)? acceptInvitations,
+    TResult? Function(_UserEventDeclineInvitation value)? declineInvitations,
+  }) {
+    return declineInvitations?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserEventGetUser value)? getUser,
+    TResult Function(_UserEventLoadAccount value)? loadAccount,
+    TResult Function(_UserEventLoadOrganization value)? loadOrganization,
+    TResult Function(_UserEventLoadInvitations value)? loadInvitations,
+    TResult Function(_UserEventLoadInvitedUsers value)? loadInvitedUsers,
+    TResult Function(_UserEventAcceptInvitation value)? acceptInvitations,
+    TResult Function(_UserEventDeclineInvitation value)? declineInvitations,
+    required TResult orElse(),
+  }) {
+    if (declineInvitations != null) {
+      return declineInvitations(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserEventDeclineInvitation implements UserEvent {
+  const factory _UserEventDeclineInvitation(final int id) =
+      _$UserEventDeclineInvitationImpl;
+
+  int get id;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserEventDeclineInvitationImplCopyWith<_$UserEventDeclineInvitationImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$UserState {
   User get user => throw _privateConstructorUsedError;
   PaginatedList<Organization> get invitaions =>
       throw _privateConstructorUsedError;
   PaginatedList<User> get invitedUsers => throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(User user, PaginatedList<Organization> invitaions,
+  TResult when<TResult extends Object?>({
+    required TResult Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)
-        $default, {
+        loaded,
     required TResult Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)
         getting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
+  TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)?
-        $default, {
+        loaded,
     TResult? Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)?
         getting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
+  TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)?
-        $default, {
+        loaded,
     TResult Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)?
         getting,
@@ -769,20 +1209,20 @@ mixin _$UserState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_UserState value) $default, {
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserStateLoaded value) loaded,
     required TResult Function(_UserStateGetting value) getting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_UserState value)? $default, {
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserStateLoaded value)? loaded,
     TResult? Function(_UserStateGetting value)? getting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_UserState value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserStateLoaded value)? loaded,
     TResult Function(_UserStateGetting value)? getting,
     required TResult orElse(),
   }) =>
@@ -878,11 +1318,11 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
 }
 
 /// @nodoc
-abstract class _$$UserStateImplCopyWith<$Res>
+abstract class _$$UserStateLoadedImplCopyWith<$Res>
     implements $UserStateCopyWith<$Res> {
-  factory _$$UserStateImplCopyWith(
-          _$UserStateImpl value, $Res Function(_$UserStateImpl) then) =
-      __$$UserStateImplCopyWithImpl<$Res>;
+  factory _$$UserStateLoadedImplCopyWith(_$UserStateLoadedImpl value,
+          $Res Function(_$UserStateLoadedImpl) then) =
+      __$$UserStateLoadedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -899,11 +1339,11 @@ abstract class _$$UserStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$UserStateImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$UserStateImpl>
-    implements _$$UserStateImplCopyWith<$Res> {
-  __$$UserStateImplCopyWithImpl(
-      _$UserStateImpl _value, $Res Function(_$UserStateImpl) _then)
+class __$$UserStateLoadedImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UserStateLoadedImpl>
+    implements _$$UserStateLoadedImplCopyWith<$Res> {
+  __$$UserStateLoadedImplCopyWithImpl(
+      _$UserStateLoadedImpl _value, $Res Function(_$UserStateLoadedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of UserState
@@ -915,7 +1355,7 @@ class __$$UserStateImplCopyWithImpl<$Res>
     Object? invitaions = null,
     Object? invitedUsers = null,
   }) {
-    return _then(_$UserStateImpl(
+    return _then(_$UserStateLoadedImpl(
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -934,8 +1374,8 @@ class __$$UserStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UserStateImpl implements _UserState {
-  const _$UserStateImpl(
+class _$UserStateLoadedImpl implements _UserStateLoaded {
+  const _$UserStateLoadedImpl(
       {required this.user,
       this.invitaions = const Organizations(items: <Organization>[], total: 0),
       this.invitedUsers = const Users(items: <User>[], total: 0)});
@@ -951,14 +1391,14 @@ class _$UserStateImpl implements _UserState {
 
   @override
   String toString() {
-    return 'UserState(user: $user, invitaions: $invitaions, invitedUsers: $invitedUsers)';
+    return 'UserState.loaded(user: $user, invitaions: $invitaions, invitedUsers: $invitedUsers)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserStateImpl &&
+            other is _$UserStateLoadedImpl &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.invitaions, invitaions) ||
                 other.invitaions == invitaions) &&
@@ -974,89 +1414,90 @@ class _$UserStateImpl implements _UserState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>
-      __$$UserStateImplCopyWithImpl<_$UserStateImpl>(this, _$identity);
+  _$$UserStateLoadedImplCopyWith<_$UserStateLoadedImpl> get copyWith =>
+      __$$UserStateLoadedImplCopyWithImpl<_$UserStateLoadedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(User user, PaginatedList<Organization> invitaions,
+  TResult when<TResult extends Object?>({
+    required TResult Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)
-        $default, {
+        loaded,
     required TResult Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)
         getting,
   }) {
-    return $default(user, invitaions, invitedUsers);
+    return loaded(user, invitaions, invitedUsers);
   }
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
+  TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)?
-        $default, {
+        loaded,
     TResult? Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)?
         getting,
   }) {
-    return $default?.call(user, invitaions, invitedUsers);
+    return loaded?.call(user, invitaions, invitedUsers);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
+  TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)?
-        $default, {
+        loaded,
     TResult Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)?
         getting,
     required TResult orElse(),
   }) {
-    if ($default != null) {
-      return $default(user, invitaions, invitedUsers);
+    if (loaded != null) {
+      return loaded(user, invitaions, invitedUsers);
     }
     return orElse();
   }
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_UserState value) $default, {
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserStateLoaded value) loaded,
     required TResult Function(_UserStateGetting value) getting,
   }) {
-    return $default(this);
+    return loaded(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_UserState value)? $default, {
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserStateLoaded value)? loaded,
     TResult? Function(_UserStateGetting value)? getting,
   }) {
-    return $default?.call(this);
+    return loaded?.call(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_UserState value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserStateLoaded value)? loaded,
     TResult Function(_UserStateGetting value)? getting,
     required TResult orElse(),
   }) {
-    if ($default != null) {
-      return $default(this);
+    if (loaded != null) {
+      return loaded(this);
     }
     return orElse();
   }
 }
 
-abstract class _UserState implements UserState {
-  const factory _UserState(
+abstract class _UserStateLoaded implements UserState {
+  const factory _UserStateLoaded(
       {required final User user,
       final PaginatedList<Organization> invitaions,
-      final PaginatedList<User> invitedUsers}) = _$UserStateImpl;
+      final PaginatedList<User> invitedUsers}) = _$UserStateLoadedImpl;
 
   @override
   User get user;
@@ -1069,7 +1510,7 @@ abstract class _UserState implements UserState {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>
+  _$$UserStateLoadedImplCopyWith<_$UserStateLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1174,10 +1615,10 @@ class _$UserStateGettingImpl implements _UserStateGetting {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(User user, PaginatedList<Organization> invitaions,
+  TResult when<TResult extends Object?>({
+    required TResult Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)
-        $default, {
+        loaded,
     required TResult Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)
         getting,
@@ -1187,10 +1628,10 @@ class _$UserStateGettingImpl implements _UserStateGetting {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
+  TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)?
-        $default, {
+        loaded,
     TResult? Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)?
         getting,
@@ -1200,10 +1641,10 @@ class _$UserStateGettingImpl implements _UserStateGetting {
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
+  TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)?
-        $default, {
+        loaded,
     TResult Function(User user, PaginatedList<Organization> invitaions,
             PaginatedList<User> invitedUsers)?
         getting,
@@ -1217,8 +1658,8 @@ class _$UserStateGettingImpl implements _UserStateGetting {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_UserState value) $default, {
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserStateLoaded value) loaded,
     required TResult Function(_UserStateGetting value) getting,
   }) {
     return getting(this);
@@ -1226,8 +1667,8 @@ class _$UserStateGettingImpl implements _UserStateGetting {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_UserState value)? $default, {
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserStateLoaded value)? loaded,
     TResult? Function(_UserStateGetting value)? getting,
   }) {
     return getting?.call(this);
@@ -1235,8 +1676,8 @@ class _$UserStateGettingImpl implements _UserStateGetting {
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_UserState value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserStateLoaded value)? loaded,
     TResult Function(_UserStateGetting value)? getting,
     required TResult orElse(),
   }) {

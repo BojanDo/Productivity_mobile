@@ -11,6 +11,8 @@ import 'features/Home/presentation/views/home.dart';
 import 'features/Projects/presentation/views/projects.dart';
 import 'features/Tasks/presentation/views/tasks.dart';
 import 'features/User/presentation/views/account.dart';
+import 'features/User/presentation/views/invitations.dart';
+import 'features/User/presentation/views/invite_users.dart';
 import 'features/User/presentation/views/organization.dart';
 import 'features/User/presentation/views/user.dart';
 import 'widgets/drawer/drawer.dart';
@@ -55,27 +57,28 @@ class _InnerWrapperState extends State<InnerWrapper> {
                 builder = (BuildContext context) => HomePage();
                 break;
               case kSettingsRoute:
-                builder =
-                    (BuildContext context) => SettingsPage();
+                builder = (BuildContext context) => SettingsPage();
                 break;
               case kUserRoute:
                 builder = (BuildContext context) => const UserInfo();
                 break;
               case kAccountRoute:
-                builder =
-                    (BuildContext context) => const Account();
+                builder = (BuildContext context) => const Account();
                 break;
               case kOrganizationRoute:
-                builder =
-                    (BuildContext context) => const Organization();
+                builder = (BuildContext context) => const Organization();
+                break;
+              case kInvitationsRoute:
+                builder = (BuildContext cotext) => const InvigationsPage();
+                break;
+              case kInviteUsersRoute:
+                builder = (BuildContext cotext) => const InviteUsersPage();
                 break;
               case kDocumentsRoute:
-                builder =
-                    (BuildContext context) => const DocumentsPage();
+                builder = (BuildContext context) => const DocumentsPage();
                 break;
               case kProjectsRoute:
-                builder =
-                    (BuildContext context) => const ProjectsPage();
+                builder = (BuildContext context) => const ProjectsPage();
                 break;
               case kProjectRoute:
                 builder =

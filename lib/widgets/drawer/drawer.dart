@@ -174,7 +174,7 @@ class _GlobalDrawerState extends State<GlobalDrawer>
                     SizedBox(
                       width: 40,
                       height: 40,
-                      child: ProfilePicture(user: user),
+                      child: ProfilePicture.user(user),
                     ),
                     const SizedBox(width: 16.0),
                     Expanded(

@@ -30,8 +30,7 @@ final ThemeData theme = ThemeData(
     fillColor: Colors.white,
     focusedBorder: OutlineInputBorder(
       borderRadius: kBorderRadius,
-      borderSide:
-          kBorderSide.copyWith(color: Colors.black),
+      borderSide: kBorderSide.copyWith(color: Colors.black),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: kBorderRadius,
@@ -39,8 +38,7 @@ final ThemeData theme = ThemeData(
     ),
     focusedErrorBorder: OutlineInputBorder(
       borderRadius: kBorderRadius,
-      borderSide:
-          kBorderSide.copyWith(color: Colors.red),
+      borderSide: kBorderSide.copyWith(color: Colors.red),
     ),
     errorBorder: OutlineInputBorder(
       borderRadius: kBorderRadius,
@@ -55,8 +53,19 @@ final ThemeData theme = ThemeData(
       ),
     ),
   ),
-    bottomSheetTheme: const BottomSheetThemeData(
-      backgroundColor: kSecondaryBackgroundColor,
-      modalBackgroundColor: kSecondaryBackgroundColor,
-    )
+  bottomSheetTheme: const BottomSheetThemeData(
+    backgroundColor: kSecondaryBackgroundColor,
+    modalBackgroundColor: kSecondaryBackgroundColor,
+  ),
+  popupMenuTheme: const PopupMenuThemeData(
+    color: Colors.white, // Set background color to white
+    textStyle: TextStyle(
+      fontSize: 16,
+      color: Colors.black, // Set text color globally
+    ),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+    ),
+    elevation: 8, // Shadow effect
+  ),
 );

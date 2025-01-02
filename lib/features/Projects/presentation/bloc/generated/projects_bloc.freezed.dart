@@ -172,25 +172,23 @@ abstract class _ProjectsEventGet implements ProjectsEvent {
 
 /// @nodoc
 mixin _$ProjectsState {
+  PaginatedList<Project> get projects => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(PaginatedList<Project> projects) getting,
     required TResult Function(PaginatedList<Project> projects) loaded,
-    required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(PaginatedList<Project> projects)? getting,
     TResult? Function(PaginatedList<Project> projects)? loaded,
-    TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(PaginatedList<Project> projects)? getting,
     TResult Function(PaginatedList<Project> projects)? loaded,
-    TResult Function()? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -198,23 +196,26 @@ mixin _$ProjectsState {
   TResult map<TResult extends Object?>({
     required TResult Function(_ProjectsStateGetting value) getting,
     required TResult Function(_ProjectsStateLoaded value) loaded,
-    required TResult Function(_ProjectsStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ProjectsStateGetting value)? getting,
     TResult? Function(_ProjectsStateLoaded value)? loaded,
-    TResult? Function(_ProjectsStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ProjectsStateGetting value)? getting,
     TResult Function(_ProjectsStateLoaded value)? loaded,
-    TResult Function(_ProjectsStateError value)? error,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  /// Create a copy of ProjectsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ProjectsStateCopyWith<ProjectsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -223,6 +224,10 @@ abstract class $ProjectsStateCopyWith<$Res> {
   factory $ProjectsStateCopyWith(
           ProjectsState value, $Res Function(ProjectsState) then) =
       _$ProjectsStateCopyWithImpl<$Res, ProjectsState>;
+  @useResult
+  $Res call({PaginatedList<Project> projects});
+
+  $PaginatedListCopyWith<Project, $Res> get projects;
 }
 
 /// @nodoc
@@ -237,16 +242,41 @@ class _$ProjectsStateCopyWithImpl<$Res, $Val extends ProjectsState>
 
   /// Create a copy of ProjectsState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? projects = null,
+  }) {
+    return _then(_value.copyWith(
+      projects: null == projects
+          ? _value.projects
+          : projects // ignore: cast_nullable_to_non_nullable
+              as PaginatedList<Project>,
+    ) as $Val);
+  }
+
+  /// Create a copy of ProjectsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PaginatedListCopyWith<Project, $Res> get projects {
+    return $PaginatedListCopyWith<Project, $Res>(_value.projects, (value) {
+      return _then(_value.copyWith(projects: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$ProjectsStateGettingImplCopyWith<$Res> {
+abstract class _$$ProjectsStateGettingImplCopyWith<$Res>
+    implements $ProjectsStateCopyWith<$Res> {
   factory _$$ProjectsStateGettingImplCopyWith(_$ProjectsStateGettingImpl value,
           $Res Function(_$ProjectsStateGettingImpl) then) =
       __$$ProjectsStateGettingImplCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({PaginatedList<Project> projects});
 
+  @override
   $PaginatedListCopyWith<Project, $Res> get projects;
 }
 
@@ -271,16 +301,6 @@ class __$$ProjectsStateGettingImplCopyWithImpl<$Res>
           : projects // ignore: cast_nullable_to_non_nullable
               as PaginatedList<Project>,
     ));
-  }
-
-  /// Create a copy of ProjectsState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PaginatedListCopyWith<Project, $Res> get projects {
-    return $PaginatedListCopyWith<Project, $Res>(_value.projects, (value) {
-      return _then(_value.copyWith(projects: value));
-    });
   }
 }
 
@@ -324,7 +344,6 @@ class _$ProjectsStateGettingImpl implements _ProjectsStateGetting {
   TResult when<TResult extends Object?>({
     required TResult Function(PaginatedList<Project> projects) getting,
     required TResult Function(PaginatedList<Project> projects) loaded,
-    required TResult Function() error,
   }) {
     return getting(projects);
   }
@@ -334,7 +353,6 @@ class _$ProjectsStateGettingImpl implements _ProjectsStateGetting {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(PaginatedList<Project> projects)? getting,
     TResult? Function(PaginatedList<Project> projects)? loaded,
-    TResult? Function()? error,
   }) {
     return getting?.call(projects);
   }
@@ -344,7 +362,6 @@ class _$ProjectsStateGettingImpl implements _ProjectsStateGetting {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(PaginatedList<Project> projects)? getting,
     TResult Function(PaginatedList<Project> projects)? loaded,
-    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (getting != null) {
@@ -358,7 +375,6 @@ class _$ProjectsStateGettingImpl implements _ProjectsStateGetting {
   TResult map<TResult extends Object?>({
     required TResult Function(_ProjectsStateGetting value) getting,
     required TResult Function(_ProjectsStateLoaded value) loaded,
-    required TResult Function(_ProjectsStateError value) error,
   }) {
     return getting(this);
   }
@@ -368,7 +384,6 @@ class _$ProjectsStateGettingImpl implements _ProjectsStateGetting {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ProjectsStateGetting value)? getting,
     TResult? Function(_ProjectsStateLoaded value)? loaded,
-    TResult? Function(_ProjectsStateError value)? error,
   }) {
     return getting?.call(this);
   }
@@ -378,7 +393,6 @@ class _$ProjectsStateGettingImpl implements _ProjectsStateGetting {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ProjectsStateGetting value)? getting,
     TResult Function(_ProjectsStateLoaded value)? loaded,
-    TResult Function(_ProjectsStateError value)? error,
     required TResult orElse(),
   }) {
     if (getting != null) {
@@ -393,23 +407,28 @@ abstract class _ProjectsStateGetting implements ProjectsState {
           {required final PaginatedList<Project> projects}) =
       _$ProjectsStateGettingImpl;
 
+  @override
   PaginatedList<Project> get projects;
 
   /// Create a copy of ProjectsState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectsStateGettingImplCopyWith<_$ProjectsStateGettingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProjectsStateLoadedImplCopyWith<$Res> {
+abstract class _$$ProjectsStateLoadedImplCopyWith<$Res>
+    implements $ProjectsStateCopyWith<$Res> {
   factory _$$ProjectsStateLoadedImplCopyWith(_$ProjectsStateLoadedImpl value,
           $Res Function(_$ProjectsStateLoadedImpl) then) =
       __$$ProjectsStateLoadedImplCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({PaginatedList<Project> projects});
 
+  @override
   $PaginatedListCopyWith<Project, $Res> get projects;
 }
 
@@ -434,16 +453,6 @@ class __$$ProjectsStateLoadedImplCopyWithImpl<$Res>
           : projects // ignore: cast_nullable_to_non_nullable
               as PaginatedList<Project>,
     ));
-  }
-
-  /// Create a copy of ProjectsState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PaginatedListCopyWith<Project, $Res> get projects {
-    return $PaginatedListCopyWith<Project, $Res>(_value.projects, (value) {
-      return _then(_value.copyWith(projects: value));
-    });
   }
 }
 
@@ -486,7 +495,6 @@ class _$ProjectsStateLoadedImpl implements _ProjectsStateLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function(PaginatedList<Project> projects) getting,
     required TResult Function(PaginatedList<Project> projects) loaded,
-    required TResult Function() error,
   }) {
     return loaded(projects);
   }
@@ -496,7 +504,6 @@ class _$ProjectsStateLoadedImpl implements _ProjectsStateLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(PaginatedList<Project> projects)? getting,
     TResult? Function(PaginatedList<Project> projects)? loaded,
-    TResult? Function()? error,
   }) {
     return loaded?.call(projects);
   }
@@ -506,7 +513,6 @@ class _$ProjectsStateLoadedImpl implements _ProjectsStateLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(PaginatedList<Project> projects)? getting,
     TResult Function(PaginatedList<Project> projects)? loaded,
-    TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -520,7 +526,6 @@ class _$ProjectsStateLoadedImpl implements _ProjectsStateLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_ProjectsStateGetting value) getting,
     required TResult Function(_ProjectsStateLoaded value) loaded,
-    required TResult Function(_ProjectsStateError value) error,
   }) {
     return loaded(this);
   }
@@ -530,7 +535,6 @@ class _$ProjectsStateLoadedImpl implements _ProjectsStateLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ProjectsStateGetting value)? getting,
     TResult? Function(_ProjectsStateLoaded value)? loaded,
-    TResult? Function(_ProjectsStateError value)? error,
   }) {
     return loaded?.call(this);
   }
@@ -540,7 +544,6 @@ class _$ProjectsStateLoadedImpl implements _ProjectsStateLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ProjectsStateGetting value)? getting,
     TResult Function(_ProjectsStateLoaded value)? loaded,
-    TResult Function(_ProjectsStateError value)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -555,122 +558,13 @@ abstract class _ProjectsStateLoaded implements ProjectsState {
           {required final PaginatedList<Project> projects}) =
       _$ProjectsStateLoadedImpl;
 
+  @override
   PaginatedList<Project> get projects;
 
   /// Create a copy of ProjectsState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectsStateLoadedImplCopyWith<_$ProjectsStateLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ProjectsStateErrorImplCopyWith<$Res> {
-  factory _$$ProjectsStateErrorImplCopyWith(_$ProjectsStateErrorImpl value,
-          $Res Function(_$ProjectsStateErrorImpl) then) =
-      __$$ProjectsStateErrorImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ProjectsStateErrorImplCopyWithImpl<$Res>
-    extends _$ProjectsStateCopyWithImpl<$Res, _$ProjectsStateErrorImpl>
-    implements _$$ProjectsStateErrorImplCopyWith<$Res> {
-  __$$ProjectsStateErrorImplCopyWithImpl(_$ProjectsStateErrorImpl _value,
-      $Res Function(_$ProjectsStateErrorImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProjectsState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ProjectsStateErrorImpl implements _ProjectsStateError {
-  const _$ProjectsStateErrorImpl();
-
-  @override
-  String toString() {
-    return 'ProjectsState.error()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ProjectsStateErrorImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(PaginatedList<Project> projects) getting,
-    required TResult Function(PaginatedList<Project> projects) loaded,
-    required TResult Function() error,
-  }) {
-    return error();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PaginatedList<Project> projects)? getting,
-    TResult? Function(PaginatedList<Project> projects)? loaded,
-    TResult? Function()? error,
-  }) {
-    return error?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PaginatedList<Project> projects)? getting,
-    TResult Function(PaginatedList<Project> projects)? loaded,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ProjectsStateGetting value) getting,
-    required TResult Function(_ProjectsStateLoaded value) loaded,
-    required TResult Function(_ProjectsStateError value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ProjectsStateGetting value)? getting,
-    TResult? Function(_ProjectsStateLoaded value)? loaded,
-    TResult? Function(_ProjectsStateError value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ProjectsStateGetting value)? getting,
-    TResult Function(_ProjectsStateLoaded value)? loaded,
-    TResult Function(_ProjectsStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ProjectsStateError implements ProjectsState {
-  const factory _ProjectsStateError() = _$ProjectsStateErrorImpl;
 }

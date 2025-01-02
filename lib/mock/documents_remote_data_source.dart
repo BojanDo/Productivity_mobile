@@ -8,18 +8,10 @@ import '../features/Documents/domain/entities/documents.dart';
 class MockDocumentsRemoteDataSourceImplementation
     implements DocumentsRemoteDataSource {
   MockDocumentsRemoteDataSourceImplementation(this._faker, this._apiManager) {
-    final List<String> animalWords = List.generate(40, (int index)=>_faker.animal.name());
-
-    String generateRandomText({int minWords = 3, int maxWords = 10}) {
-      final int randomWordCount = _faker.randomGenerator.integer(maxWords - minWords + 1) + minWords;
-      return List.generate(randomWordCount, (int index) => _faker.randomGenerator.element(animalWords)).join(' ');
-    }
-
-
     final List<Document> fakeDocuments = List<Document>.generate(
       40,
       (int index) => Document(
-        title: generateRandomText(),
+        title: _faker.company.name(),
         path: _faker.randomGenerator.element(<String>[
           'https://dijaski.net/get/geo_ref_sneg_01__predstavitev.pptx',
           'https://dijaski.net/get/slo_ese_hemingway_ernest_sneg_na_kilimandzaru_01.docx',

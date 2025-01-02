@@ -35,12 +35,14 @@ class UserRepoImplementation implements UserRepository {
   }
 
   @override
-  ResultFuture<UserResponse> updateUser(int id, {
+  ResultFuture<UserResponse> updateUser(
+    int id, {
     required Map<String, dynamic> values,
   }) async {
     try {
       final UserResponse result = await _remoteDataSource.updateUser(
-        id, values: values,
+        id,
+        values: values,
       );
       return Right<Failure, UserResponse>(result);
     } on APIException catch (e) {
@@ -73,12 +75,14 @@ class UserRepoImplementation implements UserRepository {
   }
 
   @override
-  ResultFuture<UserResponse> updateOrganization(int id, {
+  ResultFuture<UserResponse> updateOrganization(
+    int id, {
     required Map<String, dynamic> values,
   }) async {
     try {
       final UserResponse result = await _remoteDataSource.updateOrganization(
-        id, values: values,
+        id,
+        values: values,
       );
       return Right<Failure, UserResponse>(result);
     } on APIException catch (e) {
@@ -121,10 +125,14 @@ class UserRepoImplementation implements UserRepository {
   }
 
   @override
-  ResultFuture<UserResponse> sendInvitation(int organizationId) async {
+  ResultFuture<UserResponse> sendInvitation(
+    int organizationId, {
+    required Map<String, dynamic> values,
+  }) async {
     try {
       final UserResponse result = await _remoteDataSource.sendInvitation(
         organizationId,
+        values: values
       );
       return Right<Failure, UserResponse>(result);
     } on APIException catch (e) {

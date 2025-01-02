@@ -1,13 +1,10 @@
-import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/config/colors.dart';
 import '../../../../core/config/constants.dart';
 import '../../../../widgets/app_bar.dart';
-import '../../../../widgets/intinite_list.dart';
 import '../../../../widgets/profile_picture.dart';
-import '../../domain/entities/organizations.dart';
 import '../../domain/entities/users.dart';
 import '../bloc/user_bloc.dart';
 
@@ -17,16 +14,6 @@ class UserInfo extends StatefulWidget {
   @override
   State<UserInfo> createState() => _UserInfoState();
 }
-
-final Faker _faker = Faker();
-final List<Organization> organizations = List<Organization>.generate(
-  15,
-  (int index) => Organization(
-    id: index,
-    name: _faker.lorem.words(2).join(' '),
-    description: faker.lorem.sentences(6).join(' '),
-  ),
-);
 
 class _UserInfoState extends State<UserInfo> {
   @override
@@ -38,13 +25,7 @@ class _UserInfoState extends State<UserInfo> {
           body: Container(
             color: kSecondaryBackgroundColor,
             padding: const EdgeInsets.all(kDefaultPadding),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                _userInfo(state.user),
-                _userInvitations(),
-              ],
-            ),
+            child: _userInfo(state.user),
           ),
         ),
       );
@@ -60,7 +41,7 @@ class _UserInfoState extends State<UserInfo> {
                     SizedBox(
                       width: 60,
                       height: 60,
-                      child: ProfilePicture(user: user),
+                      child: ProfilePicture.user(user),
                     ),
                     const SizedBox(height: 16.0),
                     Text(
@@ -88,7 +69,7 @@ class _UserInfoState extends State<UserInfo> {
             ),
             children: <TableRow>[
               _buildTableRow('Job Title', user.jobTitle),
-              _buildTableRow('Company', 'Company name'),
+              _buildTableRow('Company', 'Company name'),//TODO: add organization display
               _buildTableRow('Role', user.roleName!.displayName),
             ],
           ),
@@ -109,52 +90,4 @@ class _UserInfoState extends State<UserInfo> {
           ),
         ],
       );
-
-  Widget _userInvitations() => Expanded(
-    child: InfiniteList(
-      count: organizations.length,
-      total: organizations.length,
-      itemBuilder: (BuildContext context, int index) =>
-          _invitationListItem(organizations[index]),
-      loadNextData: () {},
-      padding: EdgeInsets.zero,
-    ),
-  );
-
-  Widget _invitationListItem(Organization organization) => ListTile(
-    visualDensity: const VisualDensity(vertical: -4),
-    dense: true,
-    title: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: Text(
-            organization.name,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            IconButton(
-              icon: const Icon(Icons.check, color: Colors.green),
-              onPressed: () {
-                // Action for accept button
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.close, color: Colors.red),
-              onPressed: () {
-                // Action for decline button
-              },
-            ),
-          ],
-        ),
-      ],
-    ),
-    onTap: () async {
-      // Action on tap
-    },
-  );
-
 }

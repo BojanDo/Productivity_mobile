@@ -32,7 +32,10 @@ abstract class UserRepository {
 
   ResultFuture<UserResponse> acceptInvitation(int organizationId);
 
-  ResultFuture<UserResponse> sendInvitation(int organizationId);
+  ResultFuture<UserResponse> sendInvitation(
+    int organizationId, {
+    required Map<String, dynamic> values,
+  });
 
   ResultFuture<UserResponse> declineInvitation(int organizationId);
 }

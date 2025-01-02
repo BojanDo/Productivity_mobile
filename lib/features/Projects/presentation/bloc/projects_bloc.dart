@@ -4,6 +4,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/entities/paginated_list.dart';
 import '../../../../core/errors/failure.dart';
+import '../../../../core/functions/routes.dart';
+import '../../../../core/services/injection_container.dart';
+import '../../../App/presentation/bloc/app_bloc.dart';
 import '../../domain/entities/projects.dart';
 import '../../domain/usecases/get_projects.dart';
 
@@ -43,9 +46,13 @@ class ProjectsBloc extends Bloc<ProjectsEvent, ProjectsState> {
     Emitter<ProjectsState> emit,
   ) async {
     final Either<Failure, Projects> result = await _getProjects();
-
     result.fold(
-      (Failure failure) => emit(const ProjectsState.error()),
+      (Failure failure) {
+        sl<AppBloc>().add(
+          const AppEvent.error(message: 'Error getting the projects'),
+        );
+        routePop(sl<AppBloc>().innerNavigator);
+      },
       (Projects projects) => emit(ProjectsState.loaded(projects: projects)),
     );
   }

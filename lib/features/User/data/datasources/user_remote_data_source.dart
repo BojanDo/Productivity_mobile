@@ -33,7 +33,9 @@ abstract class UserRemoteDataSource {
 
   Future<UserResponse> acceptInvitation(int organizationId);
 
-  Future<UserResponse> sendInvitation(int organizationId);
+  Future<UserResponse> sendInvitation(int organizationId, {
+    required Map<String, dynamic> values,
+  });
 
   Future<UserResponse> declineInvitation(int organizationId);
 }
@@ -196,12 +198,14 @@ class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
   }
 
   @override
-  Future<UserResponse> sendInvitation(int organizationId) async {
+  Future<UserResponse> sendInvitation(int organizationId, {
+    required Map<String, dynamic> values,
+  }) async {
     try {
       final dynamic response = await _apiManager.put(
         kInvitationUrl,
         '$organizationId',
-        <String, dynamic>{},
+        values,
       );
 
       return UserResponse.fromJson(response as DataMap);

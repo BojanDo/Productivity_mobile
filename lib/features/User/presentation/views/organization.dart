@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
+import '../../../../core/functions/routes.dart';
+import '../../../../core/services/injection_container.dart';
 import '../../../../widgets/form.dart';
 import '../../../../widgets/image_picker.dart';
+import '../../../App/presentation/bloc/app_bloc.dart';
 import '../../domain/entities/users.dart';
 import '../bloc/user_bloc.dart';
 
@@ -32,9 +35,11 @@ class _OrganizationState extends State<Organization> {
             child: GlobalForm<OrganizationFormBloc>(
               isViewOnly: !isEnabled,
               title: 'Organization',
-              onSuccess: isEnabled ? () {
-                context.read<UserBloc>().add(const UserEvent.getUser());
-              }: null,
+              onSuccess: isEnabled
+                  ? () {
+                      routePopWithResult(sl<AppBloc>().innerNavigator, true);
+                    }
+                  : null,
               formBloc: organizationFormBloc,
               fields: _fields(isEnabled, organizationFormBloc),
             ),

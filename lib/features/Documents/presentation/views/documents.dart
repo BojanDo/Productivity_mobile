@@ -43,30 +43,37 @@ class _DocumentsPageInnerState extends State<DocumentsPageInner> {
               loaded: (Documents documents, int page) => documents.total,
             ),
           ),
-          body: Container(
-            color: kSecondaryBackgroundColor,
-            child: state.maybeWhen(
-              orElse: () => _skeletonizer(state),
-              error: () => const Center(
-                child: Text('Error'),
-              ),
+          body: state.maybeWhen(
+            orElse: () => _skeletonizer(state),
+            error: () => const Center(
+              child: Text(
+                  'There was an error loading your documents'), //TODO: do something nicer
             ),
           ),
         ),
       );
 
-  Widget _skeletonizer(DocumentsState state) => Skeletonizer(
-        enabled: state.maybeMap<bool>(
-          getting: (_) => true,
-          orElse: () => false,
-        ),
-        child: state.maybeWhen(
-          getting: (Documents documents) =>
-              _documentsList(context, documents, 1),
-          loaded: (Documents documents, int page) =>
-              _documentsList(context, documents, page),
-          orElse: () => const SizedBox.shrink(),
-        ),
+  Widget _skeletonizer(DocumentsState state) => Column(
+        children: <Widget>[
+          const SizedBox(
+            height: 40,
+          ),
+          Expanded(
+            child: Skeletonizer(
+              enabled: state.maybeMap<bool>(
+                getting: (_) => true,
+                orElse: () => false,
+              ),
+              child: state.maybeWhen(
+                getting: (Documents documents) =>
+                    _documentsList(context, documents, 1),
+                loaded: (Documents documents, int page) =>
+                    _documentsList(context, documents, page),
+                orElse: () => const SizedBox.shrink(),
+              ),
+            ),
+          ),
+        ],
       );
 
   Widget _documentsList(BuildContext context, Documents documents, int page) =>
@@ -86,28 +93,29 @@ class _DocumentsPageInnerState extends State<DocumentsPageInner> {
         },
       );
 
-  Widget _listItem(Document document) => Column(
-    children: [
-      ListTile(
-        leading: const Icon(Icons.description_outlined),
-        visualDensity: const VisualDensity(vertical: -4),
-        dense: true,
-        title: Text(
-          document.title,
-          style: const TextStyle(
-            fontSize: 14.0,
-          ),
+  Widget _listItem(Document document) => Container(
+        color: kSecondaryBackgroundColor,
+        child: Column(
+          children: <Widget>[
+            const Divider(height: 0),
+            ListTile(
+              leading: const Icon(Icons.description_outlined),
+              visualDensity: const VisualDensity(vertical: -4),
+              dense: true,
+              title: Text(
+                document.title,
+                style: const TextStyle(
+                  fontSize: 14.0,
+                ),
+              ),
+              onTap: () async {
+                context
+                    .read<DocumentsBloc>()
+                    .add(DocumentsEvent.downloadFile(document: document));
+              },
+            ),
+            const Divider(height: 0),
+          ],
         ),
-        onTap: () async {
-          context
-              .read<DocumentsBloc>()
-              .add(DocumentsEvent.downloadFile(document: document));
-        },
-      ),
-      const Divider(),
-    ],
-  );
-
-
-
+      );
 }

@@ -14,19 +14,19 @@ class MockUserRemoteDataSourceImplementation implements UserRemoteDataSource {
         firstname: _faker.person.firstName(),
         lastname: _faker.person.lastName(),
         email: _faker.internet.email(),
-        profilePicture: 'https://pbs.twimg.com/profile_images/1138626153424408576/GosXfwQ7_400x400.jpg',
+        //profilePicture: 'https://pbs.twimg.com/profile_images/1138626153424408576/GosXfwQ7_400x400.jpg',
         jobTitle:
             _faker.randomGenerator.element(<String>['Owner', 'Developer']),
-        organizationId: null,
-        roleName: faker.randomGenerator.element(Role.values),
+        organizationId: 1,
+        roleName: Role.owner,//faker.randomGenerator.element(Role.values),
       ),
     );
     users = Users(items: fakeUsers, total: fakeUsers.length);
     final List<Organization> fakeOrganizations = List<Organization>.generate(
-      2,
+      5,
       (int index) => Organization(
         id: index,
-        name: _faker.lorem.words(2).join(' '),
+        name: _faker.company.name(),
         description: faker.lorem.sentences(6).join(' '),
       ),
     );
@@ -122,7 +122,9 @@ class MockUserRemoteDataSourceImplementation implements UserRemoteDataSource {
   }
 
   @override
-  Future<UserResponse> sendInvitation(int organizationId) async {
+  Future<UserResponse> sendInvitation(int organizationId,{
+    required Map<String, dynamic> values,
+  }) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }

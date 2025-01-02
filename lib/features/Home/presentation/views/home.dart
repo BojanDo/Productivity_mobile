@@ -15,11 +15,11 @@ class HomePage extends StatelessWidget {
       'description': '',
       'route': kHomeRoute,
     },
-    <String, String>{
+   /* <String, String>{
       'title': 'User info',
       'description': 'user details',
       'route': kUserRoute,
-    },
+    },*/
     /*<String, String>{
       'title': 'Account',
       'description': 'edit user account info',

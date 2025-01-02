@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/config/colors.dart';
+import '../../../../core/config/constants.dart';
 import '../../../../core/services/injection_container.dart';
 import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/intinite_list.dart';
+import '../../../../widgets/profile_picture.dart';
 import '../../domain/entities/projects.dart';
 import '../bloc/projects_bloc.dart';
 
@@ -43,63 +45,95 @@ class _ProjectsPageInnerState extends State<ProjectsPageInner> {
               loaded: (Projects projects) => projects.total,
             ),
           ),
-          body: Container(
-            color: kSecondaryBackgroundColor,
-            child: state.maybeWhen(
-              orElse: () => _skeletonizer(state),
-              error: () => const Center(
-                child: Text('Error'),
-              ),
-            ),
+          body: Column(
+            children: <Widget>[
+              const SizedBox(height: 40,),
+              _skeletonizer(state),
+            ],
           ),
         ),
       );
 
-  Widget _skeletonizer(ProjectsState state) => Skeletonizer(
-        enabled: state.maybeMap<bool>(
-          getting: (_) => true,
-          orElse: () => false,
-        ),
-        child: state.maybeWhen(
-          getting: (Projects projects) => _projectsList(context, projects),
-          loaded: (Projects projects) => _projectsList(context, projects),
-          orElse: () => const SizedBox.shrink(),
-        ),
-      );
-
-  Widget _projectsList(BuildContext context, Projects projects) =>
-      ListView.builder(
-        itemCount: projects.items.length,
-        itemBuilder: (BuildContext context, int index) =>
-            _listItem(projects.items[index]),
-      );
-
-  ListTile _listItem(Project project) => ListTile(
-    visualDensity: const VisualDensity(vertical: -4),
-    dense: true,
-    leading: SizedBox(
-      width: 50, // Fixed width
-      height: 50, // Fixed height
-      child: project.profilePicture != null
-          ? Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4), // Optional: slightly rounded corners
-          image: DecorationImage(
-            image: NetworkImage(project.profilePicture!),
-            fit: BoxFit.cover, // Ensures the image covers the square box
-          ),
-          color: Colors.grey.shade200, // Placeholder color
-        ),
-      )
-          : Container(
-        color: Colors.grey.shade200,
-        child: const Icon(Icons.image_not_supported, size: 24),
+  Widget _skeletonizer(ProjectsState state) {
+    final bool isEnabled = state.maybeMap<bool>(
+      getting: (_) => true,
+      orElse: () => false,
+    );
+    return Expanded(
+      child: Skeletonizer(
+        enabled: isEnabled,
+        child: _projectsList(context, state.projects, isEnabled),
       ),
-    ),
-    title: Text(project.title),
-    onTap: () async {},
-  );
+    );
+  }
 
+  Widget _projectsList(
+    BuildContext context,
+    Projects projects,
+    bool isEnabled,
+  ) =>
+      ListView.builder(
+        itemCount: projects.total,
+        itemBuilder: (BuildContext context, int index) =>
+            _listItem(projects.items[index],isEnabled),
+      );
+
+
+
+  Widget _listItem(Project project, bool isEnabled) => Container(
+    color: kSecondaryBackgroundColor,
+    child: Column(
+      children: <Widget>[
+        const Divider(height: 0),
+        ListTile(
+          leading: SizedBox(
+            width: 40,
+            height: 40,
+            child: ProfilePicture.project(project, isEnabled: !isEnabled),
+          ),
+          title: Text(project.title),
+          trailing: PopupMenuButton<String>(
+            icon: const Icon(Icons.more_vert), // Three dots button
+            onSelected: (String value) {
+              if (value == 'edit') {
+                // Handle edit action
+              } else if (value == 'remove') {
+                // Handle remove action
+              }
+            },
+            offset: const Offset(0, 40),
+            itemBuilder: (BuildContext context) => [
+              const PopupMenuItem<String>(
+                value: 'edit',
+                height: 30, // Set fixed height for the item
+                child: Row(
+                  children: [
+                    Icon(Icons.edit, size: 20),
+                    SizedBox(width: 8),
+                    Text('Edit'),
+                  ],
+                ),
+              ),
+              const PopupMenuDivider(), // Divider line between options
+              const PopupMenuItem<String>(
+                value: 'remove',
+                height: 30, // Set fixed height for the item
+                child: Row(
+                  children: [
+                    Icon(Icons.delete, size: 20),
+                    SizedBox(width: 8),
+                    Text('Remove'),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          onTap: () {},
+        ),
+        const Divider(height: 0),
+      ],
+    ),
+  );
 
 
 }

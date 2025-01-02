@@ -8,4 +8,6 @@ class UserEvent with _$UserEvent {
 
   const factory UserEvent.loadInvitations() = _UserEventLoadInvitations;
   const factory UserEvent.loadInvitedUsers() = _UserEventLoadInvitedUsers;
+  const factory UserEvent.acceptInvitations(int id) = _UserEventAcceptInvitation;
+  const factory UserEvent.declineInvitations(int id) = _UserEventDeclineInvitation;
 }
