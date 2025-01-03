@@ -8,14 +8,14 @@ import '../../../../widgets/profile_picture.dart';
 import '../../domain/entities/users.dart';
 import '../bloc/user_bloc.dart';
 
-class UserInfo extends StatefulWidget {
-  const UserInfo({super.key});
+class UserInfoPage extends StatefulWidget {
+  const UserInfoPage({super.key});
 
   @override
-  State<UserInfo> createState() => _UserInfoState();
+  State<UserInfoPage> createState() => _UserInfoPageState();
 }
 
-class _UserInfoState extends State<UserInfo> {
+class _UserInfoPageState extends State<UserInfoPage> {
   @override
   Widget build(BuildContext context) => BlocBuilder<UserBloc, UserState>(
         builder: (BuildContext context, UserState state) => Scaffold(

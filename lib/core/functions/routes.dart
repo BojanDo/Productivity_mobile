@@ -1,16 +1,21 @@
 import 'package:flutter/cupertino.dart';
 
-void route(GlobalKey<NavigatorState> navigatorKey, String route) {
-  navigatorKey.currentState!.pushNamed(route);
+void route(
+  GlobalKey<NavigatorState> navigatorKey,
+  String route, [
+  Map<String, dynamic>? arguments,
+]) {
+  navigatorKey.currentState!.pushNamed(route, arguments: arguments);
 }
 
 void routeWithResult(
   GlobalKey<NavigatorState> navigatorKey,
   String route,
-  void Function(Object?) callback,
-) {
+  void Function(Object?) callback, [
+  Map<String, dynamic>? arguments,
+]) {
   navigatorKey.currentState!
-      .pushNamed(route)
+      .pushNamed(route, arguments: arguments)
       .then((Object? result) => callback(result));
 }
 

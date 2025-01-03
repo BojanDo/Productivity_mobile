@@ -8,14 +8,14 @@ import '../../../../widgets/image_picker.dart';
 import '../../../App/presentation/bloc/app_bloc.dart';
 import '../bloc/user_bloc.dart';
 
-class Account extends StatefulWidget {
-  const Account({super.key});
+class AccountPage extends StatefulWidget {
+  const AccountPage({super.key});
 
   @override
-  State<Account> createState() => _AccountState();
+  State<AccountPage> createState() => _AccountPageState();
 }
 
-class _AccountState extends State<Account> {
+class _AccountPageState extends State<AccountPage> {
   @override
   void initState() {
     context.read<UserBloc>().add(const UserEvent.loadAccount());

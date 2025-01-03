@@ -1,17 +1,32 @@
 part of '../projects_bloc.dart';
-/*
+
 enum ProjectFormMode { create, edit, view }
 
 class ProjectFormBloc extends FormBloc<String, String> {
   ProjectFormBloc({
+    required this.mode,
     this.project,
     required CreateProject createProject,
     required UpdateProject updateProject,
   })  : _createProject = createProject,
         _updateProject = updateProject {
+    if(project != null){
+      title.updateInitialValue(project!.title);
+      description.updateInitialValue(project!.description);
+      if (project!.profilePicture != null) {
+        profilePicture.updateExtraData(
+          ProfilePicture(
+            initial: project!.profilePicture!,
+            current: project!.profilePicture!,
+          ),
+        );
+      }
+    }
+
+
     addFieldBlocs(
       fieldBlocs: <FieldBloc<FieldBlocStateBase>>[
-        name,
+        title,
         profilePicture,
         description,
       ],
@@ -22,13 +37,10 @@ class ProjectFormBloc extends FormBloc<String, String> {
   final UpdateProject _updateProject;
 
   final Project? project;
+  final ProjectFormMode mode;
 
-  final InputFieldBloc<ProjectFormMode, dynamic> mode =
-      InputFieldBloc<ProjectFormMode, dynamic>(
-    initialValue: ProjectFormMode.create,
-  );
 
-  final TextFieldBloc<dynamic> name = TextFieldBloc<dynamic>(
+  final TextFieldBloc<dynamic> title = TextFieldBloc<dynamic>(
     validators: <Validator<String>>[
       FieldBlocValidators.required,
     ],
@@ -43,50 +55,24 @@ class ProjectFormBloc extends FormBloc<String, String> {
     initialValue: null,
   );
 
-  bool isViewMode() => mode.value == ProjectFormMode.view;
-
-  void resetFields() {
-    mode.updateValue(ProjectFormMode.create);
-    id.updateValue(null);
-    name.updateInitialValue('');
-    description.updateInitialValue('');
-    profilePicture.updateExtraData(null);
-  }
-
-  void setFields(Project organization, Role userRole) {
-    mode.updateValue(userRole == Role.developer
-        ? ProjectFormMode.view
-        : ProjectFormMode.edit);
-    id.updateValue(organization.id);
-    name.updateInitialValue(organization.name);
-    description.updateInitialValue(organization.description);
-    if (organization.profilePicture != null) {
-      profilePicture.updateExtraData(
-        ProfilePicture(
-          initial: organization.profilePicture!,
-          current: organization.profilePicture!,
-        ),
-      );
-    }
-  }
 
   @override
   FutureOr<void> onSubmitting() async {
-    final Either<Failure, UserResponse> result;
+    final Either<Failure, ProjectResponse> result;
 
-    if (mode.value == ProjectFormMode.create) {
+    if (mode == ProjectFormMode.create) {
       result = await _createProject(
         CreateProjectParams(
-          name: name.value,
+          title: title.value,
           description: description.value,
           profilePicture: profilePicture.value?.path,
         ),
       );
     } else {
       result = await _updateProject(
-        id.value!,
+        project!.id,
         UpdateProjectParams(
-          name: name.value,
+          title: title.value,
           description: description.value,
           profilePicture: profilePicture.value?.path,
         ),
@@ -95,10 +81,9 @@ class ProjectFormBloc extends FormBloc<String, String> {
 
     result.fold(
       (Failure failure) => emitFailure(failureResponse: failure.message),
-      (UserResponse response) {
+      (ProjectResponse response) {
         emitSuccess(successResponse: response.message);
       },
     );
   }
 }
-*/

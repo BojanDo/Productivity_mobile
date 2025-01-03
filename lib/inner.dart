@@ -8,6 +8,9 @@ import 'features/App/presentation/views/settings.dart';
 import 'features/Auth/presentation/views/auth.dart';
 import 'features/Documents/presentation/views/documents.dart';
 import 'features/Home/presentation/views/home.dart';
+import 'features/Projects/domain/entities/projects.dart';
+import 'features/Projects/presentation/bloc/projects_bloc.dart';
+import 'features/Projects/presentation/views/project.dart';
 import 'features/Projects/presentation/views/projects.dart';
 import 'features/Tasks/presentation/views/tasks.dart';
 import 'features/User/presentation/views/account.dart';
@@ -60,13 +63,13 @@ class _InnerWrapperState extends State<InnerWrapper> {
                 builder = (BuildContext context) => SettingsPage();
                 break;
               case kUserRoute:
-                builder = (BuildContext context) => const UserInfo();
+                builder = (BuildContext context) => const UserInfoPage();
                 break;
               case kAccountRoute:
-                builder = (BuildContext context) => const Account();
+                builder = (BuildContext context) => const AccountPage();
                 break;
               case kOrganizationRoute:
-                builder = (BuildContext context) => const Organization();
+                builder = (BuildContext context) => const OrganizationPage();
                 break;
               case kInvitationsRoute:
                 builder = (BuildContext cotext) => const InvigationsPage();
@@ -81,8 +84,12 @@ class _InnerWrapperState extends State<InnerWrapper> {
                 builder = (BuildContext context) => const ProjectsPage();
                 break;
               case kProjectRoute:
-                builder =
-                    (BuildContext context) => const Test(title: 'Project');
+                final Map<String, dynamic>? args =
+                    settings.arguments as Map<String, dynamic>?;
+                builder = (BuildContext context) => ProjectPage(
+                      mode: args?['mode'] as ProjectFormMode,
+                      project: args?['project'] as Project?,
+                    );
                 break;
               case kTasksRoute:
                 builder = (BuildContext context) => const TasksPage();

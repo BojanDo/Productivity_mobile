@@ -4,6 +4,7 @@ import '../../../core/config/constants.dart';
 import '../../../mock/project_remote_data_source.dart';
 import '../data/datasources/project_remote_data_source.dart';
 import '../data/repositories/project_repo_implementation.dart';
+import '../domain/entities/projects.dart';
 import '../domain/repositories/project_repo.dart';
 import '../domain/usecases/create_project.dart';
 import '../domain/usecases/delete_project.dart';
@@ -17,6 +18,15 @@ Future<void> initProjectsBlocs(GetIt sl) async {
     () => ProjectsBloc(
       getProjects: sl(),
       deleteProject: sl(),
+    ),
+  );
+
+  sl.registerFactoryParam<ProjectFormBloc, ProjectFormMode, Project?>(
+    (ProjectFormMode mode, Project? project) => ProjectFormBloc(
+      mode: mode,
+      project: project,
+      createProject: sl(),
+      updateProject: sl(),
     ),
   );
 }

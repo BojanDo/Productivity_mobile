@@ -4,10 +4,13 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/config/colors.dart';
 import '../../../../core/config/constants.dart';
+import '../../../../core/config/routes.dart';
+import '../../../../core/functions/routes.dart';
 import '../../../../core/services/injection_container.dart';
 import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/intinite_list.dart';
 import '../../../../widgets/profile_picture.dart';
+import '../../../App/presentation/bloc/app_bloc.dart';
 import '../../../User/domain/entities/users.dart';
 import '../../../User/domain/entities/users.dart';
 import '../../../User/presentation/bloc/user_bloc.dart';
@@ -48,7 +51,15 @@ class _ProjectsPageInnerState extends State<ProjectsPageInner> {
               count: state.whenOrNull(
                 loaded: (Projects projects) => projects.total,
               ),
-              create: userState.user.roleName != Role.owner ? null : () {},
+              create: userState.user.roleName != Role.owner
+                  ? null
+                  : () {
+                      route(
+                        context.read<AppBloc>().innerNavigator,
+                        kProjectRoute,
+                        <String, dynamic>{'mode': ProjectFormMode.create},
+                      );
+                    },
             ),
             body: Column(
               children: <Widget>[
@@ -104,9 +115,23 @@ class _ProjectsPageInnerState extends State<ProjectsPageInner> {
                   icon: const Icon(Icons.more_vert), // Three dots button
                   onSelected: (String value) {
                     if (value == 'view') {
-                      // Handle view action
+                      route(
+                        context.read<AppBloc>().innerNavigator,
+                        kProjectRoute,
+                        <String, dynamic>{
+                          'mode': ProjectFormMode.view,
+                          'project': project,
+                        },
+                      );
                     } else if (value == 'edit') {
-                      // Handle edit action
+                      route(
+                        context.read<AppBloc>().innerNavigator,
+                        kProjectRoute,
+                        <String, dynamic>{
+                          'mode': ProjectFormMode.edit,
+                          'project': project,
+                        },
+                      );
                     } else if (value == 'remove') {
                       context
                           .read<ProjectsBloc>()

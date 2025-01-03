@@ -9,14 +9,14 @@ import '../../../App/presentation/bloc/app_bloc.dart';
 import '../../domain/entities/users.dart';
 import '../bloc/user_bloc.dart';
 
-class Organization extends StatefulWidget {
-  const Organization({super.key});
+class OrganizationPage extends StatefulWidget {
+  const OrganizationPage({super.key});
 
   @override
-  State<Organization> createState() => _OrganizationState();
+  State<OrganizationPage> createState() => _OrganizationPageState();
 }
 
-class _OrganizationState extends State<Organization> {
+class _OrganizationPageState extends State<OrganizationPage> {
   @override
   void initState() {
     context.read<UserBloc>().add(const UserEvent.loadOrganization());
