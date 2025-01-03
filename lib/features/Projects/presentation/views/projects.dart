@@ -8,6 +8,9 @@ import '../../../../core/services/injection_container.dart';
 import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/intinite_list.dart';
 import '../../../../widgets/profile_picture.dart';
+import '../../../User/domain/entities/users.dart';
+import '../../../User/domain/entities/users.dart';
+import '../../../User/presentation/bloc/user_bloc.dart';
 import '../../domain/entities/projects.dart';
 import '../bloc/projects_bloc.dart';
 
@@ -36,20 +39,25 @@ class _ProjectsPageInnerState extends State<ProjectsPageInner> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      BlocBuilder<ProjectsBloc, ProjectsState>(
-        builder: (BuildContext context, ProjectsState state) => Scaffold(
-          appBar: GlobalAppBar(
-            title: 'Projects',
-            count: state.whenOrNull(
-              loaded: (Projects projects) => projects.total,
+  Widget build(BuildContext context) => BlocBuilder<UserBloc, UserState>(
+        builder: (BuildContext context, UserState userState) =>
+            BlocBuilder<ProjectsBloc, ProjectsState>(
+          builder: (BuildContext context, ProjectsState state) => Scaffold(
+            appBar: GlobalAppBar(
+              title: 'Projects',
+              count: state.whenOrNull(
+                loaded: (Projects projects) => projects.total,
+              ),
+              create: userState.user.roleName != Role.owner ? null : () {},
             ),
-          ),
-          body: Column(
-            children: <Widget>[
-              const SizedBox(height: 40,),
-              _skeletonizer(state),
-            ],
+            body: Column(
+              children: <Widget>[
+                const SizedBox(
+                  height: 40,
+                ),
+                _skeletonizer(state),
+              ],
+            ),
           ),
         ),
       );
@@ -75,65 +83,84 @@ class _ProjectsPageInnerState extends State<ProjectsPageInner> {
       ListView.builder(
         itemCount: projects.total,
         itemBuilder: (BuildContext context, int index) =>
-            _listItem(projects.items[index],isEnabled),
+            _listItem(projects.items[index], isEnabled),
       );
 
-
-
   Widget _listItem(Project project, bool isEnabled) => Container(
-    color: kSecondaryBackgroundColor,
-    child: Column(
-      children: <Widget>[
-        const Divider(height: 0),
-        ListTile(
-          leading: SizedBox(
-            width: 40,
-            height: 40,
-            child: ProfilePicture.project(project, isEnabled: !isEnabled),
-          ),
-          title: Text(project.title),
-          trailing: PopupMenuButton<String>(
-            icon: const Icon(Icons.more_vert), // Three dots button
-            onSelected: (String value) {
-              if (value == 'edit') {
-                // Handle edit action
-              } else if (value == 'remove') {
-                // Handle remove action
-              }
-            },
-            offset: const Offset(0, 40),
-            itemBuilder: (BuildContext context) => [
-              const PopupMenuItem<String>(
-                value: 'edit',
-                height: 30, // Set fixed height for the item
-                child: Row(
-                  children: [
-                    Icon(Icons.edit, size: 20),
-                    SizedBox(width: 8),
-                    Text('Edit'),
-                  ],
+        color: kSecondaryBackgroundColor,
+        child: Column(
+          children: <Widget>[
+            const Divider(height: 0),
+            ListTile(
+              leading: SizedBox(
+                width: 40,
+                height: 40,
+                child: ProfilePicture.project(project, isEnabled: !isEnabled),
+              ),
+              title: Text(project.title),
+              trailing: BlocBuilder<UserBloc, UserState>(
+                builder: (BuildContext context, UserState state) =>
+                    PopupMenuButton<String>(
+                  icon: const Icon(Icons.more_vert), // Three dots button
+                  onSelected: (String value) {
+                    if (value == 'view') {
+                      // Handle view action
+                    } else if (value == 'edit') {
+                      // Handle edit action
+                    } else if (value == 'remove') {
+                      context
+                          .read<ProjectsBloc>()
+                          .add(ProjectsEvent.delete(id: project.id));
+                    }
+                  },
+                  offset: const Offset(0, 40),
+                  itemBuilder: (BuildContext context) => (state.user.roleName !=
+                          Role.owner)
+                      ? <PopupMenuEntry<String>>[
+                          const PopupMenuItem<String>(
+                            value: 'view',
+                            height: 30, // Set fixed height for the item
+                            child: Row(
+                              children: <Widget>[
+                                Icon(Icons.remove_red_eye_outlined, size: 20),
+                                SizedBox(width: 8),
+                                Text('View info'),
+                              ],
+                            ),
+                          ),
+                        ]
+                      : <PopupMenuEntry<String>>[
+                          const PopupMenuItem<String>(
+                            value: 'edit',
+                            height: 30, // Set fixed height for the item
+                            child: Row(
+                              children: <Widget>[
+                                Icon(Icons.edit, size: 20),
+                                SizedBox(width: 8),
+                                Text('Edit'),
+                              ],
+                            ),
+                          ),
+                          const PopupMenuDivider(),
+                          // Divider line between options
+                          const PopupMenuItem<String>(
+                            value: 'remove',
+                            height: 30, // Set fixed height for the item
+                            child: Row(
+                              children: <Widget>[
+                                Icon(Icons.delete, size: 20),
+                                SizedBox(width: 8),
+                                Text('Remove'),
+                              ],
+                            ),
+                          ),
+                        ],
                 ),
               ),
-              const PopupMenuDivider(), // Divider line between options
-              const PopupMenuItem<String>(
-                value: 'remove',
-                height: 30, // Set fixed height for the item
-                child: Row(
-                  children: [
-                    Icon(Icons.delete, size: 20),
-                    SizedBox(width: 8),
-                    Text('Remove'),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          onTap: () {},
+              onTap: () {},
+            ),
+            const Divider(height: 0),
+          ],
         ),
-        const Divider(height: 0),
-      ],
-    ),
-  );
-
-
+      );
 }

@@ -9,6 +9,7 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
   final int? count;
   final VoidCallback? save;
   final bool canSave;
+  final VoidCallback? create;
 
   const GlobalAppBar({
     super.key,
@@ -16,6 +17,7 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.count,
     this.save,
     this.canSave = false,
+    this.create,
   });
 
   @override
@@ -29,6 +31,7 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
         automaticallyImplyLeading: false,
         actions: <Widget>[
           if (save != null) _saveButton(context),
+          if (create != null) _createButton(context),
           if (!isRoot) _close(context, state),
         ],
       ),
@@ -82,6 +85,29 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
           style: TextStyle(fontSize: 14),
         ),
       );
+
+  Widget _createButton(BuildContext context) => ElevatedButton(
+    onPressed: create,
+    style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
+      padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
+        const EdgeInsets.only(),
+      ),
+      backgroundColor: WidgetStateProperty.resolveWith<Color>(
+              (Set<WidgetState> states) {
+            if (states.contains(WidgetState.disabled)) {
+              return kPrimaryColor.withOpacity(0.4);
+            }
+            return kPrimaryColor;
+          }),
+      foregroundColor: WidgetStateProperty.resolveWith<Color>(
+            (Set<WidgetState> states) => Colors.white,
+      ),
+    ),
+    child: const Text(
+      'Create',
+      style: TextStyle(fontSize: 14),
+    ),
+  );
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);

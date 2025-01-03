@@ -13,7 +13,12 @@ import '../presentation/bloc/projects_bloc.dart';
 
 Future<void> initProjectsBlocs(GetIt sl) async {
   // App Logic
-  sl.registerFactory(() => ProjectsBloc(getProjects: sl()));
+  sl.registerFactory(
+    () => ProjectsBloc(
+      getProjects: sl(),
+      deleteProject: sl(),
+    ),
+  );
 }
 
 Future<void> initProjects(GetIt sl) async {
@@ -23,15 +28,16 @@ Future<void> initProjects(GetIt sl) async {
   sl.registerLazySingleton(() => GetProjects(sl()));
   sl.registerLazySingleton(() => UpdateProject(sl()));
   // Repositories
-  sl.registerLazySingleton<ProjectRepository>(() => ProjectRepoImplementation(sl()));
+  sl.registerLazySingleton<ProjectRepository>(
+      () => ProjectRepoImplementation(sl()));
   // Data Sources
   if (kUseMockData) {
     sl.registerLazySingleton<ProjectRemoteDataSource>(
-          () => MockProjectRemoteDataSourceImplementation(sl()),
+      () => MockProjectRemoteDataSourceImplementation(sl()),
     );
   } else {
     sl.registerLazySingleton<ProjectRemoteDataSource>(
-          () => ProjectRemoteDataSourceImplementation(sl()),
+      () => ProjectRemoteDataSourceImplementation(sl()),
     );
   }
 }

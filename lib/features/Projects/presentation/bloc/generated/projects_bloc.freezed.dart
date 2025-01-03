@@ -19,32 +19,38 @@ mixin _$ProjectsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() get,
+    required TResult Function(int id) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? get,
+    TResult? Function(int id)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? get,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ProjectsEventGet value) get,
+    required TResult Function(_ProjectsEventDelete value) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ProjectsEventGet value)? get,
+    TResult? Function(_ProjectsEventDelete value)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ProjectsEventGet value)? get,
+    TResult Function(_ProjectsEventDelete value)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +119,7 @@ class _$ProjectsEventGetImpl implements _ProjectsEventGet {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() get,
+    required TResult Function(int id) delete,
   }) {
     return get();
   }
@@ -121,6 +128,7 @@ class _$ProjectsEventGetImpl implements _ProjectsEventGet {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? get,
+    TResult? Function(int id)? delete,
   }) {
     return get?.call();
   }
@@ -129,6 +137,7 @@ class _$ProjectsEventGetImpl implements _ProjectsEventGet {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? get,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (get != null) {
@@ -141,6 +150,7 @@ class _$ProjectsEventGetImpl implements _ProjectsEventGet {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ProjectsEventGet value) get,
+    required TResult Function(_ProjectsEventDelete value) delete,
   }) {
     return get(this);
   }
@@ -149,6 +159,7 @@ class _$ProjectsEventGetImpl implements _ProjectsEventGet {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ProjectsEventGet value)? get,
+    TResult? Function(_ProjectsEventDelete value)? delete,
   }) {
     return get?.call(this);
   }
@@ -157,6 +168,7 @@ class _$ProjectsEventGetImpl implements _ProjectsEventGet {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ProjectsEventGet value)? get,
+    TResult Function(_ProjectsEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (get != null) {
@@ -168,6 +180,148 @@ class _$ProjectsEventGetImpl implements _ProjectsEventGet {
 
 abstract class _ProjectsEventGet implements ProjectsEvent {
   const factory _ProjectsEventGet() = _$ProjectsEventGetImpl;
+}
+
+/// @nodoc
+abstract class _$$ProjectsEventDeleteImplCopyWith<$Res> {
+  factory _$$ProjectsEventDeleteImplCopyWith(_$ProjectsEventDeleteImpl value,
+          $Res Function(_$ProjectsEventDeleteImpl) then) =
+      __$$ProjectsEventDeleteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$ProjectsEventDeleteImplCopyWithImpl<$Res>
+    extends _$ProjectsEventCopyWithImpl<$Res, _$ProjectsEventDeleteImpl>
+    implements _$$ProjectsEventDeleteImplCopyWith<$Res> {
+  __$$ProjectsEventDeleteImplCopyWithImpl(_$ProjectsEventDeleteImpl _value,
+      $Res Function(_$ProjectsEventDeleteImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProjectsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$ProjectsEventDeleteImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ProjectsEventDeleteImpl implements _ProjectsEventDelete {
+  const _$ProjectsEventDeleteImpl({required this.id});
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'ProjectsEvent.delete(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectsEventDeleteImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  /// Create a copy of ProjectsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectsEventDeleteImplCopyWith<_$ProjectsEventDeleteImpl> get copyWith =>
+      __$$ProjectsEventDeleteImplCopyWithImpl<_$ProjectsEventDeleteImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() get,
+    required TResult Function(int id) delete,
+  }) {
+    return delete(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? get,
+    TResult? Function(int id)? delete,
+  }) {
+    return delete?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? get,
+    TResult Function(int id)? delete,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ProjectsEventGet value) get,
+    required TResult Function(_ProjectsEventDelete value) delete,
+  }) {
+    return delete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ProjectsEventGet value)? get,
+    TResult? Function(_ProjectsEventDelete value)? delete,
+  }) {
+    return delete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ProjectsEventGet value)? get,
+    TResult Function(_ProjectsEventDelete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ProjectsEventDelete implements ProjectsEvent {
+  const factory _ProjectsEventDelete({required final int id}) =
+      _$ProjectsEventDeleteImpl;
+
+  int get id;
+
+  /// Create a copy of ProjectsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ProjectsEventDeleteImplCopyWith<_$ProjectsEventDeleteImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
