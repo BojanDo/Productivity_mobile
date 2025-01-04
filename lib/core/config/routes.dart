@@ -12,5 +12,6 @@ const String kInviteUsersRoute = '/invite-users';
 const String kDocumentsRoute = '/documents';
 const String kProjectsRoute = '/projects';
 const String kProjectRoute = '/project';
-const String kTasksRoute = '/tasks';
+const String kTasksProjectRoute = '/tasks-project';
+const String kTasksUserRoute = '/tasks-user';
 const String kTaskRoute = '/task';

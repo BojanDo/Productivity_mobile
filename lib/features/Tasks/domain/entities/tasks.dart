@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/entities/paginated_list.dart';
@@ -38,6 +40,36 @@ enum Status {
         return 'Test';
       case Status.closed:
         return 'Closed';
+    }
+  }
+
+  Color get background {
+    switch (this) {
+      case Status.todo:
+        return const Color(0xfffdd5e3);
+      case Status.inProgress:
+        return const Color(0xffe2f9c8);
+      case Status.review:
+        return const Color(0xffccf0fd);
+      case Status.test:
+        return const Color(0xffe5d7fc);
+      case Status.closed:
+        return const Color(0xffd3f6e3);
+    }
+  }
+
+  Color get textColor {
+    switch (this) {
+      case Status.todo:
+        return const Color(0xff8a3a55);
+      case Status.inProgress:
+        return const Color(0xff759a43);
+      case Status.review:
+        return const Color(0xff3f8296);
+      case Status.test:
+        return const Color(0xff70569b);
+      case Status.closed:
+        return const Color(0xff4b9167);
     }
   }
 }

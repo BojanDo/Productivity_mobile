@@ -24,8 +24,6 @@ class GetTasks extends UsecaseWithParams<Tasks, GetTasksParams> {
 class GetTasksParams with _$GetTasksParams {
   const factory GetTasksParams({
     List<int>? projects,
-    String? status,
-    String? label,
     List<int>? assigned,
   }) = _GetTasksParams;
 

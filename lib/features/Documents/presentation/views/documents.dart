@@ -100,7 +100,6 @@ class _DocumentsPageInnerState extends State<DocumentsPageInner> {
             const Divider(height: 0),
             ListTile(
               leading: const Icon(Icons.description_outlined),
-              visualDensity: const VisualDensity(vertical: -4),
               dense: true,
               title: Text(
                 document.title,

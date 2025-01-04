@@ -18,7 +18,7 @@ class MockUserRemoteDataSourceImplementation implements UserRemoteDataSource {
         jobTitle:
             _faker.randomGenerator.element(<String>['Owner', 'Developer']),
         organizationId: 1,
-        roleName: Role.developer,//faker.randomGenerator.element(Role.values),
+        roleName: Role.owner,//faker.randomGenerator.element(Role.values),
       ),
     );
     users = Users(items: fakeUsers, total: fakeUsers.length);

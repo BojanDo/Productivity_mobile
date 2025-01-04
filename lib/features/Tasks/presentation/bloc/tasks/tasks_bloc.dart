@@ -17,13 +17,14 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   TasksBloc({required GetTasks getTasks})
       : _getTasks = getTasks,
         super(
-          TasksState.getting(
-            tasks: Tasks(
+        TasksState.getting(
+          seperatedTasks: TasksBloc._seperateTasks(
+            Tasks(
               items: <TaskSlim>[
                 for (int statusIndex = 0; statusIndex < 5; statusIndex++)
                   ...List<TaskSlim>.generate(
                     2,
-                    (int index) => TaskSlim(
+                        (int index) => TaskSlim(
                       id: statusIndex * 2 + index,
                       title: 'This is a task title',
                       status: <Status>[
@@ -34,7 +35,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
                         Status.closed,
                       ][statusIndex],
                       label: Label.bug,
-                      date: '01-01-2025',
+                      date: '2025-01-01',
                       taskNumber: '#123',
                     ),
                   ),
@@ -42,37 +43,66 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
               total: 10,
             ),
           ),
-        ) {
-    on<TasksEvent>((TasksEvent event, Emitter<TasksState> emit) => event.when(
-            get: (
-          List<int>? projects,
-          String? status,
-          String? label,
-          List<int>? assigned,
-        ) =>
-                _getTasksHandler(projects, status, label, assigned, emit)));
+        ),
+      ) {
+    on<TasksEvent>(
+          (TasksEvent event, Emitter<TasksState> emit) => event.when(
+        get: (
+            int? projectId,
+            int? assignedId,
+            ) =>
+            _getTasksHandler(projectId, assignedId, emit),
+      ),
+    );
   }
 
   Future<void> _getTasksHandler(
-    List<int>? projects,
-    String? status,
-    String? label,
-    List<int>? assigned,
-    Emitter<TasksState> emit,
-  ) async {
+      int? projectId,
+      int? assignedId,
+      Emitter<TasksState> emit,
+      ) async {
+    final List<int> projects = <int>[];
+    final List<int> assigned = <int>[];
+    if (projectId != null) {
+      projects.add(projectId);
+    }
+    if (assignedId != null) {
+      assigned.add(assignedId);
+    }
     final Either<Failure, Tasks> result = await _getTasks(
       GetTasksParams(
         projects: projects,
-        status: status,
-        label: label,
         assigned: assigned,
       ),
     );
 
     result.fold(
-      (Failure failure) => emit(const TasksState.error()),
-      (Tasks tasks) => emit(TasksState.loaded(tasks: tasks)),
+          (Failure failure) => emit(const TasksState.error()),
+          (Tasks tasks) {
+        emit(
+          TasksState.loaded(
+            tasks: tasks,
+            seperatedTasks: _seperateTasks(
+              tasks,
+            ),
+          ),
+        );
+      },
     );
+  }
+
+  static Map<Status, List<TaskSlim>> _seperateTasks(Tasks tasks) {
+    final Map<Status, List<TaskSlim>> seperatedTasks = <Status, List<TaskSlim>>{
+      Status.todo: <TaskSlim>[],
+      Status.inProgress: <TaskSlim>[],
+      Status.review: <TaskSlim>[],
+      Status.test: <TaskSlim>[],
+      Status.closed: <TaskSlim>[],
+    };
+    for (TaskSlim task in tasks.items) {
+      seperatedTasks[task.status]!.add(task);
+    }
+    return seperatedTasks;
   }
 
   final GetTasks _getTasks;

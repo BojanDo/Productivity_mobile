@@ -13,6 +13,7 @@ import 'features/Projects/presentation/bloc/projects_bloc.dart';
 import 'features/Projects/presentation/views/project.dart';
 import 'features/Projects/presentation/views/projects.dart';
 import 'features/Tasks/presentation/views/tasks.dart';
+import 'features/User/presentation/bloc/user_bloc.dart';
 import 'features/User/presentation/views/account.dart';
 import 'features/User/presentation/views/invitations.dart';
 import 'features/User/presentation/views/invite_users.dart';
@@ -51,57 +52,66 @@ class _InnerWrapperState extends State<InnerWrapper> {
         ),
         drawerEnableOpenDragGesture: false,
         drawer: GlobalDrawer(),
-        body: Navigator(
-          key: context.read<AppBloc>().innerNavigator,
-          onGenerateRoute: (RouteSettings settings) {
-            WidgetBuilder builder;
-            switch (settings.name) {
-              case kHomeRoute:
-                builder = (BuildContext context) => HomePage();
-                break;
-              case kSettingsRoute:
-                builder = (BuildContext context) => SettingsPage();
-                break;
-              case kUserRoute:
-                builder = (BuildContext context) => const UserInfoPage();
-                break;
-              case kAccountRoute:
-                builder = (BuildContext context) => const AccountPage();
-                break;
-              case kOrganizationRoute:
-                builder = (BuildContext context) => const OrganizationPage();
-                break;
-              case kInvitationsRoute:
-                builder = (BuildContext cotext) => const InvigationsPage();
-                break;
-              case kInviteUsersRoute:
-                builder = (BuildContext cotext) => const InviteUsersPage();
-                break;
-              case kDocumentsRoute:
-                builder = (BuildContext context) => const DocumentsPage();
-                break;
-              case kProjectsRoute:
-                builder = (BuildContext context) => const ProjectsPage();
-                break;
-              case kProjectRoute:
-                final Map<String, dynamic>? args =
-                    settings.arguments as Map<String, dynamic>?;
-                builder = (BuildContext context) => ProjectPage(
-                      mode: args?['mode'] as ProjectFormMode,
-                      project: args?['project'] as Project?,
-                    );
-                break;
-              case kTasksRoute:
-                builder = (BuildContext context) => const TasksPage();
-                break;
-              case kTaskRoute:
-                builder = (BuildContext context) => const Test(title: 'Task');
-                break;
-              default:
-                builder = (BuildContext context) => const Test(title: 'Page');
-            }
-            return MaterialPageRoute<dynamic>(builder: builder);
-          },
+        body: BlocBuilder<UserBloc, UserState>(
+          builder: (BuildContext context, UserState state) => Navigator(
+            key: context.read<AppBloc>().innerNavigator,
+            onGenerateRoute: (RouteSettings settings) {
+              WidgetBuilder builder;
+              switch (settings.name) {
+                case kHomeRoute:
+                  builder = (BuildContext context) => HomePage();
+                  break;
+                case kSettingsRoute:
+                  builder = (BuildContext context) => SettingsPage();
+                  break;
+                case kUserRoute:
+                  builder = (BuildContext context) => const UserInfoPage();
+                  break;
+                case kAccountRoute:
+                  builder = (BuildContext context) => const AccountPage();
+                  break;
+                case kOrganizationRoute:
+                  builder = (BuildContext context) => const OrganizationPage();
+                  break;
+                case kInvitationsRoute:
+                  builder = (BuildContext cotext) => const InvigationsPage();
+                  break;
+                case kInviteUsersRoute:
+                  builder = (BuildContext cotext) => const InviteUsersPage();
+                  break;
+                case kDocumentsRoute:
+                  builder = (BuildContext context) => const DocumentsPage();
+                  break;
+                case kProjectsRoute:
+                  builder = (BuildContext context) => const ProjectsPage();
+                  break;
+                case kProjectRoute:
+                  final Map<String, dynamic>? args =
+                      settings.arguments as Map<String, dynamic>?;
+                  builder = (BuildContext context) => ProjectPage(
+                        mode: args?['mode'] as ProjectFormMode,
+                        project: args?['project'] as Project?,
+                      );
+                  break;
+                case kTasksProjectRoute:
+                  final Map<String, dynamic>? args =
+                      settings.arguments as Map<String, dynamic>?;
+                  builder = (BuildContext context) =>
+                      TasksPage.project(args?['project'] as Project);
+                  break;
+                case kTasksUserRoute:
+                  builder =
+                      (BuildContext context) => TasksPage.user(state.user.id);
+                  break;
+                case kTaskRoute:
+                  builder = (BuildContext context) => const Test(title: 'Task');
+                  break;
+                default:
+                  builder = (BuildContext context) => const Test(title: 'Page');
+              }
+              return MaterialPageRoute<dynamic>(builder: builder);
+            },
+          ),
         ),
       );
 }

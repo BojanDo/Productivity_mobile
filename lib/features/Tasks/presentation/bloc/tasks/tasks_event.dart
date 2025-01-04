@@ -4,9 +4,7 @@ part of 'tasks_bloc.dart';
 class TasksEvent with _$TasksEvent {
 
   const factory TasksEvent.get({
-    List<int>? projects,
-    String? status,
-    String? label,
-    List<int>? assigned,
+    int? projectId,
+    int? assignedId,
   }) = _TasksEventGet;
 }

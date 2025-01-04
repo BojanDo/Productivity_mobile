@@ -16,29 +16,21 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TasksEvent {
-  List<int>? get projects => throw _privateConstructorUsedError;
-  String? get status => throw _privateConstructorUsedError;
-  String? get label => throw _privateConstructorUsedError;
-  List<int>? get assigned => throw _privateConstructorUsedError;
+  int? get projectId => throw _privateConstructorUsedError;
+  int? get assignedId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<int>? projects, String? status,
-            String? label, List<int>? assigned)
-        get,
+    required TResult Function(int? projectId, int? assignedId) get,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<int>? projects, String? status, String? label,
-            List<int>? assigned)?
-        get,
+    TResult? Function(int? projectId, int? assignedId)? get,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<int>? projects, String? status, String? label,
-            List<int>? assigned)?
-        get,
+    TResult Function(int? projectId, int? assignedId)? get,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,11 +64,7 @@ abstract class $TasksEventCopyWith<$Res> {
           TasksEvent value, $Res Function(TasksEvent) then) =
       _$TasksEventCopyWithImpl<$Res, TasksEvent>;
   @useResult
-  $Res call(
-      {List<int>? projects,
-      String? status,
-      String? label,
-      List<int>? assigned});
+  $Res call({int? projectId, int? assignedId});
 }
 
 /// @nodoc
@@ -94,28 +82,18 @@ class _$TasksEventCopyWithImpl<$Res, $Val extends TasksEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projects = freezed,
-    Object? status = freezed,
-    Object? label = freezed,
-    Object? assigned = freezed,
+    Object? projectId = freezed,
+    Object? assignedId = freezed,
   }) {
     return _then(_value.copyWith(
-      projects: freezed == projects
-          ? _value.projects
-          : projects // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      label: freezed == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String?,
-      assigned: freezed == assigned
-          ? _value.assigned
-          : assigned // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      assignedId: freezed == assignedId
+          ? _value.assignedId
+          : assignedId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -128,11 +106,7 @@ abstract class _$$TasksEventGetImplCopyWith<$Res>
       __$$TasksEventGetImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<int>? projects,
-      String? status,
-      String? label,
-      List<int>? assigned});
+  $Res call({int? projectId, int? assignedId});
 }
 
 /// @nodoc
@@ -148,28 +122,18 @@ class __$$TasksEventGetImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? projects = freezed,
-    Object? status = freezed,
-    Object? label = freezed,
-    Object? assigned = freezed,
+    Object? projectId = freezed,
+    Object? assignedId = freezed,
   }) {
     return _then(_$TasksEventGetImpl(
-      projects: freezed == projects
-          ? _value._projects
-          : projects // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      label: freezed == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String?,
-      assigned: freezed == assigned
-          ? _value._assigned
-          : assigned // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      assignedId: freezed == assignedId
+          ? _value.assignedId
+          : assignedId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -177,41 +141,16 @@ class __$$TasksEventGetImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TasksEventGetImpl implements _TasksEventGet {
-  const _$TasksEventGetImpl(
-      {final List<int>? projects,
-      this.status,
-      this.label,
-      final List<int>? assigned})
-      : _projects = projects,
-        _assigned = assigned;
-
-  final List<int>? _projects;
-  @override
-  List<int>? get projects {
-    final value = _projects;
-    if (value == null) return null;
-    if (_projects is EqualUnmodifiableListView) return _projects;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  const _$TasksEventGetImpl({this.projectId, this.assignedId});
 
   @override
-  final String? status;
+  final int? projectId;
   @override
-  final String? label;
-  final List<int>? _assigned;
-  @override
-  List<int>? get assigned {
-    final value = _assigned;
-    if (value == null) return null;
-    if (_assigned is EqualUnmodifiableListView) return _assigned;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final int? assignedId;
 
   @override
   String toString() {
-    return 'TasksEvent.get(projects: $projects, status: $status, label: $label, assigned: $assigned)';
+    return 'TasksEvent.get(projectId: $projectId, assignedId: $assignedId)';
   }
 
   @override
@@ -219,19 +158,14 @@ class _$TasksEventGetImpl implements _TasksEventGet {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TasksEventGetImpl &&
-            const DeepCollectionEquality().equals(other._projects, _projects) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.label, label) || other.label == label) &&
-            const DeepCollectionEquality().equals(other._assigned, _assigned));
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.assignedId, assignedId) ||
+                other.assignedId == assignedId));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_projects),
-      status,
-      label,
-      const DeepCollectionEquality().hash(_assigned));
+  int get hashCode => Object.hash(runtimeType, projectId, assignedId);
 
   /// Create a copy of TasksEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -244,33 +178,27 @@ class _$TasksEventGetImpl implements _TasksEventGet {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<int>? projects, String? status,
-            String? label, List<int>? assigned)
-        get,
+    required TResult Function(int? projectId, int? assignedId) get,
   }) {
-    return get(projects, status, label, assigned);
+    return get(projectId, assignedId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<int>? projects, String? status, String? label,
-            List<int>? assigned)?
-        get,
+    TResult? Function(int? projectId, int? assignedId)? get,
   }) {
-    return get?.call(projects, status, label, assigned);
+    return get?.call(projectId, assignedId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<int>? projects, String? status, String? label,
-            List<int>? assigned)?
-        get,
+    TResult Function(int? projectId, int? assignedId)? get,
     required TResult orElse(),
   }) {
     if (get != null) {
-      return get(projects, status, label, assigned);
+      return get(projectId, assignedId);
     }
     return orElse();
   }
@@ -305,20 +233,13 @@ class _$TasksEventGetImpl implements _TasksEventGet {
 }
 
 abstract class _TasksEventGet implements TasksEvent {
-  const factory _TasksEventGet(
-      {final List<int>? projects,
-      final String? status,
-      final String? label,
-      final List<int>? assigned}) = _$TasksEventGetImpl;
+  const factory _TasksEventGet({final int? projectId, final int? assignedId}) =
+      _$TasksEventGetImpl;
 
   @override
-  List<int>? get projects;
+  int? get projectId;
   @override
-  String? get status;
-  @override
-  String? get label;
-  @override
-  List<int>? get assigned;
+  int? get assignedId;
 
   /// Create a copy of TasksEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -332,22 +253,29 @@ abstract class _TasksEventGet implements TasksEvent {
 mixin _$TasksState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(PaginatedList<TaskSlim> tasks) getting,
-    required TResult Function(PaginatedList<TaskSlim> tasks) loaded,
+    required TResult Function(Map<Status, List<TaskSlim>> seperatedTasks)
+        getting,
+    required TResult Function(PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks)
+        loaded,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PaginatedList<TaskSlim> tasks)? getting,
-    TResult? Function(PaginatedList<TaskSlim> tasks)? loaded,
+    TResult? Function(Map<Status, List<TaskSlim>> seperatedTasks)? getting,
+    TResult? Function(PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks)?
+        loaded,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PaginatedList<TaskSlim> tasks)? getting,
-    TResult Function(PaginatedList<TaskSlim> tasks)? loaded,
+    TResult Function(Map<Status, List<TaskSlim>> seperatedTasks)? getting,
+    TResult Function(PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks)?
+        loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -403,9 +331,7 @@ abstract class _$$TasksStateGettingImplCopyWith<$Res> {
           $Res Function(_$TasksStateGettingImpl) then) =
       __$$TasksStateGettingImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PaginatedList<TaskSlim> tasks});
-
-  $PaginatedListCopyWith<TaskSlim, $Res> get tasks;
+  $Res call({Map<Status, List<TaskSlim>> seperatedTasks});
 }
 
 /// @nodoc
@@ -421,38 +347,35 @@ class __$$TasksStateGettingImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tasks = null,
+    Object? seperatedTasks = null,
   }) {
     return _then(_$TasksStateGettingImpl(
-      tasks: null == tasks
-          ? _value.tasks
-          : tasks // ignore: cast_nullable_to_non_nullable
-              as PaginatedList<TaskSlim>,
+      seperatedTasks: null == seperatedTasks
+          ? _value._seperatedTasks
+          : seperatedTasks // ignore: cast_nullable_to_non_nullable
+              as Map<Status, List<TaskSlim>>,
     ));
-  }
-
-  /// Create a copy of TasksState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PaginatedListCopyWith<TaskSlim, $Res> get tasks {
-    return $PaginatedListCopyWith<TaskSlim, $Res>(_value.tasks, (value) {
-      return _then(_value.copyWith(tasks: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$TasksStateGettingImpl implements _TasksStateGetting {
-  const _$TasksStateGettingImpl({required this.tasks});
+  const _$TasksStateGettingImpl(
+      {required final Map<Status, List<TaskSlim>> seperatedTasks})
+      : _seperatedTasks = seperatedTasks;
 
+  final Map<Status, List<TaskSlim>> _seperatedTasks;
   @override
-  final PaginatedList<TaskSlim> tasks;
+  Map<Status, List<TaskSlim>> get seperatedTasks {
+    if (_seperatedTasks is EqualUnmodifiableMapView) return _seperatedTasks;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_seperatedTasks);
+  }
 
   @override
   String toString() {
-    return 'TasksState.getting(tasks: $tasks)';
+    return 'TasksState.getting(seperatedTasks: $seperatedTasks)';
   }
 
   @override
@@ -460,11 +383,13 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TasksStateGettingImpl &&
-            (identical(other.tasks, tasks) || other.tasks == tasks));
+            const DeepCollectionEquality()
+                .equals(other._seperatedTasks, _seperatedTasks));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, tasks);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_seperatedTasks));
 
   /// Create a copy of TasksState
   /// with the given fields replaced by the non-null parameter values.
@@ -478,33 +403,40 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(PaginatedList<TaskSlim> tasks) getting,
-    required TResult Function(PaginatedList<TaskSlim> tasks) loaded,
+    required TResult Function(Map<Status, List<TaskSlim>> seperatedTasks)
+        getting,
+    required TResult Function(PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks)
+        loaded,
     required TResult Function() error,
   }) {
-    return getting(tasks);
+    return getting(seperatedTasks);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PaginatedList<TaskSlim> tasks)? getting,
-    TResult? Function(PaginatedList<TaskSlim> tasks)? loaded,
+    TResult? Function(Map<Status, List<TaskSlim>> seperatedTasks)? getting,
+    TResult? Function(PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks)?
+        loaded,
     TResult? Function()? error,
   }) {
-    return getting?.call(tasks);
+    return getting?.call(seperatedTasks);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PaginatedList<TaskSlim> tasks)? getting,
-    TResult Function(PaginatedList<TaskSlim> tasks)? loaded,
+    TResult Function(Map<Status, List<TaskSlim>> seperatedTasks)? getting,
+    TResult Function(PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks)?
+        loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (getting != null) {
-      return getting(tasks);
+      return getting(seperatedTasks);
     }
     return orElse();
   }
@@ -546,9 +478,10 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
 
 abstract class _TasksStateGetting implements TasksState {
   const factory _TasksStateGetting(
-      {required final PaginatedList<TaskSlim> tasks}) = _$TasksStateGettingImpl;
+          {required final Map<Status, List<TaskSlim>> seperatedTasks}) =
+      _$TasksStateGettingImpl;
 
-  PaginatedList<TaskSlim> get tasks;
+  Map<Status, List<TaskSlim>> get seperatedTasks;
 
   /// Create a copy of TasksState
   /// with the given fields replaced by the non-null parameter values.
@@ -563,7 +496,9 @@ abstract class _$$TasksStateLoadedImplCopyWith<$Res> {
           $Res Function(_$TasksStateLoadedImpl) then) =
       __$$TasksStateLoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PaginatedList<TaskSlim> tasks});
+  $Res call(
+      {PaginatedList<TaskSlim> tasks,
+      Map<Status, List<TaskSlim>> seperatedTasks});
 
   $PaginatedListCopyWith<TaskSlim, $Res> get tasks;
 }
@@ -582,12 +517,17 @@ class __$$TasksStateLoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? tasks = null,
+    Object? seperatedTasks = null,
   }) {
     return _then(_$TasksStateLoadedImpl(
       tasks: null == tasks
           ? _value.tasks
           : tasks // ignore: cast_nullable_to_non_nullable
               as PaginatedList<TaskSlim>,
+      seperatedTasks: null == seperatedTasks
+          ? _value._seperatedTasks
+          : seperatedTasks // ignore: cast_nullable_to_non_nullable
+              as Map<Status, List<TaskSlim>>,
     ));
   }
 
@@ -605,14 +545,24 @@ class __$$TasksStateLoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TasksStateLoadedImpl implements _TasksStateLoaded {
-  const _$TasksStateLoadedImpl({required this.tasks});
+  const _$TasksStateLoadedImpl(
+      {required this.tasks,
+      required final Map<Status, List<TaskSlim>> seperatedTasks})
+      : _seperatedTasks = seperatedTasks;
 
   @override
   final PaginatedList<TaskSlim> tasks;
+  final Map<Status, List<TaskSlim>> _seperatedTasks;
+  @override
+  Map<Status, List<TaskSlim>> get seperatedTasks {
+    if (_seperatedTasks is EqualUnmodifiableMapView) return _seperatedTasks;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_seperatedTasks);
+  }
 
   @override
   String toString() {
-    return 'TasksState.loaded(tasks: $tasks)';
+    return 'TasksState.loaded(tasks: $tasks, seperatedTasks: $seperatedTasks)';
   }
 
   @override
@@ -620,11 +570,14 @@ class _$TasksStateLoadedImpl implements _TasksStateLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TasksStateLoadedImpl &&
-            (identical(other.tasks, tasks) || other.tasks == tasks));
+            (identical(other.tasks, tasks) || other.tasks == tasks) &&
+            const DeepCollectionEquality()
+                .equals(other._seperatedTasks, _seperatedTasks));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, tasks);
+  int get hashCode => Object.hash(
+      runtimeType, tasks, const DeepCollectionEquality().hash(_seperatedTasks));
 
   /// Create a copy of TasksState
   /// with the given fields replaced by the non-null parameter values.
@@ -638,33 +591,40 @@ class _$TasksStateLoadedImpl implements _TasksStateLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(PaginatedList<TaskSlim> tasks) getting,
-    required TResult Function(PaginatedList<TaskSlim> tasks) loaded,
+    required TResult Function(Map<Status, List<TaskSlim>> seperatedTasks)
+        getting,
+    required TResult Function(PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks)
+        loaded,
     required TResult Function() error,
   }) {
-    return loaded(tasks);
+    return loaded(tasks, seperatedTasks);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PaginatedList<TaskSlim> tasks)? getting,
-    TResult? Function(PaginatedList<TaskSlim> tasks)? loaded,
+    TResult? Function(Map<Status, List<TaskSlim>> seperatedTasks)? getting,
+    TResult? Function(PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks)?
+        loaded,
     TResult? Function()? error,
   }) {
-    return loaded?.call(tasks);
+    return loaded?.call(tasks, seperatedTasks);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PaginatedList<TaskSlim> tasks)? getting,
-    TResult Function(PaginatedList<TaskSlim> tasks)? loaded,
+    TResult Function(Map<Status, List<TaskSlim>> seperatedTasks)? getting,
+    TResult Function(PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks)?
+        loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(tasks);
+      return loaded(tasks, seperatedTasks);
     }
     return orElse();
   }
@@ -706,9 +666,12 @@ class _$TasksStateLoadedImpl implements _TasksStateLoaded {
 
 abstract class _TasksStateLoaded implements TasksState {
   const factory _TasksStateLoaded(
-      {required final PaginatedList<TaskSlim> tasks}) = _$TasksStateLoadedImpl;
+          {required final PaginatedList<TaskSlim> tasks,
+          required final Map<Status, List<TaskSlim>> seperatedTasks}) =
+      _$TasksStateLoadedImpl;
 
   PaginatedList<TaskSlim> get tasks;
+  Map<Status, List<TaskSlim>> get seperatedTasks;
 
   /// Create a copy of TasksState
   /// with the given fields replaced by the non-null parameter values.
@@ -758,8 +721,11 @@ class _$TasksStateErrorImpl implements _TasksStateError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(PaginatedList<TaskSlim> tasks) getting,
-    required TResult Function(PaginatedList<TaskSlim> tasks) loaded,
+    required TResult Function(Map<Status, List<TaskSlim>> seperatedTasks)
+        getting,
+    required TResult Function(PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks)
+        loaded,
     required TResult Function() error,
   }) {
     return error();
@@ -768,8 +734,10 @@ class _$TasksStateErrorImpl implements _TasksStateError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(PaginatedList<TaskSlim> tasks)? getting,
-    TResult? Function(PaginatedList<TaskSlim> tasks)? loaded,
+    TResult? Function(Map<Status, List<TaskSlim>> seperatedTasks)? getting,
+    TResult? Function(PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks)?
+        loaded,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -778,8 +746,10 @@ class _$TasksStateErrorImpl implements _TasksStateError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(PaginatedList<TaskSlim> tasks)? getting,
-    TResult Function(PaginatedList<TaskSlim> tasks)? loaded,
+    TResult Function(Map<Status, List<TaskSlim>> seperatedTasks)? getting,
+    TResult Function(PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks)?
+        loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {

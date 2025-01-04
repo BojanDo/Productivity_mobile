@@ -21,8 +21,6 @@ GetTasksParams _$GetTasksParamsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GetTasksParams {
   List<int>? get projects => throw _privateConstructorUsedError;
-  String? get status => throw _privateConstructorUsedError;
-  String? get label => throw _privateConstructorUsedError;
   List<int>? get assigned => throw _privateConstructorUsedError;
 
   /// Serializes this GetTasksParams to a JSON map.
@@ -41,11 +39,7 @@ abstract class $GetTasksParamsCopyWith<$Res> {
           GetTasksParams value, $Res Function(GetTasksParams) then) =
       _$GetTasksParamsCopyWithImpl<$Res, GetTasksParams>;
   @useResult
-  $Res call(
-      {List<int>? projects,
-      String? status,
-      String? label,
-      List<int>? assigned});
+  $Res call({List<int>? projects, List<int>? assigned});
 }
 
 /// @nodoc
@@ -64,8 +58,6 @@ class _$GetTasksParamsCopyWithImpl<$Res, $Val extends GetTasksParams>
   @override
   $Res call({
     Object? projects = freezed,
-    Object? status = freezed,
-    Object? label = freezed,
     Object? assigned = freezed,
   }) {
     return _then(_value.copyWith(
@@ -73,14 +65,6 @@ class _$GetTasksParamsCopyWithImpl<$Res, $Val extends GetTasksParams>
           ? _value.projects
           : projects // ignore: cast_nullable_to_non_nullable
               as List<int>?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      label: freezed == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String?,
       assigned: freezed == assigned
           ? _value.assigned
           : assigned // ignore: cast_nullable_to_non_nullable
@@ -97,11 +81,7 @@ abstract class _$$GetTasksParamsImplCopyWith<$Res>
       __$$GetTasksParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<int>? projects,
-      String? status,
-      String? label,
-      List<int>? assigned});
+  $Res call({List<int>? projects, List<int>? assigned});
 }
 
 /// @nodoc
@@ -118,8 +98,6 @@ class __$$GetTasksParamsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? projects = freezed,
-    Object? status = freezed,
-    Object? label = freezed,
     Object? assigned = freezed,
   }) {
     return _then(_$GetTasksParamsImpl(
@@ -127,14 +105,6 @@ class __$$GetTasksParamsImplCopyWithImpl<$Res>
           ? _value._projects
           : projects // ignore: cast_nullable_to_non_nullable
               as List<int>?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      label: freezed == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String?,
       assigned: freezed == assigned
           ? _value._assigned
           : assigned // ignore: cast_nullable_to_non_nullable
@@ -147,10 +117,7 @@ class __$$GetTasksParamsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GetTasksParamsImpl implements _GetTasksParams {
   const _$GetTasksParamsImpl(
-      {final List<int>? projects,
-      this.status,
-      this.label,
-      final List<int>? assigned})
+      {final List<int>? projects, final List<int>? assigned})
       : _projects = projects,
         _assigned = assigned;
 
@@ -167,10 +134,6 @@ class _$GetTasksParamsImpl implements _GetTasksParams {
     return EqualUnmodifiableListView(value);
   }
 
-  @override
-  final String? status;
-  @override
-  final String? label;
   final List<int>? _assigned;
   @override
   List<int>? get assigned {
@@ -183,7 +146,7 @@ class _$GetTasksParamsImpl implements _GetTasksParams {
 
   @override
   String toString() {
-    return 'GetTasksParams(projects: $projects, status: $status, label: $label, assigned: $assigned)';
+    return 'GetTasksParams(projects: $projects, assigned: $assigned)';
   }
 
   @override
@@ -192,8 +155,6 @@ class _$GetTasksParamsImpl implements _GetTasksParams {
         (other.runtimeType == runtimeType &&
             other is _$GetTasksParamsImpl &&
             const DeepCollectionEquality().equals(other._projects, _projects) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.label, label) || other.label == label) &&
             const DeepCollectionEquality().equals(other._assigned, _assigned));
   }
 
@@ -202,8 +163,6 @@ class _$GetTasksParamsImpl implements _GetTasksParams {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_projects),
-      status,
-      label,
       const DeepCollectionEquality().hash(_assigned));
 
   /// Create a copy of GetTasksParams
@@ -226,8 +185,6 @@ class _$GetTasksParamsImpl implements _GetTasksParams {
 abstract class _GetTasksParams implements GetTasksParams {
   const factory _GetTasksParams(
       {final List<int>? projects,
-      final String? status,
-      final String? label,
       final List<int>? assigned}) = _$GetTasksParamsImpl;
 
   factory _GetTasksParams.fromJson(Map<String, dynamic> json) =
@@ -235,10 +192,6 @@ abstract class _GetTasksParams implements GetTasksParams {
 
   @override
   List<int>? get projects;
-  @override
-  String? get status;
-  @override
-  String? get label;
   @override
   List<int>? get assigned;
 

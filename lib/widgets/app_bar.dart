@@ -32,12 +32,31 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
         actions: <Widget>[
           if (save != null) _saveButton(context),
           if (create != null) _createButton(context),
-          if (!isRoot) _close(context, state),
+          if (!isRoot) _close(context, state)
+          else
+            _emptySpace(context),
         ],
       ),
     );
   }
 
+  Widget _emptySpace(BuildContext context) =>const Row(
+    children: [
+      SizedBox(
+        width: 16,
+      ),
+      Padding(
+        padding: EdgeInsets.symmetric(vertical: 8.0),
+        child: VerticalDivider(
+          thickness: 1,
+          color: kBorderColor,
+        ),
+      ),
+      SizedBox(
+        width: 45,
+      ),
+    ],
+  );
   Widget _close(BuildContext context, PopScopeState state) => Row(
         children: [
           const SizedBox(

@@ -80,7 +80,7 @@ class _GlobalDrawerState extends State<GlobalDrawer>
     ),
     const DrawerElement(
       title: 'TASKS',
-      route: kTasksRoute,
+      route: kTasksUserRoute,
       icon: Icons.note_alt_outlined,
     ),
     const DrawerElement(

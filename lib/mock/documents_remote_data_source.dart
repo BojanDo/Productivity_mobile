@@ -9,7 +9,7 @@ class MockDocumentsRemoteDataSourceImplementation
     implements DocumentsRemoteDataSource {
   MockDocumentsRemoteDataSourceImplementation(this._faker, this._apiManager) {
     final List<Document> fakeDocuments = List<Document>.generate(
-      40,
+      20,
       (int index) => Document(
         title: _faker.company.name(),
         path: _faker.randomGenerator.element(<String>[
@@ -20,7 +20,7 @@ class MockDocumentsRemoteDataSourceImplementation
         ]),
       ),
     );
-    documents = Documents(items: fakeDocuments, total: fakeDocuments.length);
+    documents = Documents(items: fakeDocuments, total: fakeDocuments.length*3);
   }
 
   final APIManager _apiManager;

@@ -11,6 +11,7 @@ import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/intinite_list.dart';
 import '../../../../widgets/profile_picture.dart';
 import '../../../App/presentation/bloc/app_bloc.dart';
+import '../../../Tasks/presentation/views/tasks.dart';
 import '../../../User/domain/entities/users.dart';
 import '../../../User/domain/entities/users.dart';
 import '../../../User/presentation/bloc/user_bloc.dart';
@@ -182,10 +183,20 @@ class _ProjectsPageInnerState extends State<ProjectsPageInner> {
                         ],
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                route(
+                  context.read<AppBloc>().innerNavigator,
+                  kTasksProjectRoute,
+                  <String, dynamic>{
+                    'project': project,
+                  },
+                );
+              },
             ),
             const Divider(height: 0),
           ],
         ),
       );
 }
+
+

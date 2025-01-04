@@ -15,6 +15,11 @@ class HomePage extends StatelessWidget {
       'description': '',
       'route': kHomeRoute,
     },
+    <String, String>{
+      'title': 'Notifications',
+      'description': '',
+      'route': '',
+    },
    /* <String, String>{
       'title': 'User info',
       'description': 'user details',
@@ -35,7 +40,7 @@ class HomePage extends StatelessWidget {
       'description': 'displays documents list',
       'route': kDocumentsRoute,
     },*/
-    <String, String>{
+    /*<String, String>{
       'title': 'Projects',
       'description': 'displays projects list',
       'route': kProjectsRoute,
@@ -44,11 +49,11 @@ class HomePage extends StatelessWidget {
       'title': 'Project',
       'description': 'edit/create project form',
       'route': kProjectRoute,
-    },
+    },*/
     <String, String>{
       'title': 'Tasks',
       'description': 'displays tasks list',
-      'route': kTasksRoute,
+      'route': kTasksProjectRoute,
     },
     <String, String>{
       'title': 'Task',
