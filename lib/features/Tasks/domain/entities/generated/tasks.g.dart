@@ -10,7 +10,9 @@ _$TaskImpl _$$TaskImplFromJson(Map<String, dynamic> json) => _$TaskImpl(
       id: (json['id'] as num).toInt(),
       taskNumber: json['task_number'] as String,
       title: json['title'] as String,
-      description: json['description'] as Map<String, dynamic>,
+      description: (json['description'] as List<dynamic>)
+          .map((e) => e as Map<String, dynamic>)
+          .toList(),
       status: $enumDecode(_$StatusEnumMap, json['status']),
       label: $enumDecode(_$LabelEnumMap, json['label']),
       date: json['date'] as String,

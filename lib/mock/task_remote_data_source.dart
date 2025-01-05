@@ -20,7 +20,7 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
         label: faker.randomGenerator.element(Label.values),
         date: DateFormat('dd.MM.yyyy')
             .format(faker.date.dateTime(minYear: 2000, maxYear: 2024)),
-        taskNumber: '$index',
+        taskNumber: '#$index',
       ),
     );
     tasks = Tasks(items: fakeTasks, total: fakeTasks.length);
@@ -66,9 +66,26 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
       id: fakeTasks.first.id,
       taskNumber: fakeTasks.first.taskNumber,
       title: fakeTasks.first.title,
-      description: <String, dynamic>{
-        'description': faker.lorem.sentences(6).join(' '),
-      },
+      description: <Map<String, dynamic>>[
+        <String, dynamic>{'insert': 'This is a heading'},
+        <String, dynamic>{
+          'insert': '\n',
+          'attributes': <String, int>{'header': 1},
+        },
+        <String, dynamic>{
+          'insert':
+          'This is a normal content description\nWith multiple lines\nAnd a',
+        },
+        <String, dynamic>{
+          'insert': '\n',
+          'attributes': <String, String>{'list': 'bullet'},
+        },
+        <String, dynamic>{'insert': 'list'},
+        <String, dynamic>{
+          'insert': '\n',
+          'attributes': <String, String>{'list': 'bullet'},
+        }
+      ],
       status: fakeTasks.first.status,
       label: fakeTasks.first.label,
       date: fakeTasks.first.date,

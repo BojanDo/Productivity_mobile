@@ -49,13 +49,13 @@ class ProjectsBloc extends Bloc<ProjectsEvent, ProjectsState> {
         ) {
     on<ProjectsEvent>(
       (ProjectsEvent event, Emitter<ProjectsState> emit) => event.when(
-        get: () => _deleteProjectHandler(emit),
-        delete: (int id) => _getProjectsHandler(id, emit),
+        get: () => _getProjectsHandler(emit),
+        delete: (int id) => _deleteProjectHandler(id, emit),
       ),
     );
   }
 
-  Future<void> _deleteProjectHandler(
+  Future<void> _getProjectsHandler(
     Emitter<ProjectsState> emit,
   ) async {
     final Either<Failure, Projects> result = await _getProjects();
@@ -70,7 +70,7 @@ class ProjectsBloc extends Bloc<ProjectsEvent, ProjectsState> {
     );
   }
 
-  Future<void> _getProjectsHandler(
+  Future<void> _deleteProjectHandler(
     int id,
     Emitter<ProjectsState> emit,
   ) async {
@@ -83,7 +83,7 @@ class ProjectsBloc extends Bloc<ProjectsEvent, ProjectsState> {
         sl<AppBloc>().add(AppEvent.error(message: failure.message));
       },
       (ProjectResponse response) {
-        sl<AppBloc>().add(AppEvent.error(message: response.message));
+        sl<AppBloc>().add(AppEvent.success(message: response.message));
         add(const ProjectsEvent.get());
       },
     );

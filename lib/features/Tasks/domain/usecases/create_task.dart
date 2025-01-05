@@ -37,7 +37,7 @@ class CreateTask extends UsecaseWithParams<TaskResponse, CreateTaskParams> {
 class CreateTaskParams with _$CreateTaskParams {
   const factory CreateTaskParams({
     required String title,
-    required DataMap description,
+    required List<Map<String, dynamic>> description,
     required String status,
     required String label,
     required String date,

@@ -39,7 +39,7 @@ class UpdateTaskParams with _$UpdateTaskParams {
   const factory UpdateTaskParams({
     @JsonKey(name: 'task_number') required String taskNumber,
     required String title,
-    required DataMap description,
+    required List<Map<String, dynamic>> description,
     required String status,
     required String label,
     required String date,

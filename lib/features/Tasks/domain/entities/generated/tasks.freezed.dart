@@ -24,7 +24,8 @@ mixin _$Task {
   @JsonKey(name: 'task_number')
   String get taskNumber => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  Map<String, dynamic> get description => throw _privateConstructorUsedError;
+  List<Map<String, dynamic>> get description =>
+      throw _privateConstructorUsedError;
   Status get status => throw _privateConstructorUsedError;
   Label get label => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
@@ -61,7 +62,7 @@ abstract class $TaskCopyWith<$Res> {
       {int id,
       @JsonKey(name: 'task_number') String taskNumber,
       String title,
-      Map<String, dynamic> description,
+      List<Map<String, dynamic>> description,
       Status status,
       Label label,
       String date,
@@ -129,7 +130,7 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as List<Map<String, dynamic>>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -213,7 +214,7 @@ abstract class _$$TaskImplCopyWith<$Res> implements $TaskCopyWith<$Res> {
       {int id,
       @JsonKey(name: 'task_number') String taskNumber,
       String title,
-      Map<String, dynamic> description,
+      List<Map<String, dynamic>> description,
       Status status,
       Label label,
       String date,
@@ -282,7 +283,7 @@ class __$$TaskImplCopyWithImpl<$Res>
       description: null == description
           ? _value._description
           : description // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as List<Map<String, dynamic>>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -322,7 +323,7 @@ class _$TaskImpl implements _Task {
       {required this.id,
       @JsonKey(name: 'task_number') required this.taskNumber,
       required this.title,
-      required final Map<String, dynamic> description,
+      required final List<Map<String, dynamic>> description,
       required this.status,
       required this.label,
       required this.date,
@@ -352,12 +353,12 @@ class _$TaskImpl implements _Task {
   final String taskNumber;
   @override
   final String title;
-  final Map<String, dynamic> _description;
+  final List<Map<String, dynamic>> _description;
   @override
-  Map<String, dynamic> get description {
-    if (_description is EqualUnmodifiableMapView) return _description;
+  List<Map<String, dynamic>> get description {
+    if (_description is EqualUnmodifiableListView) return _description;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_description);
+    return EqualUnmodifiableListView(_description);
   }
 
   @override
@@ -449,7 +450,7 @@ abstract class _Task implements Task {
       {required final int id,
       @JsonKey(name: 'task_number') required final String taskNumber,
       required final String title,
-      required final Map<String, dynamic> description,
+      required final List<Map<String, dynamic>> description,
       required final Status status,
       required final Label label,
       required final String date,
@@ -478,7 +479,7 @@ abstract class _Task implements Task {
   @override
   String get title;
   @override
-  Map<String, dynamic> get description;
+  List<Map<String, dynamic>> get description;
   @override
   Status get status;
   @override

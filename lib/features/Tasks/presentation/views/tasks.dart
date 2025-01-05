@@ -69,6 +69,10 @@ class _TasksPageInnerState extends State<TasksPageInner> {
     super.initState();
   }
 
+  void _deleteTask(int id) => context.read<TasksBloc>().add(
+        TasksEvent.delete(id: id),
+      );
+
   @override
   Widget build(BuildContext context) => BlocBuilder<TasksBloc, TasksState>(
         builder: (BuildContext context, TasksState state) {
@@ -98,52 +102,50 @@ class _TasksPageInnerState extends State<TasksPageInner> {
           );
         },
       );
-}
 
-Widget _skeletonizer(Map<Status, List<TaskSlim>> tasks, bool isEnabled) =>
-    Skeletonizer(
-      enabled: isEnabled,
-      child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            TasksTable(
-              status: Status.todo,
-              tasks: tasks[Status.todo]!,
-              onCellClick: (TaskSlim task) {},
-              onEditClick: (TaskSlim taskSlim) {print('edit');},
-              onDeleteClick: (TaskSlim taskSlim) {},
-
-            ),
-            TasksTable(
-              status: Status.inProgress,
-              tasks: tasks[Status.inProgress]!,
-              onCellClick: (TaskSlim task) {},
-              onEditClick: (TaskSlim taskSlim) {print('edit');},
-              onDeleteClick: (TaskSlim taskSlim) {},
-
-            ),
-            TasksTable(
-              status: Status.review,
-              tasks: tasks[Status.review]!,
-              onCellClick: (TaskSlim task) {},
-              onEditClick: (TaskSlim taskSlim) {print('edit');},
-              onDeleteClick: (TaskSlim taskSlim) {},
-            ),
-            TasksTable(
-              status: Status.test,
-              tasks: tasks[Status.test]!,
-              onCellClick: (TaskSlim task) {},
-              onEditClick: (TaskSlim taskSlim) {print('edit');},
-              onDeleteClick: (TaskSlim taskSlim) {},
-            ),
-            TasksTable(
-              status: Status.closed,
-              tasks: tasks[Status.closed]!,
-              onCellClick: (TaskSlim task) {},
-              onEditClick: (TaskSlim taskSlim) {print('edit');},
-              onDeleteClick: (TaskSlim taskSlim) {},
-            ),
-          ],
+  Widget _skeletonizer(Map<Status, List<TaskSlim>> tasks, bool isEnabled) =>
+      Skeletonizer(
+        enabled: isEnabled,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              TasksTable(
+                status: Status.todo,
+                tasks: tasks[Status.todo]!,
+                onCellClick: (TaskSlim task) {},
+                onEditClick: (TaskSlim taskSlim) {},
+                onDeleteClick: (TaskSlim taskSlim) => _deleteTask(taskSlim.id),
+              ),
+              TasksTable(
+                status: Status.inProgress,
+                tasks: tasks[Status.inProgress]!,
+                onCellClick: (TaskSlim task) {},
+                onEditClick: (TaskSlim taskSlim) {},
+                onDeleteClick: (TaskSlim taskSlim) => _deleteTask(taskSlim.id),
+              ),
+              TasksTable(
+                status: Status.review,
+                tasks: tasks[Status.review]!,
+                onCellClick: (TaskSlim task) {},
+                onEditClick: (TaskSlim taskSlim) {},
+                onDeleteClick: (TaskSlim taskSlim) => _deleteTask(taskSlim.id),
+              ),
+              TasksTable(
+                status: Status.test,
+                tasks: tasks[Status.test]!,
+                onCellClick: (TaskSlim task) {},
+                onEditClick: (TaskSlim taskSlim) {},
+                onDeleteClick: (TaskSlim taskSlim) => _deleteTask(taskSlim.id),
+              ),
+              TasksTable(
+                status: Status.closed,
+                tasks: tasks[Status.closed]!,
+                onCellClick: (TaskSlim task) {},
+                onEditClick: (TaskSlim taskSlim) {},
+                onDeleteClick: (TaskSlim taskSlim) => _deleteTask(taskSlim.id),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+}

@@ -16,45 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TasksEvent {
-  int? get projectId => throw _privateConstructorUsedError;
-  int? get assignedId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int? projectId, int? assignedId) get,
+    required TResult Function(int id) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int? projectId, int? assignedId)? get,
+    TResult? Function(int id)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int? projectId, int? assignedId)? get,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_TasksEventGet value) get,
+    required TResult Function(_TasksEventDelete value) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_TasksEventGet value)? get,
+    TResult? Function(_TasksEventDelete value)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TasksEventGet value)? get,
+    TResult Function(_TasksEventDelete value)? delete,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of TasksEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $TasksEventCopyWith<TasksEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -63,8 +61,6 @@ abstract class $TasksEventCopyWith<$Res> {
   factory $TasksEventCopyWith(
           TasksEvent value, $Res Function(TasksEvent) then) =
       _$TasksEventCopyWithImpl<$Res, TasksEvent>;
-  @useResult
-  $Res call({int? projectId, int? assignedId});
 }
 
 /// @nodoc
@@ -79,32 +75,13 @@ class _$TasksEventCopyWithImpl<$Res, $Val extends TasksEvent>
 
   /// Create a copy of TasksEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? projectId = freezed,
-    Object? assignedId = freezed,
-  }) {
-    return _then(_value.copyWith(
-      projectId: freezed == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      assignedId: freezed == assignedId
-          ? _value.assignedId
-          : assignedId // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$TasksEventGetImplCopyWith<$Res>
-    implements $TasksEventCopyWith<$Res> {
+abstract class _$$TasksEventGetImplCopyWith<$Res> {
   factory _$$TasksEventGetImplCopyWith(
           _$TasksEventGetImpl value, $Res Function(_$TasksEventGetImpl) then) =
       __$$TasksEventGetImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({int? projectId, int? assignedId});
 }
@@ -179,6 +156,7 @@ class _$TasksEventGetImpl implements _TasksEventGet {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int? projectId, int? assignedId) get,
+    required TResult Function(int id) delete,
   }) {
     return get(projectId, assignedId);
   }
@@ -187,6 +165,7 @@ class _$TasksEventGetImpl implements _TasksEventGet {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int? projectId, int? assignedId)? get,
+    TResult? Function(int id)? delete,
   }) {
     return get?.call(projectId, assignedId);
   }
@@ -195,6 +174,7 @@ class _$TasksEventGetImpl implements _TasksEventGet {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int? projectId, int? assignedId)? get,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (get != null) {
@@ -207,6 +187,7 @@ class _$TasksEventGetImpl implements _TasksEventGet {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_TasksEventGet value) get,
+    required TResult Function(_TasksEventDelete value) delete,
   }) {
     return get(this);
   }
@@ -215,6 +196,7 @@ class _$TasksEventGetImpl implements _TasksEventGet {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_TasksEventGet value)? get,
+    TResult? Function(_TasksEventDelete value)? delete,
   }) {
     return get?.call(this);
   }
@@ -223,6 +205,7 @@ class _$TasksEventGetImpl implements _TasksEventGet {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_TasksEventGet value)? get,
+    TResult Function(_TasksEventDelete value)? delete,
     required TResult orElse(),
   }) {
     if (get != null) {
@@ -236,16 +219,155 @@ abstract class _TasksEventGet implements TasksEvent {
   const factory _TasksEventGet({final int? projectId, final int? assignedId}) =
       _$TasksEventGetImpl;
 
-  @override
   int? get projectId;
-  @override
   int? get assignedId;
 
   /// Create a copy of TasksEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TasksEventGetImplCopyWith<_$TasksEventGetImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TasksEventDeleteImplCopyWith<$Res> {
+  factory _$$TasksEventDeleteImplCopyWith(_$TasksEventDeleteImpl value,
+          $Res Function(_$TasksEventDeleteImpl) then) =
+      __$$TasksEventDeleteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$TasksEventDeleteImplCopyWithImpl<$Res>
+    extends _$TasksEventCopyWithImpl<$Res, _$TasksEventDeleteImpl>
+    implements _$$TasksEventDeleteImplCopyWith<$Res> {
+  __$$TasksEventDeleteImplCopyWithImpl(_$TasksEventDeleteImpl _value,
+      $Res Function(_$TasksEventDeleteImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TasksEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$TasksEventDeleteImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TasksEventDeleteImpl implements _TasksEventDelete {
+  const _$TasksEventDeleteImpl({required this.id});
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'TasksEvent.delete(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TasksEventDeleteImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  /// Create a copy of TasksEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TasksEventDeleteImplCopyWith<_$TasksEventDeleteImpl> get copyWith =>
+      __$$TasksEventDeleteImplCopyWithImpl<_$TasksEventDeleteImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int? projectId, int? assignedId) get,
+    required TResult Function(int id) delete,
+  }) {
+    return delete(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int? projectId, int? assignedId)? get,
+    TResult? Function(int id)? delete,
+  }) {
+    return delete?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int? projectId, int? assignedId)? get,
+    TResult Function(int id)? delete,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_TasksEventGet value) get,
+    required TResult Function(_TasksEventDelete value) delete,
+  }) {
+    return delete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TasksEventGet value)? get,
+    TResult? Function(_TasksEventDelete value)? delete,
+  }) {
+    return delete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TasksEventGet value)? get,
+    TResult Function(_TasksEventDelete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TasksEventDelete implements TasksEvent {
+  const factory _TasksEventDelete({required final int id}) =
+      _$TasksEventDeleteImpl;
+
+  int get id;
+
+  /// Create a copy of TasksEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TasksEventDeleteImplCopyWith<_$TasksEventDeleteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

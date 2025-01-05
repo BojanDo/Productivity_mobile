@@ -10,7 +10,9 @@ _$CreateTaskParamsImpl _$$CreateTaskParamsImplFromJson(
         Map<String, dynamic> json) =>
     _$CreateTaskParamsImpl(
       title: json['title'] as String,
-      description: json['description'] as Map<String, dynamic>,
+      description: (json['description'] as List<dynamic>)
+          .map((e) => e as Map<String, dynamic>)
+          .toList(),
       status: json['status'] as String,
       label: json['label'] as String,
       date: json['date'] as String,

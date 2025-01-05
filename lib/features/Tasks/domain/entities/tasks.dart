@@ -100,7 +100,7 @@ class Task with _$Task {
     required int id,
     @JsonKey(name: 'task_number') required String taskNumber,
     required String title,
-    required DataMap description,
+    required List<Map<String, dynamic>> description,
     required Status status,
     required Label label,
     required String date,

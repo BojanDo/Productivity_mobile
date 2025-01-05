@@ -13,7 +13,6 @@ class ImagePickerFieldBlocBuilder extends StatelessWidget {
     super.key,
     required this.fileFieldBloc,
     this.label,
-    this.errorBuilder,
     this.isEnabled = true,
     this.padding,
     this.decoration,
@@ -22,7 +21,6 @@ class ImagePickerFieldBlocBuilder extends StatelessWidget {
 
   final InputFieldBloc<File?, ProfilePicture> fileFieldBloc;
   final String? label;
-  final FieldBlocErrorBuilder? errorBuilder;
   final bool isEnabled;
   final EdgeInsetsGeometry? padding;
   final InputDecoration? decoration;

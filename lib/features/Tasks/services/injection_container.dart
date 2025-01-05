@@ -17,7 +17,7 @@ import '../presentation/bloc/tasks/tasks_bloc.dart';
 
 Future<void> initTasksBlocs(GetIt sl) async {
   // App Logic
-  sl.registerFactory(() => TasksBloc(getTasks: sl()));
+  sl.registerFactory(() => TasksBloc(getTasks: sl(),deleteTask: sl()));
 }
 
 Future<void> initTasks(GetIt sl) async {
