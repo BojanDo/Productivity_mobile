@@ -20,6 +20,7 @@ Document _$DocumentFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Document {
+  int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get path => throw _privateConstructorUsedError;
 
@@ -38,7 +39,7 @@ abstract class $DocumentCopyWith<$Res> {
   factory $DocumentCopyWith(Document value, $Res Function(Document) then) =
       _$DocumentCopyWithImpl<$Res, Document>;
   @useResult
-  $Res call({String title, String path});
+  $Res call({int id, String title, String path});
 }
 
 /// @nodoc
@@ -56,10 +57,15 @@ class _$DocumentCopyWithImpl<$Res, $Val extends Document>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? path = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -80,7 +86,7 @@ abstract class _$$DocumentImplCopyWith<$Res>
       __$$DocumentImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String path});
+  $Res call({int id, String title, String path});
 }
 
 /// @nodoc
@@ -96,10 +102,15 @@ class __$$DocumentImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? path = null,
   }) {
     return _then(_$DocumentImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -115,11 +126,14 @@ class __$$DocumentImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DocumentImpl implements _Document {
-  const _$DocumentImpl({required this.title, required this.path});
+  const _$DocumentImpl(
+      {required this.id, required this.title, required this.path});
 
   factory _$DocumentImpl.fromJson(Map<String, dynamic> json) =>
       _$$DocumentImplFromJson(json);
 
+  @override
+  final int id;
   @override
   final String title;
   @override
@@ -127,7 +141,7 @@ class _$DocumentImpl implements _Document {
 
   @override
   String toString() {
-    return 'Document(title: $title, path: $path)';
+    return 'Document(id: $id, title: $title, path: $path)';
   }
 
   @override
@@ -135,13 +149,14 @@ class _$DocumentImpl implements _Document {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DocumentImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.path, path) || other.path == path));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, title, path);
+  int get hashCode => Object.hash(runtimeType, id, title, path);
 
   /// Create a copy of Document
   /// with the given fields replaced by the non-null parameter values.
@@ -161,12 +176,15 @@ class _$DocumentImpl implements _Document {
 
 abstract class _Document implements Document {
   const factory _Document(
-      {required final String title,
+      {required final int id,
+      required final String title,
       required final String path}) = _$DocumentImpl;
 
   factory _Document.fromJson(Map<String, dynamic> json) =
       _$DocumentImpl.fromJson;
 
+  @override
+  int get id;
   @override
   String get title;
   @override

@@ -9,10 +9,13 @@ import 'package:side_effect_bloc/side_effect_bloc.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/events/unauthorized.dart';
+import '../../../../core/services/ambient_ligt_service.dart';
 import '../../../../core/utils/api_manager.dart';
 import '../../../../core/utils/localdata_manager.dart';
 import '../../../User/domain/entities/users.dart';
 import '../../../User/domain/usecases/get_user.dart';
+
+
 
 part 'app_event.dart';
 
@@ -57,6 +60,12 @@ class AppBloc extends SideEffectBloc<AppEvent, AppState, AppSideEffect> {
         );
       },
     );
+
+    ambientLightService.startListening((double lux) {
+      print('LUX value $lux');
+      add(AppEvent.success(message: 'Ambient light: $lux'));
+      //add(AppEvent.ambientLightChanged(lux));
+    });
   }
 
   static Future<AppBloc> create(
@@ -96,10 +105,12 @@ class AppBloc extends SideEffectBloc<AppEvent, AppState, AppSideEffect> {
   final GlobalKey<NavigatorState> outerNavigator = GlobalKey<NavigatorState>();
   final GlobalKey<NavigatorState> innerNavigator = GlobalKey<NavigatorState>();
   late final StreamSubscription<UnAuthorizedEvent> _authErrorSubscription;
+  final AmbientLightService ambientLightService = AmbientLightService();
 
   @override
   Future<void> close() {
     _authErrorSubscription.cancel();
+    ambientLightService.stopListening();
     return super.close();
   }
 }

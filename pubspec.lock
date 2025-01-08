@@ -14,6 +14,14 @@ packages:
     description: dart
     source: sdk
     version: "0.3.2"
+  ambient_light:
+    dependency: "direct main"
+    description:
+      name: ambient_light
+      sha256: f1e1c03dc0d4e2ca9a13ab435f57e56c51c5f22bc3c400e6a6989b446fcd3f53
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   analyzer:
     dependency: transitive
     description:
@@ -390,6 +398,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.1"
+  file_picker:
+    dependency: "direct main"
+    description:
+      name: file_picker
+      sha256: c904b4ab56d53385563c7c39d8e9fa9af086f91495dfc48717ad84a42c3cf204
+      url: "https://pub.dev"
+    source: hosted
+    version: "8.1.7"
   file_selector_linux:
     dependency: transitive
     description:

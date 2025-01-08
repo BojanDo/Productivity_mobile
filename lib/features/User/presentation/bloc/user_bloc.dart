@@ -148,7 +148,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           ),
         );
         routePop(sl<AppBloc>().innerNavigator);
-        return null;
       },
       (Users users) {
         emit(UserState.loaded(user: state.user, invitedUsers: users));

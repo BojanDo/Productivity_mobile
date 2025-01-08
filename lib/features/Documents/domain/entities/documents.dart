@@ -8,6 +8,7 @@ part 'generated/documents.g.dart';
 @freezed
 class Document with _$Document {
   const factory Document({
+    required int id,
     required String title,
     required String path,
   }) = _Document;

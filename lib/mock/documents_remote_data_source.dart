@@ -11,6 +11,7 @@ class MockDocumentsRemoteDataSourceImplementation
     final List<Document> fakeDocuments = List<Document>.generate(
       20,
       (int index) => Document(
+        id: index,
         title: _faker.company.name(),
         path: _faker.randomGenerator.element(<String>[
           'https://dijaski.net/get/geo_ref_sneg_01__predstavitev.pptx',
@@ -20,7 +21,8 @@ class MockDocumentsRemoteDataSourceImplementation
         ]),
       ),
     );
-    documents = Documents(items: fakeDocuments, total: fakeDocuments.length*3);
+    documents =
+        Documents(items: fakeDocuments, total: fakeDocuments.length * 3);
   }
 
   final APIManager _apiManager;
@@ -34,7 +36,8 @@ class MockDocumentsRemoteDataSourceImplementation
   }
 
   @override
-  Future<void> downloadFile({required String url, required String filePath}) async{
+  Future<void> downloadFile(
+      {required String url, required String filePath}) async {
     try {
       await _apiManager.downloadFile(url, filePath);
     } on APIException {

@@ -1,10 +1,14 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 
 import '../../../../core/config/constants.dart';
+import '../../../../widgets/attachments.dart';
 import '../../../../widgets/editor.dart';
+import '../../../Documents/domain/entities/documents.dart';
+import '../bloc/task/task_bloc.dart';
 
 class TaskPageInner extends StatefulWidget {
   const TaskPageInner({super.key});
@@ -14,16 +18,27 @@ class TaskPageInner extends StatefulWidget {
 }
 
 class _TaskPageInnerState extends State<TaskPageInner> {
-  bool _isReadOnly = true; // Initially, the editor is in read-only mode
+  bool _isReadOnly = true;
 
   quill.QuillController _quillController = quill.QuillController(
-    readOnly: true, // Start in read-only mode
+    readOnly: true,
     document: quill.Document.fromJson(<Map<String, dynamic>>[
       <String, String>{'insert': 'Welcome to the editor!\n'},
       <String, String>{'insert': 'This is the default content.\n'}
     ]),
     selection: const TextSelection.collapsed(offset: 0),
   );
+
+  AttachmentManager attachmentManager = AttachmentManager(
+    existing: <Document>[
+      const Document(id: 1, title: 'Document1.pdf', path: ''),
+      const Document(id: 2, title: 'Image1.png', path: ''),
+    ],
+    added: <File>[],
+    deleted: <int>[],
+  );
+
+
 
   @override
   void dispose() {
@@ -36,6 +51,7 @@ class _TaskPageInnerState extends State<TaskPageInner> {
         jsonEncode(_quillController.document.toDelta().toJson());
     final dynamic json = jsonDecode(content);
     print('Editor Content: $content');
+    print(attachmentManager);
   }
 
   void _toggleReadOnly() {
@@ -89,6 +105,8 @@ class _TaskPageInnerState extends State<TaskPageInner> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Editor(quillController: _quillController,),
+                const SizedBox(height: 16),
+                AttachmentsWidget(manager: attachmentManager,),
                 const SizedBox(height: 16),
                 _listBuilder(),
               ],

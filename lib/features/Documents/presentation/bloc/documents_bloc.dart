@@ -32,6 +32,7 @@ class DocumentsBloc extends Bloc<DocumentsEvent, DocumentsState> {
               items: List<Document>.generate(
                 10,
                 (int index) => const Document(
+                  id:0,
                   title: 'This is a document title',
                   path: '<path>',
                 ),

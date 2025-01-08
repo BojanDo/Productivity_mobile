@@ -52,9 +52,9 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
     final List<Document> fakeDocuments = List<Document>.generate(
       2,
       (int index) => Document(
+        id: index,
         title: _faker.lorem.words(3).join(' '),
-        path:
-            'https://www.fao.org/4/i0197e/i0197e09.pdf',
+        path: 'https://www.fao.org/4/i0197e/i0197e09.pdf',
       ),
     );
     final Project fakeProject = Project(
@@ -74,7 +74,7 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
         },
         <String, dynamic>{
           'insert':
-          'This is a normal content description\nWith multiple lines\nAnd a',
+              'This is a normal content description\nWith multiple lines\nAnd a',
         },
         <String, dynamic>{
           'insert': '\n',
@@ -109,8 +109,9 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
   }
 
   @override
-  Future<TaskResponse> createTask(
-      {required Map<String, dynamic> values,}) async {
+  Future<TaskResponse> createTask({
+    required Map<String, dynamic> values,
+  }) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
@@ -122,8 +123,10 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
   }
 
   @override
-  Future<TaskResponse> updateTask(int id,
-      {required Map<String, dynamic> values,}) async {
+  Future<TaskResponse> updateTask(
+    int id, {
+    required Map<String, dynamic> values,
+  }) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
@@ -135,15 +138,18 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
   }
 
   @override
-  Future<TaskResponse> addComment(
-      {required Map<String, dynamic> values,}) async {
+  Future<TaskResponse> addComment({
+    required Map<String, dynamic> values,
+  }) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
 
   @override
-  Future<TaskResponse> updateComment(int id,
-      {required Map<String, dynamic> values,}) async {
+  Future<TaskResponse> updateComment(
+    int id, {
+    required Map<String, dynamic> values,
+  }) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }

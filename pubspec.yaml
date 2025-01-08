@@ -48,7 +48,8 @@ dependencies:
   image_cropper: ^8.0.2
   event_bus: ^2.0.1
   open_filex: ^4.5.0
-
+  ambient_light: ^0.0.5
+  file_picker: ^8.1.7
 
 dev_dependencies:
   flutter_test:
