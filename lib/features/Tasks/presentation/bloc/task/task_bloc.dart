@@ -75,7 +75,12 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         ) {
     on<TaskEvent>(
       (TaskEvent event, Emitter<TaskState> emit) => event.when(
-        get: (int id) async {
+        get: (int? id) async {
+          if(id==null){
+            emit(const TaskState.loaded());
+            return null;
+          }
+
           final Either<Failure, Task> result = await _getTask(
             id,
           );

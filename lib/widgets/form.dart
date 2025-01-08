@@ -79,7 +79,7 @@ class GlobalForm<BlocT extends FormBloc<String, String>>
             ),
             body: Container(
               color: kSecondaryBackgroundColor,
-              padding: const EdgeInsets.all(kDefaultPadding),
+              padding: const EdgeInsets.all(kDefaultPadding/2),
               child: SingleChildScrollView(
                 child: Column(
                   children: fields,

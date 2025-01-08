@@ -16,20 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TaskEvent {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int id) get,
+    required TResult Function(int? id) get,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id)? get,
+    TResult? Function(int? id)? get,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id)? get,
+    TResult Function(int? id)? get,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -62,7 +62,7 @@ abstract class $TaskEventCopyWith<$Res> {
   factory $TaskEventCopyWith(TaskEvent value, $Res Function(TaskEvent) then) =
       _$TaskEventCopyWithImpl<$Res, TaskEvent>;
   @useResult
-  $Res call({int id});
+  $Res call({int? id});
 }
 
 /// @nodoc
@@ -80,13 +80,13 @@ class _$TaskEventCopyWithImpl<$Res, $Val extends TaskEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -99,7 +99,7 @@ abstract class _$$TaskEventGetImplCopyWith<$Res>
       __$$TaskEventGetImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id});
+  $Res call({int? id});
 }
 
 /// @nodoc
@@ -115,13 +115,13 @@ class __$$TaskEventGetImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
   }) {
     return _then(_$TaskEventGetImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -129,10 +129,10 @@ class __$$TaskEventGetImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TaskEventGetImpl implements _TaskEventGet {
-  const _$TaskEventGetImpl({required this.id});
+  const _$TaskEventGetImpl({this.id});
 
   @override
-  final int id;
+  final int? id;
 
   @override
   String toString() {
@@ -161,7 +161,7 @@ class _$TaskEventGetImpl implements _TaskEventGet {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int id) get,
+    required TResult Function(int? id) get,
   }) {
     return get(id);
   }
@@ -169,7 +169,7 @@ class _$TaskEventGetImpl implements _TaskEventGet {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id)? get,
+    TResult? Function(int? id)? get,
   }) {
     return get?.call(id);
   }
@@ -177,7 +177,7 @@ class _$TaskEventGetImpl implements _TaskEventGet {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id)? get,
+    TResult Function(int? id)? get,
     required TResult orElse(),
   }) {
     if (get != null) {
@@ -216,10 +216,10 @@ class _$TaskEventGetImpl implements _TaskEventGet {
 }
 
 abstract class _TaskEventGet implements TaskEvent {
-  const factory _TaskEventGet({required final int id}) = _$TaskEventGetImpl;
+  const factory _TaskEventGet({final int? id}) = _$TaskEventGetImpl;
 
   @override
-  int get id;
+  int? get id;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -231,23 +231,23 @@ abstract class _TaskEventGet implements TaskEvent {
 
 /// @nodoc
 mixin _$TaskState {
-  Task get task => throw _privateConstructorUsedError;
+  Task? get task => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Task task) getting,
-    required TResult Function(Task task) loaded,
+    required TResult Function(Task? task) getting,
+    required TResult Function(Task? task) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Task task)? getting,
-    TResult? Function(Task task)? loaded,
+    TResult? Function(Task? task)? getting,
+    TResult? Function(Task? task)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Task task)? getting,
-    TResult Function(Task task)? loaded,
+    TResult Function(Task? task)? getting,
+    TResult Function(Task? task)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -283,9 +283,9 @@ abstract class $TaskStateCopyWith<$Res> {
   factory $TaskStateCopyWith(TaskState value, $Res Function(TaskState) then) =
       _$TaskStateCopyWithImpl<$Res, TaskState>;
   @useResult
-  $Res call({Task task});
+  $Res call({Task? task});
 
-  $TaskCopyWith<$Res> get task;
+  $TaskCopyWith<$Res>? get task;
 }
 
 /// @nodoc
@@ -303,13 +303,13 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? task = null,
+    Object? task = freezed,
   }) {
     return _then(_value.copyWith(
-      task: null == task
+      task: freezed == task
           ? _value.task
           : task // ignore: cast_nullable_to_non_nullable
-              as Task,
+              as Task?,
     ) as $Val);
   }
 
@@ -317,8 +317,12 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $TaskCopyWith<$Res> get task {
-    return $TaskCopyWith<$Res>(_value.task, (value) {
+  $TaskCopyWith<$Res>? get task {
+    if (_value.task == null) {
+      return null;
+    }
+
+    return $TaskCopyWith<$Res>(_value.task!, (value) {
       return _then(_value.copyWith(task: value) as $Val);
     });
   }
@@ -332,10 +336,10 @@ abstract class _$$TaskStateGettingImplCopyWith<$Res>
       __$$TaskStateGettingImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Task task});
+  $Res call({Task? task});
 
   @override
-  $TaskCopyWith<$Res> get task;
+  $TaskCopyWith<$Res>? get task;
 }
 
 /// @nodoc
@@ -351,13 +355,13 @@ class __$$TaskStateGettingImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? task = null,
+    Object? task = freezed,
   }) {
     return _then(_$TaskStateGettingImpl(
-      task: null == task
+      task: freezed == task
           ? _value.task
           : task // ignore: cast_nullable_to_non_nullable
-              as Task,
+              as Task?,
     ));
   }
 }
@@ -365,10 +369,10 @@ class __$$TaskStateGettingImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TaskStateGettingImpl implements _TaskStateGetting {
-  const _$TaskStateGettingImpl({required this.task});
+  const _$TaskStateGettingImpl({this.task});
 
   @override
-  final Task task;
+  final Task? task;
 
   @override
   String toString() {
@@ -398,8 +402,8 @@ class _$TaskStateGettingImpl implements _TaskStateGetting {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Task task) getting,
-    required TResult Function(Task task) loaded,
+    required TResult Function(Task? task) getting,
+    required TResult Function(Task? task) loaded,
   }) {
     return getting(task);
   }
@@ -407,8 +411,8 @@ class _$TaskStateGettingImpl implements _TaskStateGetting {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Task task)? getting,
-    TResult? Function(Task task)? loaded,
+    TResult? Function(Task? task)? getting,
+    TResult? Function(Task? task)? loaded,
   }) {
     return getting?.call(task);
   }
@@ -416,8 +420,8 @@ class _$TaskStateGettingImpl implements _TaskStateGetting {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Task task)? getting,
-    TResult Function(Task task)? loaded,
+    TResult Function(Task? task)? getting,
+    TResult Function(Task? task)? loaded,
     required TResult orElse(),
   }) {
     if (getting != null) {
@@ -459,11 +463,10 @@ class _$TaskStateGettingImpl implements _TaskStateGetting {
 }
 
 abstract class _TaskStateGetting implements TaskState {
-  const factory _TaskStateGetting({required final Task task}) =
-      _$TaskStateGettingImpl;
+  const factory _TaskStateGetting({final Task? task}) = _$TaskStateGettingImpl;
 
   @override
-  Task get task;
+  Task? get task;
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -481,10 +484,10 @@ abstract class _$$TaskStateLoadedImplCopyWith<$Res>
       __$$TaskStateLoadedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Task task});
+  $Res call({Task? task});
 
   @override
-  $TaskCopyWith<$Res> get task;
+  $TaskCopyWith<$Res>? get task;
 }
 
 /// @nodoc
@@ -500,13 +503,13 @@ class __$$TaskStateLoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? task = null,
+    Object? task = freezed,
   }) {
     return _then(_$TaskStateLoadedImpl(
-      task: null == task
+      task: freezed == task
           ? _value.task
           : task // ignore: cast_nullable_to_non_nullable
-              as Task,
+              as Task?,
     ));
   }
 }
@@ -514,10 +517,10 @@ class __$$TaskStateLoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TaskStateLoadedImpl implements _TaskStateLoaded {
-  const _$TaskStateLoadedImpl({required this.task});
+  const _$TaskStateLoadedImpl({this.task});
 
   @override
-  final Task task;
+  final Task? task;
 
   @override
   String toString() {
@@ -547,8 +550,8 @@ class _$TaskStateLoadedImpl implements _TaskStateLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Task task) getting,
-    required TResult Function(Task task) loaded,
+    required TResult Function(Task? task) getting,
+    required TResult Function(Task? task) loaded,
   }) {
     return loaded(task);
   }
@@ -556,8 +559,8 @@ class _$TaskStateLoadedImpl implements _TaskStateLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Task task)? getting,
-    TResult? Function(Task task)? loaded,
+    TResult? Function(Task? task)? getting,
+    TResult? Function(Task? task)? loaded,
   }) {
     return loaded?.call(task);
   }
@@ -565,8 +568,8 @@ class _$TaskStateLoadedImpl implements _TaskStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Task task)? getting,
-    TResult Function(Task task)? loaded,
+    TResult Function(Task? task)? getting,
+    TResult Function(Task? task)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -608,11 +611,10 @@ class _$TaskStateLoadedImpl implements _TaskStateLoaded {
 }
 
 abstract class _TaskStateLoaded implements TaskState {
-  const factory _TaskStateLoaded({required final Task task}) =
-      _$TaskStateLoadedImpl;
+  const factory _TaskStateLoaded({final Task? task}) = _$TaskStateLoadedImpl;
 
   @override
-  Task get task;
+  Task? get task;
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.

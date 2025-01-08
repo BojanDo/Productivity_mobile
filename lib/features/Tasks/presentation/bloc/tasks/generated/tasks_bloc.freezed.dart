@@ -377,8 +377,10 @@ mixin _$TasksState {
   TResult when<TResult extends Object?>({
     required TResult Function(Map<Status, List<TaskSlim>> seperatedTasks)
         getting,
-    required TResult Function(PaginatedList<TaskSlim> tasks,
-            Map<Status, List<TaskSlim>> seperatedTasks)
+    required TResult Function(
+            PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks,
+            PaginatedList<User> users)
         loaded,
     required TResult Function() error,
   }) =>
@@ -386,8 +388,10 @@ mixin _$TasksState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Map<Status, List<TaskSlim>> seperatedTasks)? getting,
-    TResult? Function(PaginatedList<TaskSlim> tasks,
-            Map<Status, List<TaskSlim>> seperatedTasks)?
+    TResult? Function(
+            PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks,
+            PaginatedList<User> users)?
         loaded,
     TResult? Function()? error,
   }) =>
@@ -395,8 +399,10 @@ mixin _$TasksState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Map<Status, List<TaskSlim>> seperatedTasks)? getting,
-    TResult Function(PaginatedList<TaskSlim> tasks,
-            Map<Status, List<TaskSlim>> seperatedTasks)?
+    TResult Function(
+            PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks,
+            PaginatedList<User> users)?
         loaded,
     TResult Function()? error,
     required TResult orElse(),
@@ -527,8 +533,10 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   TResult when<TResult extends Object?>({
     required TResult Function(Map<Status, List<TaskSlim>> seperatedTasks)
         getting,
-    required TResult Function(PaginatedList<TaskSlim> tasks,
-            Map<Status, List<TaskSlim>> seperatedTasks)
+    required TResult Function(
+            PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks,
+            PaginatedList<User> users)
         loaded,
     required TResult Function() error,
   }) {
@@ -539,8 +547,10 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Map<Status, List<TaskSlim>> seperatedTasks)? getting,
-    TResult? Function(PaginatedList<TaskSlim> tasks,
-            Map<Status, List<TaskSlim>> seperatedTasks)?
+    TResult? Function(
+            PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks,
+            PaginatedList<User> users)?
         loaded,
     TResult? Function()? error,
   }) {
@@ -551,8 +561,10 @@ class _$TasksStateGettingImpl implements _TasksStateGetting {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Map<Status, List<TaskSlim>> seperatedTasks)? getting,
-    TResult Function(PaginatedList<TaskSlim> tasks,
-            Map<Status, List<TaskSlim>> seperatedTasks)?
+    TResult Function(
+            PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks,
+            PaginatedList<User> users)?
         loaded,
     TResult Function()? error,
     required TResult orElse(),
@@ -620,9 +632,11 @@ abstract class _$$TasksStateLoadedImplCopyWith<$Res> {
   @useResult
   $Res call(
       {PaginatedList<TaskSlim> tasks,
-      Map<Status, List<TaskSlim>> seperatedTasks});
+      Map<Status, List<TaskSlim>> seperatedTasks,
+      PaginatedList<User> users});
 
   $PaginatedListCopyWith<TaskSlim, $Res> get tasks;
+  $PaginatedListCopyWith<User, $Res> get users;
 }
 
 /// @nodoc
@@ -640,6 +654,7 @@ class __$$TasksStateLoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? tasks = null,
     Object? seperatedTasks = null,
+    Object? users = null,
   }) {
     return _then(_$TasksStateLoadedImpl(
       tasks: null == tasks
@@ -650,6 +665,10 @@ class __$$TasksStateLoadedImplCopyWithImpl<$Res>
           ? _value._seperatedTasks
           : seperatedTasks // ignore: cast_nullable_to_non_nullable
               as Map<Status, List<TaskSlim>>,
+      users: null == users
+          ? _value.users
+          : users // ignore: cast_nullable_to_non_nullable
+              as PaginatedList<User>,
     ));
   }
 
@@ -662,6 +681,16 @@ class __$$TasksStateLoadedImplCopyWithImpl<$Res>
       return _then(_value.copyWith(tasks: value));
     });
   }
+
+  /// Create a copy of TasksState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PaginatedListCopyWith<User, $Res> get users {
+    return $PaginatedListCopyWith<User, $Res>(_value.users, (value) {
+      return _then(_value.copyWith(users: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -669,7 +698,8 @@ class __$$TasksStateLoadedImplCopyWithImpl<$Res>
 class _$TasksStateLoadedImpl implements _TasksStateLoaded {
   const _$TasksStateLoadedImpl(
       {required this.tasks,
-      required final Map<Status, List<TaskSlim>> seperatedTasks})
+      required final Map<Status, List<TaskSlim>> seperatedTasks,
+      required this.users})
       : _seperatedTasks = seperatedTasks;
 
   @override
@@ -683,8 +713,11 @@ class _$TasksStateLoadedImpl implements _TasksStateLoaded {
   }
 
   @override
+  final PaginatedList<User> users;
+
+  @override
   String toString() {
-    return 'TasksState.loaded(tasks: $tasks, seperatedTasks: $seperatedTasks)';
+    return 'TasksState.loaded(tasks: $tasks, seperatedTasks: $seperatedTasks, users: $users)';
   }
 
   @override
@@ -694,12 +727,13 @@ class _$TasksStateLoadedImpl implements _TasksStateLoaded {
             other is _$TasksStateLoadedImpl &&
             (identical(other.tasks, tasks) || other.tasks == tasks) &&
             const DeepCollectionEquality()
-                .equals(other._seperatedTasks, _seperatedTasks));
+                .equals(other._seperatedTasks, _seperatedTasks) &&
+            (identical(other.users, users) || other.users == users));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, tasks, const DeepCollectionEquality().hash(_seperatedTasks));
+  int get hashCode => Object.hash(runtimeType, tasks,
+      const DeepCollectionEquality().hash(_seperatedTasks), users);
 
   /// Create a copy of TasksState
   /// with the given fields replaced by the non-null parameter values.
@@ -715,38 +749,44 @@ class _$TasksStateLoadedImpl implements _TasksStateLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function(Map<Status, List<TaskSlim>> seperatedTasks)
         getting,
-    required TResult Function(PaginatedList<TaskSlim> tasks,
-            Map<Status, List<TaskSlim>> seperatedTasks)
+    required TResult Function(
+            PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks,
+            PaginatedList<User> users)
         loaded,
     required TResult Function() error,
   }) {
-    return loaded(tasks, seperatedTasks);
+    return loaded(tasks, seperatedTasks, users);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Map<Status, List<TaskSlim>> seperatedTasks)? getting,
-    TResult? Function(PaginatedList<TaskSlim> tasks,
-            Map<Status, List<TaskSlim>> seperatedTasks)?
+    TResult? Function(
+            PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks,
+            PaginatedList<User> users)?
         loaded,
     TResult? Function()? error,
   }) {
-    return loaded?.call(tasks, seperatedTasks);
+    return loaded?.call(tasks, seperatedTasks, users);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Map<Status, List<TaskSlim>> seperatedTasks)? getting,
-    TResult Function(PaginatedList<TaskSlim> tasks,
-            Map<Status, List<TaskSlim>> seperatedTasks)?
+    TResult Function(
+            PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks,
+            PaginatedList<User> users)?
         loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(tasks, seperatedTasks);
+      return loaded(tasks, seperatedTasks, users);
     }
     return orElse();
   }
@@ -788,12 +828,13 @@ class _$TasksStateLoadedImpl implements _TasksStateLoaded {
 
 abstract class _TasksStateLoaded implements TasksState {
   const factory _TasksStateLoaded(
-          {required final PaginatedList<TaskSlim> tasks,
-          required final Map<Status, List<TaskSlim>> seperatedTasks}) =
-      _$TasksStateLoadedImpl;
+      {required final PaginatedList<TaskSlim> tasks,
+      required final Map<Status, List<TaskSlim>> seperatedTasks,
+      required final PaginatedList<User> users}) = _$TasksStateLoadedImpl;
 
   PaginatedList<TaskSlim> get tasks;
   Map<Status, List<TaskSlim>> get seperatedTasks;
+  PaginatedList<User> get users;
 
   /// Create a copy of TasksState
   /// with the given fields replaced by the non-null parameter values.
@@ -845,8 +886,10 @@ class _$TasksStateErrorImpl implements _TasksStateError {
   TResult when<TResult extends Object?>({
     required TResult Function(Map<Status, List<TaskSlim>> seperatedTasks)
         getting,
-    required TResult Function(PaginatedList<TaskSlim> tasks,
-            Map<Status, List<TaskSlim>> seperatedTasks)
+    required TResult Function(
+            PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks,
+            PaginatedList<User> users)
         loaded,
     required TResult Function() error,
   }) {
@@ -857,8 +900,10 @@ class _$TasksStateErrorImpl implements _TasksStateError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Map<Status, List<TaskSlim>> seperatedTasks)? getting,
-    TResult? Function(PaginatedList<TaskSlim> tasks,
-            Map<Status, List<TaskSlim>> seperatedTasks)?
+    TResult? Function(
+            PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks,
+            PaginatedList<User> users)?
         loaded,
     TResult? Function()? error,
   }) {
@@ -869,8 +914,10 @@ class _$TasksStateErrorImpl implements _TasksStateError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Map<Status, List<TaskSlim>> seperatedTasks)? getting,
-    TResult Function(PaginatedList<TaskSlim> tasks,
-            Map<Status, List<TaskSlim>> seperatedTasks)?
+    TResult Function(
+            PaginatedList<TaskSlim> tasks,
+            Map<Status, List<TaskSlim>> seperatedTasks,
+            PaginatedList<User> users)?
         loaded,
     TResult Function()? error,
     required TResult orElse(),

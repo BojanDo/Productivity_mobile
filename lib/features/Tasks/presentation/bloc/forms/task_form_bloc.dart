@@ -30,16 +30,26 @@ class AttachmentManager {
   }
 }
 
+class TaskFormBlocParams{
+  TaskFormBlocParams({this.projectId, required this.users, this.task});
+  final int? projectId;
+  final Users users;
+  final Task? task;
+}
+
 class TaskFormBloc extends FormBloc<String, String> {
   TaskFormBloc({
     required this.mode,
     this.task,
-    required this.projectId,
+    this.projectId,
     required this.users,
     required CreateTask createTask,
     required UpdateTask updateTask,
   })  : _createTask = createTask,
         _updateTask = updateTask {
+
+    assigned.updateItems(users.items);
+
     if (task != null) {
       title.updateInitialValue(task!.title);
       description.updateInitialValue(
@@ -72,7 +82,7 @@ class TaskFormBloc extends FormBloc<String, String> {
   final UpdateTask _updateTask;
 
   final Task? task;
-  final int projectId;
+  final int? projectId;
   final Users users;
   final TaskFormMode mode;
 
@@ -126,6 +136,12 @@ class TaskFormBloc extends FormBloc<String, String> {
   );
 
   @override
+  Future<void> close() async {
+    description.value.dispose();
+    await super.close();
+  }
+
+  @override
   FutureOr<void> onSubmitting() async {
     final Either<Failure, TaskResponse> result;
 
@@ -140,7 +156,7 @@ class TaskFormBloc extends FormBloc<String, String> {
           assigned: assigned.value.map((User el) => el.id).toList(),
           attachments:
               attachments.value.added.map((File el) => el.path).toList(),
-          projectId: projectId,
+          projectId: projectId!,
         ),
       );
     } else {
@@ -156,7 +172,7 @@ class TaskFormBloc extends FormBloc<String, String> {
           attachments:
               attachments.value.added.map((File el) => el.path).toList(),
           deletedAttachments: attachments.value.deleted,
-          projectId: projectId,
+          projectId: task!.project.id,
           taskNumber: task!.taskNumber,
         ),
       );

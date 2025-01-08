@@ -12,8 +12,10 @@ import 'features/Projects/domain/entities/projects.dart';
 import 'features/Projects/presentation/bloc/projects_bloc.dart';
 import 'features/Projects/presentation/views/project.dart';
 import 'features/Projects/presentation/views/projects.dart';
+import 'features/Tasks/presentation/bloc/task/task_bloc.dart';
 import 'features/Tasks/presentation/views/task.dart';
 import 'features/Tasks/presentation/views/tasks.dart';
+import 'features/User/domain/entities/users.dart';
 import 'features/User/presentation/bloc/user_bloc.dart';
 import 'features/User/presentation/views/account.dart';
 import 'features/User/presentation/views/invitations.dart';
@@ -105,7 +107,14 @@ class _InnerWrapperState extends State<InnerWrapper> {
                       (BuildContext context) => TasksPage.user(state.user.id);
                   break;
                 case kTaskRoute:
-                  builder = (BuildContext context) => TaskPageInner();
+                  final Map<String, dynamic>? args =
+                      settings.arguments as Map<String, dynamic>?;
+                  builder = (BuildContext context) => TaskPage(
+                        id: args?['id'] as int?,
+                        projectId: args?['projectId'] as int?,
+                        mode: args?['mode'] as TaskFormMode,
+                        users: args?['users'] as Users,
+                      );
                   break;
                 default:
                   builder = (BuildContext context) => const Test(title: 'Page');

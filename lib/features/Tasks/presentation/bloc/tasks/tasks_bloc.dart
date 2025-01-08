@@ -7,6 +7,8 @@ import '../../../../../core/entities/paginated_list.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/services/injection_container.dart';
 import '../../../../App/presentation/bloc/app_bloc.dart';
+import '../../../../User/domain/entities/users.dart';
+import '../../../../User/domain/usecases/get_users.dart';
 import '../../../domain/entities/task_response.dart';
 import '../../../domain/entities/tasks.dart';
 import '../../../domain/usecases/delete_task.dart';
@@ -19,9 +21,13 @@ part 'tasks_state.dart';
 part 'generated/tasks_bloc.freezed.dart';
 
 class TasksBloc extends Bloc<TasksEvent, TasksState> {
-  TasksBloc({required GetTasks getTasks, required DeleteTask deleteTask})
-      : _getTasks = getTasks,
+  TasksBloc({
+    required GetTasks getTasks,
+    required DeleteTask deleteTask,
+    required GetUsers getUsers,
+  })  : _getTasks = getTasks,
         _deleteTask = deleteTask,
+        _getUsers = getUsers,
         super(
           TasksState.getting(
             seperatedTasks: TasksBloc._seperateTasks(
@@ -52,10 +58,10 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
           ),
         ) {
     on<TasksEvent>(
-      (TasksEvent event, Emitter<TasksState> emit) => event.when(
-        get: (int? projectId, int? assignedId) =>
-            _getTasksHandler(projectId, assignedId, emit),
-        delete: (int id) => _deleteTaskHandler(id, emit),
+      (TasksEvent event, Emitter<TasksState> emit) async=> event.when(
+        get: (int? projectId, int? assignedId) async=>
+            await _getTasksHandler(projectId, assignedId, emit),
+        delete: (int id) async=> await _deleteTaskHandler(id, emit),
       ),
     );
   }
@@ -73,24 +79,30 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     if (assignedId != null) {
       assigned.add(assignedId);
     }
-    final Either<Failure, Tasks> result = await _getTasks(
+    final Either<Failure, Tasks> resultTasks = await _getTasks(
       GetTasksParams(
         projects: projects,
         assigned: assigned,
       ),
     );
+    final Either<Failure, Users> resultUsers = await _getUsers();
 
-    result.fold(
+    resultTasks.fold(
       (Failure failure) => emit(const TasksState.error()),
-      (Tasks tasks) {
-        emit(
-          TasksState.loaded(
-            tasks: tasks,
-            seperatedTasks: _seperateTasks(
-              tasks,
+      (Tasks tasks) async {
+        resultUsers.fold(
+              (Failure failure) => emit(const TasksState.error()),
+              (Users users) => emit(
+            TasksState.loaded(
+              tasks: tasks,
+              seperatedTasks: _seperateTasks(
+                tasks,
+              ),
+              users: users,
             ),
           ),
         );
+
       },
     );
   }
@@ -130,4 +142,5 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
 
   final GetTasks _getTasks;
   final DeleteTask _deleteTask;
+  final GetUsers _getUsers;
 }

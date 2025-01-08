@@ -4,6 +4,6 @@ part of 'task_bloc.dart';
 class TaskEvent with _$TaskEvent {
 
   const factory TaskEvent.get({
-    required int id,
+    int? id,
   }) = _TaskEventGet;
 }
