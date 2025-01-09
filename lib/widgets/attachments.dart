@@ -64,7 +64,6 @@ class _AttachmentsWidgetState extends State<AttachmentsWidget> {
           ],
         ),
       ),
-      const SizedBox(height: 16),
       if (widget.manager.existing.isNotEmpty) ...<Widget>[
         ListView.builder(
           shrinkWrap: true,
@@ -73,17 +72,17 @@ class _AttachmentsWidgetState extends State<AttachmentsWidget> {
           itemBuilder: (BuildContext context, int index) {
             final Document doc = widget.manager.existing[index];
             return ListTile(
+              dense: true,
               leading: const Icon(Icons.description_outlined),
               title: Text(doc.title),
               trailing: IconButton(
-                icon: const Icon(Icons.delete, color: Colors.red),
+                icon: const Icon(Icons.delete, color: Colors.black54,),
                 onPressed: () => _deleteExistingDocument(doc.id),
               ),
             );
           },
         ),
       ],
-      const SizedBox(height: 16),
       if (widget.manager.added.isNotEmpty) ...<Widget>[
         ListView.builder(
           shrinkWrap: true,
@@ -92,10 +91,11 @@ class _AttachmentsWidgetState extends State<AttachmentsWidget> {
           itemBuilder: (BuildContext context, int index) {
             final File file = widget.manager.added[index];
             return ListTile(
+              dense: true,
               leading: const Icon(Icons.description_outlined),
               title: Text(file.path.split('/').last),
               trailing: IconButton(
-                icon: const Icon(Icons.delete, color: Colors.red),
+                icon: const Icon(Icons.delete, color: Colors.black54,),
                 onPressed: () => _removeAttachment(file),
               ),
             );

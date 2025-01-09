@@ -16,6 +16,7 @@ import '../../../Documents/domain/entities/documents.dart';
 import '../../../User/domain/entities/users.dart';
 import '../../domain/entities/tasks.dart';
 import '../bloc/task/task_bloc.dart';
+import '../widgets/multiselect_field_users.dart';
 
 class TaskPage extends StatelessWidget {
   const TaskPage(
@@ -155,7 +156,6 @@ class _TaskPageInnerState extends State<TaskPageInner> {
             keyboardType: TextInputType.text,
             decoration: const InputDecoration(
               labelText: 'Task title',
-              prefixIcon: Icon(Icons.dashboard_outlined),
               floatingLabelBehavior: FloatingLabelBehavior.always,
             ),
           ),
@@ -172,7 +172,6 @@ class _TaskPageInnerState extends State<TaskPageInner> {
             selectFieldBloc: taskFormBloc.status,
             decoration: const InputDecoration(
               labelText: 'Status',
-              prefixIcon: Icon(Icons.sentiment_satisfied),
             ),
             itemBuilder: (BuildContext context, Status value) => FieldItem(
               child: Text(value.displayName),
@@ -182,7 +181,6 @@ class _TaskPageInnerState extends State<TaskPageInner> {
             selectFieldBloc: taskFormBloc.label,
             decoration: const InputDecoration(
               labelText: 'Label',
-              prefixIcon: Icon(Icons.sentiment_satisfied),
             ),
             itemBuilder: (BuildContext context, String value) => FieldItem(
               child: Text(value),
@@ -198,7 +196,8 @@ class _TaskPageInnerState extends State<TaskPageInner> {
               labelText: 'Due date',
             ),
           ),
-          MultiSelectFieldBlocBuilder()
+          const SizedBox(height: 8),
+          MultiselectFieldUsers(formBloc: taskFormBloc.assigned),
           const SizedBox(height: 16),
           _listBuilder(),
         ],

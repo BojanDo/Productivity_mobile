@@ -38,7 +38,7 @@ class TasksPage extends StatelessWidget {
           ),
           body: TasksPageInner(
             projectId: project.id,
-            create: () {},
+            canCreate: true,
           ),
         ),
       );
@@ -55,12 +55,12 @@ class TasksPageInner extends StatefulWidget {
     super.key,
     this.projectId,
     this.assignedId,
-    this.create,
+    this.canCreate = false,
   });
 
   final int? projectId;
   final int? assignedId;
-  final VoidCallback? create;
+  final bool canCreate;
 
   @override
   State<TasksPageInner> createState() => _TasksPageInnerState();
@@ -82,9 +82,9 @@ class _TasksPageInnerState extends State<TasksPageInner> {
         TasksEvent.delete(id: id),
       );
 
-  void _editTask(int id,Users users) =>
+  void _editTask(int id, Users users) =>
       route(sl<AppBloc>().innerNavigator, kTaskRoute, <String, dynamic>{
-        'id':id,
+        'id': id,
         'mode': TaskFormMode.edit,
         'projectId': widget.projectId,
         'users': users,
@@ -97,29 +97,29 @@ class _TasksPageInnerState extends State<TasksPageInner> {
             getting: (_) => true,
             orElse: () => false,
           );
-          return Scaffold(
-            appBar: GlobalAppBar(
-              title: 'Tasks',
-              count: state.whenOrNull(
-                loaded: (
-                  Tasks tasks,
-                  Map<Status, List<TaskSlim>> seperatedTasks,
-                  Users users,
-                ) =>
-                    tasks.total,
-              ),
-              create: widget.create,
+          final int? count = state.whenOrNull(
+            loaded: (
+              Tasks tasks,
+              Map<Status, List<TaskSlim>> seperatedTasks,
+              Users users,
+            ) =>
+                tasks.total,
+          );
+
+          return state.when(
+            getting: (Map<Status, List<TaskSlim>> tasks) => _skeletonizer(
+              tasks,
+              const Users(items: <User>[], total: 0),
+              isEnabled,
+              null,
             ),
-            body: state.when(
-              getting: (Map<Status, List<TaskSlim>> tasks) => _skeletonizer(
-                tasks,
-                const Users(items: <User>[], total: 0),
-                isEnabled,
-              ),
-              loaded: (_, Map<Status, List<TaskSlim>> tasks, Users users) =>
-                  _skeletonizer(tasks, users, isEnabled),
-              error: () => const Placeholder(),
-            ), //TODO: add something for error
+            loaded: (
+              Tasks tasks,
+              Map<Status, List<TaskSlim>> seperatedTasks,
+              Users users,
+            ) =>
+                _skeletonizer(seperatedTasks, users, isEnabled, tasks.total),
+            error: () => const Placeholder(),
           );
         },
       );
@@ -128,48 +128,65 @@ class _TasksPageInnerState extends State<TasksPageInner> {
     Map<Status, List<TaskSlim>> tasks,
     Users users,
     bool isEnabled,
+    int? count,
   ) =>
-      Skeletonizer(
-        enabled: isEnabled,
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              TasksTable(
-                status: Status.todo,
-                tasks: tasks[Status.todo]!,
-                onCellClick: (TaskSlim task) => _editTask(task.id,users),
-                onEditClick: (TaskSlim task) => _editTask(task.id,users),
-                onDeleteClick: (TaskSlim task) => _deleteTask(task.id),
-              ),
-              TasksTable(
-                status: Status.inProgress,
-                tasks: tasks[Status.inProgress]!,
-                onCellClick: (TaskSlim task) => _editTask(task.id,users),
-                onEditClick: (TaskSlim task) => _editTask(task.id,users),
-                onDeleteClick: (TaskSlim task) => _deleteTask(task.id),
-              ),
-              TasksTable(
-                status: Status.review,
-                tasks: tasks[Status.review]!,
-                onCellClick: (TaskSlim task) => _editTask(task.id,users),
-                onEditClick: (TaskSlim task) => _editTask(task.id,users),
-                onDeleteClick: (TaskSlim task) => _deleteTask(task.id),
-              ),
-              TasksTable(
-                status: Status.test,
-                tasks: tasks[Status.test]!,
-                onCellClick: (TaskSlim task) => _editTask(task.id,users),
-                onEditClick: (TaskSlim task) => _editTask(task.id,users),
-                onDeleteClick: (TaskSlim task) => _deleteTask(task.id),
-              ),
-              TasksTable(
-                status: Status.closed,
-                tasks: tasks[Status.closed]!,
-                onCellClick: (TaskSlim task) => _editTask(task.id,users),
-                onEditClick: (TaskSlim task) => _editTask(task.id,users),
-                onDeleteClick: (TaskSlim task) => _deleteTask(task.id),
-              ),
-            ],
+      Scaffold(
+        appBar: GlobalAppBar(
+          title: 'Tasks',
+          count: count,
+          create: widget.canCreate
+              ? () {
+                  route(sl<AppBloc>().innerNavigator,
+                      kTaskRoute, <String, dynamic>{
+                    'mode': TaskFormMode.create,
+                    'projectId': widget.projectId,
+                    'users': users,
+                  });
+                }
+              : null,
+        ),
+        body: Skeletonizer(
+          enabled: isEnabled,
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                TasksTable(
+                  status: Status.todo,
+                  tasks: tasks[Status.todo]!,
+                  onCellClick: (TaskSlim task) => _editTask(task.id, users),
+                  onEditClick: (TaskSlim task) => _editTask(task.id, users),
+                  onDeleteClick: (TaskSlim task) => _deleteTask(task.id),
+                ),
+                TasksTable(
+                  status: Status.inProgress,
+                  tasks: tasks[Status.inProgress]!,
+                  onCellClick: (TaskSlim task) => _editTask(task.id, users),
+                  onEditClick: (TaskSlim task) => _editTask(task.id, users),
+                  onDeleteClick: (TaskSlim task) => _deleteTask(task.id),
+                ),
+                TasksTable(
+                  status: Status.review,
+                  tasks: tasks[Status.review]!,
+                  onCellClick: (TaskSlim task) => _editTask(task.id, users),
+                  onEditClick: (TaskSlim task) => _editTask(task.id, users),
+                  onDeleteClick: (TaskSlim task) => _deleteTask(task.id),
+                ),
+                TasksTable(
+                  status: Status.test,
+                  tasks: tasks[Status.test]!,
+                  onCellClick: (TaskSlim task) => _editTask(task.id, users),
+                  onEditClick: (TaskSlim task) => _editTask(task.id, users),
+                  onDeleteClick: (TaskSlim task) => _deleteTask(task.id),
+                ),
+                TasksTable(
+                  status: Status.closed,
+                  tasks: tasks[Status.closed]!,
+                  onCellClick: (TaskSlim task) => _editTask(task.id, users),
+                  onEditClick: (TaskSlim task) => _editTask(task.id, users),
+                  onDeleteClick: (TaskSlim task) => _deleteTask(task.id),
+                ),
+              ],
+            ),
           ),
         ),
       );

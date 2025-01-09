@@ -28,18 +28,17 @@ class _EditorState extends State<Editor> {
   }
 
   @override
-  Widget build(BuildContext context) => Container(
-    decoration: BoxDecoration(
-      color: kSecondaryBackgroundColor, // Set background color
-      border: Border.all(color: kBorderColor), // Set border color
-      borderRadius: BorderRadius.circular(12), // Set border radius
-    ),
-    child: Column(
-      children: <Widget>[
-        AbsorbPointer(
-          absorbing: widget.quillController.readOnly,
-          // Make the entire editor unclickable when in read-only mode
-          child: quill.QuillSimpleToolbar(
+  Widget build(BuildContext context) => Theme(
+    data: Theme.of(context).copyWith(colorScheme: null),
+    child: Container(
+      decoration: BoxDecoration(
+        color: kSecondaryBackgroundColor, // Set background color
+        border: Border.all(color: kBorderColor), // Set border color
+        borderRadius: BorderRadius.circular(12), // Set border radius
+      ),
+      child: Column(
+        children: <Widget>[
+          quill.QuillSimpleToolbar(
             controller: widget.quillController,
             configurations: const quill.QuillSimpleToolbarConfigurations(
               showDividers: true,
@@ -80,24 +79,20 @@ class _EditorState extends State<Editor> {
               searchButtonType: quill.SearchButtonType.modern,
             ),
           ),
-        ),
-        const Divider(),
-        SizedBox(
-          height: 200,
-          child: Padding(
-            padding: const EdgeInsets.all(18.0),
-            // Add padding around the text
-            child: AbsorbPointer(
-              absorbing: widget.quillController.readOnly,
-              // Make the editor unclickable when in read-only mode
+          const Divider(),
+          SizedBox(
+            height: 200,
+            child: Padding(
+              padding: const EdgeInsets.all(18.0),
+              // Add padding around the text
               child: quill.QuillEditor.basic(
                 controller: widget.quillController,
                 configurations: const quill.QuillEditorConfigurations(),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }

@@ -21,6 +21,16 @@ class MockUserRemoteDataSourceImplementation implements UserRemoteDataSource {
         roleName: Role.owner,//faker.randomGenerator.element(Role.values),
       ),
     );
+    fakeUsers.add(const User(
+      id: 11,
+      firstname: 'Janez',
+      lastname: 'Novak',
+      email: 'janez@novak.com',
+      jobTitle: 'Developer',
+      organizationId: 1,
+      roleName: Role.developer,
+    ),);
+
     users = Users(items: fakeUsers, total: fakeUsers.length);
     final List<Organization> fakeOrganizations = List<Organization>.generate(
       5,
@@ -58,6 +68,8 @@ class MockUserRemoteDataSourceImplementation implements UserRemoteDataSource {
   late Organizations organizations;
   late Organization organization;
   late UserResponse response;
+
+  Users getUsersNoFuture() => users;
 
   @override
   Future<Users> getUsers() async {

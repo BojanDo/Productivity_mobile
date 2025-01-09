@@ -23,12 +23,12 @@ final GetIt sl = GetIt.instance;
 Future<void> initFeatures() async {
   await initApp(sl);
   await initAuth(sl);
+  await initUser(sl);
   await initDocuments(sl);
   await initHome(sl);
   await initNotifications(sl);
   await initProjects(sl);
   await initTasks(sl);
-  await initUser(sl);
 }
 
 Future<void> initBlocs() async {

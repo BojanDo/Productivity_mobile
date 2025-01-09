@@ -68,4 +68,25 @@ final ThemeData theme = ThemeData(
     ),
     elevation: 8, // Shadow effect
   ),
+  dialogTheme: const DialogTheme(
+    backgroundColor: kSecondaryBackgroundColor,
+    // Replace with your desired color
+    elevation: 8,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(12),
+      ), // Optional: add rounded corners
+    ),
+  ),
+  colorScheme: const ColorScheme(
+    brightness: Brightness.light,
+    primary: kPrimaryColor,
+    onPrimary: kSecondaryBackgroundColor,
+    secondary: Colors.cyan,
+    onSecondary: Colors.black,
+    error: Colors.pinkAccent,
+    onError: Colors.brown,
+    surface: kSecondaryBackgroundColor,
+    onSurface: Colors.black,
+  ),
 );

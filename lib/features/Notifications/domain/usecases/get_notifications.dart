@@ -23,7 +23,7 @@ class GetNotifications extends UsecaseWithParams<Notifications, GetNotifications
 @freezed
 class GetNotificationsParams with _$GetNotificationsParams {
   const factory GetNotificationsParams({
-    required String page,
+    required int page,
     String? dateFrom,
     String? dateUntil,
     @JsonKey(name: 'project_id') int? projectId,

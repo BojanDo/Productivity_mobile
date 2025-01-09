@@ -18,31 +18,28 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
         title: _faker.lorem.words(3).join(' '),
         status: faker.randomGenerator.element(Status.values),
         label: faker.randomGenerator.element(Label.values),
-        date: DateFormat('dd.MM.yyyy')
+        date: DateFormat('yyyy-MM-dd')
             .format(faker.date.dateTime(minYear: 2000, maxYear: 2024)),
         taskNumber: '#$index',
       ),
     );
     tasks = Tasks(items: fakeTasks, total: fakeTasks.length);
 
-    final List<User> fakeUsers = List<User>.generate(
-      2,
-      (int index) => User(
-        id: index,
-        firstname: _faker.person.firstName(),
-        lastname: _faker.person.lastName(),
-        email: _faker.internet.email(),
-        jobTitle:
-            _faker.randomGenerator.element(<String>['Owner', 'Developer']),
-        organizationId: 1,
-        roleName: faker.randomGenerator.element(Role.values),
-      ),
-    );
+    final List<User> fakeUsers = <User>[];
+    fakeUsers.add(const User(
+      id: 11,
+      firstname: 'Janez',
+      lastname: 'Novak',
+      email: 'janez@novak.com',
+      jobTitle: 'Developer',
+      organizationId: 1,
+      roleName: Role.developer,
+    ),);
     final List<Comment> fakeComments = List<Comment>.generate(
       5,
       (int index) => Comment(
         id: index,
-        date: DateFormat('dd.MM.yyyy')
+        date: DateFormat('yyyy-MM-dd')
             .format(faker.date.dateTime(minYear: 2000, maxYear: 2024)),
         description: faker.lorem.sentences(2).join(' '),
         user: fakeUsers.first,

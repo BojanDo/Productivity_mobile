@@ -21,7 +21,7 @@ GetNotificationsParams _$GetNotificationsParamsFromJson(
 
 /// @nodoc
 mixin _$GetNotificationsParams {
-  String get page => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
   String? get dateFrom => throw _privateConstructorUsedError;
   String? get dateUntil => throw _privateConstructorUsedError;
   @JsonKey(name: 'project_id')
@@ -44,7 +44,7 @@ abstract class $GetNotificationsParamsCopyWith<$Res> {
       _$GetNotificationsParamsCopyWithImpl<$Res, GetNotificationsParams>;
   @useResult
   $Res call(
-      {String page,
+      {int page,
       String? dateFrom,
       String? dateUntil,
       @JsonKey(name: 'project_id') int? projectId});
@@ -75,7 +75,7 @@ class _$GetNotificationsParamsCopyWithImpl<$Res,
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       dateFrom: freezed == dateFrom
           ? _value.dateFrom
           : dateFrom // ignore: cast_nullable_to_non_nullable
@@ -102,7 +102,7 @@ abstract class _$$GetNotificationsParamsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String page,
+      {int page,
       String? dateFrom,
       String? dateUntil,
       @JsonKey(name: 'project_id') int? projectId});
@@ -132,7 +132,7 @@ class __$$GetNotificationsParamsImplCopyWithImpl<$Res>
       page: null == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       dateFrom: freezed == dateFrom
           ? _value.dateFrom
           : dateFrom // ignore: cast_nullable_to_non_nullable
@@ -162,7 +162,7 @@ class _$GetNotificationsParamsImpl implements _GetNotificationsParams {
       _$$GetNotificationsParamsImplFromJson(json);
 
   @override
-  final String page;
+  final int page;
   @override
   final String? dateFrom;
   @override
@@ -214,7 +214,7 @@ class _$GetNotificationsParamsImpl implements _GetNotificationsParams {
 
 abstract class _GetNotificationsParams implements GetNotificationsParams {
   const factory _GetNotificationsParams(
-          {required final String page,
+          {required final int page,
           final String? dateFrom,
           final String? dateUntil,
           @JsonKey(name: 'project_id') final int? projectId}) =
@@ -224,7 +224,7 @@ abstract class _GetNotificationsParams implements GetNotificationsParams {
       _$GetNotificationsParamsImpl.fromJson;
 
   @override
-  String get page;
+  int get page;
   @override
   String? get dateFrom;
   @override

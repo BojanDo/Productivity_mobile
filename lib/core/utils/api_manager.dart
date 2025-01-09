@@ -79,12 +79,13 @@ class APIManager {
     Map<String, dynamic> queryParameters,
   ) async {
     try {
+      print('Sent get request');
       final Response<dynamic> response = await dio.get(
         _getUrl(baseUrl, endpoint),
         options: options,
         queryParameters: queryParameters,
       );
-
+      print('Got get request');
       return response.data;
     } on APIException {
       rethrow;
@@ -103,12 +104,13 @@ class APIManager {
     Options? options,
   }) async {
     try {
+      print('Sent post request');
       final Response<dynamic> response = await dio.post(
         _getUrl(baseUrl, endpoint),
         data: FormData.fromMap(data),
         options: options ?? this.options,
       );
-
+      print('Sent post request');
       return response.data;
     } on APIException {
       rethrow;
@@ -140,12 +142,13 @@ class APIManager {
     Map<String, dynamic> data,
   ) async {
     try {
+      print('Sent delete request');
       final Response<dynamic> response = await dio.delete(
         _getUrl(baseUrl, endpoint),
         data: jsonEncode(data),
         options: options,
       );
-
+      print('Sent delete request');
       return response.data;
     } on APIException {
       rethrow;
@@ -164,12 +167,13 @@ class APIManager {
     Options? options,
   }) async {
     try {
+      print('Sent put request');
       final Response<dynamic> response = await dio.put(
         _getUrl(baseUrl, endpoint),
         data: FormData.fromMap(data),
         options: options ?? this.options,
       );
-
+      print('Sent put request');
       return response.data;
     } on APIException {
       rethrow;

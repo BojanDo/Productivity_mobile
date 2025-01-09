@@ -13,7 +13,7 @@ class AttachmentManager {
     required this.deleted,
   });
 
-  void setExisting(List<Document> documents){
+  void setExisting(List<Document> documents) {
     existing.addAll(documents);
   }
 
@@ -30,8 +30,9 @@ class AttachmentManager {
   }
 }
 
-class TaskFormBlocParams{
+class TaskFormBlocParams {
   TaskFormBlocParams({this.projectId, required this.users, this.task});
+
   final int? projectId;
   final Users users;
   final Task? task;
@@ -47,7 +48,6 @@ class TaskFormBloc extends FormBloc<String, String> {
     required UpdateTask updateTask,
   })  : _createTask = createTask,
         _updateTask = updateTask {
-
     assigned.updateItems(users.items);
 
     if (task != null) {
@@ -94,9 +94,6 @@ class TaskFormBloc extends FormBloc<String, String> {
   final InputFieldBloc<quill.QuillController, dynamic> description =
       InputFieldBloc<quill.QuillController, dynamic>(
     initialValue: quill.QuillController.basic(),
-    validators: <Validator<quill.QuillController>>[
-      FieldBlocValidators.required,
-    ],
   );
 
   final SelectFieldBloc<Status, dynamic> status =
@@ -124,7 +121,11 @@ class TaskFormBloc extends FormBloc<String, String> {
   );
 
   final MultiSelectFieldBloc<User, dynamic> assigned =
-      MultiSelectFieldBloc<User, dynamic>();
+      MultiSelectFieldBloc<User, dynamic>(
+    validators: <Validator<List<User>>>[
+      FieldBlocValidators.required,
+    ],
+  );
 
   final InputFieldBloc<AttachmentManager, dynamic> attachments =
       InputFieldBloc<AttachmentManager, dynamic>(
