@@ -25,6 +25,8 @@ mixin _$UpdateOrganizationParams {
   String get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_picture')
   String? get profilePicture => throw _privateConstructorUsedError;
+  @JsonKey(name: 'delete_picture')
+  bool get deletePicture => throw _privateConstructorUsedError;
 
   /// Serializes this UpdateOrganizationParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,7 +47,8 @@ abstract class $UpdateOrganizationParamsCopyWith<$Res> {
   $Res call(
       {String name,
       String description,
-      @JsonKey(name: 'profile_picture') String? profilePicture});
+      @JsonKey(name: 'profile_picture') String? profilePicture,
+      @JsonKey(name: 'delete_picture') bool deletePicture});
 }
 
 /// @nodoc
@@ -67,6 +70,7 @@ class _$UpdateOrganizationParamsCopyWithImpl<$Res,
     Object? name = null,
     Object? description = null,
     Object? profilePicture = freezed,
+    Object? deletePicture = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -81,6 +85,10 @@ class _$UpdateOrganizationParamsCopyWithImpl<$Res,
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
               as String?,
+      deletePicture: null == deletePicture
+          ? _value.deletePicture
+          : deletePicture // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -97,7 +105,8 @@ abstract class _$$UpdateOrganizationParamsImplCopyWith<$Res>
   $Res call(
       {String name,
       String description,
-      @JsonKey(name: 'profile_picture') String? profilePicture});
+      @JsonKey(name: 'profile_picture') String? profilePicture,
+      @JsonKey(name: 'delete_picture') bool deletePicture});
 }
 
 /// @nodoc
@@ -118,6 +127,7 @@ class __$$UpdateOrganizationParamsImplCopyWithImpl<$Res>
     Object? name = null,
     Object? description = null,
     Object? profilePicture = freezed,
+    Object? deletePicture = null,
   }) {
     return _then(_$UpdateOrganizationParamsImpl(
       name: null == name
@@ -132,6 +142,10 @@ class __$$UpdateOrganizationParamsImplCopyWithImpl<$Res>
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
               as String?,
+      deletePicture: null == deletePicture
+          ? _value.deletePicture
+          : deletePicture // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -142,7 +156,8 @@ class _$UpdateOrganizationParamsImpl implements _UpdateOrganizationParams {
   const _$UpdateOrganizationParamsImpl(
       {required this.name,
       required this.description,
-      @JsonKey(name: 'profile_picture') this.profilePicture});
+      @JsonKey(name: 'profile_picture') this.profilePicture,
+      @JsonKey(name: 'delete_picture') required this.deletePicture});
 
   factory _$UpdateOrganizationParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$UpdateOrganizationParamsImplFromJson(json);
@@ -154,10 +169,13 @@ class _$UpdateOrganizationParamsImpl implements _UpdateOrganizationParams {
   @override
   @JsonKey(name: 'profile_picture')
   final String? profilePicture;
+  @override
+  @JsonKey(name: 'delete_picture')
+  final bool deletePicture;
 
   @override
   String toString() {
-    return 'UpdateOrganizationParams(name: $name, description: $description, profilePicture: $profilePicture)';
+    return 'UpdateOrganizationParams(name: $name, description: $description, profilePicture: $profilePicture, deletePicture: $deletePicture)';
   }
 
   @override
@@ -169,13 +187,15 @@ class _$UpdateOrganizationParamsImpl implements _UpdateOrganizationParams {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.profilePicture, profilePicture) ||
-                other.profilePicture == profilePicture));
+                other.profilePicture == profilePicture) &&
+            (identical(other.deletePicture, deletePicture) ||
+                other.deletePicture == deletePicture));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, description, profilePicture);
+  int get hashCode => Object.hash(
+      runtimeType, name, description, profilePicture, deletePicture);
 
   /// Create a copy of UpdateOrganizationParams
   /// with the given fields replaced by the non-null parameter values.
@@ -198,7 +218,8 @@ abstract class _UpdateOrganizationParams implements UpdateOrganizationParams {
   const factory _UpdateOrganizationParams(
           {required final String name,
           required final String description,
-          @JsonKey(name: 'profile_picture') final String? profilePicture}) =
+          @JsonKey(name: 'profile_picture') final String? profilePicture,
+          @JsonKey(name: 'delete_picture') required final bool deletePicture}) =
       _$UpdateOrganizationParamsImpl;
 
   factory _UpdateOrganizationParams.fromJson(Map<String, dynamic> json) =
@@ -211,6 +232,9 @@ abstract class _UpdateOrganizationParams implements UpdateOrganizationParams {
   @override
   @JsonKey(name: 'profile_picture')
   String? get profilePicture;
+  @override
+  @JsonKey(name: 'delete_picture')
+  bool get deletePicture;
 
   /// Create a copy of UpdateOrganizationParams
   /// with the given fields replaced by the non-null parameter values.

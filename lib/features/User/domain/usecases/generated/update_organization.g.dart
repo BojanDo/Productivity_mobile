@@ -12,6 +12,7 @@ _$UpdateOrganizationParamsImpl _$$UpdateOrganizationParamsImplFromJson(
       name: json['name'] as String,
       description: json['description'] as String,
       profilePicture: json['profile_picture'] as String?,
+      deletePicture: json['delete_picture'] as bool,
     );
 
 Map<String, dynamic> _$$UpdateOrganizationParamsImplToJson(
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$UpdateOrganizationParamsImplToJson(
       'name': instance.name,
       'description': instance.description,
       'profile_picture': instance.profilePicture,
+      'delete_picture': instance.deletePicture,
     };

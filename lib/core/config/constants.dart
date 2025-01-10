@@ -5,8 +5,8 @@ import 'colors.dart';
 const bool kUseMockData = false;
 const int kApiVersion = 1;
 
-//const String kBaseUrl = 'https://staging.productivityy.cloud';
-const String kBaseUrl = 'http://10.0.2.2';
+const String kBaseUrl = 'https://staging.productivityy.cloud';
+//const String kBaseUrl = 'http://10.0.2.2';
 const String kApiUrl = '$kBaseUrl/api/v$kApiVersion';
 
 const String kLoginUrl = '$kApiUrl/login';

@@ -111,101 +111,103 @@ class ImagePickerFieldBlocBuilder extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<
-          InputFieldBloc<File?, ProfilePicture>,
-          InputFieldBlocState<File?, ProfilePicture>>(
-        bloc: fileFieldBloc,
-        builder: (BuildContext context,
-            InputFieldBlocState<File?, ProfilePicture> state) {
-          final InputDecoration effectiveDecoration = decoration ??
-              InputDecoration(
-                labelText: label,
-                border: InputBorder.none,
-              );
-
-          return Padding(
-            padding: padding ?? EdgeInsets.zero,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                // Label
-                if (effectiveDecoration.labelText != null)
-                  Text(
-                    effectiveDecoration.labelText!,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                const SizedBox(height: 8),
-                // Image Upload Area
-                GestureDetector(
-                  onTap: isEnabled ? () => _pickImage(context) : null,
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.grey,
-                          style: BorderStyle.solid,
-                          width: 2,
+  Widget build(BuildContext context) => SafeArea(
+    child: BlocBuilder<
+            InputFieldBloc<File?, ProfilePicture>,
+            InputFieldBlocState<File?, ProfilePicture>>(
+          bloc: fileFieldBloc,
+          builder: (BuildContext context,
+              InputFieldBlocState<File?, ProfilePicture> state) {
+            final InputDecoration effectiveDecoration = decoration ??
+                InputDecoration(
+                  labelText: label,
+                  border: InputBorder.none,
+                );
+    
+            return Padding(
+              padding: padding ?? EdgeInsets.zero,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  // Label
+                  if (effectiveDecoration.labelText != null)
+                    Text(
+                      effectiveDecoration.labelText!,
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  const SizedBox(height: 8),
+                  // Image Upload Area
+                  GestureDetector(
+                    onTap: isEnabled ? () => _pickImage(context) : null,
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey,
+                            style: BorderStyle.solid,
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                          color: state.value == null ? Colors.grey[200] : null,
                         ),
-                        borderRadius: BorderRadius.circular(10),
-                        color: state.value == null ? Colors.grey[200] : null,
-                      ),
-                      child: state.value != null
-                          ? ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.file(
-                                state.value!,
-                                fit: BoxFit.cover,
-                              ),
-                            )
-                          : state.extraData?.current != null
-                              ? ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: CachedNetworkImage(
-                                    imageUrl: state.extraData!.current!,
-                                  ),
-                                )
-                              : Center(
-                                  child: isEnabled ? const Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(Icons.add,
-                                          size: 40, color: Colors.grey),
-                                      Text(
-                                        'Tap to add image',
-                                        style: TextStyle(color: Colors.grey),
-                                      ),
-                                    ],
-                                  ): const Text(
-                                    'No image added',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
+                        child: state.value != null
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.file(
+                                  state.value!,
+                                  fit: BoxFit.cover,
                                 ),
+                              )
+                            : state.extraData?.current != null
+                                ? ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: CachedNetworkImage(
+                                      imageUrl: state.extraData!.current!,
+                                    ),
+                                  )
+                                : Center(
+                                    child: isEnabled ? const Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(Icons.add,
+                                            size: 40, color: Colors.grey),
+                                        Text(
+                                          'Tap to add image',
+                                          style: TextStyle(color: Colors.grey),
+                                        ),
+                                      ],
+                                    ): const Text(
+                                      'No image added',
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                  ),
+                      ),
                     ),
                   ),
-                ),
-                // Reset and Delete Buttons
-                if (isEnabled)
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton.icon(
-                        onPressed: _resetToInitialValue,
-                        icon: const Icon(Icons.restart_alt, color: Colors.blue),
-                        label: const Text('Reset',
-                            style: TextStyle(color: Colors.blue)),
-                      ),
-                      TextButton.icon(
-                        onPressed: _deleteImage,
-                        icon: const Icon(Icons.delete, color: Colors.red),
-                        label: const Text('Delete',
-                            style: TextStyle(color: Colors.red)),
-                      ),
-                    ],
-                  ),
-              ],
-            ),
-          );
-        },
-      );
+                  // Reset and Delete Buttons
+                  if (isEnabled)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton.icon(
+                          onPressed: _resetToInitialValue,
+                          icon: const Icon(Icons.restart_alt, color: Colors.blue),
+                          label: const Text('Reset',
+                              style: TextStyle(color: Colors.blue)),
+                        ),
+                        TextButton.icon(
+                          onPressed: _deleteImage,
+                          icon: const Icon(Icons.delete, color: Colors.red),
+                          label: const Text('Delete',
+                              style: TextStyle(color: Colors.red)),
+                        ),
+                      ],
+                    ),
+                ],
+              ),
+            );
+          },
+        ),
+  );
 }

@@ -12,6 +12,7 @@ _$UpdateProjectParamsImpl _$$UpdateProjectParamsImplFromJson(
       title: json['title'] as String,
       description: json['description'] as String,
       profilePicture: json['profile_picture'] as String?,
+      deletePicture: json['delete_picture'] as bool,
     );
 
 Map<String, dynamic> _$$UpdateProjectParamsImplToJson(
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$UpdateProjectParamsImplToJson(
       'title': instance.title,
       'description': instance.description,
       'profile_picture': instance.profilePicture,
+      'delete_picture': instance.deletePicture,
     };

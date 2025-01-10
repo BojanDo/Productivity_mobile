@@ -38,6 +38,7 @@ class UpdateOrganizationParams with _$UpdateOrganizationParams {
     required String name,
     required String description,
     @JsonKey(name: 'profile_picture') String? profilePicture,
+    @JsonKey(name: 'delete_picture') required bool deletePicture,
   }) = _UpdateOrganizationParams;
 
   factory UpdateOrganizationParams.fromJson(Map<String, dynamic> json) =>

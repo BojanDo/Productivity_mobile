@@ -91,6 +91,9 @@ class OrganizationFormBloc extends FormBloc<String, String> {
           name: name.value,
           description: description.value,
           profilePicture: profilePicture.value?.path,
+          deletePicture: profilePicture.state.extraData != null &&
+              profilePicture.state.extraData!.current == null &&
+              profilePicture.value?.path == null,
         ),
       );
     }

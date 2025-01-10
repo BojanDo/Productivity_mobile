@@ -75,6 +75,9 @@ class ProjectFormBloc extends FormBloc<String, String> {
           title: title.value,
           description: description.value,
           profilePicture: profilePicture.value?.path,
+          deletePicture: profilePicture.state.extraData != null &&
+              profilePicture.state.extraData!.current == null &&
+              profilePicture.value?.path == null,
         ),
       );
     }

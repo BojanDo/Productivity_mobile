@@ -24,6 +24,8 @@ mixin _$UpdateProjectParams {
   String get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_picture')
   String? get profilePicture => throw _privateConstructorUsedError;
+  @JsonKey(name: 'delete_picture')
+  bool get deletePicture => throw _privateConstructorUsedError;
 
   /// Serializes this UpdateProjectParams to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,7 +46,8 @@ abstract class $UpdateProjectParamsCopyWith<$Res> {
   $Res call(
       {String title,
       String description,
-      @JsonKey(name: 'profile_picture') String? profilePicture});
+      @JsonKey(name: 'profile_picture') String? profilePicture,
+      @JsonKey(name: 'delete_picture') bool deletePicture});
 }
 
 /// @nodoc
@@ -65,6 +68,7 @@ class _$UpdateProjectParamsCopyWithImpl<$Res, $Val extends UpdateProjectParams>
     Object? title = null,
     Object? description = null,
     Object? profilePicture = freezed,
+    Object? deletePicture = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -79,6 +83,10 @@ class _$UpdateProjectParamsCopyWithImpl<$Res, $Val extends UpdateProjectParams>
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
               as String?,
+      deletePicture: null == deletePicture
+          ? _value.deletePicture
+          : deletePicture // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -94,7 +102,8 @@ abstract class _$$UpdateProjectParamsImplCopyWith<$Res>
   $Res call(
       {String title,
       String description,
-      @JsonKey(name: 'profile_picture') String? profilePicture});
+      @JsonKey(name: 'profile_picture') String? profilePicture,
+      @JsonKey(name: 'delete_picture') bool deletePicture});
 }
 
 /// @nodoc
@@ -113,6 +122,7 @@ class __$$UpdateProjectParamsImplCopyWithImpl<$Res>
     Object? title = null,
     Object? description = null,
     Object? profilePicture = freezed,
+    Object? deletePicture = null,
   }) {
     return _then(_$UpdateProjectParamsImpl(
       title: null == title
@@ -127,6 +137,10 @@ class __$$UpdateProjectParamsImplCopyWithImpl<$Res>
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
               as String?,
+      deletePicture: null == deletePicture
+          ? _value.deletePicture
+          : deletePicture // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -137,7 +151,8 @@ class _$UpdateProjectParamsImpl implements _UpdateProjectParams {
   const _$UpdateProjectParamsImpl(
       {required this.title,
       required this.description,
-      @JsonKey(name: 'profile_picture') this.profilePicture});
+      @JsonKey(name: 'profile_picture') this.profilePicture,
+      @JsonKey(name: 'delete_picture') required this.deletePicture});
 
   factory _$UpdateProjectParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$UpdateProjectParamsImplFromJson(json);
@@ -149,10 +164,13 @@ class _$UpdateProjectParamsImpl implements _UpdateProjectParams {
   @override
   @JsonKey(name: 'profile_picture')
   final String? profilePicture;
+  @override
+  @JsonKey(name: 'delete_picture')
+  final bool deletePicture;
 
   @override
   String toString() {
-    return 'UpdateProjectParams(title: $title, description: $description, profilePicture: $profilePicture)';
+    return 'UpdateProjectParams(title: $title, description: $description, profilePicture: $profilePicture, deletePicture: $deletePicture)';
   }
 
   @override
@@ -164,13 +182,15 @@ class _$UpdateProjectParamsImpl implements _UpdateProjectParams {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.profilePicture, profilePicture) ||
-                other.profilePicture == profilePicture));
+                other.profilePicture == profilePicture) &&
+            (identical(other.deletePicture, deletePicture) ||
+                other.deletePicture == deletePicture));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, title, description, profilePicture);
+  int get hashCode => Object.hash(
+      runtimeType, title, description, profilePicture, deletePicture);
 
   /// Create a copy of UpdateProjectParams
   /// with the given fields replaced by the non-null parameter values.
@@ -193,7 +213,8 @@ abstract class _UpdateProjectParams implements UpdateProjectParams {
   const factory _UpdateProjectParams(
           {required final String title,
           required final String description,
-          @JsonKey(name: 'profile_picture') final String? profilePicture}) =
+          @JsonKey(name: 'profile_picture') final String? profilePicture,
+          @JsonKey(name: 'delete_picture') required final bool deletePicture}) =
       _$UpdateProjectParamsImpl;
 
   factory _UpdateProjectParams.fromJson(Map<String, dynamic> json) =
@@ -206,6 +227,9 @@ abstract class _UpdateProjectParams implements UpdateProjectParams {
   @override
   @JsonKey(name: 'profile_picture')
   String? get profilePicture;
+  @override
+  @JsonKey(name: 'delete_picture')
+  bool get deletePicture;
 
   /// Create a copy of UpdateProjectParams
   /// with the given fields replaced by the non-null parameter values.

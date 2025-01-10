@@ -38,6 +38,7 @@ class UpdateProjectParams with _$UpdateProjectParams {
     required String title,
     required String description,
     @JsonKey(name: 'profile_picture') String? profilePicture,
+    @JsonKey(name: 'delete_picture') required bool deletePicture,
   }) = _UpdateProjectParams;
 
   factory UpdateProjectParams.fromJson(Map<String, dynamic> json) =>
