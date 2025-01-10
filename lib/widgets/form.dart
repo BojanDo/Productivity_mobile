@@ -27,7 +27,9 @@ class GlobalForm<BlocT extends FormBloc<String, String>>
     BuildContext context,
     FormBlocSubmitting<String, String> state,
   ) {
-    context.read<AppBloc>().add(const AppEvent.overlayAdd());
+    print("started onSubmitting");
+    //context.read<AppBloc>().add(const AppEvent.overlayAdd());
+    print("finished onSubmitting");
   }
 
   void _onSubmissionFailed(

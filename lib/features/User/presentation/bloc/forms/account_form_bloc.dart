@@ -55,23 +55,32 @@ class AccountFormBloc extends FormBloc<String, String> {
 
   @override
   FutureOr<void> onSubmitting() async {
-    final Either<Failure, UserResponse> result = await _updateUser(
-      id,
-      UpdateUserParams(
+    try {
+      print('onSubmitting triggered');
+      final params = UpdateUserParams(
         firstname: firstname.value,
         lastname: lastname.value,
         jobTitle: jobTitle.value,
         profilePicture: profilePicture.value?.path,
-        deletePicture: profilePicture.state.extraData!.current == null &&
+        deletePicture: profilePicture.state.extraData != null &&
+            profilePicture.state.extraData!.current == null &&
             profilePicture.value?.path == null,
-      ),
-    );
-
-    result.fold(
-      (Failure failure) => emitFailure(failureResponse: failure.message),
-      (UserResponse response) {
-        emitSuccess(successResponse: response.message);
-      },
-    );
+      );
+      print('Params created');
+      final Either<Failure, UserResponse> result = await _updateUser(
+        id,
+        params,
+      );
+      print('Finished submitting updateUser');
+      result.fold(
+        (Failure failure) => emitFailure(failureResponse: failure.message),
+        (UserResponse response) =>
+            emitSuccess(successResponse: response.message),
+      );
+    } catch (e, stackTrace) {
+      print('Error in onSubmitting: $e');
+      print(stackTrace);
+      emitFailure(failureResponse: e.toString());
+    }
   }
 }

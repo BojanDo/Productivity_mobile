@@ -19,7 +19,7 @@ class APIManager {
 
   Options options = Options(
     headers: <String, dynamic>{},
-    contentType: 'application/x-www-form-urlencoded',
+    contentType: 'multipart/form-data',
   );
 
   APIManager(this.dio, this._localStorage);
@@ -52,6 +52,7 @@ class APIManager {
 
   Future<void> _initializeInterceptors(EventBus eventBus) async {
     dio.interceptors.add(StatusInterceptor(eventBus: eventBus));
+    //dio.interceptors.add(MethodInterceptor());
     await _initializeCookieJar();
   }
 
@@ -95,17 +96,13 @@ class APIManager {
   }
 
   Future<dynamic> post(
-    String baseUrl,
-    String endpoint,
-    Map<String, dynamic> data, {
-    Options? options,
-  }) async {
+      String baseUrl, String endpoint, Map<String, dynamic> data) async {
     try {
       print('Sent post request');
       final Response<dynamic> response = await dio.post(
         _getUrl(baseUrl, endpoint),
         data: FormData.fromMap(data),
-        options: options ?? this.options,
+        options: options,
       );
       print('Got post response');
       return response.data;
@@ -116,7 +113,7 @@ class APIManager {
     }
   }
 
-  Future<dynamic> postMultipart(
+  /*Future<dynamic> postMultipart(
     String baseUrl,
     String endpoint,
     Map<String, dynamic> data,
@@ -128,7 +125,7 @@ class APIManager {
         options: options.copyWith(
           contentType: 'multipart/form-data',
         ),
-      );
+      );*/
 
   Future<dynamic> delete(
     String baseUrl,
@@ -152,17 +149,13 @@ class APIManager {
   }
 
   Future<dynamic> put(
-    String baseUrl,
-    String endpoint,
-    Map<String, dynamic> data, {
-    Options? options,
-  }) async {
+      String baseUrl, String endpoint, Map<String, dynamic> data) async {
     try {
       print('Sent put request');
-      final Response<dynamic> response = await dio.put(
+      final Response<dynamic> response = await dio.post(
         _getUrl(baseUrl, endpoint),
-        data: FormData.fromMap(data),
-        options: options ?? this.options,
+        data: FormData.fromMap({...data, '_method': 'PUT'}),
+        options: options,
       );
       print('Sent put request');
       return response.data;
@@ -173,6 +166,7 @@ class APIManager {
     }
   }
 
+/*
   Future<dynamic> putMultipart(
     String baseUrl,
     String endpoint,
@@ -186,11 +180,11 @@ class APIManager {
           contentType: 'multipart/form-data',
         ),
       );
-
+*/
   Future<void> downloadFile(String url, String filePath) async {
-    try{
+    try {
       await dio.download(url, filePath);
-    }catch(e){
+    } catch (e) {
       throw const APIException(
         message: 'There was an error downloading your file',
         statusCode: 500,
@@ -198,9 +192,8 @@ class APIManager {
     }
   }
 
-
-  void throwAPIException(Object e){
-    if(e is DioException && e.error is APIException) {
+  void throwAPIException(Object e) {
+    if (e is DioException && e.error is APIException) {
       throw (e.error as APIException);
     }
     throw const APIException(

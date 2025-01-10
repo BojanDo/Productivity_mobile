@@ -23,7 +23,7 @@ mixin _$Project {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  @JsonKey(name: 'profile_picture')
+  @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
   String? get profilePicture => throw _privateConstructorUsedError;
 
   /// Serializes this Project to a JSON map.
@@ -44,7 +44,8 @@ abstract class $ProjectCopyWith<$Res> {
       {int id,
       String title,
       String description,
-      @JsonKey(name: 'profile_picture') String? profilePicture});
+      @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+      String? profilePicture});
 }
 
 /// @nodoc
@@ -99,7 +100,8 @@ abstract class _$$ProjectImplCopyWith<$Res> implements $ProjectCopyWith<$Res> {
       {int id,
       String title,
       String description,
-      @JsonKey(name: 'profile_picture') String? profilePicture});
+      @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+      String? profilePicture});
 }
 
 /// @nodoc
@@ -148,7 +150,8 @@ class _$ProjectImpl implements _Project {
       {required this.id,
       required this.title,
       required this.description,
-      @JsonKey(name: 'profile_picture') this.profilePicture});
+      @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+      this.profilePicture});
 
   factory _$ProjectImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProjectImplFromJson(json);
@@ -160,7 +163,7 @@ class _$ProjectImpl implements _Project {
   @override
   final String description;
   @override
-  @JsonKey(name: 'profile_picture')
+  @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
   final String? profilePicture;
 
   @override
@@ -204,11 +207,11 @@ class _$ProjectImpl implements _Project {
 
 abstract class _Project implements Project {
   const factory _Project(
-          {required final int id,
-          required final String title,
-          required final String description,
-          @JsonKey(name: 'profile_picture') final String? profilePicture}) =
-      _$ProjectImpl;
+      {required final int id,
+      required final String title,
+      required final String description,
+      @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+      final String? profilePicture}) = _$ProjectImpl;
 
   factory _Project.fromJson(Map<String, dynamic> json) = _$ProjectImpl.fromJson;
 
@@ -219,7 +222,7 @@ abstract class _Project implements Project {
   @override
   String get description;
   @override
-  @JsonKey(name: 'profile_picture')
+  @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
   String? get profilePicture;
 
   /// Create a copy of Project

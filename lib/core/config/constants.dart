@@ -18,7 +18,7 @@ const String kTasksUrl = '$kApiUrl/tasks';
 const String kDocumentsUrl = '$kApiUrl/documents';
 const String kCommentsUrl = '$kApiUrl/comments';
 const String kNotificationsUrl = '$kApiUrl/notifications';
-const String kInvitationUrl = '$kApiUrl/documents';
+const String kInvitationUrl = '$kApiUrl/invitations';
 
 const BorderSide kBorderSide = BorderSide(
   color: kBorderColor,

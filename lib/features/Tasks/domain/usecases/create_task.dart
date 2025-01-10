@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -18,6 +20,9 @@ class CreateTask extends UsecaseWithParams<TaskResponse, CreateTaskParams> {
   ResultFuture<TaskResponse> call(CreateTaskParams params) async {
     final Map<String, dynamic> jsonParams = params.toJson();
 
+    jsonParams['description'] = jsonEncode(params.description);
+    jsonParams['assigned[]'] = params.assigned;
+    jsonParams.remove('assigned');
     if (params.attachments != null) {
       jsonParams['attachments'] = await Future.wait(
         params.attachments!.map(
@@ -40,9 +45,9 @@ class CreateTaskParams with _$CreateTaskParams {
     required List<Map<String, dynamic>> description,
     required String status,
     required String label,
-    required String date,
+    @JsonKey(name: 'due_date') required String date,
     @JsonKey(name: 'project_id') required int projectId,
-    List<int>? assigned,
+    required List<int> assigned,
     List<String>? attachments,
   }) = _CreateTaskParams;
 

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -17,6 +19,10 @@ class UpdateTask extends UsecaseIdWithParams<TaskResponse, UpdateTaskParams> {
   @override
   ResultFuture<TaskResponse> call(int id, UpdateTaskParams params) async {
     final Map<String, dynamic> jsonParams = params.toJson();
+
+    jsonParams['description'] = jsonEncode(params.description);
+    jsonParams['assigned[]'] = params.assigned;
+    jsonParams.remove('assigned');
     if (params.attachments != null) {
       jsonParams['attachments'] = await Future.wait(
         params.attachments!.map(
@@ -42,7 +48,7 @@ class UpdateTaskParams with _$UpdateTaskParams {
     required List<Map<String, dynamic>> description,
     required String status,
     required String label,
-    required String date,
+    @JsonKey(name: 'due_date') required String date,
     @JsonKey(name: 'project_id') required int projectId,
     List<int>? assigned,
     List<String>? attachments,

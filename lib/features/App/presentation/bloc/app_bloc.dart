@@ -63,7 +63,7 @@ class AppBloc extends SideEffectBloc<AppEvent, AppState, AppSideEffect> {
 
     ambientLightService.startListening((double lux) {
       print('LUX value $lux');
-      add(AppEvent.success(message: 'Ambient light: $lux'));
+      //add(AppEvent.success(message: 'Ambient light: $lux'));
       //add(AppEvent.ambientLightChanged(lux));
     });
   }

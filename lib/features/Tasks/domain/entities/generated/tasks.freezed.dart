@@ -28,6 +28,7 @@ mixin _$Task {
       throw _privateConstructorUsedError;
   Status get status => throw _privateConstructorUsedError;
   Label get label => throw _privateConstructorUsedError;
+  @JsonKey(name: 'due_date')
   String get date => throw _privateConstructorUsedError;
   Project get project => throw _privateConstructorUsedError;
   @JsonKey(
@@ -65,7 +66,7 @@ abstract class $TaskCopyWith<$Res> {
       List<Map<String, dynamic>> description,
       Status status,
       Label label,
-      String date,
+      @JsonKey(name: 'due_date') String date,
       Project project,
       @JsonKey(
           name: 'assigned_users',
@@ -217,7 +218,7 @@ abstract class _$$TaskImplCopyWith<$Res> implements $TaskCopyWith<$Res> {
       List<Map<String, dynamic>> description,
       Status status,
       Label label,
-      String date,
+      @JsonKey(name: 'due_date') String date,
       Project project,
       @JsonKey(
           name: 'assigned_users',
@@ -326,7 +327,7 @@ class _$TaskImpl implements _Task {
       required final List<Map<String, dynamic>> description,
       required this.status,
       required this.label,
-      required this.date,
+      @JsonKey(name: 'due_date') required this.date,
       required this.project,
       @JsonKey(
           name: 'assigned_users',
@@ -366,6 +367,7 @@ class _$TaskImpl implements _Task {
   @override
   final Label label;
   @override
+  @JsonKey(name: 'due_date')
   final String date;
   @override
   final Project project;
@@ -453,7 +455,7 @@ abstract class _Task implements Task {
       required final List<Map<String, dynamic>> description,
       required final Status status,
       required final Label label,
-      required final String date,
+      @JsonKey(name: 'due_date') required final String date,
       required final Project project,
       @JsonKey(
           name: 'assigned_users',
@@ -485,6 +487,7 @@ abstract class _Task implements Task {
   @override
   Label get label;
   @override
+  @JsonKey(name: 'due_date')
   String get date;
   @override
   Project get project;
@@ -523,9 +526,11 @@ mixin _$TaskSlim {
   String get title => throw _privateConstructorUsedError;
   Status get status => throw _privateConstructorUsedError;
   Label get label => throw _privateConstructorUsedError;
+  @JsonKey(name: 'due_date')
   String get date => throw _privateConstructorUsedError;
   @JsonKey(name: 'task_number')
   String get taskNumber => throw _privateConstructorUsedError;
+  List<int> get assigned => throw _privateConstructorUsedError;
 
   /// Serializes this TaskSlim to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -547,8 +552,9 @@ abstract class $TaskSlimCopyWith<$Res> {
       String title,
       Status status,
       Label label,
-      String date,
-      @JsonKey(name: 'task_number') String taskNumber});
+      @JsonKey(name: 'due_date') String date,
+      @JsonKey(name: 'task_number') String taskNumber,
+      List<int> assigned});
 }
 
 /// @nodoc
@@ -572,6 +578,7 @@ class _$TaskSlimCopyWithImpl<$Res, $Val extends TaskSlim>
     Object? label = null,
     Object? date = null,
     Object? taskNumber = null,
+    Object? assigned = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -598,6 +605,10 @@ class _$TaskSlimCopyWithImpl<$Res, $Val extends TaskSlim>
           ? _value.taskNumber
           : taskNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      assigned: null == assigned
+          ? _value.assigned
+          : assigned // ignore: cast_nullable_to_non_nullable
+              as List<int>,
     ) as $Val);
   }
 }
@@ -615,8 +626,9 @@ abstract class _$$TaskSlimImplCopyWith<$Res>
       String title,
       Status status,
       Label label,
-      String date,
-      @JsonKey(name: 'task_number') String taskNumber});
+      @JsonKey(name: 'due_date') String date,
+      @JsonKey(name: 'task_number') String taskNumber,
+      List<int> assigned});
 }
 
 /// @nodoc
@@ -638,6 +650,7 @@ class __$$TaskSlimImplCopyWithImpl<$Res>
     Object? label = null,
     Object? date = null,
     Object? taskNumber = null,
+    Object? assigned = null,
   }) {
     return _then(_$TaskSlimImpl(
       id: null == id
@@ -664,6 +677,10 @@ class __$$TaskSlimImplCopyWithImpl<$Res>
           ? _value.taskNumber
           : taskNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      assigned: null == assigned
+          ? _value._assigned
+          : assigned // ignore: cast_nullable_to_non_nullable
+              as List<int>,
     ));
   }
 }
@@ -676,8 +693,10 @@ class _$TaskSlimImpl implements _TaskSlim {
       required this.title,
       required this.status,
       required this.label,
-      required this.date,
-      @JsonKey(name: 'task_number') required this.taskNumber});
+      @JsonKey(name: 'due_date') required this.date,
+      @JsonKey(name: 'task_number') required this.taskNumber,
+      required final List<int> assigned})
+      : _assigned = assigned;
 
   factory _$TaskSlimImpl.fromJson(Map<String, dynamic> json) =>
       _$$TaskSlimImplFromJson(json);
@@ -691,14 +710,22 @@ class _$TaskSlimImpl implements _TaskSlim {
   @override
   final Label label;
   @override
+  @JsonKey(name: 'due_date')
   final String date;
   @override
   @JsonKey(name: 'task_number')
   final String taskNumber;
+  final List<int> _assigned;
+  @override
+  List<int> get assigned {
+    if (_assigned is EqualUnmodifiableListView) return _assigned;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_assigned);
+  }
 
   @override
   String toString() {
-    return 'TaskSlim(id: $id, title: $title, status: $status, label: $label, date: $date, taskNumber: $taskNumber)';
+    return 'TaskSlim(id: $id, title: $title, status: $status, label: $label, date: $date, taskNumber: $taskNumber, assigned: $assigned)';
   }
 
   @override
@@ -712,13 +739,14 @@ class _$TaskSlimImpl implements _TaskSlim {
             (identical(other.label, label) || other.label == label) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.taskNumber, taskNumber) ||
-                other.taskNumber == taskNumber));
+                other.taskNumber == taskNumber) &&
+            const DeepCollectionEquality().equals(other._assigned, _assigned));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, title, status, label, date, taskNumber);
+  int get hashCode => Object.hash(runtimeType, id, title, status, label, date,
+      taskNumber, const DeepCollectionEquality().hash(_assigned));
 
   /// Create a copy of TaskSlim
   /// with the given fields replaced by the non-null parameter values.
@@ -738,13 +766,13 @@ class _$TaskSlimImpl implements _TaskSlim {
 
 abstract class _TaskSlim implements TaskSlim {
   const factory _TaskSlim(
-          {required final int id,
-          required final String title,
-          required final Status status,
-          required final Label label,
-          required final String date,
-          @JsonKey(name: 'task_number') required final String taskNumber}) =
-      _$TaskSlimImpl;
+      {required final int id,
+      required final String title,
+      required final Status status,
+      required final Label label,
+      @JsonKey(name: 'due_date') required final String date,
+      @JsonKey(name: 'task_number') required final String taskNumber,
+      required final List<int> assigned}) = _$TaskSlimImpl;
 
   factory _TaskSlim.fromJson(Map<String, dynamic> json) =
       _$TaskSlimImpl.fromJson;
@@ -758,10 +786,13 @@ abstract class _TaskSlim implements TaskSlim {
   @override
   Label get label;
   @override
+  @JsonKey(name: 'due_date')
   String get date;
   @override
   @JsonKey(name: 'task_number')
   String get taskNumber;
+  @override
+  List<int> get assigned;
 
   /// Create a copy of TaskSlim
   /// with the given fields replaced by the non-null parameter values.

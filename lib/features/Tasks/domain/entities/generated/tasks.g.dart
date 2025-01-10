@@ -15,7 +15,7 @@ _$TaskImpl _$$TaskImplFromJson(Map<String, dynamic> json) => _$TaskImpl(
           .toList(),
       status: $enumDecode(_$StatusEnumMap, json['status']),
       label: $enumDecode(_$LabelEnumMap, json['label']),
-      date: json['date'] as String,
+      date: json['due_date'] as String,
       project: Project.fromJson(json['project'] as Map<String, dynamic>),
       users: paginatedListUserFromJson(
           json['assigned_users'] as Map<String, dynamic>),
@@ -33,7 +33,7 @@ Map<String, dynamic> _$$TaskImplToJson(_$TaskImpl instance) =>
       'description': instance.description,
       'status': _$StatusEnumMap[instance.status]!,
       'label': _$LabelEnumMap[instance.label]!,
-      'date': instance.date,
+      'due_date': instance.date,
       'project': instance.project,
       'assigned_users': paginatedListUserToJson(instance.users),
       'comments': paginatedListCommentToJson(instance.comments),
@@ -60,8 +60,11 @@ _$TaskSlimImpl _$$TaskSlimImplFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       status: $enumDecode(_$StatusEnumMap, json['status']),
       label: $enumDecode(_$LabelEnumMap, json['label']),
-      date: json['date'] as String,
+      date: json['due_date'] as String,
       taskNumber: json['task_number'] as String,
+      assigned: (json['assigned'] as List<dynamic>)
+          .map((e) => (e as num).toInt())
+          .toList(),
     );
 
 Map<String, dynamic> _$$TaskSlimImplToJson(_$TaskSlimImpl instance) =>
@@ -70,6 +73,7 @@ Map<String, dynamic> _$$TaskSlimImplToJson(_$TaskSlimImpl instance) =>
       'title': instance.title,
       'status': _$StatusEnumMap[instance.status]!,
       'label': _$LabelEnumMap[instance.label]!,
-      'date': instance.date,
+      'due_date': instance.date,
       'task_number': instance.taskNumber,
+      'assigned': instance.assigned,
     };

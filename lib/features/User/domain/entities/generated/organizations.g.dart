@@ -11,7 +11,8 @@ _$OrganizationImpl _$$OrganizationImplFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       description: json['description'] as String,
-      profilePicture: json['profile_picture'] as String?,
+      profilePicture:
+          profilePictureFromJson(json['profile_picture'] as String?),
     );
 
 Map<String, dynamic> _$$OrganizationImplToJson(_$OrganizationImpl instance) =>

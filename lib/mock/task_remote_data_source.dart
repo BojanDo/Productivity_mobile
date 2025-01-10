@@ -20,7 +20,7 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
         label: faker.randomGenerator.element(Label.values),
         date: DateFormat('yyyy-MM-dd')
             .format(faker.date.dateTime(minYear: 2023, maxYear: 2030)),
-        taskNumber: '#$index',
+        taskNumber: '#$index', assigned: <int>[1,2],
       ),
     );
     tasks = Tasks(items: fakeTasks, total: fakeTasks.length);
@@ -43,7 +43,6 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
             .format(faker.date.dateTime(minYear: 2000, maxYear: 2024)),
         description: faker.lorem.sentences(2).join(' '),
         user: fakeUsers.first,
-        type: faker.randomGenerator.element(CommentType.values),
       ),
     );
     final List<Document> fakeDocuments = List<Document>.generate(

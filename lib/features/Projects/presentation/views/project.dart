@@ -39,20 +39,19 @@ class _ProjectPageState extends State<ProjectPage> {
 
   @override
   Widget build(BuildContext context) => BlocProvider<ProjectFormBloc>.value(
-    value: projectFormBloc,
-    child: GlobalForm<ProjectFormBloc>(
-      isViewOnly: !isEnabled,
-      title: 'Project',
-      onSuccess: isEnabled
-          ? () {
-              routePop(sl<AppBloc>().innerNavigator);
-              context.read<ProjectsBloc>().add(const ProjectsEvent.get());
-            }
-          : null,
-      formBloc: projectFormBloc,
-      fields: _fields(isEnabled, projectFormBloc),
-    ),
-  );
+        value: projectFormBloc,
+        child: GlobalForm<ProjectFormBloc>(
+          isViewOnly: !isEnabled,
+          title: 'Project',
+          onSuccess: isEnabled
+              ? () {
+                  routePopWithResult(sl<AppBloc>().innerNavigator,true);
+                }
+              : null,
+          formBloc: projectFormBloc,
+          fields: _fields(isEnabled, projectFormBloc),
+        ),
+      );
 
   List<Widget> _fields(bool isEnabled, ProjectFormBloc projectFormBloc) =>
       <Widget>[

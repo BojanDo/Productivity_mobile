@@ -27,6 +27,7 @@ mixin _$UpdateTaskParams {
       throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get label => throw _privateConstructorUsedError;
+  @JsonKey(name: 'due_date')
   String get date => throw _privateConstructorUsedError;
   @JsonKey(name: 'project_id')
   int get projectId => throw _privateConstructorUsedError;
@@ -57,7 +58,7 @@ abstract class $UpdateTaskParamsCopyWith<$Res> {
       List<Map<String, dynamic>> description,
       String status,
       String label,
-      String date,
+      @JsonKey(name: 'due_date') String date,
       @JsonKey(name: 'project_id') int projectId,
       List<int>? assigned,
       List<String>? attachments,
@@ -149,7 +150,7 @@ abstract class _$$UpdateTaskParamsImplCopyWith<$Res>
       List<Map<String, dynamic>> description,
       String status,
       String label,
-      String date,
+      @JsonKey(name: 'due_date') String date,
       @JsonKey(name: 'project_id') int projectId,
       List<int>? assigned,
       List<String>? attachments,
@@ -234,7 +235,7 @@ class _$UpdateTaskParamsImpl implements _UpdateTaskParams {
       required final List<Map<String, dynamic>> description,
       required this.status,
       required this.label,
-      required this.date,
+      @JsonKey(name: 'due_date') required this.date,
       @JsonKey(name: 'project_id') required this.projectId,
       final List<int>? assigned,
       final List<String>? attachments,
@@ -266,6 +267,7 @@ class _$UpdateTaskParamsImpl implements _UpdateTaskParams {
   @override
   final String label;
   @override
+  @JsonKey(name: 'due_date')
   final String date;
   @override
   @JsonKey(name: 'project_id')
@@ -368,7 +370,7 @@ abstract class _UpdateTaskParams implements UpdateTaskParams {
       required final List<Map<String, dynamic>> description,
       required final String status,
       required final String label,
-      required final String date,
+      @JsonKey(name: 'due_date') required final String date,
       @JsonKey(name: 'project_id') required final int projectId,
       final List<int>? assigned,
       final List<String>? attachments,
@@ -390,6 +392,7 @@ abstract class _UpdateTaskParams implements UpdateTaskParams {
   @override
   String get label;
   @override
+  @JsonKey(name: 'due_date')
   String get date;
   @override
   @JsonKey(name: 'project_id')

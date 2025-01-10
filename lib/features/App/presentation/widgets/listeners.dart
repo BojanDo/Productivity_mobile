@@ -18,7 +18,7 @@ class _AppListenersState extends State<AppListeners> {
 
   void _showOverlay(BuildContext context, Widget overlayContent) {
     if (_overlayEntry == null) {
-      _overlayEntry = OverlayEntry(
+     _overlayEntry = OverlayEntry(
         builder: (BuildContext context) => Positioned.fill(
           child: Stack(
             children: <Widget>[

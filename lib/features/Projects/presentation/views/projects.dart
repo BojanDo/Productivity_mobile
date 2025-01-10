@@ -36,9 +36,25 @@ class ProjectsPageInner extends StatefulWidget {
 }
 
 class _ProjectsPageInnerState extends State<ProjectsPageInner> {
+  void _getProjects(){context.read<ProjectsBloc>().add(const ProjectsEvent.get());}
+  void _openProject(ProjectFormMode mode,{Project? project}) {
+    routeWithResult(
+      context.read<AppBloc>().innerNavigator,
+      kProjectRoute,
+          (Object? result) {
+        if (result is! bool) {
+          return;
+        }
+        if (result) {
+          _getProjects();
+        }
+      },
+      <String, dynamic>{'mode': mode,'project':project},
+    );
+  }
   @override
   void initState() {
-    context.read<ProjectsBloc>().add(const ProjectsEvent.get());
+    _getProjects();
     super.initState();
   }
 
@@ -55,11 +71,7 @@ class _ProjectsPageInnerState extends State<ProjectsPageInner> {
               create: userState.user.roleName != Role.owner
                   ? null
                   : () {
-                      route(
-                        context.read<AppBloc>().innerNavigator,
-                        kProjectRoute,
-                        <String, dynamic>{'mode': ProjectFormMode.create},
-                      );
+                _openProject(ProjectFormMode.create);
                     },
             ),
             body: Column(
@@ -116,23 +128,9 @@ class _ProjectsPageInnerState extends State<ProjectsPageInner> {
                   icon: const Icon(Icons.more_vert), // Three dots button
                   onSelected: (String value) {
                     if (value == 'view') {
-                      route(
-                        context.read<AppBloc>().innerNavigator,
-                        kProjectRoute,
-                        <String, dynamic>{
-                          'mode': ProjectFormMode.view,
-                          'project': project,
-                        },
-                      );
+                      _openProject(ProjectFormMode.view,project: project);
                     } else if (value == 'edit') {
-                      route(
-                        context.read<AppBloc>().innerNavigator,
-                        kProjectRoute,
-                        <String, dynamic>{
-                          'mode': ProjectFormMode.edit,
-                          'project': project,
-                        },
-                      );
+                      _openProject(ProjectFormMode.edit,project: project);
                     } else if (value == 'remove') {
                       context
                           .read<ProjectsBloc>()
@@ -198,5 +196,3 @@ class _ProjectsPageInnerState extends State<ProjectsPageInner> {
         ),
       );
 }
-
-

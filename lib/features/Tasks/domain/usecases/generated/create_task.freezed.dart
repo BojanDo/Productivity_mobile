@@ -25,10 +25,11 @@ mixin _$CreateTaskParams {
       throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get label => throw _privateConstructorUsedError;
+  @JsonKey(name: 'due_date')
   String get date => throw _privateConstructorUsedError;
   @JsonKey(name: 'project_id')
   int get projectId => throw _privateConstructorUsedError;
-  List<int>? get assigned => throw _privateConstructorUsedError;
+  List<int> get assigned => throw _privateConstructorUsedError;
   List<String>? get attachments => throw _privateConstructorUsedError;
 
   /// Serializes this CreateTaskParams to a JSON map.
@@ -52,9 +53,9 @@ abstract class $CreateTaskParamsCopyWith<$Res> {
       List<Map<String, dynamic>> description,
       String status,
       String label,
-      String date,
+      @JsonKey(name: 'due_date') String date,
       @JsonKey(name: 'project_id') int projectId,
-      List<int>? assigned,
+      List<int> assigned,
       List<String>? attachments});
 }
 
@@ -79,7 +80,7 @@ class _$CreateTaskParamsCopyWithImpl<$Res, $Val extends CreateTaskParams>
     Object? label = null,
     Object? date = null,
     Object? projectId = null,
-    Object? assigned = freezed,
+    Object? assigned = null,
     Object? attachments = freezed,
   }) {
     return _then(_value.copyWith(
@@ -107,10 +108,10 @@ class _$CreateTaskParamsCopyWithImpl<$Res, $Val extends CreateTaskParams>
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as int,
-      assigned: freezed == assigned
+      assigned: null == assigned
           ? _value.assigned
           : assigned // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+              as List<int>,
       attachments: freezed == attachments
           ? _value.attachments
           : attachments // ignore: cast_nullable_to_non_nullable
@@ -132,9 +133,9 @@ abstract class _$$CreateTaskParamsImplCopyWith<$Res>
       List<Map<String, dynamic>> description,
       String status,
       String label,
-      String date,
+      @JsonKey(name: 'due_date') String date,
       @JsonKey(name: 'project_id') int projectId,
-      List<int>? assigned,
+      List<int> assigned,
       List<String>? attachments});
 }
 
@@ -157,7 +158,7 @@ class __$$CreateTaskParamsImplCopyWithImpl<$Res>
     Object? label = null,
     Object? date = null,
     Object? projectId = null,
-    Object? assigned = freezed,
+    Object? assigned = null,
     Object? attachments = freezed,
   }) {
     return _then(_$CreateTaskParamsImpl(
@@ -185,10 +186,10 @@ class __$$CreateTaskParamsImplCopyWithImpl<$Res>
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as int,
-      assigned: freezed == assigned
+      assigned: null == assigned
           ? _value._assigned
           : assigned // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+              as List<int>,
       attachments: freezed == attachments
           ? _value._attachments
           : attachments // ignore: cast_nullable_to_non_nullable
@@ -205,9 +206,9 @@ class _$CreateTaskParamsImpl implements _CreateTaskParams {
       required final List<Map<String, dynamic>> description,
       required this.status,
       required this.label,
-      required this.date,
+      @JsonKey(name: 'due_date') required this.date,
       @JsonKey(name: 'project_id') required this.projectId,
-      final List<int>? assigned,
+      required final List<int> assigned,
       final List<String>? attachments})
       : _description = description,
         _assigned = assigned,
@@ -231,18 +232,17 @@ class _$CreateTaskParamsImpl implements _CreateTaskParams {
   @override
   final String label;
   @override
+  @JsonKey(name: 'due_date')
   final String date;
   @override
   @JsonKey(name: 'project_id')
   final int projectId;
-  final List<int>? _assigned;
+  final List<int> _assigned;
   @override
-  List<int>? get assigned {
-    final value = _assigned;
-    if (value == null) return null;
+  List<int> get assigned {
     if (_assigned is EqualUnmodifiableListView) return _assigned;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_assigned);
   }
 
   final List<String>? _attachments;
@@ -314,9 +314,9 @@ abstract class _CreateTaskParams implements CreateTaskParams {
       required final List<Map<String, dynamic>> description,
       required final String status,
       required final String label,
-      required final String date,
+      @JsonKey(name: 'due_date') required final String date,
       @JsonKey(name: 'project_id') required final int projectId,
-      final List<int>? assigned,
+      required final List<int> assigned,
       final List<String>? attachments}) = _$CreateTaskParamsImpl;
 
   factory _CreateTaskParams.fromJson(Map<String, dynamic> json) =
@@ -331,12 +331,13 @@ abstract class _CreateTaskParams implements CreateTaskParams {
   @override
   String get label;
   @override
+  @JsonKey(name: 'due_date')
   String get date;
   @override
   @JsonKey(name: 'project_id')
   int get projectId;
   @override
-  List<int>? get assigned;
+  List<int> get assigned;
   @override
   List<String>? get attachments;
 

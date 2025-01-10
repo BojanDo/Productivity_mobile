@@ -60,7 +60,6 @@ class SettingsPage extends StatelessWidget {
                               routeWithResult(
                                   context.read<AppBloc>().innerNavigator,
                                   setting.route, (Object? result) {
-                                print('result: $result');
                                 if (result is! bool) {
                                   return;
                                 }

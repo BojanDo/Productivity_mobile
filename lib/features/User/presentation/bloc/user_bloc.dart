@@ -59,7 +59,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserEvent>(
       (UserEvent event, Emitter<UserState> emit) async => event.when(
         getUser: () => _handleGetUser(emit),
-        loadAccount: () => accountFormBloc.setFields(user),
+        loadAccount: () => accountFormBloc.setFields(state.user),
         loadOrganization: () => _handleLoadOrganization(emit),
         loadInvitations: () => _handleLoadInvitations(emit),
         loadInvitedUsers: () => _handleLoadInvitedUsers(emit),

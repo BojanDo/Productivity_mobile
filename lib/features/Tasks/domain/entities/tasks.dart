@@ -102,7 +102,7 @@ class Task with _$Task {
     required List<Map<String, dynamic>> description,
     required Status status,
     required Label label,
-    required String date,
+    @JsonKey(name: 'due_date') required String date,
     required Project project,
     @JsonKey(
       name: 'assigned_users',
@@ -129,8 +129,9 @@ class TaskSlim with _$TaskSlim{
     required String title,
     required Status status,
     required Label label,
-    required String date,
+    @JsonKey(name: 'due_date') required String date,
     @JsonKey(name: 'task_number') required String taskNumber,
+    required List<int> assigned,
   }) = _TaskSlim;
 
   factory TaskSlim.fromJson(Map<String, dynamic> json) => _$TaskSlimFromJson(json);

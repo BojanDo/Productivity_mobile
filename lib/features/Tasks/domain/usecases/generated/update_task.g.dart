@@ -16,7 +16,7 @@ _$UpdateTaskParamsImpl _$$UpdateTaskParamsImplFromJson(
           .toList(),
       status: json['status'] as String,
       label: json['label'] as String,
-      date: json['date'] as String,
+      date: json['due_date'] as String,
       projectId: (json['project_id'] as num).toInt(),
       assigned: (json['assigned'] as List<dynamic>?)
           ?.map((e) => (e as num).toInt())
@@ -37,7 +37,7 @@ Map<String, dynamic> _$$UpdateTaskParamsImplToJson(
       'description': instance.description,
       'status': instance.status,
       'label': instance.label,
-      'date': instance.date,
+      'due_date': instance.date,
       'project_id': instance.projectId,
       'assigned': instance.assigned,
       'attachments': instance.attachments,
