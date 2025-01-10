@@ -93,6 +93,8 @@ class UserRemoteDataSourceImplementation implements UserRemoteDataSource {
       return UserResponse.fromJson(response as DataMap);
     } on APIException {
       rethrow;
+    } catch(e){
+      throw APIException(message: 'ag', statusCode: 400);
     }
   }
 

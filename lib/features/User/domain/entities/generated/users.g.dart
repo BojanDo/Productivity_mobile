@@ -14,7 +14,8 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       profilePicture: json['profile_picture'] as String?,
       jobTitle: json['job_title'] as String,
       organizationId: (json['organization_id'] as num?)?.toInt(),
-      roleName: $enumDecodeNullable(_$RoleEnumMap, json['role_name']),
+      roleName:
+          $enumDecodeNullable(_$RoleEnumMap, json['role_name']) ?? Role.basic,
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
@@ -26,10 +27,11 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'profile_picture': instance.profilePicture,
       'job_title': instance.jobTitle,
       'organization_id': instance.organizationId,
-      'role_name': _$RoleEnumMap[instance.roleName],
+      'role_name': _$RoleEnumMap[instance.roleName]!,
     };
 
 const _$RoleEnumMap = {
-  Role.owner: 'Owner',
-  Role.developer: 'Developer',
+  Role.owner: 'owner',
+  Role.developer: 'developer',
+  Role.basic: 'basic',
 };

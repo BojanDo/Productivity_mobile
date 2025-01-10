@@ -11,7 +11,7 @@ class AuthResponse with _$AuthResponse {
     @Default(true) bool status,
     @Default('') String message,
     User? user,
-    String? jwt
+    String? token
 }) = _AuthResponse;
 
   factory AuthResponse.fromJson(Map<String, dynamic> json) =>

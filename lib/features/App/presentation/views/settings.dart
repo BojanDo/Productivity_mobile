@@ -10,7 +10,7 @@ import '../../../User/presentation/bloc/user_bloc.dart';
 import '../bloc/app_bloc.dart';
 
 class SettingsPage extends StatelessWidget {
-  SettingsPage({super.key});
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) => BlocBuilder<UserBloc, UserState>(
@@ -36,7 +36,6 @@ class SettingsPage extends StatelessWidget {
                 route: kInvitationsRoute,
               ),
             if (state.user.organizationId != null &&
-                state.user.roleName != null &&
                 state.user.roleName == Role.owner)
               Setting(
                 icon: Icons.group_add_outlined,

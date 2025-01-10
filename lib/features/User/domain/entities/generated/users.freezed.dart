@@ -31,7 +31,7 @@ mixin _$User {
   @JsonKey(name: 'organization_id')
   int? get organizationId => throw _privateConstructorUsedError;
   @JsonKey(name: 'role_name')
-  Role? get roleName => throw _privateConstructorUsedError;
+  Role get roleName => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -55,7 +55,7 @@ abstract class $UserCopyWith<$Res> {
       @JsonKey(name: 'profile_picture') String? profilePicture,
       @JsonKey(name: 'job_title') String jobTitle,
       @JsonKey(name: 'organization_id') int? organizationId,
-      @JsonKey(name: 'role_name') Role? roleName});
+      @JsonKey(name: 'role_name') Role roleName});
 }
 
 /// @nodoc
@@ -80,7 +80,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? profilePicture = freezed,
     Object? jobTitle = null,
     Object? organizationId = freezed,
-    Object? roleName = freezed,
+    Object? roleName = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -111,10 +111,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.organizationId
           : organizationId // ignore: cast_nullable_to_non_nullable
               as int?,
-      roleName: freezed == roleName
+      roleName: null == roleName
           ? _value.roleName
           : roleName // ignore: cast_nullable_to_non_nullable
-              as Role?,
+              as Role,
     ) as $Val);
   }
 }
@@ -134,7 +134,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       @JsonKey(name: 'profile_picture') String? profilePicture,
       @JsonKey(name: 'job_title') String jobTitle,
       @JsonKey(name: 'organization_id') int? organizationId,
-      @JsonKey(name: 'role_name') Role? roleName});
+      @JsonKey(name: 'role_name') Role roleName});
 }
 
 /// @nodoc
@@ -156,7 +156,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? profilePicture = freezed,
     Object? jobTitle = null,
     Object? organizationId = freezed,
-    Object? roleName = freezed,
+    Object? roleName = null,
   }) {
     return _then(_$UserImpl(
       id: null == id
@@ -187,10 +187,10 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.organizationId
           : organizationId // ignore: cast_nullable_to_non_nullable
               as int?,
-      roleName: freezed == roleName
+      roleName: null == roleName
           ? _value.roleName
           : roleName // ignore: cast_nullable_to_non_nullable
-              as Role?,
+              as Role,
     ));
   }
 }
@@ -206,7 +206,7 @@ class _$UserImpl implements _User {
       @JsonKey(name: 'profile_picture') this.profilePicture,
       @JsonKey(name: 'job_title') required this.jobTitle,
       @JsonKey(name: 'organization_id') this.organizationId,
-      @JsonKey(name: 'role_name') this.roleName});
+      @JsonKey(name: 'role_name') this.roleName = Role.basic});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -230,7 +230,7 @@ class _$UserImpl implements _User {
   final int? organizationId;
   @override
   @JsonKey(name: 'role_name')
-  final Role? roleName;
+  final Role roleName;
 
   @override
   String toString() {
@@ -288,7 +288,7 @@ abstract class _User implements User {
       @JsonKey(name: 'profile_picture') final String? profilePicture,
       @JsonKey(name: 'job_title') required final String jobTitle,
       @JsonKey(name: 'organization_id') final int? organizationId,
-      @JsonKey(name: 'role_name') final Role? roleName}) = _$UserImpl;
+      @JsonKey(name: 'role_name') final Role roleName}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -311,7 +311,7 @@ abstract class _User implements User {
   int? get organizationId;
   @override
   @JsonKey(name: 'role_name')
-  Role? get roleName;
+  Role get roleName;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.

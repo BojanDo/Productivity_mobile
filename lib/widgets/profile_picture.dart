@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:colorize_text_avatar/colorize_text_avatar.dart';
 
+import '../core/config/constants.dart';
 import '../features/Projects/domain/entities/projects.dart';
 import '../features/User/domain/entities/organizations.dart';
 import '../features/User/domain/entities/users.dart';
@@ -39,6 +40,20 @@ class ProfilePicture extends StatelessWidget {
         isEnabled: isEnabled,
       );
 
+  String get validatedProfilePicture {
+    if (profilePicture == null || profilePicture!.isEmpty) {
+      return '';
+    }
+
+    final Uri? uri = Uri.tryParse(profilePicture!);
+    if (uri == null || !uri.hasScheme || !uri.host.contains('.')) {
+      // If the URL does not include a domain, prepend the base URL
+      return '$kBaseUrl/${profilePicture!.replaceFirst(RegExp(r'^/'), '')}';
+    }
+
+    return profilePicture!;
+  }
+
   Widget get letterPicture => TextAvatar(
     text: text,
     shape: Shape.Rectangle,
@@ -55,10 +70,12 @@ class ProfilePicture extends StatelessWidget {
       );
     }
 
-    return profilePicture != null
+    String picture = validatedProfilePicture;
+    return picture.isNotEmpty
         ? CachedNetworkImage(
-      imageUrl: profilePicture!,
-      errorWidget: (BuildContext context, String url, Object error) => letterPicture,
+      imageUrl: picture,
+      errorWidget: (BuildContext context, String url, Object error) =>
+      letterPicture,
     )
         : letterPicture;
   }

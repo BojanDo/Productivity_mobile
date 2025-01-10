@@ -27,7 +27,7 @@ class MockAuthRemoteDataSourceImplementation implements AuthRemoteDataSource {
   @override
   Future<AuthResponse> login({required Map<String, dynamic> values}) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
-    return response.copyWith(user: user,jwt: 'token');
+    return response.copyWith(user: user,token: 'token');
   }
 
   @override

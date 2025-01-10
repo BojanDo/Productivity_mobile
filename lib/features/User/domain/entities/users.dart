@@ -7,17 +7,21 @@ part 'generated/users.g.dart';
 
 @JsonEnum()
 enum Role{
-  @JsonValue('Owner')
+  @JsonValue('owner')
   owner,
-  @JsonValue('Developer')
-  developer;
+  @JsonValue('developer')
+  developer,
+  @JsonValue('basic')
+  basic;
 
   String get displayName {
     switch (this) {
       case Role.owner:
-        return 'Owner';
+        return 'owner';
       case Role.developer:
-        return 'Developer';
+        return 'developer';
+      case Role.basic:
+        return 'basic';
     }
   }
 }
@@ -32,7 +36,7 @@ class User with _$User {
     @JsonKey(name: 'profile_picture') String? profilePicture,
     @JsonKey(name: 'job_title') required String jobTitle,
     @JsonKey(name: 'organization_id') int? organizationId,
-    @JsonKey(name: 'role_name') Role? roleName,
+    @Default(Role.basic) @JsonKey(name: 'role_name') Role roleName,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

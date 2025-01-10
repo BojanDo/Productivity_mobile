@@ -172,21 +172,24 @@ abstract class _HomeFeedEventGet implements HomeFeedEvent {
 
 /// @nodoc
 mixin _$HomeFeedState {
+  PaginatedList<Notification> get notifications =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getting,
+    required TResult Function(PaginatedList<Notification> notifications)
+        getting,
     required TResult Function(PaginatedList<Notification> notifications) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getting,
+    TResult? Function(PaginatedList<Notification> notifications)? getting,
     TResult? Function(PaginatedList<Notification> notifications)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getting,
+    TResult Function(PaginatedList<Notification> notifications)? getting,
     TResult Function(PaginatedList<Notification> notifications)? loaded,
     required TResult orElse(),
   }) =>
@@ -210,6 +213,12 @@ mixin _$HomeFeedState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Create a copy of HomeFeedState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $HomeFeedStateCopyWith<HomeFeedState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -217,6 +226,10 @@ abstract class $HomeFeedStateCopyWith<$Res> {
   factory $HomeFeedStateCopyWith(
           HomeFeedState value, $Res Function(HomeFeedState) then) =
       _$HomeFeedStateCopyWithImpl<$Res, HomeFeedState>;
+  @useResult
+  $Res call({PaginatedList<Notification> notifications});
+
+  $PaginatedListCopyWith<Notification, $Res> get notifications;
 }
 
 /// @nodoc
@@ -231,13 +244,43 @@ class _$HomeFeedStateCopyWithImpl<$Res, $Val extends HomeFeedState>
 
   /// Create a copy of HomeFeedState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? notifications = null,
+  }) {
+    return _then(_value.copyWith(
+      notifications: null == notifications
+          ? _value.notifications
+          : notifications // ignore: cast_nullable_to_non_nullable
+              as PaginatedList<Notification>,
+    ) as $Val);
+  }
+
+  /// Create a copy of HomeFeedState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PaginatedListCopyWith<Notification, $Res> get notifications {
+    return $PaginatedListCopyWith<Notification, $Res>(_value.notifications,
+        (value) {
+      return _then(_value.copyWith(notifications: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$HomeFeedStateGettingImplCopyWith<$Res> {
+abstract class _$$HomeFeedStateGettingImplCopyWith<$Res>
+    implements $HomeFeedStateCopyWith<$Res> {
   factory _$$HomeFeedStateGettingImplCopyWith(_$HomeFeedStateGettingImpl value,
           $Res Function(_$HomeFeedStateGettingImpl) then) =
       __$$HomeFeedStateGettingImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({PaginatedList<Notification> notifications});
+
+  @override
+  $PaginatedListCopyWith<Notification, $Res> get notifications;
 }
 
 /// @nodoc
@@ -250,55 +293,83 @@ class __$$HomeFeedStateGettingImplCopyWithImpl<$Res>
 
   /// Create a copy of HomeFeedState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? notifications = null,
+  }) {
+    return _then(_$HomeFeedStateGettingImpl(
+      notifications: null == notifications
+          ? _value.notifications
+          : notifications // ignore: cast_nullable_to_non_nullable
+              as PaginatedList<Notification>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$HomeFeedStateGettingImpl implements _HomeFeedStateGetting {
-  const _$HomeFeedStateGettingImpl();
+  const _$HomeFeedStateGettingImpl({required this.notifications});
+
+  @override
+  final PaginatedList<Notification> notifications;
 
   @override
   String toString() {
-    return 'HomeFeedState.getting()';
+    return 'HomeFeedState.getting(notifications: $notifications)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeFeedStateGettingImpl);
+            other is _$HomeFeedStateGettingImpl &&
+            (identical(other.notifications, notifications) ||
+                other.notifications == notifications));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, notifications);
+
+  /// Create a copy of HomeFeedState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HomeFeedStateGettingImplCopyWith<_$HomeFeedStateGettingImpl>
+      get copyWith =>
+          __$$HomeFeedStateGettingImplCopyWithImpl<_$HomeFeedStateGettingImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getting,
+    required TResult Function(PaginatedList<Notification> notifications)
+        getting,
     required TResult Function(PaginatedList<Notification> notifications) loaded,
   }) {
-    return getting();
+    return getting(notifications);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getting,
+    TResult? Function(PaginatedList<Notification> notifications)? getting,
     TResult? Function(PaginatedList<Notification> notifications)? loaded,
   }) {
-    return getting?.call();
+    return getting?.call(notifications);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getting,
+    TResult Function(PaginatedList<Notification> notifications)? getting,
     TResult Function(PaginatedList<Notification> notifications)? loaded,
     required TResult orElse(),
   }) {
     if (getting != null) {
-      return getting();
+      return getting(notifications);
     }
     return orElse();
   }
@@ -336,17 +407,32 @@ class _$HomeFeedStateGettingImpl implements _HomeFeedStateGetting {
 }
 
 abstract class _HomeFeedStateGetting implements HomeFeedState {
-  const factory _HomeFeedStateGetting() = _$HomeFeedStateGettingImpl;
+  const factory _HomeFeedStateGetting(
+          {required final PaginatedList<Notification> notifications}) =
+      _$HomeFeedStateGettingImpl;
+
+  @override
+  PaginatedList<Notification> get notifications;
+
+  /// Create a copy of HomeFeedState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$HomeFeedStateGettingImplCopyWith<_$HomeFeedStateGettingImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$HomeFeedStateLoadedImplCopyWith<$Res> {
+abstract class _$$HomeFeedStateLoadedImplCopyWith<$Res>
+    implements $HomeFeedStateCopyWith<$Res> {
   factory _$$HomeFeedStateLoadedImplCopyWith(_$HomeFeedStateLoadedImpl value,
           $Res Function(_$HomeFeedStateLoadedImpl) then) =
       __$$HomeFeedStateLoadedImplCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({PaginatedList<Notification> notifications});
 
+  @override
   $PaginatedListCopyWith<Notification, $Res> get notifications;
 }
 
@@ -371,17 +457,6 @@ class __$$HomeFeedStateLoadedImplCopyWithImpl<$Res>
           : notifications // ignore: cast_nullable_to_non_nullable
               as PaginatedList<Notification>,
     ));
-  }
-
-  /// Create a copy of HomeFeedState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PaginatedListCopyWith<Notification, $Res> get notifications {
-    return $PaginatedListCopyWith<Notification, $Res>(_value.notifications,
-        (value) {
-      return _then(_value.copyWith(notifications: value));
-    });
   }
 }
 
@@ -422,7 +497,8 @@ class _$HomeFeedStateLoadedImpl implements _HomeFeedStateLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getting,
+    required TResult Function(PaginatedList<Notification> notifications)
+        getting,
     required TResult Function(PaginatedList<Notification> notifications) loaded,
   }) {
     return loaded(notifications);
@@ -431,7 +507,7 @@ class _$HomeFeedStateLoadedImpl implements _HomeFeedStateLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getting,
+    TResult? Function(PaginatedList<Notification> notifications)? getting,
     TResult? Function(PaginatedList<Notification> notifications)? loaded,
   }) {
     return loaded?.call(notifications);
@@ -440,7 +516,7 @@ class _$HomeFeedStateLoadedImpl implements _HomeFeedStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getting,
+    TResult Function(PaginatedList<Notification> notifications)? getting,
     TResult Function(PaginatedList<Notification> notifications)? loaded,
     required TResult orElse(),
   }) {
@@ -487,10 +563,12 @@ abstract class _HomeFeedStateLoaded implements HomeFeedState {
           {required final PaginatedList<Notification> notifications}) =
       _$HomeFeedStateLoadedImpl;
 
+  @override
   PaginatedList<Notification> get notifications;
 
   /// Create a copy of HomeFeedState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HomeFeedStateLoadedImplCopyWith<_$HomeFeedStateLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;

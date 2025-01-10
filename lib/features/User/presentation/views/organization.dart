@@ -28,8 +28,7 @@ class _OrganizationPageState extends State<OrganizationPage> {
         builder: (BuildContext context, UserState state) {
           final OrganizationFormBloc organizationFormBloc =
               context.read<UserBloc>().organizationFormBloc;
-          final bool isEnabled = state.user.roleName == null ||
-              state.user.roleName != Role.developer;
+          final bool isEnabled = state.user.roleName != Role.developer;
           return BlocProvider<OrganizationFormBloc>.value(
             value: organizationFormBloc,
             child: GlobalForm<OrganizationFormBloc>(

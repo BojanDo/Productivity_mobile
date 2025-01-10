@@ -121,7 +121,7 @@ class _GlobalDrawerState extends State<GlobalDrawer>
             Expanded(
               child: Stack(
                 children: <Widget>[
-                  _list(_firstList, DrawerVisibleList.first),
+                  _list(user.organizationId==null?[_firstList.first]:_firstList, DrawerVisibleList.first),
                   SlideTransition(
                     position: _slideAnimation,
                     child: Container(
@@ -192,7 +192,7 @@ class _GlobalDrawerState extends State<GlobalDrawer>
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            user.roleName?.displayName ?? '',
+                            user.roleName.displayName ?? '',
                             style: const TextStyle(
                               fontSize: 14,
                               color: Colors.grey,

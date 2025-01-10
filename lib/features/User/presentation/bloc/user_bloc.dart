@@ -97,7 +97,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       result.fold(
         (Failure failure) => null,
         (Organization organization) =>
-            organizationFormBloc.setFields(organization, state.user.roleName!),
+            organizationFormBloc.setFields(organization, state.user.roleName),
       );
       sl<AppBloc>().add(const AppEvent.overlayRemove());
     }

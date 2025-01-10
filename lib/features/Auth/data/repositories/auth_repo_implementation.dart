@@ -20,7 +20,7 @@ class AuthRepoImplementation implements AuthRepository {
       final AuthResponse result = await _remoteDataSource.login(
         values: values,
       );
-      if (result.user == null || result.jwt==null) {
+      if (result.user == null || result.token==null) {
         throw const APIException(
           message: 'There was an unknown error processing your data',
           statusCode: 500,
@@ -37,7 +37,7 @@ class AuthRepoImplementation implements AuthRepository {
     required Map<String, dynamic> values,
   }) async {
     try {
-      final AuthResponse result = await _remoteDataSource.login(
+      final AuthResponse result = await _remoteDataSource.register(
         values: values,
       );
       return Right<Failure, AuthResponse>(result);

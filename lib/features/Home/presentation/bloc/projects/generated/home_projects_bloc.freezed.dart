@@ -173,21 +173,22 @@ abstract class _HomeProjectsEventGet implements HomeProjectsEvent {
 
 /// @nodoc
 mixin _$HomeProjectsState {
+  PaginatedList<Project> get projects => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getting,
+    required TResult Function(PaginatedList<Project> projects) getting,
     required TResult Function(PaginatedList<Project> projects) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getting,
+    TResult? Function(PaginatedList<Project> projects)? getting,
     TResult? Function(PaginatedList<Project> projects)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getting,
+    TResult Function(PaginatedList<Project> projects)? getting,
     TResult Function(PaginatedList<Project> projects)? loaded,
     required TResult orElse(),
   }) =>
@@ -211,6 +212,12 @@ mixin _$HomeProjectsState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Create a copy of HomeProjectsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $HomeProjectsStateCopyWith<HomeProjectsState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -218,6 +225,10 @@ abstract class $HomeProjectsStateCopyWith<$Res> {
   factory $HomeProjectsStateCopyWith(
           HomeProjectsState value, $Res Function(HomeProjectsState) then) =
       _$HomeProjectsStateCopyWithImpl<$Res, HomeProjectsState>;
+  @useResult
+  $Res call({PaginatedList<Project> projects});
+
+  $PaginatedListCopyWith<Project, $Res> get projects;
 }
 
 /// @nodoc
@@ -232,14 +243,43 @@ class _$HomeProjectsStateCopyWithImpl<$Res, $Val extends HomeProjectsState>
 
   /// Create a copy of HomeProjectsState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? projects = null,
+  }) {
+    return _then(_value.copyWith(
+      projects: null == projects
+          ? _value.projects
+          : projects // ignore: cast_nullable_to_non_nullable
+              as PaginatedList<Project>,
+    ) as $Val);
+  }
+
+  /// Create a copy of HomeProjectsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PaginatedListCopyWith<Project, $Res> get projects {
+    return $PaginatedListCopyWith<Project, $Res>(_value.projects, (value) {
+      return _then(_value.copyWith(projects: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$HomeProjectsStateGettingImplCopyWith<$Res> {
+abstract class _$$HomeProjectsStateGettingImplCopyWith<$Res>
+    implements $HomeProjectsStateCopyWith<$Res> {
   factory _$$HomeProjectsStateGettingImplCopyWith(
           _$HomeProjectsStateGettingImpl value,
           $Res Function(_$HomeProjectsStateGettingImpl) then) =
       __$$HomeProjectsStateGettingImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({PaginatedList<Project> projects});
+
+  @override
+  $PaginatedListCopyWith<Project, $Res> get projects;
 }
 
 /// @nodoc
@@ -254,55 +294,81 @@ class __$$HomeProjectsStateGettingImplCopyWithImpl<$Res>
 
   /// Create a copy of HomeProjectsState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? projects = null,
+  }) {
+    return _then(_$HomeProjectsStateGettingImpl(
+      projects: null == projects
+          ? _value.projects
+          : projects // ignore: cast_nullable_to_non_nullable
+              as PaginatedList<Project>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$HomeProjectsStateGettingImpl implements _HomeProjectsStateGetting {
-  const _$HomeProjectsStateGettingImpl();
+  const _$HomeProjectsStateGettingImpl({required this.projects});
+
+  @override
+  final PaginatedList<Project> projects;
 
   @override
   String toString() {
-    return 'HomeProjectsState.getting()';
+    return 'HomeProjectsState.getting(projects: $projects)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeProjectsStateGettingImpl);
+            other is _$HomeProjectsStateGettingImpl &&
+            (identical(other.projects, projects) ||
+                other.projects == projects));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, projects);
+
+  /// Create a copy of HomeProjectsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HomeProjectsStateGettingImplCopyWith<_$HomeProjectsStateGettingImpl>
+      get copyWith => __$$HomeProjectsStateGettingImplCopyWithImpl<
+          _$HomeProjectsStateGettingImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getting,
+    required TResult Function(PaginatedList<Project> projects) getting,
     required TResult Function(PaginatedList<Project> projects) loaded,
   }) {
-    return getting();
+    return getting(projects);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getting,
+    TResult? Function(PaginatedList<Project> projects)? getting,
     TResult? Function(PaginatedList<Project> projects)? loaded,
   }) {
-    return getting?.call();
+    return getting?.call(projects);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getting,
+    TResult Function(PaginatedList<Project> projects)? getting,
     TResult Function(PaginatedList<Project> projects)? loaded,
     required TResult orElse(),
   }) {
     if (getting != null) {
-      return getting();
+      return getting(projects);
     }
     return orElse();
   }
@@ -340,18 +406,33 @@ class _$HomeProjectsStateGettingImpl implements _HomeProjectsStateGetting {
 }
 
 abstract class _HomeProjectsStateGetting implements HomeProjectsState {
-  const factory _HomeProjectsStateGetting() = _$HomeProjectsStateGettingImpl;
+  const factory _HomeProjectsStateGetting(
+          {required final PaginatedList<Project> projects}) =
+      _$HomeProjectsStateGettingImpl;
+
+  @override
+  PaginatedList<Project> get projects;
+
+  /// Create a copy of HomeProjectsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$HomeProjectsStateGettingImplCopyWith<_$HomeProjectsStateGettingImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$HomeProjectsStateLoadedImplCopyWith<$Res> {
+abstract class _$$HomeProjectsStateLoadedImplCopyWith<$Res>
+    implements $HomeProjectsStateCopyWith<$Res> {
   factory _$$HomeProjectsStateLoadedImplCopyWith(
           _$HomeProjectsStateLoadedImpl value,
           $Res Function(_$HomeProjectsStateLoadedImpl) then) =
       __$$HomeProjectsStateLoadedImplCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({PaginatedList<Project> projects});
 
+  @override
   $PaginatedListCopyWith<Project, $Res> get projects;
 }
 
@@ -377,16 +458,6 @@ class __$$HomeProjectsStateLoadedImplCopyWithImpl<$Res>
           : projects // ignore: cast_nullable_to_non_nullable
               as PaginatedList<Project>,
     ));
-  }
-
-  /// Create a copy of HomeProjectsState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PaginatedListCopyWith<Project, $Res> get projects {
-    return $PaginatedListCopyWith<Project, $Res>(_value.projects, (value) {
-      return _then(_value.copyWith(projects: value));
-    });
   }
 }
 
@@ -427,7 +498,7 @@ class _$HomeProjectsStateLoadedImpl implements _HomeProjectsStateLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getting,
+    required TResult Function(PaginatedList<Project> projects) getting,
     required TResult Function(PaginatedList<Project> projects) loaded,
   }) {
     return loaded(projects);
@@ -436,7 +507,7 @@ class _$HomeProjectsStateLoadedImpl implements _HomeProjectsStateLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getting,
+    TResult? Function(PaginatedList<Project> projects)? getting,
     TResult? Function(PaginatedList<Project> projects)? loaded,
   }) {
     return loaded?.call(projects);
@@ -445,7 +516,7 @@ class _$HomeProjectsStateLoadedImpl implements _HomeProjectsStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getting,
+    TResult Function(PaginatedList<Project> projects)? getting,
     TResult Function(PaginatedList<Project> projects)? loaded,
     required TResult orElse(),
   }) {
@@ -492,10 +563,12 @@ abstract class _HomeProjectsStateLoaded implements HomeProjectsState {
           {required final PaginatedList<Project> projects}) =
       _$HomeProjectsStateLoadedImpl;
 
+  @override
   PaginatedList<Project> get projects;
 
   /// Create a copy of HomeProjectsState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HomeProjectsStateLoadedImplCopyWith<_$HomeProjectsStateLoadedImpl>
       get copyWith => throw _privateConstructorUsedError;

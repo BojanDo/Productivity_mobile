@@ -68,7 +68,7 @@ class APIManager {
 
   static String _getUrl(String baseUrl, String endpoint) {
     if (endpoint.isNotEmpty) {
-      return '$baseUrl$endpoint';
+      return '$baseUrl/$endpoint';
     }
     return baseUrl;
   }
@@ -90,10 +90,7 @@ class APIManager {
     } on APIException {
       rethrow;
     } catch (e) {
-      throw const APIException(
-        message: 'There was an unknown error',
-        statusCode: 500,
-      );
+      throwAPIException(e);
     }
   }
 
@@ -110,15 +107,12 @@ class APIManager {
         data: FormData.fromMap(data),
         options: options ?? this.options,
       );
-      print('Sent post request');
+      print('Got post response');
       return response.data;
     } on APIException {
       rethrow;
     } catch (e) {
-      throw const APIException(
-        message: 'There was an unknown error',
-        statusCode: 500,
-      );
+      throwAPIException(e);
     }
   }
 
@@ -153,10 +147,7 @@ class APIManager {
     } on APIException {
       rethrow;
     } catch (e) {
-      throw const APIException(
-        message: 'There was an unknown error',
-        statusCode: 500,
-      );
+      throwAPIException(e);
     }
   }
 
@@ -178,10 +169,7 @@ class APIManager {
     } on APIException {
       rethrow;
     } catch (e) {
-      throw const APIException(
-        message: 'There was an unknown error',
-        statusCode: 500,
-      );
+      throwAPIException(e);
     }
   }
 
@@ -208,5 +196,16 @@ class APIManager {
         statusCode: 500,
       );
     }
+  }
+
+
+  void throwAPIException(Object e){
+    if(e is DioException && e.error is APIException) {
+      throw (e.error as APIException);
+    }
+    throw const APIException(
+      message: 'There was an unknown error',
+      statusCode: 500,
+    );
   }
 }

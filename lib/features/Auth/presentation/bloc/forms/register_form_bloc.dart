@@ -11,9 +11,14 @@ class RegisterFormBloc extends FormBloc<User, String> {
         email,
         profilePicture,
         password,
+        passwordConfirm,
         jobTitle,
       ],
     );
+
+    passwordConfirm
+      ..addValidators(<Validator<String>>[_confirmPassword(password)])
+      ..subscribeToFieldBlocs(<FieldBloc<FieldBlocStateBase>>[password]);
   }
 
   final Register _register;
@@ -42,11 +47,25 @@ class RegisterFormBloc extends FormBloc<User, String> {
       FieldBlocValidators.passwordMin6Chars,
     ],
   );
+  final TextFieldBloc<dynamic> passwordConfirm = TextFieldBloc<dynamic>(
+    validators: <Validator<String>>[
+      FieldBlocValidators.required,
+      FieldBlocValidators.passwordMin6Chars,
+    ],
+  );
   final TextFieldBloc<dynamic> jobTitle = TextFieldBloc<dynamic>(
     validators: <Validator<String>>[
       FieldBlocValidators.required,
     ],
   );
+
+  Validator<String> _confirmPassword(TextFieldBloc<dynamic> passwordTextFieldBloc) =>
+      (String? confirmPassword) {
+        if (confirmPassword == passwordTextFieldBloc.value) {
+          return null;
+        }
+        return 'Must be equal to password';
+      };
 
   @override
   FutureOr<void> onSubmitting() async {
@@ -57,6 +76,7 @@ class RegisterFormBloc extends FormBloc<User, String> {
         email: email.value,
         profilePicture: profilePicture.value?.path,
         password: password.value,
+        passwordConfirm: passwordConfirm.value,
         jobTitle: jobTitle.value,
       ),
     );

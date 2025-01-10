@@ -46,7 +46,7 @@ class LoginFormBloc extends FormBloc<User, String> {
       (Failure failure) => emitFailure(failureResponse: failure.message),
       (AuthResponse response) {
         _localStorage.saveData('user_id', response.user!.id, true);
-        _apiManager.storeToken(response.jwt!);
+        _apiManager.storeToken(response.token!);
         emitSuccess(successResponse: response.user);
       },
     );

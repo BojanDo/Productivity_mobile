@@ -36,6 +36,7 @@ const factory RegisterParams({
   required String email,
   @JsonKey(name: 'profile_picture') String? profilePicture,
   required String password,
+  @JsonKey(name: 'password_confirmation') required String passwordConfirm,
   @JsonKey(name: 'job_title') required String jobTitle,
 }) = _RegisterParams;
 

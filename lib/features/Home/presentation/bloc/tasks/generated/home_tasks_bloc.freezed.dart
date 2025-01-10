@@ -234,22 +234,32 @@ abstract class _HomeTasksEventGet implements HomeTasksEvent {
 
 /// @nodoc
 mixin _$HomeTasksState {
+  PaginatedList<TaskSlim> get tasks => throw _privateConstructorUsedError;
+  PaginatedList<User> get users => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getting,
-    required TResult Function(PaginatedList<TaskSlim> tasks) loaded,
+    required TResult Function(
+            PaginatedList<TaskSlim> tasks, PaginatedList<User> users)
+        getting,
+    required TResult Function(
+            PaginatedList<TaskSlim> tasks, PaginatedList<User> users)
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getting,
-    TResult? Function(PaginatedList<TaskSlim> tasks)? loaded,
+    TResult? Function(PaginatedList<TaskSlim> tasks, PaginatedList<User> users)?
+        getting,
+    TResult? Function(PaginatedList<TaskSlim> tasks, PaginatedList<User> users)?
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getting,
-    TResult Function(PaginatedList<TaskSlim> tasks)? loaded,
+    TResult Function(PaginatedList<TaskSlim> tasks, PaginatedList<User> users)?
+        getting,
+    TResult Function(PaginatedList<TaskSlim> tasks, PaginatedList<User> users)?
+        loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -272,6 +282,12 @@ mixin _$HomeTasksState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Create a copy of HomeTasksState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $HomeTasksStateCopyWith<HomeTasksState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -279,6 +295,11 @@ abstract class $HomeTasksStateCopyWith<$Res> {
   factory $HomeTasksStateCopyWith(
           HomeTasksState value, $Res Function(HomeTasksState) then) =
       _$HomeTasksStateCopyWithImpl<$Res, HomeTasksState>;
+  @useResult
+  $Res call({PaginatedList<TaskSlim> tasks, PaginatedList<User> users});
+
+  $PaginatedListCopyWith<TaskSlim, $Res> get tasks;
+  $PaginatedListCopyWith<User, $Res> get users;
 }
 
 /// @nodoc
@@ -293,14 +314,60 @@ class _$HomeTasksStateCopyWithImpl<$Res, $Val extends HomeTasksState>
 
   /// Create a copy of HomeTasksState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tasks = null,
+    Object? users = null,
+  }) {
+    return _then(_value.copyWith(
+      tasks: null == tasks
+          ? _value.tasks
+          : tasks // ignore: cast_nullable_to_non_nullable
+              as PaginatedList<TaskSlim>,
+      users: null == users
+          ? _value.users
+          : users // ignore: cast_nullable_to_non_nullable
+              as PaginatedList<User>,
+    ) as $Val);
+  }
+
+  /// Create a copy of HomeTasksState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PaginatedListCopyWith<TaskSlim, $Res> get tasks {
+    return $PaginatedListCopyWith<TaskSlim, $Res>(_value.tasks, (value) {
+      return _then(_value.copyWith(tasks: value) as $Val);
+    });
+  }
+
+  /// Create a copy of HomeTasksState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PaginatedListCopyWith<User, $Res> get users {
+    return $PaginatedListCopyWith<User, $Res>(_value.users, (value) {
+      return _then(_value.copyWith(users: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$HomeTasksStateGettingImplCopyWith<$Res> {
+abstract class _$$HomeTasksStateGettingImplCopyWith<$Res>
+    implements $HomeTasksStateCopyWith<$Res> {
   factory _$$HomeTasksStateGettingImplCopyWith(
           _$HomeTasksStateGettingImpl value,
           $Res Function(_$HomeTasksStateGettingImpl) then) =
       __$$HomeTasksStateGettingImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({PaginatedList<TaskSlim> tasks, PaginatedList<User> users});
+
+  @override
+  $PaginatedListCopyWith<TaskSlim, $Res> get tasks;
+  @override
+  $PaginatedListCopyWith<User, $Res> get users;
 }
 
 /// @nodoc
@@ -313,55 +380,96 @@ class __$$HomeTasksStateGettingImplCopyWithImpl<$Res>
 
   /// Create a copy of HomeTasksState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tasks = null,
+    Object? users = null,
+  }) {
+    return _then(_$HomeTasksStateGettingImpl(
+      tasks: null == tasks
+          ? _value.tasks
+          : tasks // ignore: cast_nullable_to_non_nullable
+              as PaginatedList<TaskSlim>,
+      users: null == users
+          ? _value.users
+          : users // ignore: cast_nullable_to_non_nullable
+              as PaginatedList<User>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$HomeTasksStateGettingImpl implements _HomeTasksStateGetting {
-  const _$HomeTasksStateGettingImpl();
+  const _$HomeTasksStateGettingImpl({required this.tasks, required this.users});
+
+  @override
+  final PaginatedList<TaskSlim> tasks;
+  @override
+  final PaginatedList<User> users;
 
   @override
   String toString() {
-    return 'HomeTasksState.getting()';
+    return 'HomeTasksState.getting(tasks: $tasks, users: $users)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeTasksStateGettingImpl);
+            other is _$HomeTasksStateGettingImpl &&
+            (identical(other.tasks, tasks) || other.tasks == tasks) &&
+            (identical(other.users, users) || other.users == users));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, tasks, users);
+
+  /// Create a copy of HomeTasksState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HomeTasksStateGettingImplCopyWith<_$HomeTasksStateGettingImpl>
+      get copyWith => __$$HomeTasksStateGettingImplCopyWithImpl<
+          _$HomeTasksStateGettingImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getting,
-    required TResult Function(PaginatedList<TaskSlim> tasks) loaded,
+    required TResult Function(
+            PaginatedList<TaskSlim> tasks, PaginatedList<User> users)
+        getting,
+    required TResult Function(
+            PaginatedList<TaskSlim> tasks, PaginatedList<User> users)
+        loaded,
   }) {
-    return getting();
+    return getting(tasks, users);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getting,
-    TResult? Function(PaginatedList<TaskSlim> tasks)? loaded,
+    TResult? Function(PaginatedList<TaskSlim> tasks, PaginatedList<User> users)?
+        getting,
+    TResult? Function(PaginatedList<TaskSlim> tasks, PaginatedList<User> users)?
+        loaded,
   }) {
-    return getting?.call();
+    return getting?.call(tasks, users);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getting,
-    TResult Function(PaginatedList<TaskSlim> tasks)? loaded,
+    TResult Function(PaginatedList<TaskSlim> tasks, PaginatedList<User> users)?
+        getting,
+    TResult Function(PaginatedList<TaskSlim> tasks, PaginatedList<User> users)?
+        loaded,
     required TResult orElse(),
   }) {
     if (getting != null) {
-      return getting();
+      return getting(tasks, users);
     }
     return orElse();
   }
@@ -399,18 +507,37 @@ class _$HomeTasksStateGettingImpl implements _HomeTasksStateGetting {
 }
 
 abstract class _HomeTasksStateGetting implements HomeTasksState {
-  const factory _HomeTasksStateGetting() = _$HomeTasksStateGettingImpl;
+  const factory _HomeTasksStateGetting(
+      {required final PaginatedList<TaskSlim> tasks,
+      required final PaginatedList<User> users}) = _$HomeTasksStateGettingImpl;
+
+  @override
+  PaginatedList<TaskSlim> get tasks;
+  @override
+  PaginatedList<User> get users;
+
+  /// Create a copy of HomeTasksState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$HomeTasksStateGettingImplCopyWith<_$HomeTasksStateGettingImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$HomeTasksStateLoadedImplCopyWith<$Res> {
+abstract class _$$HomeTasksStateLoadedImplCopyWith<$Res>
+    implements $HomeTasksStateCopyWith<$Res> {
   factory _$$HomeTasksStateLoadedImplCopyWith(_$HomeTasksStateLoadedImpl value,
           $Res Function(_$HomeTasksStateLoadedImpl) then) =
       __$$HomeTasksStateLoadedImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({PaginatedList<TaskSlim> tasks});
+  $Res call({PaginatedList<TaskSlim> tasks, PaginatedList<User> users});
 
+  @override
   $PaginatedListCopyWith<TaskSlim, $Res> get tasks;
+  @override
+  $PaginatedListCopyWith<User, $Res> get users;
 }
 
 /// @nodoc
@@ -427,37 +554,34 @@ class __$$HomeTasksStateLoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? tasks = null,
+    Object? users = null,
   }) {
     return _then(_$HomeTasksStateLoadedImpl(
       tasks: null == tasks
           ? _value.tasks
           : tasks // ignore: cast_nullable_to_non_nullable
               as PaginatedList<TaskSlim>,
+      users: null == users
+          ? _value.users
+          : users // ignore: cast_nullable_to_non_nullable
+              as PaginatedList<User>,
     ));
-  }
-
-  /// Create a copy of HomeTasksState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PaginatedListCopyWith<TaskSlim, $Res> get tasks {
-    return $PaginatedListCopyWith<TaskSlim, $Res>(_value.tasks, (value) {
-      return _then(_value.copyWith(tasks: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$HomeTasksStateLoadedImpl implements _HomeTasksStateLoaded {
-  const _$HomeTasksStateLoadedImpl({required this.tasks});
+  const _$HomeTasksStateLoadedImpl({required this.tasks, required this.users});
 
   @override
   final PaginatedList<TaskSlim> tasks;
+  @override
+  final PaginatedList<User> users;
 
   @override
   String toString() {
-    return 'HomeTasksState.loaded(tasks: $tasks)';
+    return 'HomeTasksState.loaded(tasks: $tasks, users: $users)';
   }
 
   @override
@@ -465,11 +589,12 @@ class _$HomeTasksStateLoadedImpl implements _HomeTasksStateLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HomeTasksStateLoadedImpl &&
-            (identical(other.tasks, tasks) || other.tasks == tasks));
+            (identical(other.tasks, tasks) || other.tasks == tasks) &&
+            (identical(other.users, users) || other.users == users));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, tasks);
+  int get hashCode => Object.hash(runtimeType, tasks, users);
 
   /// Create a copy of HomeTasksState
   /// with the given fields replaced by the non-null parameter values.
@@ -484,30 +609,38 @@ class _$HomeTasksStateLoadedImpl implements _HomeTasksStateLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getting,
-    required TResult Function(PaginatedList<TaskSlim> tasks) loaded,
+    required TResult Function(
+            PaginatedList<TaskSlim> tasks, PaginatedList<User> users)
+        getting,
+    required TResult Function(
+            PaginatedList<TaskSlim> tasks, PaginatedList<User> users)
+        loaded,
   }) {
-    return loaded(tasks);
+    return loaded(tasks, users);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getting,
-    TResult? Function(PaginatedList<TaskSlim> tasks)? loaded,
+    TResult? Function(PaginatedList<TaskSlim> tasks, PaginatedList<User> users)?
+        getting,
+    TResult? Function(PaginatedList<TaskSlim> tasks, PaginatedList<User> users)?
+        loaded,
   }) {
-    return loaded?.call(tasks);
+    return loaded?.call(tasks, users);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getting,
-    TResult Function(PaginatedList<TaskSlim> tasks)? loaded,
+    TResult Function(PaginatedList<TaskSlim> tasks, PaginatedList<User> users)?
+        getting,
+    TResult Function(PaginatedList<TaskSlim> tasks, PaginatedList<User> users)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(tasks);
+      return loaded(tasks, users);
     }
     return orElse();
   }
@@ -546,13 +679,17 @@ class _$HomeTasksStateLoadedImpl implements _HomeTasksStateLoaded {
 
 abstract class _HomeTasksStateLoaded implements HomeTasksState {
   const factory _HomeTasksStateLoaded(
-          {required final PaginatedList<TaskSlim> tasks}) =
-      _$HomeTasksStateLoadedImpl;
+      {required final PaginatedList<TaskSlim> tasks,
+      required final PaginatedList<User> users}) = _$HomeTasksStateLoadedImpl;
 
+  @override
   PaginatedList<TaskSlim> get tasks;
+  @override
+  PaginatedList<User> get users;
 
   /// Create a copy of HomeTasksState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HomeTasksStateLoadedImplCopyWith<_$HomeTasksStateLoadedImpl>
       get copyWith => throw _privateConstructorUsedError;

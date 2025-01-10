@@ -23,7 +23,7 @@ mixin _$AuthResponse {
   bool get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   User? get user => throw _privateConstructorUsedError;
-  String? get jwt => throw _privateConstructorUsedError;
+  String? get token => throw _privateConstructorUsedError;
 
   /// Serializes this AuthResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $AuthResponseCopyWith<$Res> {
           AuthResponse value, $Res Function(AuthResponse) then) =
       _$AuthResponseCopyWithImpl<$Res, AuthResponse>;
   @useResult
-  $Res call({bool status, String message, User? user, String? jwt});
+  $Res call({bool status, String message, User? user, String? token});
 
   $UserCopyWith<$Res>? get user;
 }
@@ -64,7 +64,7 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
     Object? status = null,
     Object? message = null,
     Object? user = freezed,
-    Object? jwt = freezed,
+    Object? token = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -79,9 +79,9 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
-      jwt: freezed == jwt
-          ? _value.jwt
-          : jwt // ignore: cast_nullable_to_non_nullable
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -109,7 +109,7 @@ abstract class _$$AuthResponseImplCopyWith<$Res>
       __$$AuthResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool status, String message, User? user, String? jwt});
+  $Res call({bool status, String message, User? user, String? token});
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -131,7 +131,7 @@ class __$$AuthResponseImplCopyWithImpl<$Res>
     Object? status = null,
     Object? message = null,
     Object? user = freezed,
-    Object? jwt = freezed,
+    Object? token = freezed,
   }) {
     return _then(_$AuthResponseImpl(
       status: null == status
@@ -146,9 +146,9 @@ class __$$AuthResponseImplCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
-      jwt: freezed == jwt
-          ? _value.jwt
-          : jwt // ignore: cast_nullable_to_non_nullable
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -158,7 +158,7 @@ class __$$AuthResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AuthResponseImpl implements _AuthResponse {
   const _$AuthResponseImpl(
-      {this.status = true, this.message = '', this.user, this.jwt});
+      {this.status = true, this.message = '', this.user, this.token});
 
   factory _$AuthResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthResponseImplFromJson(json);
@@ -172,11 +172,11 @@ class _$AuthResponseImpl implements _AuthResponse {
   @override
   final User? user;
   @override
-  final String? jwt;
+  final String? token;
 
   @override
   String toString() {
-    return 'AuthResponse(status: $status, message: $message, user: $user, jwt: $jwt)';
+    return 'AuthResponse(status: $status, message: $message, user: $user, token: $token)';
   }
 
   @override
@@ -187,12 +187,12 @@ class _$AuthResponseImpl implements _AuthResponse {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.user, user) || other.user == user) &&
-            (identical(other.jwt, jwt) || other.jwt == jwt));
+            (identical(other.token, token) || other.token == token));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, user, jwt);
+  int get hashCode => Object.hash(runtimeType, status, message, user, token);
 
   /// Create a copy of AuthResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -215,7 +215,7 @@ abstract class _AuthResponse implements AuthResponse {
       {final bool status,
       final String message,
       final User? user,
-      final String? jwt}) = _$AuthResponseImpl;
+      final String? token}) = _$AuthResponseImpl;
 
   factory _AuthResponse.fromJson(Map<String, dynamic> json) =
       _$AuthResponseImpl.fromJson;
@@ -227,7 +227,7 @@ abstract class _AuthResponse implements AuthResponse {
   @override
   User? get user;
   @override
-  String? get jwt;
+  String? get token;
 
   /// Create a copy of AuthResponse
   /// with the given fields replaced by the non-null parameter values.

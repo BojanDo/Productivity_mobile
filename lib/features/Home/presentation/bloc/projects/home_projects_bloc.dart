@@ -18,10 +18,13 @@ part 'generated/home_projects_bloc.freezed.dart';
 class HomeProjectsBloc extends Bloc<HomeProjectsEvent, HomeProjectsState> {
   HomeProjectsBloc(GetProjects getProjects)
       : _getProjects = getProjects,
-        super(const HomeProjectsState.getting()) {
+        super(
+          HomeProjectsState.getting(projects: HomeProjectsBloc.mock),
+        ) {
     on<HomeProjectsEvent>(
       (HomeProjectsEvent event, Emitter<HomeProjectsState> emit) => event.when(
         get: () async {
+          emit(HomeProjectsState.getting(projects: HomeProjectsBloc.mock));
           final Either<Failure, Projects> result = await _getProjects();
           result.fold(
             (Failure failure) {
@@ -36,8 +39,9 @@ class HomeProjectsBloc extends Bloc<HomeProjectsEvent, HomeProjectsState> {
                 ),
               );
             },
-            (Projects projects) =>
-                emit(HomeProjectsState.loaded(projects: projects)),
+            (Projects projects) {
+              emit(HomeProjectsState.loaded(projects: projects));
+            },
           );
           return null;
         },
@@ -46,4 +50,16 @@ class HomeProjectsBloc extends Bloc<HomeProjectsEvent, HomeProjectsState> {
   }
 
   final GetProjects _getProjects;
+
+  static Projects get mock => Projects(
+        items: List<Project>.generate(
+          10,
+          (int index) => Project(
+            title: 'This is a project title',
+            id: index,
+            description: '',
+          ),
+        ),
+        total: 10,
+      );
 }

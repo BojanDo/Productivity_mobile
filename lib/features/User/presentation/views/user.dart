@@ -70,7 +70,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
             children: <TableRow>[
               _buildTableRow('Job Title', user.jobTitle),
               _buildTableRow('Company', 'Company name'),//TODO: add organization display
-              _buildTableRow('Role', user.roleName!.displayName),
+              _buildTableRow('Role', user.roleName.displayName),
             ],
           ),
         ],

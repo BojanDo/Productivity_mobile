@@ -62,10 +62,10 @@ class _InnerWrapperState extends State<InnerWrapper> {
               WidgetBuilder builder;
               switch (settings.name) {
                 case kHomeRoute:
-                  builder = (BuildContext context) => HomePage();
+                  builder = (BuildContext context) => const HomePage();
                   break;
                 case kSettingsRoute:
-                  builder = (BuildContext context) => SettingsPage();
+                  builder = (BuildContext context) => const SettingsPage();
                   break;
                 case kUserRoute:
                   builder = (BuildContext context) => const UserInfoPage();
@@ -117,7 +117,7 @@ class _InnerWrapperState extends State<InnerWrapper> {
                       );
                   break;
                 default:
-                  builder = (BuildContext context) => const Test(title: 'Page');
+                  builder = (BuildContext context) => const HomePage();
               }
               return MaterialPageRoute<dynamic>(builder: builder);
             },

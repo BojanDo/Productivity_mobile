@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/entities/paginated_list.dart';
-import '../../../../core/utils/typedef.dart';
 import '../../../Documents/domain/entities/documents.dart';
 import '../../../Documents/domain/mappers/document.dart';
 import '../../../Projects/domain/entities/projects.dart';

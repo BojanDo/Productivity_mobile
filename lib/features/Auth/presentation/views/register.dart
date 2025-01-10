@@ -129,6 +129,16 @@ class _RegisterPageState extends State<RegisterPage> {
             floatingLabelBehavior: FloatingLabelBehavior.always,
           ),
         ),
+    TextFieldBlocBuilder(
+      textFieldBloc: registerFormBloc.passwordConfirm,
+      suffixButton: SuffixButton.obscureText,
+      autofillHints: const <String>[AutofillHints.password],
+      decoration: const InputDecoration(
+        labelText: 'Password',
+        prefixIcon: Icon(Icons.lock_outline),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+      ),
+    ),
         TextFieldBlocBuilder(
           textFieldBloc: registerFormBloc.jobTitle,
           suffixButton: SuffixButton.clearText,
