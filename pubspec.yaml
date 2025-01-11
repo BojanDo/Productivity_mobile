@@ -45,7 +45,7 @@ dependencies:
   json_annotation: ^4.9.0
   faker: ^2.2.0
   image_picker: ^1.1.2
-  image_cropper: ^8.0.2
+  image_cropper: ^8.1.0
   event_bus: ^2.0.1
   open_filex: ^4.5.0
   ambient_light: ^0.0.5
@@ -80,11 +80,11 @@ flutter_native_splash:
   web: false
 
   color: "#ffffff"
-  image: assets/icon/icon.png
+  image: assets/icon/splash_icon.png
 
   android_12:
     color: "#ffffff"
-    image: assets/icon/icon.png
+    image: assets/icon/splash_icon.png
 
 
 flutter:

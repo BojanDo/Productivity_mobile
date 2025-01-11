@@ -24,7 +24,7 @@ mixin _$User {
   String get firstname => throw _privateConstructorUsedError;
   String get lastname => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+  @JsonKey(name: 'profile_picture', fromJson: urlFromJson)
   String? get profilePicture => throw _privateConstructorUsedError;
   @JsonKey(name: 'job_title')
   String get jobTitle => throw _privateConstructorUsedError;
@@ -52,7 +52,7 @@ abstract class $UserCopyWith<$Res> {
       String firstname,
       String lastname,
       String email,
-      @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+      @JsonKey(name: 'profile_picture', fromJson: urlFromJson)
       String? profilePicture,
       @JsonKey(name: 'job_title') String jobTitle,
       @JsonKey(name: 'organization_id') int? organizationId,
@@ -132,7 +132,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String firstname,
       String lastname,
       String email,
-      @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+      @JsonKey(name: 'profile_picture', fromJson: urlFromJson)
       String? profilePicture,
       @JsonKey(name: 'job_title') String jobTitle,
       @JsonKey(name: 'organization_id') int? organizationId,
@@ -205,7 +205,7 @@ class _$UserImpl implements _User {
       required this.firstname,
       required this.lastname,
       required this.email,
-      @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+      @JsonKey(name: 'profile_picture', fromJson: urlFromJson)
       this.profilePicture,
       @JsonKey(name: 'job_title') required this.jobTitle,
       @JsonKey(name: 'organization_id') this.organizationId,
@@ -223,7 +223,7 @@ class _$UserImpl implements _User {
   @override
   final String email;
   @override
-  @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+  @JsonKey(name: 'profile_picture', fromJson: urlFromJson)
   final String? profilePicture;
   @override
   @JsonKey(name: 'job_title')
@@ -288,7 +288,7 @@ abstract class _User implements User {
       required final String firstname,
       required final String lastname,
       required final String email,
-      @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+      @JsonKey(name: 'profile_picture', fromJson: urlFromJson)
       final String? profilePicture,
       @JsonKey(name: 'job_title') required final String jobTitle,
       @JsonKey(name: 'organization_id') final int? organizationId,
@@ -305,7 +305,7 @@ abstract class _User implements User {
   @override
   String get email;
   @override
-  @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+  @JsonKey(name: 'profile_picture', fromJson: urlFromJson)
   String? get profilePicture;
   @override
   @JsonKey(name: 'job_title')

@@ -38,34 +38,21 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
             task: Task(
               id: 0,
               taskNumber: '#0',
-              title: 'Task title',
+              title: '',
               description: <Map<String, dynamic>>[
-                <String, dynamic>{'insert': 'This is a heading'},
+                <String, dynamic>{'insert': ''},
                 <String, dynamic>{
                   'insert': '\n',
                   'attributes': <String, int>{'header': 1},
                 },
-                <String, dynamic>{
-                  'insert':
-                      'This is a normal content description\nWith multiple lines\nAnd a',
-                },
-                <String, dynamic>{
-                  'insert': '\n',
-                  'attributes': <String, String>{'list': 'bullet'},
-                },
-                <String, dynamic>{'insert': 'list'},
-                <String, dynamic>{
-                  'insert': '\n',
-                  'attributes': <String, String>{'list': 'bullet'},
-                }
               ],
               status: Status.todo,
               label: Label.feature,
-              date: '2024-01-01',
+              date: '',
               project: Project(
                 id: 0,
-                title: 'Project title',
-                description: 'Project description',
+                title: '',
+                description: '',
               ),
               users: Users(items: <User>[], total: 0),
               comments: Comments(items: <Comment>[], total: 0),
@@ -80,11 +67,11 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
             emit(const TaskState.loaded());
             return null;
           }
-
+          sl<AppBloc>().add(const AppEvent.overlayAdd());
           final Either<Failure, Task> result = await _getTask(
             id,
           );
-          return result.fold(
+          result.fold(
             (Failure failure) {
               sl<AppBloc>().add(
                 const AppEvent.error(
@@ -92,10 +79,11 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
                 ),
               );
               routePop(sl<AppBloc>().innerNavigator);
-              return null;
             },
             (Task task) => emit(TaskState.loaded(task: task)),
           );
+          sl<AppBloc>().add(const AppEvent.overlayRemove());
+          return null;
         },
       ),
     );

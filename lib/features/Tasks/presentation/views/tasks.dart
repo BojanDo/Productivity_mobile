@@ -69,13 +69,17 @@ class TasksPageInner extends StatefulWidget {
 class _TasksPageInnerState extends State<TasksPageInner> {
   @override
   void initState() {
+    _getTasks();
+    super.initState();
+  }
+
+  void _getTasks() {
     context.read<TasksBloc>().add(
           TasksEvent.get(
             projectId: widget.projectId,
             assignedId: widget.assignedId,
           ),
         );
-    super.initState();
   }
 
   void _deleteTask(int id) => context.read<TasksBloc>().add(
@@ -83,7 +87,15 @@ class _TasksPageInnerState extends State<TasksPageInner> {
       );
 
   void _editTask(int id, Users users) =>
-      route(sl<AppBloc>().innerNavigator, kTaskRoute, <String, dynamic>{
+      routeWithResult(sl<AppBloc>().innerNavigator, kTaskRoute,
+          (Object? result) {
+        if (result is! bool) {
+          return;
+        }
+        if (result) {
+          _getTasks();
+        }
+      }, <String, dynamic>{
         'id': id,
         'mode': TaskFormMode.edit,
         'projectId': widget.projectId,
@@ -97,15 +109,6 @@ class _TasksPageInnerState extends State<TasksPageInner> {
             getting: (_) => true,
             orElse: () => false,
           );
-          final int? count = state.whenOrNull(
-            loaded: (
-              Tasks tasks,
-              Map<Status, List<TaskSlim>> seperatedTasks,
-              Users users,
-            ) =>
-                tasks.total,
-          );
-
           return state.when(
             getting: (Map<Status, List<TaskSlim>> tasks) => _skeletonizer(
               tasks,
@@ -136,8 +139,15 @@ class _TasksPageInnerState extends State<TasksPageInner> {
           count: count,
           create: widget.canCreate
               ? () {
-                  route(sl<AppBloc>().innerNavigator,
-                      kTaskRoute, <String, dynamic>{
+                  routeWithResult(sl<AppBloc>().innerNavigator, kTaskRoute,
+                      (Object? result) {
+                    if (result is! bool) {
+                      return;
+                    }
+                    if (result) {
+                      _getTasks();
+                    }
+                  }, <String, dynamic>{
                     'mode': TaskFormMode.create,
                     'projectId': widget.projectId,
                     'users': users,

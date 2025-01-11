@@ -32,8 +32,9 @@ mixin _$UpdateTaskParams {
   @JsonKey(name: 'project_id')
   int get projectId => throw _privateConstructorUsedError;
   List<int>? get assigned => throw _privateConstructorUsedError;
+  @JsonKey(name: 'documents[]')
   List<String>? get attachments => throw _privateConstructorUsedError;
-  @JsonKey(name: 'deleted_attachments')
+  @JsonKey(name: 'delete_documents[]')
   List<int>? get deletedAttachments => throw _privateConstructorUsedError;
 
   /// Serializes this UpdateTaskParams to a JSON map.
@@ -61,8 +62,8 @@ abstract class $UpdateTaskParamsCopyWith<$Res> {
       @JsonKey(name: 'due_date') String date,
       @JsonKey(name: 'project_id') int projectId,
       List<int>? assigned,
-      List<String>? attachments,
-      @JsonKey(name: 'deleted_attachments') List<int>? deletedAttachments});
+      @JsonKey(name: 'documents[]') List<String>? attachments,
+      @JsonKey(name: 'delete_documents[]') List<int>? deletedAttachments});
 }
 
 /// @nodoc
@@ -153,8 +154,8 @@ abstract class _$$UpdateTaskParamsImplCopyWith<$Res>
       @JsonKey(name: 'due_date') String date,
       @JsonKey(name: 'project_id') int projectId,
       List<int>? assigned,
-      List<String>? attachments,
-      @JsonKey(name: 'deleted_attachments') List<int>? deletedAttachments});
+      @JsonKey(name: 'documents[]') List<String>? attachments,
+      @JsonKey(name: 'delete_documents[]') List<int>? deletedAttachments});
 }
 
 /// @nodoc
@@ -238,9 +239,8 @@ class _$UpdateTaskParamsImpl implements _UpdateTaskParams {
       @JsonKey(name: 'due_date') required this.date,
       @JsonKey(name: 'project_id') required this.projectId,
       final List<int>? assigned,
-      final List<String>? attachments,
-      @JsonKey(name: 'deleted_attachments')
-      final List<int>? deletedAttachments})
+      @JsonKey(name: 'documents[]') final List<String>? attachments,
+      @JsonKey(name: 'delete_documents[]') final List<int>? deletedAttachments})
       : _description = description,
         _assigned = assigned,
         _attachments = attachments,
@@ -284,6 +284,7 @@ class _$UpdateTaskParamsImpl implements _UpdateTaskParams {
 
   final List<String>? _attachments;
   @override
+  @JsonKey(name: 'documents[]')
   List<String>? get attachments {
     final value = _attachments;
     if (value == null) return null;
@@ -294,7 +295,7 @@ class _$UpdateTaskParamsImpl implements _UpdateTaskParams {
 
   final List<int>? _deletedAttachments;
   @override
-  @JsonKey(name: 'deleted_attachments')
+  @JsonKey(name: 'delete_documents[]')
   List<int>? get deletedAttachments {
     final value = _deletedAttachments;
     if (value == null) return null;
@@ -373,8 +374,8 @@ abstract class _UpdateTaskParams implements UpdateTaskParams {
       @JsonKey(name: 'due_date') required final String date,
       @JsonKey(name: 'project_id') required final int projectId,
       final List<int>? assigned,
-      final List<String>? attachments,
-      @JsonKey(name: 'deleted_attachments')
+      @JsonKey(name: 'documents[]') final List<String>? attachments,
+      @JsonKey(name: 'delete_documents[]')
       final List<int>? deletedAttachments}) = _$UpdateTaskParamsImpl;
 
   factory _UpdateTaskParams.fromJson(Map<String, dynamic> json) =
@@ -400,9 +401,10 @@ abstract class _UpdateTaskParams implements UpdateTaskParams {
   @override
   List<int>? get assigned;
   @override
+  @JsonKey(name: 'documents[]')
   List<String>? get attachments;
   @override
-  @JsonKey(name: 'deleted_attachments')
+  @JsonKey(name: 'delete_documents[]')
   List<int>? get deletedAttachments;
 
   /// Create a copy of UpdateTaskParams

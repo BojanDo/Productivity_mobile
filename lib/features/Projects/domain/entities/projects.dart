@@ -13,7 +13,7 @@ class Project with _$Project {
     required int id,
     required String title,
     required String description,
-    @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+    @JsonKey(name: 'profile_picture', fromJson: urlFromJson)
     String? profilePicture,
   }) = _Project;
 

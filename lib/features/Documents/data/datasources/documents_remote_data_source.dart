@@ -26,7 +26,7 @@ class DocumentsRemoteDataSourceImplementation
     required Map<String, dynamic> values,
   }) async {
     try {
-      final dynamic response = await _apiManager.post(
+      final dynamic response = await _apiManager.get(
         kDocumentsUrl,
         '',
         values,

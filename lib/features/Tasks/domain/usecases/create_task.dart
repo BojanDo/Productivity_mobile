@@ -24,7 +24,7 @@ class CreateTask extends UsecaseWithParams<TaskResponse, CreateTaskParams> {
     jsonParams['assigned[]'] = params.assigned;
     jsonParams.remove('assigned');
     if (params.attachments != null) {
-      jsonParams['attachments'] = await Future.wait(
+      jsonParams['documents[]'] = await Future.wait(
         params.attachments!.map(
           (String path) async => await MultipartFile.fromFile(
             path,
@@ -48,7 +48,7 @@ class CreateTaskParams with _$CreateTaskParams {
     @JsonKey(name: 'due_date') required String date,
     @JsonKey(name: 'project_id') required int projectId,
     required List<int> assigned,
-    List<String>? attachments,
+    @JsonKey(name: 'documents[]') List<String>? attachments,
   }) = _CreateTaskParams;
 
   factory CreateTaskParams.fromJson(Map<String, dynamic> json) =>

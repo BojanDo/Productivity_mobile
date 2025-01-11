@@ -22,6 +22,7 @@ Document _$DocumentFromJson(Map<String, dynamic> json) {
 mixin _$Document {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  @JsonKey(name: 'path', fromJson: requiredUrlFromJson)
   String get path => throw _privateConstructorUsedError;
 
   /// Serializes this Document to a JSON map.
@@ -39,7 +40,10 @@ abstract class $DocumentCopyWith<$Res> {
   factory $DocumentCopyWith(Document value, $Res Function(Document) then) =
       _$DocumentCopyWithImpl<$Res, Document>;
   @useResult
-  $Res call({int id, String title, String path});
+  $Res call(
+      {int id,
+      String title,
+      @JsonKey(name: 'path', fromJson: requiredUrlFromJson) String path});
 }
 
 /// @nodoc
@@ -86,7 +90,10 @@ abstract class _$$DocumentImplCopyWith<$Res>
       __$$DocumentImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String title, String path});
+  $Res call(
+      {int id,
+      String title,
+      @JsonKey(name: 'path', fromJson: requiredUrlFromJson) String path});
 }
 
 /// @nodoc
@@ -127,7 +134,10 @@ class __$$DocumentImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DocumentImpl implements _Document {
   const _$DocumentImpl(
-      {required this.id, required this.title, required this.path});
+      {required this.id,
+      required this.title,
+      @JsonKey(name: 'path', fromJson: requiredUrlFromJson)
+      required this.path});
 
   factory _$DocumentImpl.fromJson(Map<String, dynamic> json) =>
       _$$DocumentImplFromJson(json);
@@ -137,6 +147,7 @@ class _$DocumentImpl implements _Document {
   @override
   final String title;
   @override
+  @JsonKey(name: 'path', fromJson: requiredUrlFromJson)
   final String path;
 
   @override
@@ -178,6 +189,7 @@ abstract class _Document implements Document {
   const factory _Document(
       {required final int id,
       required final String title,
+      @JsonKey(name: 'path', fromJson: requiredUrlFromJson)
       required final String path}) = _$DocumentImpl;
 
   factory _Document.fromJson(Map<String, dynamic> json) =
@@ -188,6 +200,7 @@ abstract class _Document implements Document {
   @override
   String get title;
   @override
+  @JsonKey(name: 'path', fromJson: requiredUrlFromJson)
   String get path;
 
   /// Create a copy of Document

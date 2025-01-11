@@ -140,7 +140,14 @@ class _DashboardsPageInnerState extends State<DashboardsPageInner> {
                 ],
               ),
               onTap: () {
-                route(sl<AppBloc>().innerNavigator, kTaskRoute, <String, dynamic>{
+                routeWithResult(sl<AppBloc>().innerNavigator, kTaskRoute,(Object? result) {
+                  if (result is! bool) {
+                    return;
+                  }
+                  if (result) {
+                    _getTasks();
+                  }
+                }, <String, dynamic>{
                   'id': task.id,
                   'mode': TaskFormMode.edit,
                   'projectId': null,

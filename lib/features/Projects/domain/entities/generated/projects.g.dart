@@ -11,8 +11,7 @@ _$ProjectImpl _$$ProjectImplFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       title: json['title'] as String,
       description: json['description'] as String,
-      profilePicture:
-          profilePictureFromJson(json['profile_picture'] as String?),
+      profilePicture: urlFromJson(json['profile_picture'] as String?),
     );
 
 Map<String, dynamic> _$$ProjectImplToJson(_$ProjectImpl instance) =>

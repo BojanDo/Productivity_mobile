@@ -23,7 +23,7 @@ mixin _$Organization {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+  @JsonKey(name: 'profile_picture', fromJson: urlFromJson)
   String? get profilePicture => throw _privateConstructorUsedError;
 
   /// Serializes this Organization to a JSON map.
@@ -46,7 +46,7 @@ abstract class $OrganizationCopyWith<$Res> {
       {int id,
       String name,
       String description,
-      @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+      @JsonKey(name: 'profile_picture', fromJson: urlFromJson)
       String? profilePicture});
 }
 
@@ -103,7 +103,7 @@ abstract class _$$OrganizationImplCopyWith<$Res>
       {int id,
       String name,
       String description,
-      @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+      @JsonKey(name: 'profile_picture', fromJson: urlFromJson)
       String? profilePicture});
 }
 
@@ -153,7 +153,7 @@ class _$OrganizationImpl implements _Organization {
       {required this.id,
       required this.name,
       required this.description,
-      @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+      @JsonKey(name: 'profile_picture', fromJson: urlFromJson)
       this.profilePicture});
 
   factory _$OrganizationImpl.fromJson(Map<String, dynamic> json) =>
@@ -166,7 +166,7 @@ class _$OrganizationImpl implements _Organization {
   @override
   final String description;
   @override
-  @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+  @JsonKey(name: 'profile_picture', fromJson: urlFromJson)
   final String? profilePicture;
 
   @override
@@ -213,7 +213,7 @@ abstract class _Organization implements Organization {
       {required final int id,
       required final String name,
       required final String description,
-      @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+      @JsonKey(name: 'profile_picture', fromJson: urlFromJson)
       final String? profilePicture}) = _$OrganizationImpl;
 
   factory _Organization.fromJson(Map<String, dynamic> json) =
@@ -226,7 +226,7 @@ abstract class _Organization implements Organization {
   @override
   String get description;
   @override
-  @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+  @JsonKey(name: 'profile_picture', fromJson: urlFromJson)
   String? get profilePicture;
 
   /// Create a copy of Organization

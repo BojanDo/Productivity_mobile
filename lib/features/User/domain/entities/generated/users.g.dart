@@ -11,8 +11,7 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       firstname: json['firstname'] as String,
       lastname: json['lastname'] as String,
       email: json['email'] as String,
-      profilePicture:
-          profilePictureFromJson(json['profile_picture'] as String?),
+      profilePicture: urlFromJson(json['profile_picture'] as String?),
       jobTitle: json['job_title'] as String,
       organizationId: (json['organization_id'] as num?)?.toInt(),
       roleName:

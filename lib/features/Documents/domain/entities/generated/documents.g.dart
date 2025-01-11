@@ -10,7 +10,7 @@ _$DocumentImpl _$$DocumentImplFromJson(Map<String, dynamic> json) =>
     _$DocumentImpl(
       id: (json['id'] as num).toInt(),
       title: json['title'] as String,
-      path: json['path'] as String,
+      path: requiredUrlFromJson(json['path'] as String),
     );
 
 Map<String, dynamic> _$$DocumentImplToJson(_$DocumentImpl instance) =>

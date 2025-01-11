@@ -27,9 +27,7 @@ class GlobalForm<BlocT extends FormBloc<String, String>>
     BuildContext context,
     FormBlocSubmitting<String, String> state,
   ) {
-    print("started onSubmitting");
-    //context.read<AppBloc>().add(const AppEvent.overlayAdd());
-    print("finished onSubmitting");
+    context.read<AppBloc>().add(const AppEvent.overlayAdd());
   }
 
   void _onSubmissionFailed(
@@ -70,25 +68,25 @@ class GlobalForm<BlocT extends FormBloc<String, String>>
           builder:
               (BuildContext context, FormBlocState<String, String> state) =>
                   Scaffold(
-            appBar: GlobalAppBar(
-              title: title,
-              save: isViewOnly
-                  ? null
-                  : () {
-                      formBloc.submit();
-                    },
-              canSave: state.isValid(),
-            ),
-            body: Container(
-              color: kSecondaryBackgroundColor,
-              padding: const EdgeInsets.all(kDefaultPadding/2),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: fields,
-                ),
-              ),
-            ),
-          ),
+                    appBar: GlobalAppBar(
+                      title: title,
+                      save: isViewOnly
+                          ? null
+                          : () {
+                              formBloc.submit();
+                            },
+                      canSave: state.isValid(),
+                    ),
+                    body: Container(
+                      color: kSecondaryBackgroundColor,
+                      padding: const EdgeInsets.all(kDefaultPadding / 2),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: fields,
+                        ),
+                      ),
+                    ),
+                  ),
         ),
       );
 }

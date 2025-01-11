@@ -80,13 +80,11 @@ class APIManager {
     Map<String, dynamic> queryParameters,
   ) async {
     try {
-      print('Sent get request');
       final Response<dynamic> response = await dio.get(
         _getUrl(baseUrl, endpoint),
         options: options,
         queryParameters: queryParameters,
       );
-      print('Got get request');
       return response.data;
     } on APIException {
       rethrow;
@@ -98,13 +96,11 @@ class APIManager {
   Future<dynamic> post(
       String baseUrl, String endpoint, Map<String, dynamic> data) async {
     try {
-      print('Sent post request');
       final Response<dynamic> response = await dio.post(
         _getUrl(baseUrl, endpoint),
         data: FormData.fromMap(data),
         options: options,
       );
-      print('Got post response');
       return response.data;
     } on APIException {
       rethrow;

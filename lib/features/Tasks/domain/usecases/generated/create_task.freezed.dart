@@ -30,6 +30,7 @@ mixin _$CreateTaskParams {
   @JsonKey(name: 'project_id')
   int get projectId => throw _privateConstructorUsedError;
   List<int> get assigned => throw _privateConstructorUsedError;
+  @JsonKey(name: 'documents[]')
   List<String>? get attachments => throw _privateConstructorUsedError;
 
   /// Serializes this CreateTaskParams to a JSON map.
@@ -56,7 +57,7 @@ abstract class $CreateTaskParamsCopyWith<$Res> {
       @JsonKey(name: 'due_date') String date,
       @JsonKey(name: 'project_id') int projectId,
       List<int> assigned,
-      List<String>? attachments});
+      @JsonKey(name: 'documents[]') List<String>? attachments});
 }
 
 /// @nodoc
@@ -136,7 +137,7 @@ abstract class _$$CreateTaskParamsImplCopyWith<$Res>
       @JsonKey(name: 'due_date') String date,
       @JsonKey(name: 'project_id') int projectId,
       List<int> assigned,
-      List<String>? attachments});
+      @JsonKey(name: 'documents[]') List<String>? attachments});
 }
 
 /// @nodoc
@@ -209,7 +210,7 @@ class _$CreateTaskParamsImpl implements _CreateTaskParams {
       @JsonKey(name: 'due_date') required this.date,
       @JsonKey(name: 'project_id') required this.projectId,
       required final List<int> assigned,
-      final List<String>? attachments})
+      @JsonKey(name: 'documents[]') final List<String>? attachments})
       : _description = description,
         _assigned = assigned,
         _attachments = attachments;
@@ -247,6 +248,7 @@ class _$CreateTaskParamsImpl implements _CreateTaskParams {
 
   final List<String>? _attachments;
   @override
+  @JsonKey(name: 'documents[]')
   List<String>? get attachments {
     final value = _attachments;
     if (value == null) return null;
@@ -310,14 +312,15 @@ class _$CreateTaskParamsImpl implements _CreateTaskParams {
 
 abstract class _CreateTaskParams implements CreateTaskParams {
   const factory _CreateTaskParams(
-      {required final String title,
-      required final List<Map<String, dynamic>> description,
-      required final String status,
-      required final String label,
-      @JsonKey(name: 'due_date') required final String date,
-      @JsonKey(name: 'project_id') required final int projectId,
-      required final List<int> assigned,
-      final List<String>? attachments}) = _$CreateTaskParamsImpl;
+          {required final String title,
+          required final List<Map<String, dynamic>> description,
+          required final String status,
+          required final String label,
+          @JsonKey(name: 'due_date') required final String date,
+          @JsonKey(name: 'project_id') required final int projectId,
+          required final List<int> assigned,
+          @JsonKey(name: 'documents[]') final List<String>? attachments}) =
+      _$CreateTaskParamsImpl;
 
   factory _CreateTaskParams.fromJson(Map<String, dynamic> json) =
       _$CreateTaskParamsImpl.fromJson;
@@ -339,6 +342,7 @@ abstract class _CreateTaskParams implements CreateTaskParams {
   @override
   List<int> get assigned;
   @override
+  @JsonKey(name: 'documents[]')
   List<String>? get attachments;
 
   /// Create a copy of CreateTaskParams

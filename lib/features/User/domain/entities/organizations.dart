@@ -14,7 +14,7 @@ class Organization with _$Organization {
     required int id,
     required String name,
     required String description,
-    @JsonKey(name: 'profile_picture', fromJson: profilePictureFromJson)
+    @JsonKey(name: 'profile_picture', fromJson: urlFromJson)
     String? profilePicture,
 }) = _Organization;
 

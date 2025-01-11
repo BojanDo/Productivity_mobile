@@ -21,10 +21,10 @@ _$UpdateTaskParamsImpl _$$UpdateTaskParamsImplFromJson(
       assigned: (json['assigned'] as List<dynamic>?)
           ?.map((e) => (e as num).toInt())
           .toList(),
-      attachments: (json['attachments'] as List<dynamic>?)
+      attachments: (json['documents[]'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      deletedAttachments: (json['deleted_attachments'] as List<dynamic>?)
+      deletedAttachments: (json['delete_documents[]'] as List<dynamic>?)
           ?.map((e) => (e as num).toInt())
           .toList(),
     );
@@ -40,6 +40,6 @@ Map<String, dynamic> _$$UpdateTaskParamsImplToJson(
       'due_date': instance.date,
       'project_id': instance.projectId,
       'assigned': instance.assigned,
-      'attachments': instance.attachments,
-      'deleted_attachments': instance.deletedAttachments,
+      'documents[]': instance.attachments,
+      'delete_documents[]': instance.deletedAttachments,
     };

@@ -11,7 +11,7 @@ class NotificationsPage extends StatefulWidget {
 
 class _NotificationsPageState extends State<NotificationsPage> {
   @override
-  Widget build(BuildContext context) => const Scaffold(
+  Widget build(BuildContext context) => Scaffold(
         appBar: GlobalAppBar(title: 'Notifications',count: 10,),
         body: Center(
           child: Text('Centered text'),

@@ -20,7 +20,7 @@ _$CreateTaskParamsImpl _$$CreateTaskParamsImplFromJson(
       assigned: (json['assigned'] as List<dynamic>)
           .map((e) => (e as num).toInt())
           .toList(),
-      attachments: (json['attachments'] as List<dynamic>?)
+      attachments: (json['documents[]'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
     );
@@ -35,5 +35,5 @@ Map<String, dynamic> _$$CreateTaskParamsImplToJson(
       'due_date': instance.date,
       'project_id': instance.projectId,
       'assigned': instance.assigned,
-      'attachments': instance.attachments,
+      'documents[]': instance.attachments,
     };
