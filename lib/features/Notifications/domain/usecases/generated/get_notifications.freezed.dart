@@ -153,7 +153,7 @@ class __$$GetNotificationsParamsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GetNotificationsParamsImpl implements _GetNotificationsParams {
   const _$GetNotificationsParamsImpl(
-      {required this.page,
+      {this.page = 1,
       this.dateFrom,
       this.dateUntil,
       @JsonKey(name: 'project_id') this.projectId});
@@ -162,6 +162,7 @@ class _$GetNotificationsParamsImpl implements _GetNotificationsParams {
       _$$GetNotificationsParamsImplFromJson(json);
 
   @override
+  @JsonKey()
   final int page;
   @override
   final String? dateFrom;
@@ -214,7 +215,7 @@ class _$GetNotificationsParamsImpl implements _GetNotificationsParams {
 
 abstract class _GetNotificationsParams implements GetNotificationsParams {
   const factory _GetNotificationsParams(
-          {required final int page,
+          {final int page,
           final String? dateFrom,
           final String? dateUntil,
           @JsonKey(name: 'project_id') final int? projectId}) =

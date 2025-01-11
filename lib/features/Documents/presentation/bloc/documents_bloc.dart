@@ -115,6 +115,8 @@ class DocumentsBloc extends Bloc<DocumentsEvent, DocumentsState> {
       ),
     );
   }
+
+
   final String _fileError = 'Error opening the file';
   Future<void> _downloadFileHandler(
     Document document,

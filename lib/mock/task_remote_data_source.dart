@@ -87,7 +87,7 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
       date: fakeTasks.first.date,
       project: fakeProject,
       users: Users(items: fakeUsers, total: fakeUsers.length),
-      comments: Comments(items: fakeComments, total: fakeDocuments.length),
+      //comments: Comments(items: fakeComments, total: fakeDocuments.length),
       documents: Documents(items: fakeDocuments, total: fakeDocuments.length),
     );
     response = TaskResponse(message: _faker.lorem.words(3).join(' '));

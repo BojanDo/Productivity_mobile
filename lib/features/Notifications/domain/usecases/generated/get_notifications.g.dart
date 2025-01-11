@@ -9,7 +9,7 @@ part of '../get_notifications.dart';
 _$GetNotificationsParamsImpl _$$GetNotificationsParamsImplFromJson(
         Map<String, dynamic> json) =>
     _$GetNotificationsParamsImpl(
-      page: (json['page'] as num).toInt(),
+      page: (json['page'] as num?)?.toInt() ?? 1,
       dateFrom: json['dateFrom'] as String?,
       dateUntil: json['dateUntil'] as String?,
       projectId: (json['project_id'] as num?)?.toInt(),

@@ -35,11 +35,11 @@ mixin _$Task {
       name: 'assigned_users',
       fromJson: paginatedListUserFromJson,
       toJson: paginatedListUserToJson)
-  PaginatedList<User> get users => throw _privateConstructorUsedError;
-  @JsonKey(
+  PaginatedList<User> get users =>
+      throw _privateConstructorUsedError; /*@JsonKey(
       fromJson: paginatedListCommentFromJson,
-      toJson: paginatedListCommentToJson)
-  PaginatedList<Comment> get comments => throw _privateConstructorUsedError;
+      toJson: paginatedListCommentToJson,
+    )required Comments comments,*/
   @JsonKey(
       fromJson: paginatedListDocumentFromJson,
       toJson: paginatedListDocumentToJson)
@@ -74,17 +74,12 @@ abstract class $TaskCopyWith<$Res> {
           toJson: paginatedListUserToJson)
       PaginatedList<User> users,
       @JsonKey(
-          fromJson: paginatedListCommentFromJson,
-          toJson: paginatedListCommentToJson)
-      PaginatedList<Comment> comments,
-      @JsonKey(
           fromJson: paginatedListDocumentFromJson,
           toJson: paginatedListDocumentToJson)
       PaginatedList<Document> documents});
 
   $ProjectCopyWith<$Res> get project;
   $PaginatedListCopyWith<User, $Res> get users;
-  $PaginatedListCopyWith<Comment, $Res> get comments;
   $PaginatedListCopyWith<Document, $Res> get documents;
 }
 
@@ -112,7 +107,6 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
     Object? date = null,
     Object? project = null,
     Object? users = null,
-    Object? comments = null,
     Object? documents = null,
   }) {
     return _then(_value.copyWith(
@@ -152,10 +146,6 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
               as PaginatedList<User>,
-      comments: null == comments
-          ? _value.comments
-          : comments // ignore: cast_nullable_to_non_nullable
-              as PaginatedList<Comment>,
       documents: null == documents
           ? _value.documents
           : documents // ignore: cast_nullable_to_non_nullable
@@ -180,16 +170,6 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
   $PaginatedListCopyWith<User, $Res> get users {
     return $PaginatedListCopyWith<User, $Res>(_value.users, (value) {
       return _then(_value.copyWith(users: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Task
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PaginatedListCopyWith<Comment, $Res> get comments {
-    return $PaginatedListCopyWith<Comment, $Res>(_value.comments, (value) {
-      return _then(_value.copyWith(comments: value) as $Val);
     });
   }
 
@@ -226,10 +206,6 @@ abstract class _$$TaskImplCopyWith<$Res> implements $TaskCopyWith<$Res> {
           toJson: paginatedListUserToJson)
       PaginatedList<User> users,
       @JsonKey(
-          fromJson: paginatedListCommentFromJson,
-          toJson: paginatedListCommentToJson)
-      PaginatedList<Comment> comments,
-      @JsonKey(
           fromJson: paginatedListDocumentFromJson,
           toJson: paginatedListDocumentToJson)
       PaginatedList<Document> documents});
@@ -238,8 +214,6 @@ abstract class _$$TaskImplCopyWith<$Res> implements $TaskCopyWith<$Res> {
   $ProjectCopyWith<$Res> get project;
   @override
   $PaginatedListCopyWith<User, $Res> get users;
-  @override
-  $PaginatedListCopyWith<Comment, $Res> get comments;
   @override
   $PaginatedListCopyWith<Document, $Res> get documents;
 }
@@ -265,7 +239,6 @@ class __$$TaskImplCopyWithImpl<$Res>
     Object? date = null,
     Object? project = null,
     Object? users = null,
-    Object? comments = null,
     Object? documents = null,
   }) {
     return _then(_$TaskImpl(
@@ -305,10 +278,6 @@ class __$$TaskImplCopyWithImpl<$Res>
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
               as PaginatedList<User>,
-      comments: null == comments
-          ? _value.comments
-          : comments // ignore: cast_nullable_to_non_nullable
-              as PaginatedList<Comment>,
       documents: null == documents
           ? _value.documents
           : documents // ignore: cast_nullable_to_non_nullable
@@ -334,10 +303,6 @@ class _$TaskImpl implements _Task {
           fromJson: paginatedListUserFromJson,
           toJson: paginatedListUserToJson)
       required this.users,
-      @JsonKey(
-          fromJson: paginatedListCommentFromJson,
-          toJson: paginatedListCommentToJson)
-      required this.comments,
       @JsonKey(
           fromJson: paginatedListDocumentFromJson,
           toJson: paginatedListDocumentToJson)
@@ -377,11 +342,10 @@ class _$TaskImpl implements _Task {
       fromJson: paginatedListUserFromJson,
       toJson: paginatedListUserToJson)
   final PaginatedList<User> users;
-  @override
-  @JsonKey(
+/*@JsonKey(
       fromJson: paginatedListCommentFromJson,
-      toJson: paginatedListCommentToJson)
-  final PaginatedList<Comment> comments;
+      toJson: paginatedListCommentToJson,
+    )required Comments comments,*/
   @override
   @JsonKey(
       fromJson: paginatedListDocumentFromJson,
@@ -390,7 +354,7 @@ class _$TaskImpl implements _Task {
 
   @override
   String toString() {
-    return 'Task(id: $id, taskNumber: $taskNumber, title: $title, description: $description, status: $status, label: $label, date: $date, project: $project, users: $users, comments: $comments, documents: $documents)';
+    return 'Task(id: $id, taskNumber: $taskNumber, title: $title, description: $description, status: $status, label: $label, date: $date, project: $project, users: $users, documents: $documents)';
   }
 
   @override
@@ -409,8 +373,6 @@ class _$TaskImpl implements _Task {
             (identical(other.date, date) || other.date == date) &&
             (identical(other.project, project) || other.project == project) &&
             (identical(other.users, users) || other.users == users) &&
-            (identical(other.comments, comments) ||
-                other.comments == comments) &&
             (identical(other.documents, documents) ||
                 other.documents == documents));
   }
@@ -428,7 +390,6 @@ class _$TaskImpl implements _Task {
       date,
       project,
       users,
-      comments,
       documents);
 
   /// Create a copy of Task
@@ -463,10 +424,6 @@ abstract class _Task implements Task {
           toJson: paginatedListUserToJson)
       required final PaginatedList<User> users,
       @JsonKey(
-          fromJson: paginatedListCommentFromJson,
-          toJson: paginatedListCommentToJson)
-      required final PaginatedList<Comment> comments,
-      @JsonKey(
           fromJson: paginatedListDocumentFromJson,
           toJson: paginatedListDocumentToJson)
       required final PaginatedList<Document> documents}) = _$TaskImpl;
@@ -496,12 +453,11 @@ abstract class _Task implements Task {
       name: 'assigned_users',
       fromJson: paginatedListUserFromJson,
       toJson: paginatedListUserToJson)
-  PaginatedList<User> get users;
-  @override
-  @JsonKey(
+  PaginatedList<User>
+      get users; /*@JsonKey(
       fromJson: paginatedListCommentFromJson,
-      toJson: paginatedListCommentToJson)
-  PaginatedList<Comment> get comments;
+      toJson: paginatedListCommentToJson,
+    )required Comments comments,*/
   @override
   @JsonKey(
       fromJson: paginatedListDocumentFromJson,

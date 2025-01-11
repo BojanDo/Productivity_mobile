@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../core/config/colors.dart';
 import '../../../../core/entities/paginated_list.dart';
 import '../../../Documents/domain/entities/documents.dart';
 import '../../../Documents/domain/mappers/document.dart';
@@ -109,10 +110,10 @@ class Task with _$Task {
       fromJson: paginatedListUserFromJson,
       toJson: paginatedListUserToJson,
     ) required Users users,
-    @JsonKey(
+    /*@JsonKey(
       fromJson: paginatedListCommentFromJson,
       toJson: paginatedListCommentToJson,
-    )required Comments comments,
+    )required Comments comments,*/
     @JsonKey(
       fromJson: paginatedListDocumentFromJson,
       toJson: paginatedListDocumentToJson,

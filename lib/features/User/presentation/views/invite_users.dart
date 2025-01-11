@@ -30,16 +30,16 @@ class _InviteUsersPageState extends State<InviteUsersPage> {
   }
 
   void _onSubmitting(
-      BuildContext context,
-      FormBlocSubmitting<String, String> state,
-      ) {
+    BuildContext context,
+    FormBlocSubmitting<String, String> state,
+  ) {
     context.read<AppBloc>().add(const AppEvent.overlayAdd());
   }
 
   void _onSubmissionFailed(
-      BuildContext context,
-      FormBlocSubmissionFailed<String, String> state,
-      ) {
+    BuildContext context,
+    FormBlocSubmissionFailed<String, String> state,
+  ) {
     context.read<AppBloc>().add(const AppEvent.overlayRemove());
   }
 
@@ -61,7 +61,6 @@ class _InviteUsersPageState extends State<InviteUsersPage> {
           .add(AppEvent.error(message: state.failureResponse!));
     }
   }
-
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -89,10 +88,10 @@ class _InviteUsersPageState extends State<InviteUsersPage> {
       );
 
   Widget _form() => FormBlocListener<InviteUsersFormBloc, String, String>(
-    onSubmitting: _onSubmitting,
-    onSubmissionFailed: _onSubmissionFailed,
-    onSuccess: _onSuccess,
-    onFailure: _onFailure,
+        onSubmitting: _onSubmitting,
+        onSubmissionFailed: _onSubmissionFailed,
+        onSuccess: _onSuccess,
+        onFailure: _onFailure,
         formBloc: _formBloc,
         child: Row(
           children: <Widget>[
@@ -162,7 +161,8 @@ class _InviteUsersPageState extends State<InviteUsersPage> {
     BuildContext context,
     Users invitedUsers,
     bool isEnabled,
-  ) => ListView.builder(
+  ) =>
+      ListView.builder(
         itemCount: invitedUsers.total,
         itemBuilder: (BuildContext context, int index) {
           final User invitedUser = invitedUsers.items[index];

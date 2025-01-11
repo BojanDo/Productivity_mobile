@@ -6,9 +6,11 @@ import '../data/datasources/notifications_remote_data_source.dart';
 import '../data/repositories/notifications_repo_implementation.dart';
 import '../domain/repositories/notifications_repo.dart';
 import '../domain/usecases/get_notifications.dart';
+import '../presentation/bloc/notifications_bloc.dart';
 
 Future<void> initNotificationsBlocs(GetIt sl) async {
   // App Logic
+  sl.registerFactory(() => NotificationsBloc(getNotifications: sl()));
 }
 
 Future<void> initNotifications(GetIt sl) async {

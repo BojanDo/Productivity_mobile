@@ -34,6 +34,13 @@ Future<void> initTasksBlocs(GetIt sl) async {
       updateTask: sl(),
     ),
   );
+
+  sl.registerFactoryParam<CommentFormBloc, int, dynamic>(
+        (int taskId, _) => CommentFormBloc(
+      taskId: taskId,
+      addComment: sl(),
+    ),
+  );
 }
 
 Future<void> initTasks(GetIt sl) async {

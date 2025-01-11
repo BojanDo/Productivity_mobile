@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
@@ -10,9 +9,11 @@ import '../../../../widgets/editor.dart';
 import '../../../../widgets/form.dart';
 import '../../../App/presentation/bloc/app_bloc.dart';
 import '../../../User/domain/entities/users.dart';
+import '../../domain/entities/comments.dart';
 import '../../domain/entities/tasks.dart';
 import '../bloc/task/task_bloc.dart';
 import '../bloc/tasks/tasks_bloc.dart';
+import '../widgets/comments.dart';
 import '../widgets/multiselect_field_users.dart';
 
 class TaskPage extends StatelessWidget {
@@ -82,6 +83,16 @@ class _TaskPageInnerState extends State<TaskPageInner> {
         ),
       );
 
+  Widget _comments(Task task) {
+    final CommentFormBloc commentFormBloc = sl<CommentFormBloc>(
+      param1: task.id,
+    );
+    return CommentsWidget(
+      commentFormBloc: commentFormBloc,
+      comments: const Comments(items: <Comment>[], total: 0),
+    );
+  }
+
   @override
   Widget build(BuildContext context) => BlocBuilder<TaskBloc, TaskState>(
         builder: (BuildContext context, TaskState state) {
@@ -93,6 +104,7 @@ class _TaskPageInnerState extends State<TaskPageInner> {
               users: widget.users,
             ),
           );
+
           return _form(taskFormBloc);
         },
       );
@@ -100,7 +112,7 @@ class _TaskPageInnerState extends State<TaskPageInner> {
   Widget _form(TaskFormBloc taskFormBloc) => BlocProvider<TaskFormBloc>.value(
         value: taskFormBloc,
         child: GlobalForm<TaskFormBloc>(
-          onSuccess: (){
+          onSuccess: () {
             routePopWithResult(sl<AppBloc>().innerNavigator, true);
           },
           title: 'Task',
@@ -154,6 +166,9 @@ class _TaskPageInnerState extends State<TaskPageInner> {
             const SizedBox(height: 8),
             MultiselectFieldUsers(formBloc: taskFormBloc.assigned),
             const SizedBox(height: 16),
+            if (taskFormBloc.task != null &&
+                taskFormBloc.mode == TaskFormMode.edit)
+              _comments(taskFormBloc.task!),
             _listBuilder(),
           ],
         ),

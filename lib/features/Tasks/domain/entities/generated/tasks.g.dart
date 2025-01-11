@@ -19,8 +19,6 @@ _$TaskImpl _$$TaskImplFromJson(Map<String, dynamic> json) => _$TaskImpl(
       project: Project.fromJson(json['project'] as Map<String, dynamic>),
       users: paginatedListUserFromJson(
           json['assigned_users'] as Map<String, dynamic>),
-      comments: paginatedListCommentFromJson(
-          json['comments'] as Map<String, dynamic>),
       documents: paginatedListDocumentFromJson(
           json['documents'] as Map<String, dynamic>),
     );
@@ -36,7 +34,6 @@ Map<String, dynamic> _$$TaskImplToJson(_$TaskImpl instance) =>
       'due_date': instance.date,
       'project': instance.project,
       'assigned_users': paginatedListUserToJson(instance.users),
-      'comments': paginatedListCommentToJson(instance.comments),
       'documents': paginatedListDocumentToJson(instance.documents),
     };
 

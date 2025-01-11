@@ -18,6 +18,7 @@ import '../../../../User/domain/entities/users.dart';
 import '../../../domain/entities/comments.dart';
 import '../../../domain/entities/task_response.dart';
 import '../../../domain/entities/tasks.dart';
+import '../../../domain/usecases/add_comment.dart';
 import '../../../domain/usecases/create_task.dart';
 import '../../../domain/usecases/get_task.dart';
 import '../../../domain/usecases/update_task.dart';
@@ -27,6 +28,7 @@ part 'task_event.dart';
 part 'task_state.dart';
 
 part '../forms/task_form_bloc.dart';
+part '../forms/comment_form_bloc.dart';
 
 part 'generated/task_bloc.freezed.dart';
 
@@ -55,7 +57,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
                 description: '',
               ),
               users: Users(items: <User>[], total: 0),
-              comments: Comments(items: <Comment>[], total: 0),
+              //comments: Comments(items: <Comment>[], total: 0),
               documents: Documents(items: <Document>[], total: 0),
             ),
           ),
