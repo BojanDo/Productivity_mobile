@@ -138,14 +138,17 @@ class _NotificationsPageInnerState extends State<NotificationsPageInner> {
 
   /// Formats the date into a more readable format
   String _formatDate(String date) {
-    // Parse the date string (assuming it's in ISO 8601 format: 'yyyy-MM-dd')
+    // Parse the date string (assuming it's in ISO 8601 format: 'yyyy-MM-ddTHH:mm:ss')
     final DateTime parsedDate = DateTime.parse(date);
 
-    // Format the date as 'dd. MM. yyyy'
+    // Format the date as 'dd. MM. yyyy HH:mm'
     return '${parsedDate.day.toString().padLeft(2, '0')}. '
         '${parsedDate.month.toString().padLeft(2, '0')}. '
-        '${parsedDate.year}';
+        '${parsedDate.year} '
+        '${parsedDate.hour.toString().padLeft(2, '0')}:'
+        '${parsedDate.minute.toString().padLeft(2, '0')}';
   }
+
 
 
 
