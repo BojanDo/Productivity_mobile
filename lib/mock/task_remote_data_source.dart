@@ -2,6 +2,7 @@ import 'package:faker/faker.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
 import '../features/Documents/domain/entities/documents.dart';
+import '../features/Notifications/domain/entities/notifications.dart';
 import '../features/Projects/domain/entities/projects.dart';
 import '../features/Tasks/data/datasources/task_remote_data_source.dart';
 import '../features/Tasks/domain/entities/comments.dart';
@@ -154,5 +155,11 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
   Future<TaskResponse> deleteComment(int id) async {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
+  }
+
+  @override
+  Future<Notifications> getComments(int id) {
+    // TODO: implement getComments
+    throw UnimplementedError();
   }
 }

@@ -10,10 +10,12 @@ import '../domain/usecases/add_comment.dart';
 import '../domain/usecases/create_task.dart';
 import '../domain/usecases/delete_comment.dart';
 import '../domain/usecases/delete_task.dart';
+import '../domain/usecases/get_comments.dart';
 import '../domain/usecases/get_task.dart';
 import '../domain/usecases/get_tasks.dart';
 import '../domain/usecases/update_comment.dart';
 import '../domain/usecases/update_task.dart';
+import '../presentation/bloc/comments/comments_bloc.dart';
 import '../presentation/bloc/task/task_bloc.dart';
 import '../presentation/bloc/tasks/tasks_bloc.dart';
 
@@ -35,8 +37,12 @@ Future<void> initTasksBlocs(GetIt sl) async {
     ),
   );
 
+  sl.registerFactoryParam<CommentsBloc, int, dynamic>(
+    (int taskId, _) => CommentsBloc(taskId, sl()),
+  );
+
   sl.registerFactoryParam<CommentFormBloc, int, dynamic>(
-        (int taskId, _) => CommentFormBloc(
+    (int taskId, _) => CommentFormBloc(
       taskId: taskId,
       addComment: sl(),
     ),
@@ -53,6 +59,7 @@ Future<void> initTasks(GetIt sl) async {
   sl.registerLazySingleton(() => GetTasks(sl()));
   sl.registerLazySingleton(() => UpdateComment(sl()));
   sl.registerLazySingleton(() => UpdateTask(sl()));
+  sl.registerLazySingleton(() => GetComments(sl()));
   // Repositories
   sl.registerLazySingleton<TaskRepository>(() => TaskRepoImplementation(sl()));
   // Data Sources

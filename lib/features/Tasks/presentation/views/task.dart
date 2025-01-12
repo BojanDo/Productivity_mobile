@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+import 'package:nested/nested.dart';
 
 import '../../../../core/functions/routes.dart';
 import '../../../../core/services/injection_container.dart';
@@ -12,7 +13,6 @@ import '../../../User/domain/entities/users.dart';
 import '../../domain/entities/comments.dart';
 import '../../domain/entities/tasks.dart';
 import '../bloc/task/task_bloc.dart';
-import '../bloc/tasks/tasks_bloc.dart';
 import '../widgets/comments.dart';
 import '../widgets/multiselect_field_users.dart';
 
@@ -31,8 +31,12 @@ class TaskPage extends StatelessWidget {
   final Users users;
 
   @override
-  Widget build(BuildContext context) => BlocProvider<TaskBloc>(
-        create: (BuildContext context) => sl<TaskBloc>(),
+  Widget build(BuildContext context) => MultiBlocProvider(
+        providers: <SingleChildWidget>[
+          BlocProvider<TaskBloc>(
+            create: (BuildContext context) => sl<TaskBloc>(),
+          ),
+        ],
         child: TaskPageInner(
           id: id,
           projectId: projectId,
@@ -105,11 +109,12 @@ class _TaskPageInnerState extends State<TaskPageInner> {
             ),
           );
 
-          return _form(taskFormBloc);
+          return _form(taskFormBloc, state);
         },
       );
 
-  Widget _form(TaskFormBloc taskFormBloc) => BlocProvider<TaskFormBloc>.value(
+  Widget _form(TaskFormBloc taskFormBloc, TaskState state) =>
+      BlocProvider<TaskFormBloc>.value(
         value: taskFormBloc,
         child: GlobalForm<TaskFormBloc>(
           onSuccess: () {
@@ -168,8 +173,11 @@ class _TaskPageInnerState extends State<TaskPageInner> {
             const SizedBox(height: 16),
             if (taskFormBloc.task != null &&
                 taskFormBloc.mode == TaskFormMode.edit)
-              _comments(taskFormBloc.task!),
-            _listBuilder(),
+              state.when(
+                getting: (Task? task) => const SizedBox.shrink(),
+                loaded: (Task? task) => _comments(taskFormBloc.task!),
+              ),
+            //_listBuilder(),
           ],
         ),
       );

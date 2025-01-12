@@ -8,17 +8,19 @@ import '../../../../core/config/colors.dart';
 import '../../../../core/config/constants.dart';
 import '../../../../core/config/routes.dart';
 import '../../../../core/entities/paginated_list.dart';
+import '../../../../core/functions/functions.dart';
 import '../../../../core/functions/routes.dart';
 import '../../../../core/services/injection_container.dart';
 import '../../../../widgets/app_bar.dart';
+import '../../../../widgets/notifications_description.dart';
 import '../../../../widgets/profile_picture.dart';
 import '../../../App/presentation/bloc/app_bloc.dart';
+import '../../../Notifications/domain/entities/notifications.dart' as notif;
 import '../../../Projects/domain/entities/projects.dart';
 import '../../../Tasks/domain/entities/tasks.dart';
 import '../../../Tasks/presentation/bloc/task/task_bloc.dart';
 import '../../../User/presentation/bloc/user_bloc.dart';
 import '../bloc/feed/home_feed_bloc.dart';
-import '../bloc/projects/home_projects_bloc.dart';
 import '../bloc/projects/home_projects_bloc.dart';
 import '../bloc/tasks/home_tasks_bloc.dart';
 
@@ -50,6 +52,9 @@ class DashboardsPageInner extends StatefulWidget {
 }
 
 class _DashboardsPageInnerState extends State<DashboardsPageInner> {
+  void _getNotifications() =>
+      context.read<HomeFeedBloc>().add(const HomeFeedEvent.get());
+
   void _getTasks() => context
       .read<HomeTasksBloc>()
       .add(HomeTasksEvent.get(id: context.read<UserBloc>().state.user.id));
@@ -59,6 +64,7 @@ class _DashboardsPageInnerState extends State<DashboardsPageInner> {
 
   @override
   void initState() {
+    _getNotifications();
     _getTasks();
     _getProjects();
     super.initState();
@@ -78,7 +84,60 @@ class _DashboardsPageInnerState extends State<DashboardsPageInner> {
         ),
       );
 
-  Widget _notifications() => const SizedBox.shrink();
+  Widget _notifications() => BlocBuilder<HomeFeedBloc, HomeFeedState>(
+    builder: (BuildContext context, HomeFeedState state) {
+      final bool isEnabled = state.maybeMap<bool>(
+        getting: (_) => true,
+        orElse: () => false,
+      );
+
+      return Dashboard<notif.Notification>(
+        isEnabled: isEnabled,
+        list: state.notifications,
+        itemBuilder: (notif.Notification notification) => ListTile(
+          leading: SizedBox(
+            height: 40,
+            width: 40,
+            child: ProfilePicture.user(notification.user),
+          ),
+          dense: true,
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                formatDate(notification.date),
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey,
+                ),
+              ),
+              NotificationsDescription(
+                description: notification.description,
+              ),
+            ],
+          ),
+          onTap: () {
+            routeWithResult(sl<AppBloc>().innerNavigator, kTaskRoute,(Object? result) {
+              if (result is! bool) {
+                return;
+              }
+              if (result) {
+                _getNotifications();
+                _getTasks();
+              }
+            }, <String, dynamic>{
+              'id': notification.taskId,
+              'mode': TaskFormMode.edit,
+              'projectId': null,
+              'users': context.read<HomeTasksBloc>().state.users,
+            });
+          },
+        ),
+        title: 'Feed',
+        onRefresh: _getNotifications,
+      );
+    },
+  );
 
   Widget _tasks() => BlocBuilder<HomeTasksBloc, HomeTasksState>(
         builder: (BuildContext context, HomeTasksState state) {
@@ -145,6 +204,7 @@ class _DashboardsPageInnerState extends State<DashboardsPageInner> {
                     return;
                   }
                   if (result) {
+                    _getNotifications();
                     _getTasks();
                   }
                 }, <String, dynamic>{
@@ -194,29 +254,6 @@ class _DashboardsPageInnerState extends State<DashboardsPageInner> {
         },
       );
 
-  Widget _fakeDashboard(String title) => Dashboard<String>(
-        isEnabled: false,
-        list: const PaginatedList<String>(
-          items: <String>[
-            'This is a string element 1',
-            'This is a string element 2',
-            'This is a string element 3',
-            'This is a string element 4',
-            'This is a string element 5',
-            'This is a string element 5',
-            'This is a string element 5',
-            'This is a string element 5',
-            'This is a string element 5',
-            'This is a string element 5',
-          ],
-          total: 5,
-        ),
-        itemBuilder: (String el) => ListTile(
-          title: Text(el),
-        ),
-        title: title,
-        onRefresh: () {},
-      );
 }
 
 class Dashboard<T> extends StatelessWidget {

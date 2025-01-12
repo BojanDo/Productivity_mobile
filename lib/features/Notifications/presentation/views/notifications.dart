@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../../../../core/config/colors.dart';
+import '../../../../core/functions/functions.dart';
 import '../../../../core/services/injection_container.dart';
 import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/intinite_list.dart';
@@ -103,53 +105,36 @@ class _NotificationsPageInnerState extends State<NotificationsPageInner> {
       );
 
   Widget _listItem(notif.Notification notification) => Container(
-    color: kSecondaryBackgroundColor,
-    child: Column(
-      children: <Widget>[
-        const Divider(height: 0),
-        ListTile(
-          leading: SizedBox(
-            height: 40,
-            width: 40,
-            child: ProfilePicture.user(notification.user),
-          ),
-          dense: true,
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                _formatDate(notification.date),
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey,
-                ),
+        color: kSecondaryBackgroundColor,
+        child: Column(
+          children: <Widget>[
+            const Divider(height: 0),
+            ListTile(
+              leading: SizedBox(
+                height: 40,
+                width: 40,
+                child: ProfilePicture.user(notification.user),
               ),
-              NotificationsDescription(
-                description: notification.description,
+              dense: true,
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    formatDate(notification.date),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  NotificationsDescription(
+                    description: notification.description,
+                  ),
+                ],
               ),
-            ],
-          ),
-          onTap: () async {},
+              onTap: () async {},
+            ),
+            const Divider(height: 0),
+          ],
         ),
-        const Divider(height: 0),
-      ],
-    ),
-  );
-
-  /// Formats the date into a more readable format
-  String _formatDate(String date) {
-    // Parse the date string (assuming it's in ISO 8601 format: 'yyyy-MM-ddTHH:mm:ss')
-    final DateTime parsedDate = DateTime.parse(date);
-
-    // Format the date as 'dd. MM. yyyy HH:mm'
-    return '${parsedDate.day.toString().padLeft(2, '0')}. '
-        '${parsedDate.month.toString().padLeft(2, '0')}. '
-        '${parsedDate.year} '
-        '${parsedDate.hour.toString().padLeft(2, '0')}:'
-        '${parsedDate.minute.toString().padLeft(2, '0')}';
-  }
-
-
-
-
+      );
 }

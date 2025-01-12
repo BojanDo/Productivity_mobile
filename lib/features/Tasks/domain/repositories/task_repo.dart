@@ -1,4 +1,5 @@
 import '../../../../core/utils/typedef.dart';
+import '../../../Notifications/domain/entities/notifications.dart';
 import '../entities/task_response.dart';
 import '../entities/tasks.dart';
 
@@ -21,6 +22,8 @@ abstract class TaskRepository {
   });
 
   ResultFuture<TaskResponse> deleteTask(int id);
+
+  ResultFuture<Notifications> getComments(int id);
 
   ResultFuture<TaskResponse> addComment({
     required Map<String, dynamic> values,

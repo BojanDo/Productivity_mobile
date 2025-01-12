@@ -7,30 +7,30 @@ import '../../../../../core/errors/failure.dart';
 import '../../../../../core/services/injection_container.dart';
 import '../../../../App/presentation/bloc/app_bloc.dart';
 import '../../../../Notifications/domain/entities/notifications.dart';
-import '../../../../Notifications/domain/usecases/get_notifications.dart';
 import '../../../../User/domain/entities/users.dart';
+import '../../../domain/usecases/get_comments.dart';
 
-part 'home_feed_event.dart';
+part 'comments_event.dart';
 
-part 'home_feed_state.dart';
+part 'comments_state.dart';
 
-part 'generated/home_feed_bloc.freezed.dart';
+part 'generated/comments_bloc.freezed.dart';
 
-class HomeFeedBloc extends Bloc<HomeFeedEvent, HomeFeedState> {
-  HomeFeedBloc(GetNotifications getNotifications)
-      : _getNotifications = getNotifications,
+class CommentsBloc extends Bloc<CommentsEvent, CommentsState> {
+  CommentsBloc(this.taskId, GetComments getComments)
+      : _getComments = getComments,
         super(
-          HomeFeedState.getting(
-            notifications: HomeFeedBloc.mock,
+          CommentsState.getting(
+            comments: CommentsBloc.mock,
           ),
         ) {
-    on<HomeFeedEvent>(
-      (HomeFeedEvent event, Emitter<HomeFeedState> emit) => event.when(
+    on<CommentsEvent>(
+      (CommentsEvent event, Emitter<CommentsState> emit) => event.when(
         get: () async {
-          emit(HomeFeedState.getting(notifications: HomeFeedBloc.mock));
+          emit(CommentsState.getting(comments: CommentsBloc.mock));
 
           final Either<Failure, Notifications> result =
-              await _getNotifications(const GetNotificationsParams());
+              await _getComments(taskId);
 
           result.fold(
             (Failure failure) {
@@ -40,22 +40,19 @@ class HomeFeedBloc extends Bloc<HomeFeedEvent, HomeFeedState> {
                 ),
               );
               emit(
-                const HomeFeedState.loaded(
-                  notifications:
-                      Notifications(items: <Notification>[], total: 0),
+                const CommentsState.loaded(
+                  comments: Notifications(items: <Notification>[], total: 0),
                 ),
               );
             },
-            (Notifications notifications) =>
-                emit(HomeFeedState.loaded(notifications: notifications)),
+            (Notifications comments) =>
+                emit(CommentsState.loaded(comments: comments)),
           );
           return null;
         },
       ),
     );
   }
-
-  final GetNotifications _getNotifications;
 
   static Notifications get mock => Notifications(
         items: List<Notification>.generate(
@@ -75,4 +72,7 @@ class HomeFeedBloc extends Bloc<HomeFeedEvent, HomeFeedState> {
         ),
         total: 10,
       );
+
+  final int taskId;
+  final GetComments _getComments;
 }

@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart' show Right, Left;
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/utils/typedef.dart';
+import '../../../Notifications/domain/entities/notifications.dart';
 import '../../domain/entities/task_response.dart';
 import '../../domain/entities/tasks.dart';
 import '../../domain/repositories/task_repo.dart';
@@ -78,6 +79,16 @@ class TaskRepoImplementation implements TaskRepository {
   }
 
   @override
+  ResultFuture<Notifications> getComments(int id) async{
+    try {
+      final Notifications result = await _remoteDataSource.getComments(id);
+      return Right<Failure, Notifications>(result);
+    } on APIException catch (e) {
+      return Left<Failure, Notifications>(APIFailure.fromException(e));
+    }
+  }
+
+  @override
   ResultFuture<TaskResponse> addComment({required Map<String, dynamic> values,}) async{
     try {
       final TaskResponse result = await _remoteDataSource.addComment(
@@ -111,4 +122,6 @@ class TaskRepoImplementation implements TaskRepository {
       return Left<Failure, TaskResponse>(APIFailure.fromException(e));
     }
   }
+
+
 }

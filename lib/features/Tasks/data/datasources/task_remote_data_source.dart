@@ -4,6 +4,7 @@ import '../../../../core/config/constants.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/utils/api_manager.dart';
 import '../../../../core/utils/typedef.dart';
+import '../../../Notifications/domain/entities/notifications.dart';
 import '../../domain/entities/task_response.dart';
 import '../../domain/entities/tasks.dart';
 
@@ -19,20 +20,22 @@ abstract class TaskRemoteDataSource {
   Future<Task> getTask(int id);
 
   Future<TaskResponse> updateTask(
-      int id, {
-        required Map<String, dynamic> values,
-      });
+    int id, {
+    required Map<String, dynamic> values,
+  });
 
   Future<TaskResponse> deleteTask(int id);
+
+  Future<Notifications> getComments(int id);
 
   Future<TaskResponse> addComment({
     required Map<String, dynamic> values,
   });
 
   Future<TaskResponse> updateComment(
-      int id, {
-        required Map<String, dynamic> values,
-      });
+    int id, {
+    required Map<String, dynamic> values,
+  });
 
   Future<TaskResponse> deleteComment(int id);
 }
@@ -127,6 +130,24 @@ class TaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
   }
 
   @override
+  Future<Notifications> getComments(int id) async {
+    try {
+      final dynamic response = await _apiManager.get(
+        kCommentsUrl,
+        '$id',
+        <String, dynamic>{},
+      );
+
+      return Notifications.fromJson(
+        response as DataMap,
+        (Object? item) => Notification.fromJson(item as DataMap),
+      );
+    } on APIException {
+      rethrow;
+    }
+  }
+
+  @override
   Future<TaskResponse> addComment({
     required Map<String, dynamic> values,
   }) async {
@@ -145,9 +166,9 @@ class TaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
 
   @override
   Future<TaskResponse> updateComment(
-      int id, {
-        required Map<String, dynamic> values,
-      }) async {
+    int id, {
+    required Map<String, dynamic> values,
+  }) async {
     try {
       final dynamic response = await _apiManager.put(
         kCommentsUrl,
