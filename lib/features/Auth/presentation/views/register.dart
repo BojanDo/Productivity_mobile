@@ -88,7 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         TextFieldBlocBuilder(
           textFieldBloc: registerFormBloc.email,
-          suffixButton: SuffixButton.clearText,
+          suffixButton: SuffixButton.asyncValidating,
           keyboardType: TextInputType.emailAddress,
           autofillHints: const <String>[AutofillHints.email],
           decoration: const InputDecoration(

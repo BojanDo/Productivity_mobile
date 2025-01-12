@@ -8,7 +8,12 @@ abstract class AuthRemoteDataSource {
   Future<AuthResponse> login({
     required Map<String, dynamic> values,
   });
+
   Future<AuthResponse> register({
+    required Map<String, dynamic> values,
+  });
+
+  Future<bool> validateEmail({
     required Map<String, dynamic> values,
   });
 }
@@ -34,6 +39,7 @@ class AuthRemoteDataSourceImplementation implements AuthRemoteDataSource {
       rethrow;
     }
   }
+
   @override
   Future<AuthResponse> register({
     required Map<String, dynamic> values,
@@ -46,6 +52,28 @@ class AuthRemoteDataSourceImplementation implements AuthRemoteDataSource {
       );
 
       return AuthResponse.fromJson(response as DataMap);
+    } on APIException {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> validateEmail({required Map<String, dynamic> values}) async {
+    try {
+      final dynamic response = await _apiManager.get(
+        kMailBoxApi,
+        '',
+        values,
+      );
+      if (response is Map<String, dynamic>) {
+        if (response.containsKey('format_valid')) {
+          return response['format_valid'] == true;
+        }
+        if (response.containsKey('success')) {
+          return response['success'] == true;
+        }
+      }
+      return false;
     } on APIException {
       rethrow;
     }

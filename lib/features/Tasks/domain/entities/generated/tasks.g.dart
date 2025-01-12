@@ -54,6 +54,7 @@ const _$LabelEnumMap = {
 _$TaskSlimImpl _$$TaskSlimImplFromJson(Map<String, dynamic> json) =>
     _$TaskSlimImpl(
       id: (json['id'] as num).toInt(),
+      projectId: (json['project_id'] as num).toInt(),
       title: json['title'] as String,
       status: $enumDecode(_$StatusEnumMap, json['status']),
       label: $enumDecode(_$LabelEnumMap, json['label']),
@@ -67,6 +68,7 @@ _$TaskSlimImpl _$$TaskSlimImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$TaskSlimImplToJson(_$TaskSlimImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'project_id': instance.projectId,
       'title': instance.title,
       'status': _$StatusEnumMap[instance.status]!,
       'label': _$LabelEnumMap[instance.label]!,

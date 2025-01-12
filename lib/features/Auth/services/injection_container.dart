@@ -7,6 +7,7 @@ import '../data/repositories/auth_repo_implementation.dart';
 import '../domain/repositories/auth_repo.dart';
 import '../domain/usecases/login.dart';
 import '../domain/usecases/register.dart';
+import '../domain/usecases/validate_email.dart';
 import '../presentation/bloc/auth_bloc.dart';
 
 Future<void> initAuthBlocs(GetIt sl) async {
@@ -23,7 +24,7 @@ Future<void> initAuthBlocs(GetIt sl) async {
   );
   sl.registerFactory(
     () => RegisterFormBloc(
-      register: sl(),
+      register: sl(), validateEmail: sl(),
     ),
   );
 }
@@ -32,6 +33,7 @@ Future<void> initAuth(GetIt sl) async {
   // Use cases
   sl.registerLazySingleton(() => Login(sl()));
   sl.registerLazySingleton(() => Register(sl()));
+  sl.registerLazySingleton(() => ValidateEmail(sl()));
   // Repositories
   sl.registerLazySingleton<AuthRepository>(() => AuthRepoImplementation(sl()));
   // Data Sources

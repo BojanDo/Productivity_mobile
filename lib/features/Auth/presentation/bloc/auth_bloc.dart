@@ -14,6 +14,7 @@ import '../../../User/domain/entities/users.dart';
 import '../../domain/entities/auth_response.dart';
 import '../../domain/usecases/login.dart';
 import '../../domain/usecases/register.dart';
+import '../../domain/usecases/validate_email.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';

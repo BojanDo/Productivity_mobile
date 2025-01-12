@@ -21,7 +21,7 @@ class MockTaskRemoteDataSourceImplementation implements TaskRemoteDataSource {
         label: faker.randomGenerator.element(Label.values),
         date: DateFormat('yyyy-MM-dd')
             .format(faker.date.dateTime(minYear: 2023, maxYear: 2030)),
-        taskNumber: '#$index', assigned: <int>[1,2],
+        taskNumber: '#$index', assigned: <int>[1,2], projectId: 0,
       ),
     );
     tasks = Tasks(items: fakeTasks, total: fakeTasks.length);

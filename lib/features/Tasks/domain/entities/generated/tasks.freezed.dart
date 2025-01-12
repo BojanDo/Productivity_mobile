@@ -479,6 +479,8 @@ TaskSlim _$TaskSlimFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TaskSlim {
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'project_id')
+  int get projectId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   Status get status => throw _privateConstructorUsedError;
   Label get label => throw _privateConstructorUsedError;
@@ -505,6 +507,7 @@ abstract class $TaskSlimCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
+      @JsonKey(name: 'project_id') int projectId,
       String title,
       Status status,
       Label label,
@@ -529,6 +532,7 @@ class _$TaskSlimCopyWithImpl<$Res, $Val extends TaskSlim>
   @override
   $Res call({
     Object? id = null,
+    Object? projectId = null,
     Object? title = null,
     Object? status = null,
     Object? label = null,
@@ -540,6 +544,10 @@ class _$TaskSlimCopyWithImpl<$Res, $Val extends TaskSlim>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      projectId: null == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
               as int,
       title: null == title
           ? _value.title
@@ -579,6 +587,7 @@ abstract class _$$TaskSlimImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
+      @JsonKey(name: 'project_id') int projectId,
       String title,
       Status status,
       Label label,
@@ -601,6 +610,7 @@ class __$$TaskSlimImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? projectId = null,
     Object? title = null,
     Object? status = null,
     Object? label = null,
@@ -612,6 +622,10 @@ class __$$TaskSlimImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      projectId: null == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
               as int,
       title: null == title
           ? _value.title
@@ -646,6 +660,7 @@ class __$$TaskSlimImplCopyWithImpl<$Res>
 class _$TaskSlimImpl implements _TaskSlim {
   const _$TaskSlimImpl(
       {required this.id,
+      @JsonKey(name: 'project_id') required this.projectId,
       required this.title,
       required this.status,
       required this.label,
@@ -659,6 +674,9 @@ class _$TaskSlimImpl implements _TaskSlim {
 
   @override
   final int id;
+  @override
+  @JsonKey(name: 'project_id')
+  final int projectId;
   @override
   final String title;
   @override
@@ -681,7 +699,7 @@ class _$TaskSlimImpl implements _TaskSlim {
 
   @override
   String toString() {
-    return 'TaskSlim(id: $id, title: $title, status: $status, label: $label, date: $date, taskNumber: $taskNumber, assigned: $assigned)';
+    return 'TaskSlim(id: $id, projectId: $projectId, title: $title, status: $status, label: $label, date: $date, taskNumber: $taskNumber, assigned: $assigned)';
   }
 
   @override
@@ -690,6 +708,8 @@ class _$TaskSlimImpl implements _TaskSlim {
         (other.runtimeType == runtimeType &&
             other is _$TaskSlimImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.label, label) || other.label == label) &&
@@ -701,8 +721,8 @@ class _$TaskSlimImpl implements _TaskSlim {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, status, label, date,
-      taskNumber, const DeepCollectionEquality().hash(_assigned));
+  int get hashCode => Object.hash(runtimeType, id, projectId, title, status,
+      label, date, taskNumber, const DeepCollectionEquality().hash(_assigned));
 
   /// Create a copy of TaskSlim
   /// with the given fields replaced by the non-null parameter values.
@@ -723,6 +743,7 @@ class _$TaskSlimImpl implements _TaskSlim {
 abstract class _TaskSlim implements TaskSlim {
   const factory _TaskSlim(
       {required final int id,
+      @JsonKey(name: 'project_id') required final int projectId,
       required final String title,
       required final Status status,
       required final Label label,
@@ -735,6 +756,9 @@ abstract class _TaskSlim implements TaskSlim {
 
   @override
   int get id;
+  @override
+  @JsonKey(name: 'project_id')
+  int get projectId;
   @override
   String get title;
   @override

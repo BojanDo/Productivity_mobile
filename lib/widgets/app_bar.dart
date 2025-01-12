@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../core/config/colors.dart';
+import 'filter/filters.dart';
 import 'pop_scope/pop_scope_bloc.dart';
 
 class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -10,6 +11,8 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? save;
   final bool canSave;
   final VoidCallback? create;
+  final List<FilterType>? filters;
+  final VoidCallback? filter;
 
   const GlobalAppBar({
     super.key,
@@ -18,6 +21,8 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.save,
     this.canSave = false,
     this.create,
+    this.filters,
+    this.filter,
   });
 
   @override
@@ -32,33 +37,33 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
         actions: <Widget>[
           if (save != null) _saveButton(context),
           if (create != null) _createButton(context),
-          if (!isRoot) _close(context, state)
-          else
-            _emptySpace(context),
+          if (filters != null && filters!.isNotEmpty) _filterButton(context),
+          if (!isRoot) _close(context, state) else _emptySpace(context),
         ],
       ),
     );
   }
 
-  Widget _emptySpace(BuildContext context) =>const Row(
-    children: [
-      SizedBox(
-        width: 16,
-      ),
-      Padding(
-        padding: EdgeInsets.symmetric(vertical: 8.0),
-        child: VerticalDivider(
-          thickness: 1,
-          color: kBorderColor,
-        ),
-      ),
-      SizedBox(
-        width: 45,
-      ),
-    ],
-  );
+  Widget _emptySpace(BuildContext context) => const Row(
+        children: <Widget>[
+          SizedBox(
+            width: 16,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            child: VerticalDivider(
+              thickness: 1,
+              color: kBorderColor,
+            ),
+          ),
+          SizedBox(
+            width: 45,
+          ),
+        ],
+      );
+
   Widget _close(BuildContext context, PopScopeState state) => Row(
-        children: [
+        children: <Widget>[
           const SizedBox(
             width: 16,
           ),
@@ -106,28 +111,45 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
       );
 
   Widget _createButton(BuildContext context) => ElevatedButton(
-    onPressed: create,
-    style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
-      padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
-        const EdgeInsets.only(),
+        onPressed: create,
+        style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
+              padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
+                const EdgeInsets.only(),
+              ),
+              backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                  (Set<WidgetState> states) {
+                if (states.contains(WidgetState.disabled)) {
+                  return kPrimaryColor.withOpacity(0.4);
+                }
+                return kPrimaryColor;
+              }),
+              foregroundColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) => Colors.white,
+              ),
+            ),
+        child: const Text(
+          'Create',
+          style: TextStyle(fontSize: 14),
+        ),
+      );
+
+  Widget _filterButton(BuildContext context) => IconButton(
+        icon: const Icon(Icons.filter_list),
+        onPressed: () => _showFilterTypes(context),
+      );
+
+  void _showFilterTypes(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) => FractionallySizedBox(
+        heightFactor: 1,
+        child: FilterWidget(onFilter: filter ?? () {}, filters: filters!),
       ),
-      backgroundColor: WidgetStateProperty.resolveWith<Color>(
-              (Set<WidgetState> states) {
-            if (states.contains(WidgetState.disabled)) {
-              return kPrimaryColor.withOpacity(0.4);
-            }
-            return kPrimaryColor;
-          }),
-      foregroundColor: WidgetStateProperty.resolveWith<Color>(
-            (Set<WidgetState> states) => Colors.white,
-      ),
-    ),
-    child: const Text(
-      'Create',
-      style: TextStyle(fontSize: 14),
-    ),
-  );
+    );
+  }
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
+
+

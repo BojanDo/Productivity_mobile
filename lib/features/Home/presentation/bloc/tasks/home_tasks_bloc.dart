@@ -115,7 +115,7 @@ class HomeTasksBloc extends Bloc<HomeTasksEvent, HomeTasksState> {
             status: Status.todo,
             label: Label.bug,
             date: '9999-01-01',
-            taskNumber: '#123', assigned: <int>[],
+            taskNumber: '#123', assigned: <int>[], projectId: 0,
           ),
         ),
         total: 10,

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:nested/nested.dart';
 
+import 'core/config/constants.dart';
 import 'core/config/routes.dart';
 import 'core/config/theme_data.dart';
 import 'core/services/injection_container.dart';

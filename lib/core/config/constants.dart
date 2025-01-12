@@ -4,6 +4,8 @@ import 'colors.dart';
 
 const bool kUseMockData = false;
 const int kApiVersion = 1;
+const String kMailBoxApi = 'http://apilayer.net/api/check';
+const String kMailBoxApiKey = '43c25acb3b2571c1d1e5077ab463268b';
 
 //const String kBaseUrl = 'https://staging.productivityy.cloud';
 const String kBaseUrl = 'http://10.0.2.2';

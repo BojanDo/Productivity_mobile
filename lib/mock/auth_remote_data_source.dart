@@ -35,4 +35,7 @@ class MockAuthRemoteDataSourceImplementation implements AuthRemoteDataSource {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     return response;
   }
+
+  @override
+  Future<bool> validateEmail({required Map<String, dynamic> values}) async => true;
 }

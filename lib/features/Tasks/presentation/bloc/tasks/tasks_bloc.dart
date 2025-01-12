@@ -48,7 +48,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
                         ][statusIndex],
                         label: Label.bug,
                         date: '2025-01-01',
-                        taskNumber: '#123', assigned: <int>[],
+                        taskNumber: '#123', assigned: <int>[], projectId: 0,
                       ),
                     ),
                 ],

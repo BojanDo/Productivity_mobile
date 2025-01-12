@@ -127,6 +127,7 @@ class Task with _$Task {
 class TaskSlim with _$TaskSlim{
   const factory TaskSlim({
     required int id,
+    @JsonKey(name: 'project_id') required int projectId,
     required String title,
     required Status status,
     required Label label,

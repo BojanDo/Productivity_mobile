@@ -45,4 +45,16 @@ class AuthRepoImplementation implements AuthRepository {
       return Left<Failure, AuthResponse>(APIFailure.fromException(e));
     }
   }
+
+  @override
+  ResultFuture<bool> validateEmail({required Map<String, dynamic> values}) async{
+    try {
+      final bool result = await _remoteDataSource.validateEmail(
+        values: values,
+      );
+      return Right<Failure, bool>(result);
+    } on APIException catch (e) {
+      return Left<Failure, bool>(APIFailure.fromException(e));
+    }
+  }
 }

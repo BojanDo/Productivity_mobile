@@ -10,4 +10,8 @@ abstract class AuthRepository {
   ResultFuture<AuthResponse> register({
     required Map<String, dynamic> values,
   });
+
+  ResultFuture<bool> validateEmail({
+    required Map<String, dynamic> values,
+  });
 }

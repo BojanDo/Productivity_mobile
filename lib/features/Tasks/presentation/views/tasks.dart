@@ -6,6 +6,7 @@ import '../../../../core/config/routes.dart';
 import '../../../../core/functions/routes.dart';
 import '../../../../core/services/injection_container.dart';
 import '../../../../widgets/app_bar.dart';
+import '../../../../widgets/filter/filters.dart';
 import '../../../../widgets/profile_picture.dart';
 import '../../../App/presentation/bloc/app_bloc.dart';
 import '../../../Projects/domain/entities/projects.dart';
@@ -137,6 +138,13 @@ class _TasksPageInnerState extends State<TasksPageInner> {
         appBar: GlobalAppBar(
           title: 'Tasks',
           count: count,
+          filters: [
+            FilterType.project,
+            FilterType.assigned,
+            FilterType.status,
+            FilterType.label,
+            FilterType.date,
+          ],
           create: widget.canCreate
               ? () {
                   routeWithResult(sl<AppBloc>().innerNavigator, kTaskRoute,

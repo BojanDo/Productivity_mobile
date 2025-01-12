@@ -23,7 +23,6 @@ class CommentsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocProvider<CommentsBloc>(
         create: (BuildContext context) {
-          int a = 1;
           return sl<CommentsBloc>(param1: commentFormBloc.taskId);
         },
         child: Builder(
