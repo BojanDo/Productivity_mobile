@@ -6,6 +6,7 @@ import '../../../../core/config/routes.dart';
 import '../../../../core/functions/routes.dart';
 import '../../../../core/services/injection_container.dart';
 import '../../../../widgets/app_bar.dart';
+import '../../../../widgets/filter/filter_form_bloc.dart';
 import '../../../../widgets/filter/filters.dart';
 import '../../../../widgets/profile_picture.dart';
 import '../../../App/presentation/bloc/app_bloc.dart';
@@ -17,18 +18,18 @@ import '../bloc/tasks/tasks_bloc.dart';
 import '../widgets/table.dart';
 
 class TasksPage extends StatelessWidget {
-  const TasksPage({super.key, required this.body});
+  const TasksPage({super.key, required this.child});
 
-  final Widget body;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) => BlocProvider<TasksBloc>(
         create: (BuildContext context) => sl<TasksBloc>(),
-        child: body,
+        child: TasksFilterProvider(child: child),
       );
 
   factory TasksPage.project(Project project) => TasksPage(
-        body: Scaffold(
+        child: Scaffold(
           appBar: AppBar(
             leading: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -45,9 +46,21 @@ class TasksPage extends StatelessWidget {
       );
 
   factory TasksPage.user(int assignedId) => TasksPage(
-        body: TasksPageInner(
+        child: TasksPageInner(
           assignedId: assignedId,
         ),
+      );
+}
+
+class TasksFilterProvider extends StatelessWidget {
+  const TasksFilterProvider({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) => BlocProvider<FilterFormBloc>.value(
+        value: context.read<TasksBloc>().filterFormBloc,
+        child: child,
       );
 }
 
@@ -70,6 +83,12 @@ class TasksPageInner extends StatefulWidget {
 class _TasksPageInnerState extends State<TasksPageInner> {
   @override
   void initState() {
+    if(widget.projectId!=null) {
+      context.read<TasksBloc>().filterFormBloc.initialize(projects: <int>[widget.projectId!]);
+    }
+    if(widget.assignedId!=null) {
+      context.read<TasksBloc>().filterFormBloc.initialize(assigned: <int>[widget.assignedId!]);
+    }
     _getTasks();
     super.initState();
   }
@@ -138,13 +157,19 @@ class _TasksPageInnerState extends State<TasksPageInner> {
         appBar: GlobalAppBar(
           title: 'Tasks',
           count: count,
-          filters: [
-            FilterType.project,
-            FilterType.assigned,
+          filters: <FilterType>[
+            if(widget.projectId==null)
+              FilterType.project,
+            if(widget.assignedId==null)
+              FilterType.assigned,
             FilterType.status,
             FilterType.label,
             FilterType.date,
           ],
+          filterFormBloc: context.read<TasksBloc>().filterFormBloc,
+          filter: (){
+            _getTasks();
+          },
           create: widget.canCreate
               ? () {
                   routeWithResult(sl<AppBloc>().innerNavigator, kTaskRoute,
@@ -168,41 +193,14 @@ class _TasksPageInnerState extends State<TasksPageInner> {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                TasksTable(
-                  status: Status.todo,
-                  tasks: tasks[Status.todo]!,
-                  onCellClick: (TaskSlim task) => _editTask(task.id, users),
-                  onEditClick: (TaskSlim task) => _editTask(task.id, users),
-                  onDeleteClick: (TaskSlim task) => _deleteTask(task.id),
-                ),
-                TasksTable(
-                  status: Status.inProgress,
-                  tasks: tasks[Status.inProgress]!,
-                  onCellClick: (TaskSlim task) => _editTask(task.id, users),
-                  onEditClick: (TaskSlim task) => _editTask(task.id, users),
-                  onDeleteClick: (TaskSlim task) => _deleteTask(task.id),
-                ),
-                TasksTable(
-                  status: Status.review,
-                  tasks: tasks[Status.review]!,
-                  onCellClick: (TaskSlim task) => _editTask(task.id, users),
-                  onEditClick: (TaskSlim task) => _editTask(task.id, users),
-                  onDeleteClick: (TaskSlim task) => _deleteTask(task.id),
-                ),
-                TasksTable(
-                  status: Status.test,
-                  tasks: tasks[Status.test]!,
-                  onCellClick: (TaskSlim task) => _editTask(task.id, users),
-                  onEditClick: (TaskSlim task) => _editTask(task.id, users),
-                  onDeleteClick: (TaskSlim task) => _deleteTask(task.id),
-                ),
-                TasksTable(
-                  status: Status.closed,
-                  tasks: tasks[Status.closed]!,
-                  onCellClick: (TaskSlim task) => _editTask(task.id, users),
-                  onEditClick: (TaskSlim task) => _editTask(task.id, users),
-                  onDeleteClick: (TaskSlim task) => _deleteTask(task.id),
-                ),
+                for(Status status in <Status>[Status.todo,Status.inProgress,Status.review,Status.test,Status.closed])
+                  TasksTable(
+                    status: status,
+                    tasks: tasks[status]!,
+                    onCellClick: (TaskSlim task) => _editTask(task.id, users),
+                    onEditClick: (TaskSlim task) => _editTask(task.id, users),
+                    onDeleteClick: (TaskSlim task) => _deleteTask(task.id),
+                  ),
               ],
             ),
           ),

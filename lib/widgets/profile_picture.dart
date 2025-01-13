@@ -15,7 +15,6 @@ class ProfilePicture extends StatelessWidget {
     required this.text,
     this.profilePicture,
     this.isEnabled = true,
-    super.key,
   });
 
   factory ProfilePicture.user(User user, {bool isEnabled = true}) =>
@@ -25,7 +24,8 @@ class ProfilePicture extends StatelessWidget {
         isEnabled: isEnabled,
       );
 
-  factory ProfilePicture.organization(Organization organization, {bool isEnabled = true}) =>
+  factory ProfilePicture.organization(Organization organization,
+          {bool isEnabled = true}) =>
       ProfilePicture._(
         text: organization.name,
         profilePicture: organization.profilePicture,
@@ -40,10 +40,10 @@ class ProfilePicture extends StatelessWidget {
       );
 
   Widget get letterPicture => TextAvatar(
-    text: text,
-    shape: Shape.Rectangle,
-    numberLetters: 2,
-  );
+        text: text,
+        shape: Shape.Rectangle,
+        numberLetters: 2,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +57,11 @@ class ProfilePicture extends StatelessWidget {
 
     return profilePicture != null
         ? CachedNetworkImage(
-      imageUrl: profilePicture!,
-      errorWidget: (BuildContext context, String url, Object error) => letterPicture,
-    )
+            imageUrl: profilePicture!,
+            placeholder: (BuildContext context, String url) => letterPicture,
+            errorWidget: (BuildContext context, String url, Object error) =>
+                letterPicture,
+          )
         : letterPicture;
   }
 }

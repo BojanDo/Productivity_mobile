@@ -4,7 +4,6 @@ import '../../../core/config/constants.dart';
 import '../../../mock/task_remote_data_source.dart';
 import '../data/datasources/task_remote_data_source.dart';
 import '../data/repositories/task_repo_implementation.dart';
-import '../domain/entities/tasks.dart';
 import '../domain/repositories/task_repo.dart';
 import '../domain/usecases/add_comment.dart';
 import '../domain/usecases/create_task.dart';
@@ -22,7 +21,7 @@ import '../presentation/bloc/tasks/tasks_bloc.dart';
 Future<void> initTasksBlocs(GetIt sl) async {
   // App Logic
   sl.registerFactory(
-    () => TasksBloc(getTasks: sl(), deleteTask: sl(), getUsers: sl()),
+    () => TasksBloc(getTasks: sl(), deleteTask: sl(), getUsers: sl(), filterFormBloc: sl()),
   );
 
   sl.registerFactory(() => TaskBloc(sl()));

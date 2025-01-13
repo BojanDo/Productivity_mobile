@@ -7,6 +7,9 @@ class TasksEvent with _$TasksEvent {
     int? assignedId,
   }) = _TasksEventGet;
 
+  const factory TasksEvent.filter(
+  ) = _TasksEventFilter;
+
   const factory TasksEvent.delete({
     required int id,
   }) = _TasksEventDelete;

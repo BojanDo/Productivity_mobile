@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/services/injection_container.dart';
 import 'bottom_sheet_container.dart';
@@ -8,46 +7,29 @@ import 'filter_options.dart';
 
 enum FilterType { project, assigned, status, label, date }
 
-class FilterWidget extends StatelessWidget {
+class FilterWidget extends StatefulWidget {
   const FilterWidget({
     super.key,
     required this.onFilter,
     required this.filters,
+    required this.filterFormBloc,
   });
 
   final VoidCallback onFilter;
   final List<FilterType> filters;
+  final FilterFormBloc filterFormBloc;
 
   @override
-  Widget build(BuildContext context) => BlocProvider<FilterFormBloc>.value(
-        value: sl<FilterFormBloc>(),
-        child: FilterWidgetInner(onFilter: onFilter, filters: filters),
-      );
+  State<FilterWidget> createState() => _FilterWidgetState();
 }
 
-class FilterWidgetInner extends StatefulWidget {
-  const FilterWidgetInner({
-    super.key,
-    required this.onFilter,
-    required this.filters,
-  });
-
-  final VoidCallback onFilter;
-  final List<FilterType> filters;
-
-  @override
-  State<FilterWidgetInner> createState() => _FilterWidgetInnerState();
-}
-
-class _FilterWidgetInnerState extends State<FilterWidgetInner> {
+class _FilterWidgetState extends State<FilterWidget> {
   FilterType? _selectedFilter;
-  late FilterFormBloc filterFormBloc;
-  late FilterFormBloc originalFormBloc;
+  final FilterFormBloc oldValues = sl<FilterFormBloc>();
 
   @override
   void initState() {
-    filterFormBloc = context.read<FilterFormBloc>();
-    filterFormBloc.initialize();
+    oldValues.setOldValues(widget.filterFormBloc);
     super.initState();
   }
 
@@ -55,7 +37,7 @@ class _FilterWidgetInnerState extends State<FilterWidgetInner> {
   Widget build(BuildContext context) {
     if (_selectedFilter != null) {
       return FilterOptionList(
-        filterFormBloc: filterFormBloc,
+        filterFormBloc: widget.filterFormBloc,
         filter: _selectedFilter!,
         onBack: () {
           setState(() {
@@ -69,27 +51,37 @@ class _FilterWidgetInnerState extends State<FilterWidgetInner> {
       showBackButton: false,
       title: 'Select a Filter',
       onCancel: () {
+        widget.filterFormBloc.setOldValues(oldValues);
         Navigator.of(context).pop();
       },
-      onFilter: widget.onFilter,
+      onFilter: () {
+        widget.onFilter();
+        Navigator.of(context).pop();
+      },
       filterButtonTitle: 'Apply Filter',
       child: ListView.builder(
         itemCount: widget.filters.length,
         itemBuilder: (BuildContext context, int index) {
           final FilterType filter = widget.filters[index];
-          return ListTile(
-            title: Text(filter.name),
-            trailing: const Icon(Icons.arrow_right),
-            onTap: () {
-              setState(() {
-                _selectedFilter = filter;
-              });
-            },
+          return Column(
+            children: <Widget>[
+              ListTile(
+                visualDensity: const VisualDensity(vertical: -2),
+                title: Text(filter.name),
+                trailing: const Icon(Icons.arrow_right),
+                onTap: () {
+                  setState(() {
+                    _selectedFilter = filter;
+                  });
+                },
+              ),
+              const Divider(
+                height: 1,
+              ),
+            ],
           );
         },
       ),
     );
   }
 }
-
-

@@ -6,7 +6,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../../../core/entities/paginated_list.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/services/injection_container.dart';
+import '../../../../../widgets/filter/filter_form_bloc.dart';
 import '../../../../App/presentation/bloc/app_bloc.dart';
+import '../../../../Projects/domain/entities/projects.dart';
 import '../../../../User/domain/entities/users.dart';
 import '../../../../User/domain/usecases/get_users.dart';
 import '../../../domain/entities/task_response.dart';
@@ -25,6 +27,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     required GetTasks getTasks,
     required DeleteTask deleteTask,
     required GetUsers getUsers,
+    required this.filterFormBloc,
   })  : _getTasks = getTasks,
         _deleteTask = deleteTask,
         _getUsers = getUsers,
@@ -48,7 +51,9 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
                         ][statusIndex],
                         label: Label.bug,
                         date: '2025-01-01',
-                        taskNumber: '#123', assigned: <int>[], projectId: 0,
+                        taskNumber: '#123',
+                        assigned: <int>[],
+                        projectId: 0,
                       ),
                     ),
                 ],
@@ -58,10 +63,11 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
           ),
         ) {
     on<TasksEvent>(
-      (TasksEvent event, Emitter<TasksState> emit) async=> event.when(
-        get: (int? projectId, int? assignedId) async=>
+      (TasksEvent event, Emitter<TasksState> emit) async => event.when(
+        get: (int? projectId, int? assignedId) async =>
             await _getTasksHandler(projectId, assignedId, emit),
-        delete: (int id) async=> await _deleteTaskHandler(id, emit),
+        filter: () async => await _filterTasksHandler(emit),
+        delete: (int id) async => await _deleteTaskHandler(id, emit),
       ),
     );
   }
@@ -86,25 +92,36 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       ),
     );
     final Either<Failure, Users> resultUsers = await _getUsers();
-
     resultTasks.fold(
       (Failure failure) => emit(const TasksState.error()),
       (Tasks tasks) async {
         resultUsers.fold(
-              (Failure failure) => emit(const TasksState.error()),
-              (Users users) => emit(
+          (Failure failure) => emit(const TasksState.error()),
+          (Users users) => emit(
             TasksState.loaded(
               tasks: tasks,
-              seperatedTasks: _seperateTasks(
+              seperatedTasks: _filterTasks(
                 tasks,
               ),
               users: users,
             ),
           ),
         );
-
       },
     );
+  }
+
+  Future<void> _filterTasksHandler(
+    Emitter<TasksState> emit,
+  ) async {
+    if (state is _TasksStateLoaded) {
+      final _TasksStateLoaded loadedState = (state as _TasksStateLoaded);
+      emit(
+        loadedState.copyWith(
+          seperatedTasks: _filterTasks(loadedState.tasks),
+        ),
+      );
+    }
   }
 
   Future<void> _deleteTaskHandler(
@@ -126,6 +143,45 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     );
   }
 
+  Map<Status, List<TaskSlim>> _filterTasks(Tasks tasks) {
+    final List<TaskSlim> filteredTasks = <TaskSlim>[];
+
+    for (TaskSlim task in tasks.items) {
+      if (!filterFormBloc.projects.value
+          .any((Project project) => project.id == task.projectId)) {
+        continue;
+      }
+      if (!filterFormBloc.assigned.value
+          .any((User user) => task.assigned.contains(user.id))) {
+        continue;
+      }
+      if (!filterFormBloc.statuses.value
+          .any((Status status) => status == task.status)) {
+        continue;
+      }
+      if (!filterFormBloc.labels.value
+          .any((Label label) => label == task.label)) {
+        continue;
+      }
+      final DateTime? date = DateTime.tryParse(task.date);
+      if (date == null ||
+          filterFormBloc.dateStart.value == null ||
+          filterFormBloc.dateEnd.value == null) {
+        filteredTasks.add(task);
+        continue;
+      }
+      if (date.isBefore(filterFormBloc.dateStart.value!) ||
+          date.isAfter(filterFormBloc.dateEnd.value!)) {
+        continue;
+      }
+      filteredTasks.add(task);
+    }
+
+    return TasksBloc._seperateTasks(
+      Tasks(items: filteredTasks, total: filteredTasks.length),
+    );
+  }
+
   static Map<Status, List<TaskSlim>> _seperateTasks(Tasks tasks) {
     final Map<Status, List<TaskSlim>> seperatedTasks = <Status, List<TaskSlim>>{
       Status.todo: <TaskSlim>[],
@@ -143,6 +199,5 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   final GetTasks _getTasks;
   final DeleteTask _deleteTask;
   final GetUsers _getUsers;
-
-
+  final FilterFormBloc filterFormBloc;
 }

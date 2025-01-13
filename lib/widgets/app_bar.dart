@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../core/config/colors.dart';
+import 'filter/filter_form_bloc.dart';
 import 'filter/filters.dart';
 import 'pop_scope/pop_scope_bloc.dart';
 
@@ -13,6 +14,7 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? create;
   final List<FilterType>? filters;
   final VoidCallback? filter;
+  final FilterFormBloc? filterFormBloc;
 
   const GlobalAppBar({
     super.key,
@@ -23,6 +25,7 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.create,
     this.filters,
     this.filter,
+    this.filterFormBloc,
   });
 
   @override
@@ -37,7 +40,8 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
         actions: <Widget>[
           if (save != null) _saveButton(context),
           if (create != null) _createButton(context),
-          if (filters != null && filters!.isNotEmpty) _filterButton(context),
+          if (filters != null && filters!.isNotEmpty && filterFormBloc != null)
+            _filterButton(context),
           if (!isRoot) _close(context, state) else _emptySpace(context),
         ],
       ),
@@ -140,10 +144,16 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   void _showFilterTypes(BuildContext context) {
     showModalBottomSheet(
+      isDismissible:false,
+      enableDrag: false,
       context: context,
       builder: (BuildContext context) => FractionallySizedBox(
         heightFactor: 1,
-        child: FilterWidget(onFilter: filter ?? () {}, filters: filters!),
+        child: FilterWidget(
+          onFilter: filter ?? () {},
+          filters: filters!,
+          filterFormBloc: filterFormBloc!,
+        ),
       ),
     );
   }
@@ -151,5 +161,3 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
-
-

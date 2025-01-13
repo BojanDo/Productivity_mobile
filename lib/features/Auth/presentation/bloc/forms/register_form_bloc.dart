@@ -88,6 +88,8 @@ class RegisterFormBloc extends FormBloc<User, String> {
         return 'Must be equal to password';
       };
 
+
+
   @override
   FutureOr<void> onSubmitting() async {
     final Either<Failure, AuthResponse> result = await _register(

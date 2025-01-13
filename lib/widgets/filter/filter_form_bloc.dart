@@ -24,7 +24,23 @@ class FilterFormBloc extends FormBloc<String, String> {
         dateEnd,
       ],
     );
+    dateEnd
+      ..addValidators(<Validator<DateTime?>>[_validateDateRange(dateStart)])
+      ..subscribeToFieldBlocs(<FieldBloc<FieldBlocStateBase>>[dateStart]);
   }
+
+  static Validator<DateTime?> _validateDateRange(
+          InputFieldBloc<DateTime?, dynamic> dateStartBloc) =>
+      (DateTime? endDate) {
+        final DateTime? startDate = dateStartBloc.value;
+
+        if (startDate != null &&
+            endDate != null &&
+            startDate.isAfter(endDate)) {
+          return 'End date must be after or equal to the start date.';
+        }
+        return null;
+      };
 
   void initialize({
     List<int>? projects,
@@ -64,6 +80,19 @@ class FilterFormBloc extends FormBloc<String, String> {
 
     this.statuses.updateInitialValue(statuses ?? Status.values);
     this.labels.updateInitialValue(labels ?? Label.values);
+  }
+
+  void setOldValues(FilterFormBloc oldValues) {
+    projects.updateValue(
+      oldValues.projects.value.map((Project item) => item.copyWith()).toList(),
+    );
+    assigned.updateValue(
+      oldValues.assigned.value.map((User item) => item.copyWith()).toList(),
+    );
+    statuses.updateValue(<Status>[...oldValues.statuses.value]);
+    labels.updateValue(<Label>[...oldValues.labels.value]);
+    dateStart.updateValue(oldValues.dateStart.value);
+    dateEnd.updateValue(oldValues.dateEnd.value);
   }
 
   final MultiSelectFieldBloc<Project, dynamic> projects =

@@ -2,67 +2,62 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
 import '../../../features/Projects/domain/entities/projects.dart';
+import '../../profile_picture.dart';
 import '../bottom_sheet_container.dart';
 
-class FilterProjectOptions extends StatelessWidget {
-  FilterProjectOptions(
-      {super.key, required this.projectsBloc, required this.onBack});
+class FilterProjectOptions extends StatefulWidget {
+  const FilterProjectOptions({
+    super.key,
+    required this.projectsBloc,
+    required this.onBack,
+  });
 
   final MultiSelectFieldBloc<Project, dynamic> projectsBloc;
   final VoidCallback onBack;
-  final MultiSelectFieldBloc<Project, dynamic> projects =
-      MultiSelectFieldBloc<Project, dynamic>();
 
   @override
-  Widget build(BuildContext context) =>
-      BlocProvider<MultiSelectFieldBloc<Project, dynamic>>.value(
-        value: projects,
-        child: FilterProjectOptionsInner(
-          projectsBloc: projectsBloc,
-          onBack: onBack,
-          projects: projects,
-        ),
-      );
+  State<FilterProjectOptions> createState() => _FilterProjectOptionsState();
 }
 
-class FilterProjectOptionsInner extends StatefulWidget {
-  const FilterProjectOptionsInner(
-      {super.key,
-      required this.projectsBloc,
-      required this.onBack,
-      required this.projects});
+class _FilterProjectOptionsState extends State<FilterProjectOptions> {
+  late List<Project> oldValues;
 
-  final MultiSelectFieldBloc<Project, dynamic> projectsBloc;
-  final MultiSelectFieldBloc<Project, dynamic> projects;
-  final VoidCallback onBack;
-
-  @override
-  State<FilterProjectOptionsInner> createState() =>
-      _FilterProjectOptionsInnerState();
-}
-
-class _FilterProjectOptionsInnerState extends State<FilterProjectOptionsInner> {
   @override
   void initState() {
-    widget.projects.updateItems(widget.projectsBloc.state.items);
-    widget.projects.updateInitialValue(widget.projectsBloc.state.initialValue);
-    widget.projects.updateValue(widget.projectsBloc.value);
+    oldValues = widget.projectsBloc.value
+        .map((Project item) => item.copyWith())
+        .toList();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) => BottomSheetContainer(
         title: 'Filter by projects',
-        onCancel: widget.onBack,
+        onCancel: () {
+          setState(() {
+            widget.projectsBloc.updateValue(oldValues);
+          });
+          widget.onBack();
+        },
         onFilter: () {
-          widget.projectsBloc.updateValue(widget.projects.value);
-          widget.onBack;
+          widget.onBack();
         },
         filterButtonTitle: 'Save',
         child: CheckboxGroupFieldBlocBuilder<Project>(
-          multiSelectFieldBloc: widget.projects,
+          multiSelectFieldBloc: widget.projectsBloc,
           itemBuilder: (BuildContext context, Project item) => FieldItem(
-            child: Text(item.title),
+            child: Row(
+              children: <Widget>[
+                SizedBox(
+                  width: 40,
+                  height: 40,
+                  child: ProfilePicture.project(item),
+                ),
+                const SizedBox(width: 8),
+                // Add some spacing between the picture and the text
+                Text(item.title),
+              ],
+            ),
           ),
         ),
       );

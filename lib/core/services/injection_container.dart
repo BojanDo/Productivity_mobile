@@ -47,7 +47,7 @@ Future<void> initBlocs() async {
 Future<void> initWidgetBlocs() async {
   sl.registerFactory(() => DrawerBloc());
   sl.registerLazySingleton(() => PopScopeBloc());
-  sl.registerLazySingleton(() => FilterFormBloc(getProjects: sl(), getUsers: sl()));
+  sl.registerFactory(() => FilterFormBloc(getProjects: sl(), getUsers: sl()));
 }
 
 Future<void> initUtils() async {
