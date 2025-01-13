@@ -83,13 +83,18 @@ class TasksPageInner extends StatefulWidget {
 class _TasksPageInnerState extends State<TasksPageInner> {
   @override
   void initState() {
-    if(widget.projectId!=null) {
-      context.read<TasksBloc>().filterFormBloc.initialize(projects: <int>[widget.projectId!]);
+    if (widget.projectId != null) {
+      context.read<TasksBloc>().filterFormBloc.initialize(
+        _getTasks,
+        projects: <int>[widget.projectId!],
+      );
     }
-    if(widget.assignedId!=null) {
-      context.read<TasksBloc>().filterFormBloc.initialize(assigned: <int>[widget.assignedId!]);
+    if (widget.assignedId != null) {
+      context.read<TasksBloc>().filterFormBloc.initialize(
+        _getTasks,
+        assigned: <int>[widget.assignedId!],
+      );
     }
-    _getTasks();
     super.initState();
   }
 
@@ -158,16 +163,14 @@ class _TasksPageInnerState extends State<TasksPageInner> {
           title: 'Tasks',
           count: count,
           filters: <FilterType>[
-            if(widget.projectId==null)
-              FilterType.project,
-            if(widget.assignedId==null)
-              FilterType.assigned,
+            if (widget.projectId == null) FilterType.project,
+            if (widget.assignedId == null) FilterType.assigned,
             FilterType.status,
             FilterType.label,
             FilterType.date,
           ],
           filterFormBloc: context.read<TasksBloc>().filterFormBloc,
-          filter: (){
+          filter: () {
             _getTasks();
           },
           create: widget.canCreate
@@ -193,7 +196,13 @@ class _TasksPageInnerState extends State<TasksPageInner> {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                for(Status status in <Status>[Status.todo,Status.inProgress,Status.review,Status.test,Status.closed])
+                for (Status status in <Status>[
+                  Status.todo,
+                  Status.inProgress,
+                  Status.review,
+                  Status.test,
+                  Status.closed,
+                ])
                   TasksTable(
                     status: status,
                     tasks: tasks[status]!,

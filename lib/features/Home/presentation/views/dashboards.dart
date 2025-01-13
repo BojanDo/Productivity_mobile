@@ -85,59 +85,60 @@ class _DashboardsPageInnerState extends State<DashboardsPageInner> {
       );
 
   Widget _notifications() => BlocBuilder<HomeFeedBloc, HomeFeedState>(
-    builder: (BuildContext context, HomeFeedState state) {
-      final bool isEnabled = state.maybeMap<bool>(
-        getting: (_) => true,
-        orElse: () => false,
-      );
+        builder: (BuildContext context, HomeFeedState state) {
+          final bool isEnabled = state.maybeMap<bool>(
+            getting: (_) => true,
+            orElse: () => false,
+          );
 
-      return Dashboard<notif.Notification>(
-        isEnabled: isEnabled,
-        list: state.notifications,
-        itemBuilder: (notif.Notification notification) => ListTile(
-          leading: SizedBox(
-            height: 40,
-            width: 40,
-            child: ProfilePicture.user(notification.user),
-          ),
-          dense: true,
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                formatDate(notification.date),
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey,
-                ),
+          return Dashboard<notif.Notification>(
+            isEnabled: isEnabled,
+            list: state.notifications,
+            itemBuilder: (notif.Notification notification) => ListTile(
+              leading: SizedBox(
+                height: 40,
+                width: 40,
+                child: ProfilePicture.user(notification.user),
               ),
-              NotificationsDescription(
-                description: notification.description,
+              dense: true,
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    formatDate(notification.date),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  NotificationsDescription(
+                    description: notification.description,
+                  ),
+                ],
               ),
-            ],
-          ),
-          onTap: () {
-            routeWithResult(sl<AppBloc>().innerNavigator, kTaskRoute,(Object? result) {
-              if (result is! bool) {
-                return;
-              }
-              if (result) {
-                _getNotifications();
-                _getTasks();
-              }
-            }, <String, dynamic>{
-              'id': notification.taskId,
-              'mode': TaskFormMode.edit,
-              'projectId': null,
-              'users': context.read<HomeTasksBloc>().state.users,
-            });
-          },
-        ),
-        title: 'Feed',
-        onRefresh: _getNotifications,
+              onTap: () {
+                routeWithResult(sl<AppBloc>().innerNavigator, kTaskRoute,
+                    (Object? result) {
+                  if (result is! bool) {
+                    return;
+                  }
+                  if (result) {
+                    _getNotifications();
+                    _getTasks();
+                  }
+                }, <String, dynamic>{
+                  'id': notification.taskId,
+                  'mode': TaskFormMode.edit,
+                  'projectId': null,
+                  'users': context.read<HomeTasksBloc>().state.users,
+                });
+              },
+            ),
+            title: 'Feed',
+            onRefresh: _getNotifications,
+          );
+        },
       );
-    },
-  );
 
   Widget _tasks() => BlocBuilder<HomeTasksBloc, HomeTasksState>(
         builder: (BuildContext context, HomeTasksState state) {
@@ -155,8 +156,9 @@ class _DashboardsPageInnerState extends State<DashboardsPageInner> {
                 children: <Widget>[
                   Text(
                     task.title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 16,
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -164,7 +166,8 @@ class _DashboardsPageInnerState extends State<DashboardsPageInner> {
                     children: <Widget>[
                       Container(
                         decoration: BoxDecoration(
-                          color: isEnabled ? Colors.white: task.status.background,
+                          color:
+                              isEnabled ? Colors.white : task.status.background,
                           borderRadius: BorderRadius.circular(4),
                         ),
                         padding: const EdgeInsets.symmetric(
@@ -181,17 +184,15 @@ class _DashboardsPageInnerState extends State<DashboardsPageInner> {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      // Add some space between the status and date
                       Text(
                         DateFormat('dd. MM. yyyy')
                             .format(DateTime.parse(task.date)),
                         style: TextStyle(
                           fontSize: 12,
-                          color: DateTime.parse(task.date)
-                                  .isBefore(DateTime.now())
-                              ? Colors.red
-                              : Colors
-                                  .black, // Red for past dates, black for current or future dates
+                          color:
+                              DateTime.parse(task.date).isBefore(DateTime.now())
+                                  ? Colors.red
+                                  : Colors.grey,
                         ),
                       ),
                     ],
@@ -199,7 +200,8 @@ class _DashboardsPageInnerState extends State<DashboardsPageInner> {
                 ],
               ),
               onTap: () {
-                routeWithResult(sl<AppBloc>().innerNavigator, kTaskRoute,(Object? result) {
+                routeWithResult(sl<AppBloc>().innerNavigator, kTaskRoute,
+                    (Object? result) {
                   if (result is! bool) {
                     return;
                   }
@@ -237,7 +239,12 @@ class _DashboardsPageInnerState extends State<DashboardsPageInner> {
                 height: 40,
                 child: ProfilePicture.project(project, isEnabled: !isEnabled),
               ),
-              title: Text(project.title),
+              title: Text(
+                project.title,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
+              ),
               onTap: () {
                 route(
                   context.read<AppBloc>().innerNavigator,
@@ -253,7 +260,6 @@ class _DashboardsPageInnerState extends State<DashboardsPageInner> {
           );
         },
       );
-
 }
 
 class Dashboard<T> extends StatelessWidget {
@@ -279,8 +285,8 @@ class Dashboard<T> extends StatelessWidget {
           padding: const EdgeInsets.all(kDefaultPadding / 2),
           child: Container(
             decoration: BoxDecoration(
-              color: kSecondaryBackgroundColor,
-              border: Border.all(color: kBorderColor),
+              color: Theme.of(context).colorScheme.secondary,
+              border: Border.all(color: Theme.of(context).dividerTheme.color!),
             ),
             child: Column(
               children: <Widget>[
@@ -290,9 +296,10 @@ class Dashboard<T> extends StatelessWidget {
                     horizontal: kDefaultPadding / 2,
                     vertical: kDefaultPadding / 4,
                   ),
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     border: Border(
-                      bottom: BorderSide(color: kBorderColor),
+                      bottom: BorderSide(
+                          color: Theme.of(context).dividerTheme.color!),
                     ),
                   ),
                   child: Row(
@@ -300,13 +307,17 @@ class Dashboard<T> extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         title,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.onSecondary,
                         ),
                       ),
                       IconButton(
-                        icon: const Icon(Icons.refresh),
+                        icon: Icon(
+                          Icons.refresh,
+                          color: Theme.of(context).colorScheme.onSecondary,
+                        ),
                         onPressed: onRefresh,
                       ),
                     ],

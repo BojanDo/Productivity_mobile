@@ -25,5 +25,8 @@ const String kInvitationUrl = '$kApiUrl/invitations';
 const BorderSide kBorderSide = BorderSide(
   color: kBorderColor,
 );
+const BorderSide kDarkBorderSide = BorderSide(
+  color: kBorderDarkColor,
+);
 BorderRadius kBorderRadius = BorderRadius.circular(6);
 const double kDefaultPadding = 34.0;

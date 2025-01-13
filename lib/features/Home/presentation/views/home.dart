@@ -40,9 +40,10 @@ class HomePageInner extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Text(
+                Text(
                   'Head over to settings to join or create an organization',
                   textAlign: TextAlign.center,
+                  style: TextStyle(color:Theme.of(context).colorScheme.onSecondary ),
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(

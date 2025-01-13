@@ -12,12 +12,24 @@ class MultiselectFieldUsers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MultiSelectDialogField<User>(
-      buttonIcon:const Icon(Icons.arrow_drop_down),
-        title: const Text('Assigned users'),
-        buttonText: const Text('Assigned users'),
+    itemsTextStyle: TextStyle(color: Theme.of(context).colorScheme.onSecondary,),
+    selectedItemsTextStyle: TextStyle(color: Theme.of(context).colorScheme.onSecondary,),
+        closeSearchIcon: Icon(Icons.close,color: Theme.of(context).colorScheme.onSecondary,),
+        searchIcon: Icon(Icons.search,color: Theme.of(context).colorScheme.onSecondary,),
+        buttonIcon: Icon(Icons.arrow_drop_down,color: Theme.of(context).colorScheme.onSecondary,),
+        title: Text(
+          'Assigned users',
+          style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+        ),
+        buttonText: Text(
+          'Assigned users',
+          style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+        ),
         decoration: BoxDecoration(
           border: Border.all(
-            color: kBorderColor, // Set your custom border color
+            color: Theme.of(context)
+                .dividerTheme
+                .color!, // Set your custom border color
           ),
           borderRadius: BorderRadius.circular(8.0), // Adjust radius as needed
         ),
@@ -35,24 +47,19 @@ class MultiselectFieldUsers extends StatelessWidget {
         onConfirm: (List<User> values) {
           formBloc.updateValue(values);
         },
-
-    chipDisplay: MultiSelectChipDisplay<User>(
-      items: formBloc.value
-          .map(
-            (User user) => MultiSelectItem<User>(
-          user,
-          '${user.firstname} ${user.lastname}',
+        chipDisplay: MultiSelectChipDisplay<User>(
+          items: formBloc.value
+              .map(
+                (User user) => MultiSelectItem<User>(
+                  user,
+                  '${user.firstname} ${user.lastname}',
+                ),
+              )
+              .toList(),
+          chipColor: Colors.grey[200],
+          textStyle: const TextStyle(
+            color: Colors.black, // Optional: Set chip text color
+          ),
         ),
-      )
-          .toList(),
-      chipColor: Colors.grey[200],
-      // Optional: Set chip background color
-      textStyle: const TextStyle(
-        color: Colors.black, // Optional: Set chip text color
-      ),
-      onTap: (User value) {
-        print("Bojan");
-      },
-    ),
       );
 }

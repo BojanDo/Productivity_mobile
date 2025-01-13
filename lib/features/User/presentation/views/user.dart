@@ -23,7 +23,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
             title: 'User info',
           ),
           body: Container(
-            color: kSecondaryBackgroundColor,
+            color: Theme.of(context).colorScheme.secondary,
             padding: const EdgeInsets.all(kDefaultPadding),
             child: _userInfo(state.user),
           ),
@@ -65,7 +65,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
               1: FlexColumnWidth(2),
             },
             border: TableBorder.all(
-              color: kBorderColor,
+              color: Theme.of(context).dividerTheme.color!,
             ),
             children: <TableRow>[
               _buildTableRow('Job Title', user.jobTitle),

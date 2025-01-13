@@ -78,7 +78,7 @@ class GlobalForm<BlocT extends FormBloc<String, String>>
                       canSave: state.isValid(),
                     ),
                     body: Container(
-                      color: kSecondaryBackgroundColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       padding: const EdgeInsets.all(kDefaultPadding / 2),
                       child: SingleChildScrollView(
                         child: Column(

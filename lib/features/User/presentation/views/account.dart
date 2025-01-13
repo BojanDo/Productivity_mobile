@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
+import '../../../../core/config/colors.dart';
 import '../../../../core/functions/routes.dart';
 import '../../../../core/services/injection_container.dart';
 import '../../../../widgets/form.dart';
@@ -42,11 +43,15 @@ class _AccountPageState extends State<AccountPage> {
   List<Widget> _fields(AccountFormBloc accountFormBloc) => <Widget>[
         ImagePickerFieldBlocBuilder(
           fileFieldBloc: accountFormBloc.profilePicture,
-          decoration: const InputDecoration(
+          decoration:  const InputDecoration(
             labelText: 'Profile picture',
           ),
         ),
         TextFieldBlocBuilder(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           textFieldBloc: accountFormBloc.firstname,
           keyboardType: TextInputType.name,
           autofillHints: const <String>[AutofillHints.name],
@@ -57,6 +62,10 @@ class _AccountPageState extends State<AccountPage> {
           ),
         ),
         TextFieldBlocBuilder(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           textFieldBloc: accountFormBloc.lastname,
           keyboardType: TextInputType.name,
           autofillHints: const <String>[AutofillHints.familyName],
@@ -67,6 +76,10 @@ class _AccountPageState extends State<AccountPage> {
           ),
         ),
         TextFieldBlocBuilder(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+            (Set<WidgetState> states) =>
+                Theme.of(context).colorScheme.onSecondary,
+          ),
           textFieldBloc: accountFormBloc.jobTitle,
           keyboardType: TextInputType.text,
           autofillHints: const <String>[AutofillHints.jobTitle],

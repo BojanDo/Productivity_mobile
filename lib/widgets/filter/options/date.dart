@@ -51,6 +51,10 @@ class _FilterDateOptionsState extends State<FilterDateOptions> {
         child: Column(
           children: <Widget>[
             DateTimeFieldBlocBuilder(
+              textColor: WidgetStateProperty.resolveWith<Color>(
+                    (Set<WidgetState> states) =>
+                Theme.of(context).colorScheme.onSecondary,
+              ),
               dateTimeFieldBloc: widget.dateStartBloc,
               format: DateFormat('dd. MM. yyyy'),
               initialDate: DateTime.now(),
@@ -62,6 +66,10 @@ class _FilterDateOptionsState extends State<FilterDateOptions> {
               ),
             ),
             DateTimeFieldBlocBuilder(
+              textColor: WidgetStateProperty.resolveWith<Color>(
+                    (Set<WidgetState> states) =>
+                Theme.of(context).colorScheme.onSecondary,
+              ),
               dateTimeFieldBloc: widget.dateEndBloc,
               format: DateFormat('dd. MM. yyyy'),
               initialDate: DateTime.now(),

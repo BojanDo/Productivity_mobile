@@ -94,7 +94,7 @@ class _DocumentsPageInnerState extends State<DocumentsPageInner> {
       );
 
   Widget _listItem(Document document) => Container(
-        color: kSecondaryBackgroundColor,
+        color: Theme.of(context).colorScheme.secondary,
         child: Column(
           children: <Widget>[
             const Divider(height: 0),

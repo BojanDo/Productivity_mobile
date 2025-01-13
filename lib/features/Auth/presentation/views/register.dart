@@ -87,6 +87,10 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         ),
         TextFieldBlocBuilder(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           textFieldBloc: registerFormBloc.email,
           suffixButton: SuffixButton.asyncValidating,
           keyboardType: TextInputType.emailAddress,
@@ -98,6 +102,10 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         ),
         TextFieldBlocBuilder(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           textFieldBloc: registerFormBloc.firstname,
           suffixButton: SuffixButton.clearText,
           keyboardType: TextInputType.name,
@@ -109,6 +117,10 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         ),
         TextFieldBlocBuilder(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           textFieldBloc: registerFormBloc.lastname,
           suffixButton: SuffixButton.clearText,
           keyboardType: TextInputType.name,
@@ -120,6 +132,10 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         ),
         TextFieldBlocBuilder(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           textFieldBloc: registerFormBloc.password,
           suffixButton: SuffixButton.obscureText,
           autofillHints: const <String>[AutofillHints.password],
@@ -130,6 +146,10 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         ),
     TextFieldBlocBuilder(
+      textColor: WidgetStateProperty.resolveWith<Color>(
+            (Set<WidgetState> states) =>
+        Theme.of(context).colorScheme.onSecondary,
+      ),
       textFieldBloc: registerFormBloc.passwordConfirm,
       suffixButton: SuffixButton.obscureText,
       autofillHints: const <String>[AutofillHints.password],
@@ -140,6 +160,10 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     ),
         TextFieldBlocBuilder(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           textFieldBloc: registerFormBloc.jobTitle,
           suffixButton: SuffixButton.clearText,
           keyboardType: TextInputType.text,

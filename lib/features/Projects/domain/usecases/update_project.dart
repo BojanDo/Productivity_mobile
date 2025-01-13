@@ -24,6 +24,8 @@ class UpdateProject extends UsecaseIdWithParams<ProjectResponse, UpdateProjectPa
         params.profilePicture!,
         filename: params.profilePicture!.split('/').last,
       );
+    }else{
+      jsonParams.remove('profile_picture');
     }
     return _repository.updateProject(
       id,

@@ -71,22 +71,6 @@ class _TaskPageInnerState extends State<TaskPageInner> {
     super.initState();
   }
 
-  Widget _listBuilder() => Container(
-        color: Colors.blue.withOpacity(0.3),
-        child: Column(
-          children: List.generate(
-            50,
-            (int index) => ListTile(
-              title: Text('List Item ${index + 1}'),
-              subtitle: Text('Subtitle for item ${index + 1}'),
-              leading: CircleAvatar(
-                child: Text('${index + 1}'),
-              ),
-            ),
-          ),
-        ),
-      );
-
   Widget _comments(Task task) {
     final CommentFormBloc commentFormBloc = sl<CommentFormBloc>(
       param1: task.id,
@@ -124,6 +108,10 @@ class _TaskPageInnerState extends State<TaskPageInner> {
           formBloc: taskFormBloc,
           fields: <Widget>[
             TextFieldBlocBuilder(
+              textColor: WidgetStateProperty.resolveWith<Color>(
+                    (Set<WidgetState> states) =>
+                Theme.of(context).colorScheme.onSecondary,
+              ),
               textFieldBloc: taskFormBloc.title,
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(
@@ -141,24 +129,38 @@ class _TaskPageInnerState extends State<TaskPageInner> {
             ),
             const SizedBox(height: 16),
             DropdownFieldBlocBuilder<Status>(
+              textColor: WidgetStateProperty.resolveWith<Color>(
+                    (Set<WidgetState> states) =>
+                Theme.of(context).colorScheme.onSecondary,
+              ),
               selectFieldBloc: taskFormBloc.status,
               decoration: const InputDecoration(
                 labelText: 'Status',
+                floatingLabelBehavior: FloatingLabelBehavior.always,
               ),
               itemBuilder: (BuildContext context, Status value) => FieldItem(
                 child: Text(value.displayName),
               ),
             ),
             DropdownFieldBlocBuilder<String>(
+              textColor: WidgetStateProperty.resolveWith<Color>(
+                    (Set<WidgetState> states) =>
+                Theme.of(context).colorScheme.onSecondary,
+              ),
               selectFieldBloc: taskFormBloc.label,
               decoration: const InputDecoration(
                 labelText: 'Label',
+                floatingLabelBehavior: FloatingLabelBehavior.always,
               ),
               itemBuilder: (BuildContext context, String value) => FieldItem(
                 child: Text(value),
               ),
             ),
             DateTimeFieldBlocBuilder(
+              textColor: WidgetStateProperty.resolveWith<Color>(
+                    (Set<WidgetState> states) =>
+                Theme.of(context).colorScheme.onSecondary,
+              ),
               dateTimeFieldBloc: taskFormBloc.date,
               format: DateFormat('dd.MM.yyyy'),
               initialDate: DateTime.now(),
@@ -166,6 +168,7 @@ class _TaskPageInnerState extends State<TaskPageInner> {
               lastDate: DateTime(2100),
               decoration: const InputDecoration(
                 labelText: 'Due date',
+                floatingLabelBehavior: FloatingLabelBehavior.always,
               ),
             ),
             const SizedBox(height: 8),

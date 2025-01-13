@@ -63,6 +63,10 @@ class _ProjectPageState extends State<ProjectPage> {
           ),
         ),
         TextFieldBlocBuilder(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           isEnabled: isEnabled,
           textFieldBloc: projectFormBloc.title,
           keyboardType: TextInputType.text,
@@ -73,6 +77,10 @@ class _ProjectPageState extends State<ProjectPage> {
           ),
         ),
         TextFieldBlocBuilder(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           isEnabled: isEnabled,
           minLines: 1,
           maxLines: 10,

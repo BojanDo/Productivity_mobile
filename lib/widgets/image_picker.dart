@@ -66,11 +66,9 @@ class ImagePickerFieldBlocBuilder extends StatelessWidget {
             ),
             IOSUiSettings(
               title: 'Crop Image',
-
             ),
           ],
         );
-
 
         if (croppedFile != null) {
           final File croppedFileObject = File(croppedFile.path);
@@ -116,8 +114,10 @@ class ImagePickerFieldBlocBuilder extends StatelessWidget {
           InputFieldBloc<File?, ProfilePicture>,
           InputFieldBlocState<File?, ProfilePicture>>(
         bloc: fileFieldBloc,
-        builder: (BuildContext context,
-            InputFieldBlocState<File?, ProfilePicture> state) {
+        builder: (
+          BuildContext context,
+          InputFieldBlocState<File?, ProfilePicture> state,
+        ) {
           final InputDecoration effectiveDecoration = decoration ??
               InputDecoration(
                 labelText: label,
@@ -133,7 +133,10 @@ class ImagePickerFieldBlocBuilder extends StatelessWidget {
                 if (effectiveDecoration.labelText != null)
                   Text(
                     effectiveDecoration.labelText!,
-                    style: const TextStyle(fontSize: 16),
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Theme.of(context).colorScheme.onSecondary,
+                    ),
                   ),
                 const SizedBox(height: 8),
                 // Image Upload Area
@@ -167,20 +170,26 @@ class ImagePickerFieldBlocBuilder extends StatelessWidget {
                                   ),
                                 )
                               : Center(
-                                  child: isEnabled ? const Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(Icons.add,
-                                          size: 40, color: Colors.grey),
-                                      Text(
-                                        'Tap to add image',
-                                        style: TextStyle(color: Colors.grey),
-                                      ),
-                                    ],
-                                  ): const Text(
-                                    'No image added',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
+                                  child: isEnabled
+                                      ? const Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Icon(
+                                              Icons.add,
+                                              size: 40,
+                                              color: Colors.grey,
+                                            ),
+                                            Text(
+                                              'Tap to add image',
+                                              style:
+                                                  TextStyle(color: Colors.grey),
+                                            ),
+                                          ],
+                                        )
+                                      : const Text(
+                                          'No image added',
+                                          style: TextStyle(color: Colors.grey),
+                                        ),
                                 ),
                     ),
                   ),
@@ -193,14 +202,18 @@ class ImagePickerFieldBlocBuilder extends StatelessWidget {
                       TextButton.icon(
                         onPressed: _resetToInitialValue,
                         icon: const Icon(Icons.restart_alt, color: Colors.blue),
-                        label: const Text('Reset',
-                            style: TextStyle(color: Colors.blue)),
+                        label: const Text(
+                          'Reset',
+                          style: TextStyle(color: Colors.blue),
+                        ),
                       ),
                       TextButton.icon(
                         onPressed: _deleteImage,
                         icon: const Icon(Icons.delete, color: Colors.red),
-                        label: const Text('Delete',
-                            style: TextStyle(color: Colors.red)),
+                        label: const Text(
+                          'Delete',
+                          style: TextStyle(color: Colors.red),
+                        ),
                       ),
                     ],
                   ),

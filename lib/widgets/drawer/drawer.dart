@@ -125,7 +125,7 @@ class _GlobalDrawerState extends State<GlobalDrawer>
                   SlideTransition(
                     position: _slideAnimation,
                     child: Container(
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.secondary,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
@@ -166,7 +166,7 @@ class _GlobalDrawerState extends State<GlobalDrawer>
           height: MediaQuery.paddingOf(context).top + 80,
           child: DrawerHeader(
             margin: EdgeInsets.zero,
-            decoration: const BoxDecoration(color: Colors.white),
+            decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary),
             child: Column(
               children: <Widget>[
                 Row(
@@ -183,9 +183,10 @@ class _GlobalDrawerState extends State<GlobalDrawer>
                         children: <Widget>[
                           Text(
                             '${user.firstname} ${user.lastname}',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.onSecondary,
                             ),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
@@ -219,7 +220,7 @@ class _GlobalDrawerState extends State<GlobalDrawer>
                             state.visibleList == DrawerVisibleList.second
                                 ? Icons.keyboard_arrow_up_sharp
                                 : Icons.keyboard_arrow_down_sharp,
-                            color: Colors.black,
+                            color: Theme.of(context).colorScheme.onSecondary,
                             size: 30,
                           ),
                         ),

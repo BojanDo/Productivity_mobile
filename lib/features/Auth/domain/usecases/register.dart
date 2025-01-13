@@ -23,6 +23,8 @@ class Register extends UsecaseWithParams<AuthResponse, RegisterParams> {
         params.profilePicture!,
         filename: params.profilePicture!.split('/').last,
       );
+    }else{
+      jsonParams.remove('profile_picture');
     }
     return _repository.register(values: jsonParams);
   }

@@ -24,6 +24,8 @@ class UpdateUser extends UsecaseIdWithParams<UserResponse, UpdateUserParams> {
         params.profilePicture!,
         filename: params.profilePicture!.split('/').last,
       );
+    }else{
+      jsonParams.remove('profile_picture');
     }
     return _repository.updateUser(
       id,

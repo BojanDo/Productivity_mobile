@@ -131,6 +131,10 @@ class _CommentsWidgetInnerState extends State<CommentsWidgetInner> {
         onFailure: _onFailure,
         formBloc: widget.commentFormBloc,
         child: TextFieldBlocBuilder(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           minLines: 1,
           maxLines: 100,
           textFieldBloc: widget.commentFormBloc.description,
@@ -156,7 +160,7 @@ class _CommentsWidgetInnerState extends State<CommentsWidgetInner> {
   );
 
   Widget _listItem(notif.Notification notification) => Container(
-        color: kSecondaryBackgroundColor,
+        color: Theme.of(context).colorScheme.secondary,
         child: Column(
           children: <Widget>[
             const Divider(height: 0),

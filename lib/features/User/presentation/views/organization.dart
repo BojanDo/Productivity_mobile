@@ -57,6 +57,10 @@ class _OrganizationPageState extends State<OrganizationPage> {
           ),
         ),
         TextFieldBlocBuilder(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           isEnabled: isEnabled,
           textFieldBloc: organizationFormBloc.name,
           keyboardType: TextInputType.text,
@@ -68,6 +72,10 @@ class _OrganizationPageState extends State<OrganizationPage> {
           ),
         ),
         TextFieldBlocBuilder(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           isEnabled: isEnabled,
           minLines: 1,
           maxLines: 10,

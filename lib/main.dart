@@ -17,49 +17,57 @@ import 'inner.dart';
 import 'widgets/drawer/drawer_bloc.dart';
 import 'widgets/pop_scope/pop_scope.dart';
 import 'widgets/pop_scope/pop_scope_bloc.dart';
+import 'widgets/theme/theme_bloc.dart';
 
 void main() async {
-  FlutterNativeSplash.preserve(widgetsBinding: WidgetsFlutterBinding.ensureInitialized());
+  FlutterNativeSplash.preserve(
+      widgetsBinding: WidgetsFlutterBinding.ensureInitialized());
   await initUtils();
   await initFeatures();
   await initBlocs();
   FlutterNativeSplash.remove();
-  runApp(const MyApp());
+  runApp(BlocProvider(
+    create: (_) => ThemeBloc(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-        theme: theme,
-        home: MultiBlocProvider(
-          providers: <SingleChildWidget>[
-            BlocProvider<AppBloc>(
-              create: (BuildContext context) => sl<AppBloc>(),
-            ),
-            BlocProvider<PopScopeBloc>(
-              create: (BuildContext context) => sl<PopScopeBloc>(),
-            ),
-          ],
-          child: BlocBuilder<AppBloc, AppState>(
-            builder: (BuildContext context, AppState state) => AppListeners(
-              child: state.when(
-                authenticated: (User user) => MultiBlocProvider(
-                  providers: <SingleChildWidget>[
-                    BlocProvider<DrawerBloc>(
-                      create: (BuildContext context) => sl<DrawerBloc>(),
+  Widget build(BuildContext context) => BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (BuildContext context, ThemeState state) => MaterialApp(
+          theme: state.themeData,
+          home: MultiBlocProvider(
+            providers: <SingleChildWidget>[
+              BlocProvider<AppBloc>(
+                create: (BuildContext context) => sl<AppBloc>(),
+              ),
+              BlocProvider<PopScopeBloc>(
+                create: (BuildContext context) => sl<PopScopeBloc>(),
+              ),
+            ],
+            child: BlocBuilder<AppBloc, AppState>(
+              builder: (BuildContext context, AppState state) => AppListeners(
+                child: state.when(
+                  authenticated: (User user) => MultiBlocProvider(
+                    providers: <SingleChildWidget>[
+                      BlocProvider<DrawerBloc>(
+                        create: (BuildContext context) => sl<DrawerBloc>(),
+                      ),
+                      BlocProvider<UserBloc>(
+                        create: (BuildContext context) =>
+                            sl<UserBloc>(param1: user),
+                      ),
+                    ],
+                    child: GlobalPopScope.defaultScope(
+                      child:/*HomePage1(), */authenticatedNavigator(context),
                     ),
-                    BlocProvider<UserBloc>(
-                      create: (BuildContext context) => sl<UserBloc>(param1: user),
-                    ),
-                  ],
-                  child: GlobalPopScope.defaultScope(
-                    child: authenticatedNavigator(context),
                   ),
+                  notAuthenticated: () =>
+                      GlobalPopScope.authScope(child: const AuthPage()),
                 ),
-                notAuthenticated: () =>
-                    GlobalPopScope.authScope(child: const AuthPage()),
               ),
             ),
           ),
@@ -80,4 +88,33 @@ class MyApp extends StatelessWidget {
           return MaterialPageRoute<dynamic>(builder: builder);
         },
       );
+}
+
+
+class HomePage1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final ThemeBloc themeBloc = BlocProvider.of<ThemeBloc>(context);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Custom Theme"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              themeBloc.state.isDarkMode
+                  ? Icons.light_mode
+                  : Icons.dark_mode,
+            ),
+            onPressed: () {
+              themeBloc.add(const ThemeEvent.toggle());
+            },
+          ),
+        ],
+      ),
+      body: const Center(
+        child: Text("Hello, Theme!"),
+      ),
+    );
+  }
 }

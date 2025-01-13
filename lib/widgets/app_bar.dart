@@ -35,7 +35,7 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
     return BlocBuilder<PopScopeBloc, PopScopeState>(
       builder: (BuildContext context, PopScopeState state) => AppBar(
         title: Text('$title${count == null ? '' : ' ($count)'}'),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         automaticallyImplyLeading: false,
         actions: <Widget>[
           if (save != null) _saveButton(context),
@@ -48,19 +48,19 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Widget _emptySpace(BuildContext context) => const Row(
+  Widget _emptySpace(BuildContext context) => Row(
         children: <Widget>[
-          SizedBox(
+          const SizedBox(
             width: 16,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.0),
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: VerticalDivider(
               thickness: 1,
-              color: kBorderColor,
+              color: Theme.of(context).dividerTheme.color,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 45,
           ),
         ],
@@ -71,11 +71,11 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
           const SizedBox(
             width: 16,
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.0),
+           Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: VerticalDivider(
               thickness: 1,
-              color: kBorderColor,
+              color: Theme.of(context).dividerTheme.color,
             ),
           ),
           IconButton(
@@ -144,7 +144,7 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   void _showFilterTypes(BuildContext context) {
     showModalBottomSheet(
-      isDismissible:false,
+      isDismissible: false,
       enableDrag: false,
       context: context,
       builder: (BuildContext context) => FractionallySizedBox(

@@ -23,6 +23,8 @@ class CreateOrganization extends UsecaseWithParams<UserResponse, CreateOrganizat
         params.profilePicture!,
         filename: params.profilePicture!.split('/').last,
       );
+    }else{
+      jsonParams.remove('profile_picture');
     }
     return _repository.createOrganization(
       values: jsonParams,

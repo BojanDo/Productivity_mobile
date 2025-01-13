@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
 import '../../core/errors/failure.dart';
@@ -42,7 +43,7 @@ class FilterFormBloc extends FormBloc<String, String> {
         return null;
       };
 
-  void initialize({
+  void initialize(VoidCallback onInit,{
     List<int>? projects,
     List<int>? assigned,
     List<Status>? statuses,
@@ -80,6 +81,7 @@ class FilterFormBloc extends FormBloc<String, String> {
 
     this.statuses.updateInitialValue(statuses ?? Status.values);
     this.labels.updateInitialValue(labels ?? Label.values);
+    onInit();
   }
 
   void setOldValues(FilterFormBloc oldValues) {

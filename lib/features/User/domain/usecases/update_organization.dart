@@ -24,6 +24,8 @@ class UpdateOrganization extends UsecaseIdWithParams<UserResponse, UpdateOrganiz
         params.profilePicture!,
         filename: params.profilePicture!.split('/').last,
       );
+    }else{
+      jsonParams.remove('profile_picture');
     }
     return _repository.updateOrganization(
       id,

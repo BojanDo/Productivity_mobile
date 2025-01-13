@@ -41,13 +41,13 @@ class BottomSheetContainer extends StatelessWidget {
                 children: <Widget>[
                   if (showBackButton)
                     IconButton(
-                      icon: const Icon(Icons.arrow_back_ios_new),
+                      icon: Icon(Icons.arrow_back_ios_new,color: Theme.of(context).colorScheme.onSecondary,),
                       onPressed: onCancel,
                     ),
                   Expanded(
                     child: Text(
                       title,
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: TextStyle(color: Theme.of(context).colorScheme.onSecondary,fontSize: 16),
                       textAlign: TextAlign.center,
                     ),
                   ),

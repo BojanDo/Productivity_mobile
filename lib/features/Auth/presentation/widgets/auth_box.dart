@@ -34,11 +34,19 @@ class AuthBox<BlocT extends StateStreamable<BlocState>,
                 const EdgeInsets.symmetric(vertical: 60.0, horizontal: 24.0),
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.secondary,
                 borderRadius: kBorderRadius,
                 border: Border.all(
-                  color: kBorderSide.color,
-                  width: kBorderSide.width,
+                  color: Theme.of(context)
+                      .inputDecorationTheme
+                      .enabledBorder!
+                      .borderSide
+                      .color,
+                  width: Theme.of(context)
+                      .inputDecorationTheme
+                      .enabledBorder!
+                      .borderSide
+                      .width,
                 ),
               ),
               child: Padding(
@@ -60,7 +68,11 @@ class AuthBox<BlocT extends StateStreamable<BlocState>,
                           switchPageId,
                         );
                       },
-                      child: Text(switchText),
+                      child: Text(
+                        switchText,
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.onSecondary),
+                      ),
                     ),
                   ],
                 ),

@@ -43,6 +43,10 @@ class _FilterAssignedOptionsState extends State<FilterAssignedOptions> {
         },
         filterButtonTitle: 'Save',
         child: CheckboxGroupFieldBlocBuilder<User>(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           multiSelectFieldBloc: widget.assignedBloc,
           itemBuilder: (BuildContext context, User item) => FieldItem(
             child: Row(

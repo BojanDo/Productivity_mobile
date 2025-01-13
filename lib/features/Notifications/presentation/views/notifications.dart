@@ -105,7 +105,7 @@ class _NotificationsPageInnerState extends State<NotificationsPageInner> {
       );
 
   Widget _listItem(notif.Notification notification) => Container(
-        color: kSecondaryBackgroundColor,
+        color: Theme.of(context).colorScheme.secondary,
         child: Column(
           children: <Widget>[
             const Divider(height: 0),

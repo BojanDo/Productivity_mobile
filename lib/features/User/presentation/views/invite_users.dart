@@ -97,6 +97,10 @@ class _InviteUsersPageState extends State<InviteUsersPage> {
           children: <Widget>[
             Expanded(
               child: TextFieldBlocBuilder(
+                textColor: WidgetStateProperty.resolveWith<Color>(
+                      (Set<WidgetState> states) =>
+                  Theme.of(context).colorScheme.onSecondary,
+                ),
                 textFieldBloc: _formBloc.email,
                 suffixButton: SuffixButton.clearText,
                 keyboardType: TextInputType.emailAddress,

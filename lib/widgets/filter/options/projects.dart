@@ -44,6 +44,10 @@ class _FilterProjectOptionsState extends State<FilterProjectOptions> {
         },
         filterButtonTitle: 'Save',
         child: CheckboxGroupFieldBlocBuilder<Project>(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           multiSelectFieldBloc: widget.projectsBloc,
           itemBuilder: (BuildContext context, Project item) => FieldItem(
             child: Row(

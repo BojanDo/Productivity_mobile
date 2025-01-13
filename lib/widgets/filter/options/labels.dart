@@ -42,6 +42,10 @@ class _FilterLabelsOptionsState extends State<FilterLabelsOptions> {
         },
         filterButtonTitle: 'Save',
         child: CheckboxGroupFieldBlocBuilder<Label>(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           multiSelectFieldBloc: widget.labelsBloc,
           itemBuilder: (BuildContext context, Label item) => FieldItem(
             child: Text(item.displayName),

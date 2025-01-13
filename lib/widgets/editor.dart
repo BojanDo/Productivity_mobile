@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 
 import '../core/config/colors.dart';
+import '../core/config/theme_data.dart';
 
 class Editor extends StatefulWidget {
   const Editor({super.key, required this.quillController});
-  
+
   final quill.QuillController quillController;
 
   @override
@@ -13,11 +14,8 @@ class Editor extends StatefulWidget {
 }
 
 class _EditorState extends State<Editor> {
-
-
   @override
   void initState() {
-
     super.initState();
   }
 
@@ -29,70 +27,46 @@ class _EditorState extends State<Editor> {
 
   @override
   Widget build(BuildContext context) => Theme(
-    data: Theme.of(context).copyWith(colorScheme: null),
-    child: Container(
-      decoration: BoxDecoration(
-        color: kSecondaryBackgroundColor, // Set background color
-        border: Border.all(color: kBorderColor), // Set border color
-        borderRadius: BorderRadius.circular(12), // Set border radius
-      ),
-      child: Column(
-        children: <Widget>[
-          quill.QuillSimpleToolbar(
-            controller: widget.quillController,
-            configurations: const quill.QuillSimpleToolbarConfigurations(
-              showDividers: true,
-              showFontFamily: false,
-              showFontSize: false,
-              showBoldButton: true,
-              showItalicButton: true,
-              showUnderLineButton: true,
-              showStrikeThrough: true,
-              showInlineCode: true,
-              showColorButton: true,
-              showBackgroundColorButton: true,
-              showClearFormat: true,
-              showAlignmentButtons: false,
-              showLeftAlignment: true,
-              showCenterAlignment: true,
-              showRightAlignment: true,
-              showJustifyAlignment: true,
-              showHeaderStyle: true,
-              showListNumbers: true,
-              showListBullets: true,
-              showListCheck: false,
-              showCodeBlock: true,
-              showQuote: true,
-              showIndent: false,
-              showLink: true,
-              showUndo: true,
-              showRedo: true,
-              showDirection: false,
-              showSearchButton: false,
-              showSubscript: false,
-              showSuperscript: false,
-              showClipboardCut: false,
-              showClipboardCopy: false,
-              showClipboardPaste: false,
-              linkStyleType: quill.LinkStyleType.original,
-              headerStyleType: quill.HeaderStyleType.original,
-              searchButtonType: quill.SearchButtonType.modern,
-            ),
+        data: theme,
+        child: Container(
+          decoration: BoxDecoration(
+            color: theme.colorScheme.secondary, // Set background color
+            border: Border.all(
+              color: Theme.of(context).dividerTheme.color!,
+            ), // Set border color
+            borderRadius: BorderRadius.circular(12), // Set border radius
           ),
-          const Divider(),
-          SizedBox(
-            height: 200,
-            child: Padding(
-              padding: const EdgeInsets.all(18.0),
-              // Add padding around the text
-              child: quill.QuillEditor.basic(
+          child: Column(
+            children: <Widget>[
+              quill.QuillSimpleToolbar(
                 controller: widget.quillController,
-                configurations: const quill.QuillEditorConfigurations(),
+                configurations: const quill.QuillSimpleToolbarConfigurations(
+                  showFontFamily: false,
+                  showFontSize: false,
+                  showListCheck: false,
+                  showIndent: false,
+                  showSearchButton: false,
+                  showSubscript: false,
+                  showSuperscript: false,
+                  showClipboardCut: false,
+                  showClipboardCopy: false,
+                  showClipboardPaste: false,
+                ),
               ),
-            ),
+              const Divider(),
+              SizedBox(
+                height: 200,
+                child: Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  // Add padding around the text
+                  child: quill.QuillEditor.basic(
+                    controller: widget.quillController,
+                    configurations: const quill.QuillEditorConfigurations(),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ),
-  );
+        ),
+      );
 }

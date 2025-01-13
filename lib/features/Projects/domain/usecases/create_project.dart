@@ -23,6 +23,8 @@ class CreateProject extends UsecaseWithParams<ProjectResponse, CreateProjectPara
         params.profilePicture!,
         filename: params.profilePicture!.split('/').last,
       );
+    }else{
+      jsonParams.remove('profile_picture');
     }
     return _repository.createProject(values: jsonParams);
   }

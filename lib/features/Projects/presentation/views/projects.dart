@@ -111,7 +111,7 @@ class _ProjectsPageInnerState extends State<ProjectsPageInner> {
       );
 
   Widget _listItem(Project project, bool isEnabled) => Container(
-        color: kSecondaryBackgroundColor,
+        color: Theme.of(context).colorScheme.secondary,
         child: Column(
           children: <Widget>[
             const Divider(height: 0),
@@ -125,6 +125,7 @@ class _ProjectsPageInnerState extends State<ProjectsPageInner> {
               trailing: BlocBuilder<UserBloc, UserState>(
                 builder: (BuildContext context, UserState state) =>
                     PopupMenuButton<String>(
+                      color: Theme.of(context).colorScheme.secondary,
                   icon: const Icon(Icons.more_vert), // Three dots button
                   onSelected: (String value) {
                     if (value == 'view') {

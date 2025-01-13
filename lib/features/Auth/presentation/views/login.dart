@@ -85,6 +85,10 @@ class _LoginPageState extends State<LoginPage> {
 
   List<Widget> _fields(LoginFormBloc loginFormBloc) => <Widget>[
         TextFieldBlocBuilder(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           textFieldBloc: loginFormBloc.email,
           suffixButton: SuffixButton.clearText,
           keyboardType: TextInputType.emailAddress,
@@ -96,6 +100,10 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
         TextFieldBlocBuilder(
+          textColor: WidgetStateProperty.resolveWith<Color>(
+                (Set<WidgetState> states) =>
+            Theme.of(context).colorScheme.onSecondary,
+          ),
           textFieldBloc: loginFormBloc.password,
           suffixButton: SuffixButton.obscureText,
           autofillHints: const <String>[AutofillHints.password],

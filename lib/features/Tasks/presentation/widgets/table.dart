@@ -140,7 +140,7 @@ class _TasksTableState extends State<TasksTable> {
                   controller: _horizontalScrollController,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: kSecondaryBackgroundColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       borderRadius: BorderRadius.circular(
                         12,
                       ),
@@ -154,15 +154,13 @@ class _TasksTableState extends State<TasksTable> {
                         4: FixedColumnWidth(100),
                       },
                       border: TableBorder.all(
-                        color: kBorderColor,
+                        color: Theme.of(context).dividerTheme.color!,
                         width: 2.0,
                       ),
                       children: <TableRow>[
                         TableRow(
-                          decoration: const BoxDecoration(
-                            color: Color(
-                              0xFFEEEEEE,
-                            ),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                           children: <Widget>[
                             buildSortableHeader('Title', 1),
@@ -175,9 +173,8 @@ class _TasksTableState extends State<TasksTable> {
                         ),
                         for (TaskSlim task in widget.tasks)
                           TableRow(
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                            ),
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.secondary),
                             children: <Widget>[
                               buildTableCellWithGesture(task.title, task),
                               buildTableCellWithGesture(
@@ -198,7 +195,6 @@ class _TasksTableState extends State<TasksTable> {
                   ),
                 ),
               ),
-
           ],
         ),
       );
@@ -216,7 +212,7 @@ class _TasksTableState extends State<TasksTable> {
                   fontWeight: FontWeight.bold,
                   color: _sortColumnIndex == columnIndex
                       ? kPrimaryColor
-                      : Colors.black,
+                      : Theme.of(context).colorScheme.onSecondary,
                 ),
               ),
               if (_sortColumnIndex == columnIndex)
@@ -242,6 +238,7 @@ class _TasksTableState extends State<TasksTable> {
               cellValue,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
+              style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
             ),
           ),
         ),

@@ -176,7 +176,9 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       }
       filteredTasks.add(task);
     }
-
+    if(filteredTasks.isEmpty){
+      _filterTasks(tasks);
+    }
     return TasksBloc._seperateTasks(
       Tasks(items: filteredTasks, total: filteredTasks.length),
     );

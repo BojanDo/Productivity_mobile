@@ -56,7 +56,6 @@ class SettingsPage extends StatelessWidget {
                   children: settings
                       .map((Setting setting) => GestureDetector(
                             onTap: () {
-
                               routeWithResult(
                                   context.read<AppBloc>().innerNavigator,
                                   setting.route, (Object? result) {
@@ -75,10 +74,10 @@ class SettingsPage extends StatelessWidget {
                                 bottom: kDefaultPadding / 2,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: Theme.of(context).colorScheme.secondary,
                                 border: Border.all(
-                                  color: kBorderSide.color,
-                                  width: kBorderSide.width,
+                                  color: Theme.of(context).inputDecorationTheme.enabledBorder!.borderSide.color,
+                                  width: Theme.of(context).inputDecorationTheme.enabledBorder!.borderSide.width,
                                 ),
                               ),
                               padding:
@@ -88,19 +87,21 @@ class SettingsPage extends StatelessWidget {
                                 children: <Widget>[
                                   Row(
                                     children: <Widget>[
-                                      Icon(setting.icon),
+                                      Icon(setting.icon,color: Theme.of(context).colorScheme.onSecondary),
                                       const SizedBox(width: 8),
                                       Text(
                                         setting.title,
-                                        style: const TextStyle(fontSize: 16),
+                                        style: TextStyle(fontSize: 16,color: Theme.of(context).colorScheme.onSecondary),
                                       ),
                                     ],
                                   ),
                                   const SizedBox(height: 8),
                                   Text(
                                     setting.desc,
-                                    style: const TextStyle(
-                                        fontSize: 12, color: Colors.grey),
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Theme.of(context).colorScheme.onSecondary.withOpacity(0.5),
+                                    ),
                                   ),
                                 ],
                               ),
