@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:event_bus/event_bus.dart';
 
 import '../errors/exceptions.dart';
+import '../events/connection_error.dart';
 import '../events/unauthorized.dart';
 
 class StatusInterceptor extends InterceptorsWrapper {
@@ -10,6 +11,10 @@ class StatusInterceptor extends InterceptorsWrapper {
   StatusInterceptor({required EventBus eventBus}) : _eventBus = eventBus;
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
+    if(err.type == DioExceptionType.connectionError){
+      _eventBus.fire(ConnectionError());
+      return;
+    }
     if (err.response != null) {
       switch (err.response?.statusCode) {
         case 400:

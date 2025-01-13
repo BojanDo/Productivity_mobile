@@ -8,9 +8,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:side_effect_bloc/side_effect_bloc.dart';
 
 import '../../../../core/errors/failure.dart';
+import '../../../../core/events/connection_error.dart';
 import '../../../../core/events/unauthorized.dart';
 import '../../../../core/utils/api_manager.dart';
 import '../../../../core/utils/localdata_manager.dart';
+import '../../../User/domain/entities/organizations.dart';
 import '../../../User/domain/entities/users.dart';
 import '../../../User/domain/usecases/get_user.dart';
 
@@ -47,6 +49,7 @@ class AppBloc extends SideEffectBloc<AppEvent, AppState, AppSideEffect> {
         ),
         overlayRemove: () =>
             produceSideEffect(const AppSideEffect.overlayRemove()),
+        toOffline: (int organizationId) {},
       ),
     );
 
@@ -55,6 +58,13 @@ class AppBloc extends SideEffectBloc<AppEvent, AppState, AppSideEffect> {
         add(
           const AppEvent.toNotAuthenticated(),
         );
+      },
+    );
+
+    _connectionErrorSubscription = eventBus.on<ConnectionError>().listen(
+      (ConnectionError event) {
+        produceSideEffect(const AppSideEffect.overlayRemove());
+        produceSideEffect(const AppSideEffect.connectionError());
       },
     );
   }
@@ -96,10 +106,12 @@ class AppBloc extends SideEffectBloc<AppEvent, AppState, AppSideEffect> {
   final GlobalKey<NavigatorState> outerNavigator = GlobalKey<NavigatorState>();
   final GlobalKey<NavigatorState> innerNavigator = GlobalKey<NavigatorState>();
   late final StreamSubscription<UnAuthorizedEvent> _authErrorSubscription;
+  late final StreamSubscription<ConnectionError> _connectionErrorSubscription;
 
   @override
   Future<void> close() {
     _authErrorSubscription.cancel();
+    _connectionErrorSubscription.cancel();
     return super.close();
   }
 }

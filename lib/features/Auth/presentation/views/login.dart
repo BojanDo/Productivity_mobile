@@ -60,6 +60,8 @@ class _LoginPageState extends State<LoginPage> {
         buttonText: 'Login',
         switchText: 'Don\'t have an account? Sign up',
         switchPageId: 1,
+        useOfflineText: 'Continue in offline mode',
+        useOfflinePageId: 2,
         submit: () {
           context.read<AuthBloc>().add(const AuthEvent.login());
         },

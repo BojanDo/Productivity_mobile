@@ -18,6 +18,7 @@ import '../../widgets/filter/filter_form_bloc.dart';
 import '../../widgets/pop_scope/pop_scope_bloc.dart';
 import '../utils/api_manager.dart';
 import '../utils/localdata_manager.dart';
+import '../utils/sql_manager.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -66,4 +67,7 @@ Future<void> initUtils() async {
   final APIManager apiManager =
       await APIManager.createInstance(sl(), sl(), sl());
   sl.registerLazySingleton(() => apiManager);
+
+  final SQLManager sqlManager = await SQLManager.createInstance();
+  sl.registerLazySingleton(() => sqlManager);
 }

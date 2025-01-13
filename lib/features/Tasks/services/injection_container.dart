@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 
 import '../../../core/config/constants.dart';
 import '../../../mock/task_remote_data_source.dart';
+import '../data/datasources/task_local_data_source.dart';
 import '../data/datasources/task_remote_data_source.dart';
 import '../data/repositories/task_repo_implementation.dart';
 import '../domain/repositories/task_repo.dart';
@@ -60,7 +61,7 @@ Future<void> initTasks(GetIt sl) async {
   sl.registerLazySingleton(() => UpdateTask(sl()));
   sl.registerLazySingleton(() => GetComments(sl()));
   // Repositories
-  sl.registerLazySingleton<TaskRepository>(() => TaskRepoImplementation(sl()));
+  sl.registerLazySingleton<TaskRepository>(() => TaskRepoImplementation(sl(),sl()));
   // Data Sources
   if (kUseMockData) {
     sl.registerLazySingleton<TaskRemoteDataSource>(
@@ -71,4 +72,7 @@ Future<void> initTasks(GetIt sl) async {
       () => TaskRemoteDataSourceImplementation(sl()),
     );
   }
+  sl.registerLazySingleton<TaskLocalDataSource>(
+        () => TaskLocalDataSourceImplementation(sl()),
+  );
 }

@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 
 import '../../../core/config/constants.dart';
 import '../../../mock/user_remote_data_source.dart';
+import '../data/datasources/user_local_data_source.dart';
 import '../data/datasources/user_remote_data_source.dart';
 import '../data/repositories/user_repo_implementation.dart';
 import '../domain/entities/users.dart';
@@ -12,6 +13,7 @@ import '../domain/usecases/decline_invitation.dart';
 import '../domain/usecases/get_invitations.dart';
 import '../domain/usecases/get_invited_users.dart';
 import '../domain/usecases/get_organization.dart';
+import '../domain/usecases/get_organizations.dart';
 import '../domain/usecases/get_user.dart';
 import '../domain/usecases/get_users.dart';
 import '../domain/usecases/send_invitation.dart';
@@ -53,6 +55,7 @@ Future<void> initUser(GetIt sl) async {
   sl.registerLazySingleton(() => DeclineInvitation(sl()));
   sl.registerLazySingleton(() => GetInvitations(sl()));
   sl.registerLazySingleton(() => GetInvitedUsers(sl()));
+  sl.registerLazySingleton(() => GetOrganizations(sl()));
   sl.registerLazySingleton(() => GetOrganization(sl()));
   sl.registerLazySingleton(() => GetUser(sl()));
   sl.registerLazySingleton(() => GetUsers(sl()));
@@ -61,7 +64,7 @@ Future<void> initUser(GetIt sl) async {
   sl.registerLazySingleton(() => UpdateUser(sl()));
   // Repositories
   sl.registerLazySingleton<UserRepository>(
-    () => UserRepoImplementation(sl()),
+    () => UserRepoImplementation(sl(),sl()),
   );
   // Data Sources
   if (kUseMockData) {
@@ -73,4 +76,7 @@ Future<void> initUser(GetIt sl) async {
       () => UserRemoteDataSourceImplementation(sl()),
     );
   }
+  sl.registerLazySingleton<UserLocalDataSource>(
+        () => UserLocalDataSourceImplementation(sl()),
+  );
 }

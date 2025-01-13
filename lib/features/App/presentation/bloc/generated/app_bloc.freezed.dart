@@ -20,6 +20,7 @@ mixin _$AppEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) toAuthenticated,
     required TResult Function() toNotAuthenticated,
+    required TResult Function(int organizationId) toOffline,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -30,6 +31,7 @@ mixin _$AppEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? toAuthenticated,
     TResult? Function()? toNotAuthenticated,
+    TResult? Function(int organizationId)? toOffline,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -40,6 +42,7 @@ mixin _$AppEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? toAuthenticated,
     TResult Function()? toNotAuthenticated,
+    TResult Function(int organizationId)? toOffline,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -52,6 +55,7 @@ mixin _$AppEvent {
     required TResult Function(_AppEventToAuthenticated value) toAuthenticated,
     required TResult Function(_AppEventToNotAuthenticated value)
         toNotAuthenticated,
+    required TResult Function(_AppEventToOffline value) toOffline,
     required TResult Function(_AppEventError value) error,
     required TResult Function(_AppEventSuccess value) success,
     required TResult Function(_AppEventOverlayAdd value) overlayAdd,
@@ -62,6 +66,7 @@ mixin _$AppEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AppEventToAuthenticated value)? toAuthenticated,
     TResult? Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult? Function(_AppEventToOffline value)? toOffline,
     TResult? Function(_AppEventError value)? error,
     TResult? Function(_AppEventSuccess value)? success,
     TResult? Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -72,6 +77,7 @@ mixin _$AppEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AppEventToAuthenticated value)? toAuthenticated,
     TResult Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult Function(_AppEventToOffline value)? toOffline,
     TResult Function(_AppEventError value)? error,
     TResult Function(_AppEventSuccess value)? success,
     TResult Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -186,6 +192,7 @@ class _$AppEventToAuthenticatedImpl implements _AppEventToAuthenticated {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) toAuthenticated,
     required TResult Function() toNotAuthenticated,
+    required TResult Function(int organizationId) toOffline,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -199,6 +206,7 @@ class _$AppEventToAuthenticatedImpl implements _AppEventToAuthenticated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? toAuthenticated,
     TResult? Function()? toNotAuthenticated,
+    TResult? Function(int organizationId)? toOffline,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -212,6 +220,7 @@ class _$AppEventToAuthenticatedImpl implements _AppEventToAuthenticated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? toAuthenticated,
     TResult Function()? toNotAuthenticated,
+    TResult Function(int organizationId)? toOffline,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -230,6 +239,7 @@ class _$AppEventToAuthenticatedImpl implements _AppEventToAuthenticated {
     required TResult Function(_AppEventToAuthenticated value) toAuthenticated,
     required TResult Function(_AppEventToNotAuthenticated value)
         toNotAuthenticated,
+    required TResult Function(_AppEventToOffline value) toOffline,
     required TResult Function(_AppEventError value) error,
     required TResult Function(_AppEventSuccess value) success,
     required TResult Function(_AppEventOverlayAdd value) overlayAdd,
@@ -243,6 +253,7 @@ class _$AppEventToAuthenticatedImpl implements _AppEventToAuthenticated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AppEventToAuthenticated value)? toAuthenticated,
     TResult? Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult? Function(_AppEventToOffline value)? toOffline,
     TResult? Function(_AppEventError value)? error,
     TResult? Function(_AppEventSuccess value)? success,
     TResult? Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -256,6 +267,7 @@ class _$AppEventToAuthenticatedImpl implements _AppEventToAuthenticated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AppEventToAuthenticated value)? toAuthenticated,
     TResult Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult Function(_AppEventToOffline value)? toOffline,
     TResult Function(_AppEventError value)? error,
     TResult Function(_AppEventSuccess value)? success,
     TResult Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -328,6 +340,7 @@ class _$AppEventToNotAuthenticatedImpl implements _AppEventToNotAuthenticated {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) toAuthenticated,
     required TResult Function() toNotAuthenticated,
+    required TResult Function(int organizationId) toOffline,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -341,6 +354,7 @@ class _$AppEventToNotAuthenticatedImpl implements _AppEventToNotAuthenticated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? toAuthenticated,
     TResult? Function()? toNotAuthenticated,
+    TResult? Function(int organizationId)? toOffline,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -354,6 +368,7 @@ class _$AppEventToNotAuthenticatedImpl implements _AppEventToNotAuthenticated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? toAuthenticated,
     TResult Function()? toNotAuthenticated,
+    TResult Function(int organizationId)? toOffline,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -372,6 +387,7 @@ class _$AppEventToNotAuthenticatedImpl implements _AppEventToNotAuthenticated {
     required TResult Function(_AppEventToAuthenticated value) toAuthenticated,
     required TResult Function(_AppEventToNotAuthenticated value)
         toNotAuthenticated,
+    required TResult Function(_AppEventToOffline value) toOffline,
     required TResult Function(_AppEventError value) error,
     required TResult Function(_AppEventSuccess value) success,
     required TResult Function(_AppEventOverlayAdd value) overlayAdd,
@@ -385,6 +401,7 @@ class _$AppEventToNotAuthenticatedImpl implements _AppEventToNotAuthenticated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AppEventToAuthenticated value)? toAuthenticated,
     TResult? Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult? Function(_AppEventToOffline value)? toOffline,
     TResult? Function(_AppEventError value)? error,
     TResult? Function(_AppEventSuccess value)? success,
     TResult? Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -398,6 +415,7 @@ class _$AppEventToNotAuthenticatedImpl implements _AppEventToNotAuthenticated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AppEventToAuthenticated value)? toAuthenticated,
     TResult Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult Function(_AppEventToOffline value)? toOffline,
     TResult Function(_AppEventError value)? error,
     TResult Function(_AppEventSuccess value)? success,
     TResult Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -414,6 +432,180 @@ class _$AppEventToNotAuthenticatedImpl implements _AppEventToNotAuthenticated {
 abstract class _AppEventToNotAuthenticated implements AppEvent {
   const factory _AppEventToNotAuthenticated() =
       _$AppEventToNotAuthenticatedImpl;
+}
+
+/// @nodoc
+abstract class _$$AppEventToOfflineImplCopyWith<$Res> {
+  factory _$$AppEventToOfflineImplCopyWith(_$AppEventToOfflineImpl value,
+          $Res Function(_$AppEventToOfflineImpl) then) =
+      __$$AppEventToOfflineImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int organizationId});
+}
+
+/// @nodoc
+class __$$AppEventToOfflineImplCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res, _$AppEventToOfflineImpl>
+    implements _$$AppEventToOfflineImplCopyWith<$Res> {
+  __$$AppEventToOfflineImplCopyWithImpl(_$AppEventToOfflineImpl _value,
+      $Res Function(_$AppEventToOfflineImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AppEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? organizationId = null,
+  }) {
+    return _then(_$AppEventToOfflineImpl(
+      organizationId: null == organizationId
+          ? _value.organizationId
+          : organizationId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AppEventToOfflineImpl implements _AppEventToOffline {
+  const _$AppEventToOfflineImpl({required this.organizationId});
+
+  @override
+  final int organizationId;
+
+  @override
+  String toString() {
+    return 'AppEvent.toOffline(organizationId: $organizationId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AppEventToOfflineImpl &&
+            (identical(other.organizationId, organizationId) ||
+                other.organizationId == organizationId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, organizationId);
+
+  /// Create a copy of AppEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AppEventToOfflineImplCopyWith<_$AppEventToOfflineImpl> get copyWith =>
+      __$$AppEventToOfflineImplCopyWithImpl<_$AppEventToOfflineImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(User user) toAuthenticated,
+    required TResult Function() toNotAuthenticated,
+    required TResult Function(int organizationId) toOffline,
+    required TResult Function(String message) error,
+    required TResult Function(String message) success,
+    required TResult Function(Widget? content) overlayAdd,
+    required TResult Function() overlayRemove,
+  }) {
+    return toOffline(organizationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(User user)? toAuthenticated,
+    TResult? Function()? toNotAuthenticated,
+    TResult? Function(int organizationId)? toOffline,
+    TResult? Function(String message)? error,
+    TResult? Function(String message)? success,
+    TResult? Function(Widget? content)? overlayAdd,
+    TResult? Function()? overlayRemove,
+  }) {
+    return toOffline?.call(organizationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(User user)? toAuthenticated,
+    TResult Function()? toNotAuthenticated,
+    TResult Function(int organizationId)? toOffline,
+    TResult Function(String message)? error,
+    TResult Function(String message)? success,
+    TResult Function(Widget? content)? overlayAdd,
+    TResult Function()? overlayRemove,
+    required TResult orElse(),
+  }) {
+    if (toOffline != null) {
+      return toOffline(organizationId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AppEventToAuthenticated value) toAuthenticated,
+    required TResult Function(_AppEventToNotAuthenticated value)
+        toNotAuthenticated,
+    required TResult Function(_AppEventToOffline value) toOffline,
+    required TResult Function(_AppEventError value) error,
+    required TResult Function(_AppEventSuccess value) success,
+    required TResult Function(_AppEventOverlayAdd value) overlayAdd,
+    required TResult Function(_AppEventOverlayRemove value) overlayRemove,
+  }) {
+    return toOffline(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppEventToAuthenticated value)? toAuthenticated,
+    TResult? Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult? Function(_AppEventToOffline value)? toOffline,
+    TResult? Function(_AppEventError value)? error,
+    TResult? Function(_AppEventSuccess value)? success,
+    TResult? Function(_AppEventOverlayAdd value)? overlayAdd,
+    TResult? Function(_AppEventOverlayRemove value)? overlayRemove,
+  }) {
+    return toOffline?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppEventToAuthenticated value)? toAuthenticated,
+    TResult Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult Function(_AppEventToOffline value)? toOffline,
+    TResult Function(_AppEventError value)? error,
+    TResult Function(_AppEventSuccess value)? success,
+    TResult Function(_AppEventOverlayAdd value)? overlayAdd,
+    TResult Function(_AppEventOverlayRemove value)? overlayRemove,
+    required TResult orElse(),
+  }) {
+    if (toOffline != null) {
+      return toOffline(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AppEventToOffline implements AppEvent {
+  const factory _AppEventToOffline({required final int organizationId}) =
+      _$AppEventToOfflineImpl;
+
+  int get organizationId;
+
+  /// Create a copy of AppEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AppEventToOfflineImplCopyWith<_$AppEventToOfflineImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -486,6 +678,7 @@ class _$AppEventErrorImpl implements _AppEventError {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) toAuthenticated,
     required TResult Function() toNotAuthenticated,
+    required TResult Function(int organizationId) toOffline,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -499,6 +692,7 @@ class _$AppEventErrorImpl implements _AppEventError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? toAuthenticated,
     TResult? Function()? toNotAuthenticated,
+    TResult? Function(int organizationId)? toOffline,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -512,6 +706,7 @@ class _$AppEventErrorImpl implements _AppEventError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? toAuthenticated,
     TResult Function()? toNotAuthenticated,
+    TResult Function(int organizationId)? toOffline,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -530,6 +725,7 @@ class _$AppEventErrorImpl implements _AppEventError {
     required TResult Function(_AppEventToAuthenticated value) toAuthenticated,
     required TResult Function(_AppEventToNotAuthenticated value)
         toNotAuthenticated,
+    required TResult Function(_AppEventToOffline value) toOffline,
     required TResult Function(_AppEventError value) error,
     required TResult Function(_AppEventSuccess value) success,
     required TResult Function(_AppEventOverlayAdd value) overlayAdd,
@@ -543,6 +739,7 @@ class _$AppEventErrorImpl implements _AppEventError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AppEventToAuthenticated value)? toAuthenticated,
     TResult? Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult? Function(_AppEventToOffline value)? toOffline,
     TResult? Function(_AppEventError value)? error,
     TResult? Function(_AppEventSuccess value)? success,
     TResult? Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -556,6 +753,7 @@ class _$AppEventErrorImpl implements _AppEventError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AppEventToAuthenticated value)? toAuthenticated,
     TResult Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult Function(_AppEventToOffline value)? toOffline,
     TResult Function(_AppEventError value)? error,
     TResult Function(_AppEventSuccess value)? success,
     TResult Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -653,6 +851,7 @@ class _$AppEventSuccessImpl implements _AppEventSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) toAuthenticated,
     required TResult Function() toNotAuthenticated,
+    required TResult Function(int organizationId) toOffline,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -666,6 +865,7 @@ class _$AppEventSuccessImpl implements _AppEventSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? toAuthenticated,
     TResult? Function()? toNotAuthenticated,
+    TResult? Function(int organizationId)? toOffline,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -679,6 +879,7 @@ class _$AppEventSuccessImpl implements _AppEventSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? toAuthenticated,
     TResult Function()? toNotAuthenticated,
+    TResult Function(int organizationId)? toOffline,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -697,6 +898,7 @@ class _$AppEventSuccessImpl implements _AppEventSuccess {
     required TResult Function(_AppEventToAuthenticated value) toAuthenticated,
     required TResult Function(_AppEventToNotAuthenticated value)
         toNotAuthenticated,
+    required TResult Function(_AppEventToOffline value) toOffline,
     required TResult Function(_AppEventError value) error,
     required TResult Function(_AppEventSuccess value) success,
     required TResult Function(_AppEventOverlayAdd value) overlayAdd,
@@ -710,6 +912,7 @@ class _$AppEventSuccessImpl implements _AppEventSuccess {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AppEventToAuthenticated value)? toAuthenticated,
     TResult? Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult? Function(_AppEventToOffline value)? toOffline,
     TResult? Function(_AppEventError value)? error,
     TResult? Function(_AppEventSuccess value)? success,
     TResult? Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -723,6 +926,7 @@ class _$AppEventSuccessImpl implements _AppEventSuccess {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AppEventToAuthenticated value)? toAuthenticated,
     TResult Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult Function(_AppEventToOffline value)? toOffline,
     TResult Function(_AppEventError value)? error,
     TResult Function(_AppEventSuccess value)? success,
     TResult Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -820,6 +1024,7 @@ class _$AppEventOverlayAddImpl implements _AppEventOverlayAdd {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) toAuthenticated,
     required TResult Function() toNotAuthenticated,
+    required TResult Function(int organizationId) toOffline,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -833,6 +1038,7 @@ class _$AppEventOverlayAddImpl implements _AppEventOverlayAdd {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? toAuthenticated,
     TResult? Function()? toNotAuthenticated,
+    TResult? Function(int organizationId)? toOffline,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -846,6 +1052,7 @@ class _$AppEventOverlayAddImpl implements _AppEventOverlayAdd {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? toAuthenticated,
     TResult Function()? toNotAuthenticated,
+    TResult Function(int organizationId)? toOffline,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -864,6 +1071,7 @@ class _$AppEventOverlayAddImpl implements _AppEventOverlayAdd {
     required TResult Function(_AppEventToAuthenticated value) toAuthenticated,
     required TResult Function(_AppEventToNotAuthenticated value)
         toNotAuthenticated,
+    required TResult Function(_AppEventToOffline value) toOffline,
     required TResult Function(_AppEventError value) error,
     required TResult Function(_AppEventSuccess value) success,
     required TResult Function(_AppEventOverlayAdd value) overlayAdd,
@@ -877,6 +1085,7 @@ class _$AppEventOverlayAddImpl implements _AppEventOverlayAdd {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AppEventToAuthenticated value)? toAuthenticated,
     TResult? Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult? Function(_AppEventToOffline value)? toOffline,
     TResult? Function(_AppEventError value)? error,
     TResult? Function(_AppEventSuccess value)? success,
     TResult? Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -890,6 +1099,7 @@ class _$AppEventOverlayAddImpl implements _AppEventOverlayAdd {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AppEventToAuthenticated value)? toAuthenticated,
     TResult Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult Function(_AppEventToOffline value)? toOffline,
     TResult Function(_AppEventError value)? error,
     TResult Function(_AppEventSuccess value)? success,
     TResult Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -961,6 +1171,7 @@ class _$AppEventOverlayRemoveImpl implements _AppEventOverlayRemove {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) toAuthenticated,
     required TResult Function() toNotAuthenticated,
+    required TResult Function(int organizationId) toOffline,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -974,6 +1185,7 @@ class _$AppEventOverlayRemoveImpl implements _AppEventOverlayRemove {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? toAuthenticated,
     TResult? Function()? toNotAuthenticated,
+    TResult? Function(int organizationId)? toOffline,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -987,6 +1199,7 @@ class _$AppEventOverlayRemoveImpl implements _AppEventOverlayRemove {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? toAuthenticated,
     TResult Function()? toNotAuthenticated,
+    TResult Function(int organizationId)? toOffline,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -1005,6 +1218,7 @@ class _$AppEventOverlayRemoveImpl implements _AppEventOverlayRemove {
     required TResult Function(_AppEventToAuthenticated value) toAuthenticated,
     required TResult Function(_AppEventToNotAuthenticated value)
         toNotAuthenticated,
+    required TResult Function(_AppEventToOffline value) toOffline,
     required TResult Function(_AppEventError value) error,
     required TResult Function(_AppEventSuccess value) success,
     required TResult Function(_AppEventOverlayAdd value) overlayAdd,
@@ -1018,6 +1232,7 @@ class _$AppEventOverlayRemoveImpl implements _AppEventOverlayRemove {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AppEventToAuthenticated value)? toAuthenticated,
     TResult? Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult? Function(_AppEventToOffline value)? toOffline,
     TResult? Function(_AppEventError value)? error,
     TResult? Function(_AppEventSuccess value)? success,
     TResult? Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -1031,6 +1246,7 @@ class _$AppEventOverlayRemoveImpl implements _AppEventOverlayRemove {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AppEventToAuthenticated value)? toAuthenticated,
     TResult Function(_AppEventToNotAuthenticated value)? toNotAuthenticated,
+    TResult Function(_AppEventToOffline value)? toOffline,
     TResult Function(_AppEventError value)? error,
     TResult Function(_AppEventSuccess value)? success,
     TResult Function(_AppEventOverlayAdd value)? overlayAdd,
@@ -1056,6 +1272,7 @@ mixin _$AppSideEffect {
     required TResult Function(String message) success,
     required TResult Function(Widget content) overlayAdd,
     required TResult Function() overlayRemove,
+    required TResult Function() connectionError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1064,6 +1281,7 @@ mixin _$AppSideEffect {
     TResult? Function(String message)? success,
     TResult? Function(Widget content)? overlayAdd,
     TResult? Function()? overlayRemove,
+    TResult? Function()? connectionError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1072,6 +1290,7 @@ mixin _$AppSideEffect {
     TResult Function(String message)? success,
     TResult Function(Widget content)? overlayAdd,
     TResult Function()? overlayRemove,
+    TResult Function()? connectionError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1081,6 +1300,8 @@ mixin _$AppSideEffect {
     required TResult Function(_AppSideEffectSuccess value) success,
     required TResult Function(_AppSideEffectOverlayAdd value) overlayAdd,
     required TResult Function(_AppSideEffectOverlayRemove value) overlayRemove,
+    required TResult Function(_AppSideEffectConnectionError value)
+        connectionError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1089,6 +1310,7 @@ mixin _$AppSideEffect {
     TResult? Function(_AppSideEffectSuccess value)? success,
     TResult? Function(_AppSideEffectOverlayAdd value)? overlayAdd,
     TResult? Function(_AppSideEffectOverlayRemove value)? overlayRemove,
+    TResult? Function(_AppSideEffectConnectionError value)? connectionError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1097,6 +1319,7 @@ mixin _$AppSideEffect {
     TResult Function(_AppSideEffectSuccess value)? success,
     TResult Function(_AppSideEffectOverlayAdd value)? overlayAdd,
     TResult Function(_AppSideEffectOverlayRemove value)? overlayRemove,
+    TResult Function(_AppSideEffectConnectionError value)? connectionError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1196,6 +1419,7 @@ class _$AppSideEffectErrorImpl implements _AppSideEffectError {
     required TResult Function(String message) success,
     required TResult Function(Widget content) overlayAdd,
     required TResult Function() overlayRemove,
+    required TResult Function() connectionError,
   }) {
     return error(message);
   }
@@ -1207,6 +1431,7 @@ class _$AppSideEffectErrorImpl implements _AppSideEffectError {
     TResult? Function(String message)? success,
     TResult? Function(Widget content)? overlayAdd,
     TResult? Function()? overlayRemove,
+    TResult? Function()? connectionError,
   }) {
     return error?.call(message);
   }
@@ -1218,6 +1443,7 @@ class _$AppSideEffectErrorImpl implements _AppSideEffectError {
     TResult Function(String message)? success,
     TResult Function(Widget content)? overlayAdd,
     TResult Function()? overlayRemove,
+    TResult Function()? connectionError,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1233,6 +1459,8 @@ class _$AppSideEffectErrorImpl implements _AppSideEffectError {
     required TResult Function(_AppSideEffectSuccess value) success,
     required TResult Function(_AppSideEffectOverlayAdd value) overlayAdd,
     required TResult Function(_AppSideEffectOverlayRemove value) overlayRemove,
+    required TResult Function(_AppSideEffectConnectionError value)
+        connectionError,
   }) {
     return error(this);
   }
@@ -1244,6 +1472,7 @@ class _$AppSideEffectErrorImpl implements _AppSideEffectError {
     TResult? Function(_AppSideEffectSuccess value)? success,
     TResult? Function(_AppSideEffectOverlayAdd value)? overlayAdd,
     TResult? Function(_AppSideEffectOverlayRemove value)? overlayRemove,
+    TResult? Function(_AppSideEffectConnectionError value)? connectionError,
   }) {
     return error?.call(this);
   }
@@ -1255,6 +1484,7 @@ class _$AppSideEffectErrorImpl implements _AppSideEffectError {
     TResult Function(_AppSideEffectSuccess value)? success,
     TResult Function(_AppSideEffectOverlayAdd value)? overlayAdd,
     TResult Function(_AppSideEffectOverlayRemove value)? overlayRemove,
+    TResult Function(_AppSideEffectConnectionError value)? connectionError,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1351,6 +1581,7 @@ class _$AppSideEffectSuccessImpl implements _AppSideEffectSuccess {
     required TResult Function(String message) success,
     required TResult Function(Widget content) overlayAdd,
     required TResult Function() overlayRemove,
+    required TResult Function() connectionError,
   }) {
     return success(message);
   }
@@ -1362,6 +1593,7 @@ class _$AppSideEffectSuccessImpl implements _AppSideEffectSuccess {
     TResult? Function(String message)? success,
     TResult? Function(Widget content)? overlayAdd,
     TResult? Function()? overlayRemove,
+    TResult? Function()? connectionError,
   }) {
     return success?.call(message);
   }
@@ -1373,6 +1605,7 @@ class _$AppSideEffectSuccessImpl implements _AppSideEffectSuccess {
     TResult Function(String message)? success,
     TResult Function(Widget content)? overlayAdd,
     TResult Function()? overlayRemove,
+    TResult Function()? connectionError,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1388,6 +1621,8 @@ class _$AppSideEffectSuccessImpl implements _AppSideEffectSuccess {
     required TResult Function(_AppSideEffectSuccess value) success,
     required TResult Function(_AppSideEffectOverlayAdd value) overlayAdd,
     required TResult Function(_AppSideEffectOverlayRemove value) overlayRemove,
+    required TResult Function(_AppSideEffectConnectionError value)
+        connectionError,
   }) {
     return success(this);
   }
@@ -1399,6 +1634,7 @@ class _$AppSideEffectSuccessImpl implements _AppSideEffectSuccess {
     TResult? Function(_AppSideEffectSuccess value)? success,
     TResult? Function(_AppSideEffectOverlayAdd value)? overlayAdd,
     TResult? Function(_AppSideEffectOverlayRemove value)? overlayRemove,
+    TResult? Function(_AppSideEffectConnectionError value)? connectionError,
   }) {
     return success?.call(this);
   }
@@ -1410,6 +1646,7 @@ class _$AppSideEffectSuccessImpl implements _AppSideEffectSuccess {
     TResult Function(_AppSideEffectSuccess value)? success,
     TResult Function(_AppSideEffectOverlayAdd value)? overlayAdd,
     TResult Function(_AppSideEffectOverlayRemove value)? overlayRemove,
+    TResult Function(_AppSideEffectConnectionError value)? connectionError,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1507,6 +1744,7 @@ class _$AppSideEffectOverlayAddImpl implements _AppSideEffectOverlayAdd {
     required TResult Function(String message) success,
     required TResult Function(Widget content) overlayAdd,
     required TResult Function() overlayRemove,
+    required TResult Function() connectionError,
   }) {
     return overlayAdd(content);
   }
@@ -1518,6 +1756,7 @@ class _$AppSideEffectOverlayAddImpl implements _AppSideEffectOverlayAdd {
     TResult? Function(String message)? success,
     TResult? Function(Widget content)? overlayAdd,
     TResult? Function()? overlayRemove,
+    TResult? Function()? connectionError,
   }) {
     return overlayAdd?.call(content);
   }
@@ -1529,6 +1768,7 @@ class _$AppSideEffectOverlayAddImpl implements _AppSideEffectOverlayAdd {
     TResult Function(String message)? success,
     TResult Function(Widget content)? overlayAdd,
     TResult Function()? overlayRemove,
+    TResult Function()? connectionError,
     required TResult orElse(),
   }) {
     if (overlayAdd != null) {
@@ -1544,6 +1784,8 @@ class _$AppSideEffectOverlayAddImpl implements _AppSideEffectOverlayAdd {
     required TResult Function(_AppSideEffectSuccess value) success,
     required TResult Function(_AppSideEffectOverlayAdd value) overlayAdd,
     required TResult Function(_AppSideEffectOverlayRemove value) overlayRemove,
+    required TResult Function(_AppSideEffectConnectionError value)
+        connectionError,
   }) {
     return overlayAdd(this);
   }
@@ -1555,6 +1797,7 @@ class _$AppSideEffectOverlayAddImpl implements _AppSideEffectOverlayAdd {
     TResult? Function(_AppSideEffectSuccess value)? success,
     TResult? Function(_AppSideEffectOverlayAdd value)? overlayAdd,
     TResult? Function(_AppSideEffectOverlayRemove value)? overlayRemove,
+    TResult? Function(_AppSideEffectConnectionError value)? connectionError,
   }) {
     return overlayAdd?.call(this);
   }
@@ -1566,6 +1809,7 @@ class _$AppSideEffectOverlayAddImpl implements _AppSideEffectOverlayAdd {
     TResult Function(_AppSideEffectSuccess value)? success,
     TResult Function(_AppSideEffectOverlayAdd value)? overlayAdd,
     TResult Function(_AppSideEffectOverlayRemove value)? overlayRemove,
+    TResult Function(_AppSideEffectConnectionError value)? connectionError,
     required TResult orElse(),
   }) {
     if (overlayAdd != null) {
@@ -1636,6 +1880,7 @@ class _$AppSideEffectOverlayRemoveImpl implements _AppSideEffectOverlayRemove {
     required TResult Function(String message) success,
     required TResult Function(Widget content) overlayAdd,
     required TResult Function() overlayRemove,
+    required TResult Function() connectionError,
   }) {
     return overlayRemove();
   }
@@ -1647,6 +1892,7 @@ class _$AppSideEffectOverlayRemoveImpl implements _AppSideEffectOverlayRemove {
     TResult? Function(String message)? success,
     TResult? Function(Widget content)? overlayAdd,
     TResult? Function()? overlayRemove,
+    TResult? Function()? connectionError,
   }) {
     return overlayRemove?.call();
   }
@@ -1658,6 +1904,7 @@ class _$AppSideEffectOverlayRemoveImpl implements _AppSideEffectOverlayRemove {
     TResult Function(String message)? success,
     TResult Function(Widget content)? overlayAdd,
     TResult Function()? overlayRemove,
+    TResult Function()? connectionError,
     required TResult orElse(),
   }) {
     if (overlayRemove != null) {
@@ -1673,6 +1920,8 @@ class _$AppSideEffectOverlayRemoveImpl implements _AppSideEffectOverlayRemove {
     required TResult Function(_AppSideEffectSuccess value) success,
     required TResult Function(_AppSideEffectOverlayAdd value) overlayAdd,
     required TResult Function(_AppSideEffectOverlayRemove value) overlayRemove,
+    required TResult Function(_AppSideEffectConnectionError value)
+        connectionError,
   }) {
     return overlayRemove(this);
   }
@@ -1684,6 +1933,7 @@ class _$AppSideEffectOverlayRemoveImpl implements _AppSideEffectOverlayRemove {
     TResult? Function(_AppSideEffectSuccess value)? success,
     TResult? Function(_AppSideEffectOverlayAdd value)? overlayAdd,
     TResult? Function(_AppSideEffectOverlayRemove value)? overlayRemove,
+    TResult? Function(_AppSideEffectConnectionError value)? connectionError,
   }) {
     return overlayRemove?.call(this);
   }
@@ -1695,6 +1945,7 @@ class _$AppSideEffectOverlayRemoveImpl implements _AppSideEffectOverlayRemove {
     TResult Function(_AppSideEffectSuccess value)? success,
     TResult Function(_AppSideEffectOverlayAdd value)? overlayAdd,
     TResult Function(_AppSideEffectOverlayRemove value)? overlayRemove,
+    TResult Function(_AppSideEffectConnectionError value)? connectionError,
     required TResult orElse(),
   }) {
     if (overlayRemove != null) {
@@ -1710,23 +1961,156 @@ abstract class _AppSideEffectOverlayRemove implements AppSideEffect {
 }
 
 /// @nodoc
+abstract class _$$AppSideEffectConnectionErrorImplCopyWith<$Res> {
+  factory _$$AppSideEffectConnectionErrorImplCopyWith(
+          _$AppSideEffectConnectionErrorImpl value,
+          $Res Function(_$AppSideEffectConnectionErrorImpl) then) =
+      __$$AppSideEffectConnectionErrorImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AppSideEffectConnectionErrorImplCopyWithImpl<$Res>
+    extends _$AppSideEffectCopyWithImpl<$Res,
+        _$AppSideEffectConnectionErrorImpl>
+    implements _$$AppSideEffectConnectionErrorImplCopyWith<$Res> {
+  __$$AppSideEffectConnectionErrorImplCopyWithImpl(
+      _$AppSideEffectConnectionErrorImpl _value,
+      $Res Function(_$AppSideEffectConnectionErrorImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AppSideEffect
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$AppSideEffectConnectionErrorImpl
+    implements _AppSideEffectConnectionError {
+  const _$AppSideEffectConnectionErrorImpl();
+
+  @override
+  String toString() {
+    return 'AppSideEffect.connectionError()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AppSideEffectConnectionErrorImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String message) error,
+    required TResult Function(String message) success,
+    required TResult Function(Widget content) overlayAdd,
+    required TResult Function() overlayRemove,
+    required TResult Function() connectionError,
+  }) {
+    return connectionError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String message)? error,
+    TResult? Function(String message)? success,
+    TResult? Function(Widget content)? overlayAdd,
+    TResult? Function()? overlayRemove,
+    TResult? Function()? connectionError,
+  }) {
+    return connectionError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message)? error,
+    TResult Function(String message)? success,
+    TResult Function(Widget content)? overlayAdd,
+    TResult Function()? overlayRemove,
+    TResult Function()? connectionError,
+    required TResult orElse(),
+  }) {
+    if (connectionError != null) {
+      return connectionError();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AppSideEffectError value) error,
+    required TResult Function(_AppSideEffectSuccess value) success,
+    required TResult Function(_AppSideEffectOverlayAdd value) overlayAdd,
+    required TResult Function(_AppSideEffectOverlayRemove value) overlayRemove,
+    required TResult Function(_AppSideEffectConnectionError value)
+        connectionError,
+  }) {
+    return connectionError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppSideEffectError value)? error,
+    TResult? Function(_AppSideEffectSuccess value)? success,
+    TResult? Function(_AppSideEffectOverlayAdd value)? overlayAdd,
+    TResult? Function(_AppSideEffectOverlayRemove value)? overlayRemove,
+    TResult? Function(_AppSideEffectConnectionError value)? connectionError,
+  }) {
+    return connectionError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppSideEffectError value)? error,
+    TResult Function(_AppSideEffectSuccess value)? success,
+    TResult Function(_AppSideEffectOverlayAdd value)? overlayAdd,
+    TResult Function(_AppSideEffectOverlayRemove value)? overlayRemove,
+    TResult Function(_AppSideEffectConnectionError value)? connectionError,
+    required TResult orElse(),
+  }) {
+    if (connectionError != null) {
+      return connectionError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AppSideEffectConnectionError implements AppSideEffect {
+  const factory _AppSideEffectConnectionError() =
+      _$AppSideEffectConnectionErrorImpl;
+}
+
+/// @nodoc
 mixin _$AppState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(User user) authenticated,
     required TResult Function() notAuthenticated,
+    required TResult Function(Organization organization) offline,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? authenticated,
     TResult? Function()? notAuthenticated,
+    TResult? Function(Organization organization)? offline,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? authenticated,
     TResult Function()? notAuthenticated,
+    TResult Function(Organization organization)? offline,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1734,18 +2118,21 @@ mixin _$AppState {
   TResult map<TResult extends Object?>({
     required TResult Function(_AppStateAuthenticated value) authenticated,
     required TResult Function(_AppStateNotAuthenticated value) notAuthenticated,
+    required TResult Function(_AppStateOffline value) offline,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AppStateAuthenticated value)? authenticated,
     TResult? Function(_AppStateNotAuthenticated value)? notAuthenticated,
+    TResult? Function(_AppStateOffline value)? offline,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AppStateAuthenticated value)? authenticated,
     TResult Function(_AppStateNotAuthenticated value)? notAuthenticated,
+    TResult Function(_AppStateOffline value)? offline,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1855,6 +2242,7 @@ class _$AppStateAuthenticatedImpl implements _AppStateAuthenticated {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) authenticated,
     required TResult Function() notAuthenticated,
+    required TResult Function(Organization organization) offline,
   }) {
     return authenticated(user);
   }
@@ -1864,6 +2252,7 @@ class _$AppStateAuthenticatedImpl implements _AppStateAuthenticated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? authenticated,
     TResult? Function()? notAuthenticated,
+    TResult? Function(Organization organization)? offline,
   }) {
     return authenticated?.call(user);
   }
@@ -1873,6 +2262,7 @@ class _$AppStateAuthenticatedImpl implements _AppStateAuthenticated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? authenticated,
     TResult Function()? notAuthenticated,
+    TResult Function(Organization organization)? offline,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
@@ -1886,6 +2276,7 @@ class _$AppStateAuthenticatedImpl implements _AppStateAuthenticated {
   TResult map<TResult extends Object?>({
     required TResult Function(_AppStateAuthenticated value) authenticated,
     required TResult Function(_AppStateNotAuthenticated value) notAuthenticated,
+    required TResult Function(_AppStateOffline value) offline,
   }) {
     return authenticated(this);
   }
@@ -1895,6 +2286,7 @@ class _$AppStateAuthenticatedImpl implements _AppStateAuthenticated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AppStateAuthenticated value)? authenticated,
     TResult? Function(_AppStateNotAuthenticated value)? notAuthenticated,
+    TResult? Function(_AppStateOffline value)? offline,
   }) {
     return authenticated?.call(this);
   }
@@ -1904,6 +2296,7 @@ class _$AppStateAuthenticatedImpl implements _AppStateAuthenticated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AppStateAuthenticated value)? authenticated,
     TResult Function(_AppStateNotAuthenticated value)? notAuthenticated,
+    TResult Function(_AppStateOffline value)? offline,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
@@ -1972,6 +2365,7 @@ class _$AppStateNotAuthenticatedImpl implements _AppStateNotAuthenticated {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) authenticated,
     required TResult Function() notAuthenticated,
+    required TResult Function(Organization organization) offline,
   }) {
     return notAuthenticated();
   }
@@ -1981,6 +2375,7 @@ class _$AppStateNotAuthenticatedImpl implements _AppStateNotAuthenticated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? authenticated,
     TResult? Function()? notAuthenticated,
+    TResult? Function(Organization organization)? offline,
   }) {
     return notAuthenticated?.call();
   }
@@ -1990,6 +2385,7 @@ class _$AppStateNotAuthenticatedImpl implements _AppStateNotAuthenticated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? authenticated,
     TResult Function()? notAuthenticated,
+    TResult Function(Organization organization)? offline,
     required TResult orElse(),
   }) {
     if (notAuthenticated != null) {
@@ -2003,6 +2399,7 @@ class _$AppStateNotAuthenticatedImpl implements _AppStateNotAuthenticated {
   TResult map<TResult extends Object?>({
     required TResult Function(_AppStateAuthenticated value) authenticated,
     required TResult Function(_AppStateNotAuthenticated value) notAuthenticated,
+    required TResult Function(_AppStateOffline value) offline,
   }) {
     return notAuthenticated(this);
   }
@@ -2012,6 +2409,7 @@ class _$AppStateNotAuthenticatedImpl implements _AppStateNotAuthenticated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AppStateAuthenticated value)? authenticated,
     TResult? Function(_AppStateNotAuthenticated value)? notAuthenticated,
+    TResult? Function(_AppStateOffline value)? offline,
   }) {
     return notAuthenticated?.call(this);
   }
@@ -2021,6 +2419,7 @@ class _$AppStateNotAuthenticatedImpl implements _AppStateNotAuthenticated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AppStateAuthenticated value)? authenticated,
     TResult Function(_AppStateNotAuthenticated value)? notAuthenticated,
+    TResult Function(_AppStateOffline value)? offline,
     required TResult orElse(),
   }) {
     if (notAuthenticated != null) {
@@ -2032,4 +2431,165 @@ class _$AppStateNotAuthenticatedImpl implements _AppStateNotAuthenticated {
 
 abstract class _AppStateNotAuthenticated implements AppState {
   const factory _AppStateNotAuthenticated() = _$AppStateNotAuthenticatedImpl;
+}
+
+/// @nodoc
+abstract class _$$AppStateOfflineImplCopyWith<$Res> {
+  factory _$$AppStateOfflineImplCopyWith(_$AppStateOfflineImpl value,
+          $Res Function(_$AppStateOfflineImpl) then) =
+      __$$AppStateOfflineImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Organization organization});
+
+  $OrganizationCopyWith<$Res> get organization;
+}
+
+/// @nodoc
+class __$$AppStateOfflineImplCopyWithImpl<$Res>
+    extends _$AppStateCopyWithImpl<$Res, _$AppStateOfflineImpl>
+    implements _$$AppStateOfflineImplCopyWith<$Res> {
+  __$$AppStateOfflineImplCopyWithImpl(
+      _$AppStateOfflineImpl _value, $Res Function(_$AppStateOfflineImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? organization = null,
+  }) {
+    return _then(_$AppStateOfflineImpl(
+      organization: null == organization
+          ? _value.organization
+          : organization // ignore: cast_nullable_to_non_nullable
+              as Organization,
+    ));
+  }
+
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $OrganizationCopyWith<$Res> get organization {
+    return $OrganizationCopyWith<$Res>(_value.organization, (value) {
+      return _then(_value.copyWith(organization: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$AppStateOfflineImpl implements _AppStateOffline {
+  const _$AppStateOfflineImpl({required this.organization});
+
+  @override
+  final Organization organization;
+
+  @override
+  String toString() {
+    return 'AppState.offline(organization: $organization)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AppStateOfflineImpl &&
+            (identical(other.organization, organization) ||
+                other.organization == organization));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, organization);
+
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AppStateOfflineImplCopyWith<_$AppStateOfflineImpl> get copyWith =>
+      __$$AppStateOfflineImplCopyWithImpl<_$AppStateOfflineImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(User user) authenticated,
+    required TResult Function() notAuthenticated,
+    required TResult Function(Organization organization) offline,
+  }) {
+    return offline(organization);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(User user)? authenticated,
+    TResult? Function()? notAuthenticated,
+    TResult? Function(Organization organization)? offline,
+  }) {
+    return offline?.call(organization);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(User user)? authenticated,
+    TResult Function()? notAuthenticated,
+    TResult Function(Organization organization)? offline,
+    required TResult orElse(),
+  }) {
+    if (offline != null) {
+      return offline(organization);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AppStateAuthenticated value) authenticated,
+    required TResult Function(_AppStateNotAuthenticated value) notAuthenticated,
+    required TResult Function(_AppStateOffline value) offline,
+  }) {
+    return offline(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AppStateAuthenticated value)? authenticated,
+    TResult? Function(_AppStateNotAuthenticated value)? notAuthenticated,
+    TResult? Function(_AppStateOffline value)? offline,
+  }) {
+    return offline?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AppStateAuthenticated value)? authenticated,
+    TResult Function(_AppStateNotAuthenticated value)? notAuthenticated,
+    TResult Function(_AppStateOffline value)? offline,
+    required TResult orElse(),
+  }) {
+    if (offline != null) {
+      return offline(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AppStateOffline implements AppState {
+  const factory _AppStateOffline({required final Organization organization}) =
+      _$AppStateOfflineImpl;
+
+  Organization get organization;
+
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AppStateOfflineImplCopyWith<_$AppStateOfflineImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

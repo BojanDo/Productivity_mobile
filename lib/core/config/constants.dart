@@ -22,6 +22,12 @@ const String kCommentsUrl = '$kApiUrl/comments';
 const String kNotificationsUrl = '$kApiUrl/notifications';
 const String kInvitationUrl = '$kApiUrl/invitations';
 
+const String kOrganizationsTable = 'organization';
+const String kProjectsTable = 'project';
+const String kTaskTable = 'task';
+const String kDocumentsTable = 'document';
+
+
 const BorderSide kBorderSide = BorderSide(
   color: kBorderColor,
 );

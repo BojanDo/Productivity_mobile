@@ -44,7 +44,9 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         add(const ThemeEvent.toggleLight());
       }
     });
-  }*/
+    */
+
+  }
 
   final AmbientLightService ambientLightService = AmbientLightService();
 

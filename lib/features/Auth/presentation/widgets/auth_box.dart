@@ -6,6 +6,7 @@ import '../../../../core/config/constants.dart';
 import '../../../../core/functions/routes.dart';
 import '../../../User/domain/entities/users.dart';
 import '../bloc/auth_bloc.dart';
+import 'box.dart';
 
 class AuthBox<BlocT extends StateStreamable<BlocState>,
     BlocState extends FormBlocState<User, String>> extends StatelessWidget {
@@ -13,7 +14,9 @@ class AuthBox<BlocT extends StateStreamable<BlocState>,
   final Widget page;
   final String buttonText;
   final String switchText;
+  final String? useOfflineText;
   final int switchPageId;
+  final int? useOfflinePageId;
   final VoidCallback submit;
 
   const AuthBox({
@@ -24,63 +27,55 @@ class AuthBox<BlocT extends StateStreamable<BlocState>,
     required this.switchText,
     required this.switchPageId,
     required this.submit,
+    this.useOfflineText,
+    this.useOfflinePageId,
   });
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: Center(
-          child: SingleChildScrollView(
-            padding:
-                const EdgeInsets.symmetric(vertical: 60.0, horizontal: 24.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
-                borderRadius: kBorderRadius,
-                border: Border.all(
-                  color: Theme.of(context)
-                      .inputDecorationTheme
-                      .enabledBorder!
-                      .borderSide
-                      .color,
-                  width: Theme.of(context)
-                      .inputDecorationTheme
-                      .enabledBorder!
-                      .borderSide
-                      .width,
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(kDefaultPadding),
-                child: Column(
-                  children: <Widget>[
-                    page,
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    SizedBox(width: double.infinity, child: _submitButton()),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        animateToPage(
-                          context.read<AuthBloc>().pageController,
-                          switchPageId,
-                        );
-                      },
-                      child: Text(
-                        switchText,
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.onSecondary),
-                      ),
-                    ),
-                  ],
-                ),
+  Widget build(BuildContext context) => Box(
+          child: Padding(
+        padding: const EdgeInsets.all(kDefaultPadding),
+        child: Column(
+          children: <Widget>[
+            page,
+            const SizedBox(
+              height: 16,
+            ),
+            SizedBox(width: double.infinity, child: _submitButton()),
+            const SizedBox(
+              height: 16,
+            ),
+            GestureDetector(
+              onTap: () {
+                animateToPage(
+                  context.read<AuthBloc>().pageController,
+                  switchPageId,
+                );
+              },
+              child: Text(
+                switchText,
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onSecondary),
               ),
             ),
-          ),
+            const SizedBox(height: 16),
+            if (useOfflineText != null && useOfflinePageId != null)
+              GestureDetector(
+                onTap: () {
+                  animateToPage(
+                    context.read<AuthBloc>().pageController,
+                    useOfflinePageId!,
+                  );
+                },
+                child: Text(
+                  useOfflineText!,
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSecondary),
+                ),
+              ),
+          ],
         ),
-      );
+      ));
 
   Widget _submitButton() => BlocBuilder<BlocT, BlocState>(
         builder: (BuildContext context, BlocState state) => ElevatedButton(

@@ -2,7 +2,11 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failure.dart';
+import '../../../../core/services/injection_container.dart';
 import '../../../../core/utils/typedef.dart';
+import '../../../App/presentation/bloc/app_bloc.dart';
+import '../../../User/domain/entities/organizations.dart';
+import '../../../User/domain/entities/users.dart';
 import '../../domain/entities/auth_response.dart';
 import '../../domain/repositories/auth_repo.dart';
 import '../datasources/auth_remote_data_source.dart';
@@ -20,7 +24,7 @@ class AuthRepoImplementation implements AuthRepository {
       final AuthResponse result = await _remoteDataSource.login(
         values: values,
       );
-      if (result.user == null || result.token==null) {
+      if (result.user == null || result.token == null) {
         throw const APIException(
           message: 'There was an unknown error processing your data',
           statusCode: 500,
@@ -47,7 +51,8 @@ class AuthRepoImplementation implements AuthRepository {
   }
 
   @override
-  ResultFuture<bool> validateEmail({required Map<String, dynamic> values}) async{
+  ResultFuture<bool> validateEmail(
+      {required Map<String, dynamic> values}) async {
     try {
       final bool result = await _remoteDataSource.validateEmail(
         values: values,

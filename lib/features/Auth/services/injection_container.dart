@@ -9,11 +9,15 @@ import '../domain/usecases/login.dart';
 import '../domain/usecases/register.dart';
 import '../domain/usecases/validate_email.dart';
 import '../presentation/bloc/auth_bloc.dart';
+import '../presentation/bloc/offline/offline_bloc.dart';
 
 Future<void> initAuthBlocs(GetIt sl) async {
   // App Logic
   sl.registerFactory(
     () => AuthBloc(loginFormBloc: sl(), registerFormBloc: sl()),
+  );
+  sl.registerFactory(
+    () => OfflineBloc(sl()),
   );
   sl.registerFactory(
     () => LoginFormBloc(
@@ -24,7 +28,8 @@ Future<void> initAuthBlocs(GetIt sl) async {
   );
   sl.registerFactory(
     () => RegisterFormBloc(
-      register: sl(), validateEmail: sl(),
+      register: sl(),
+      validateEmail: sl(),
     ),
   );
 }

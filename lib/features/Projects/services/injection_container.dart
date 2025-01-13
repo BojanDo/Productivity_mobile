@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 
 import '../../../core/config/constants.dart';
 import '../../../mock/project_remote_data_source.dart';
+import '../data/datasources/project_local_data_source.dart';
 import '../data/datasources/project_remote_data_source.dart';
 import '../data/repositories/project_repo_implementation.dart';
 import '../domain/entities/projects.dart';
@@ -39,7 +40,7 @@ Future<void> initProjects(GetIt sl) async {
   sl.registerLazySingleton(() => UpdateProject(sl()));
   // Repositories
   sl.registerLazySingleton<ProjectRepository>(
-      () => ProjectRepoImplementation(sl()));
+      () => ProjectRepoImplementation(sl(), sl()));
   // Data Sources
   if (kUseMockData) {
     sl.registerLazySingleton<ProjectRemoteDataSource>(
@@ -50,4 +51,7 @@ Future<void> initProjects(GetIt sl) async {
       () => ProjectRemoteDataSourceImplementation(sl()),
     );
   }
+  sl.registerLazySingleton<ProjectLocalDataSource>(
+    () => ProjectLocalDataSourceImplementation(sl()),
+  );
 }

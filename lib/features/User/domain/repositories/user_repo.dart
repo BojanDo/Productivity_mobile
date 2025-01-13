@@ -15,6 +15,8 @@ abstract class UserRepository {
     required Map<String, dynamic> values,
   });
 
+  ResultFuture<Organizations> getOrganizations();
+
   ResultFuture<UserResponse> createOrganization({
     required Map<String, dynamic> values,
   });

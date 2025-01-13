@@ -2,17 +2,21 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failure.dart';
+import '../../../../core/services/injection_container.dart';
 import '../../../../core/utils/typedef.dart';
+import '../../../App/presentation/bloc/app_bloc.dart';
 import '../../domain/entities/organizations.dart';
 import '../../domain/entities/user_response.dart';
 import '../../domain/entities/users.dart';
 import '../../domain/repositories/user_repo.dart';
+import '../datasources/user_local_data_source.dart';
 import '../datasources/user_remote_data_source.dart';
 
 class UserRepoImplementation implements UserRepository {
-  const UserRepoImplementation(this._remoteDataSource);
+  const UserRepoImplementation(this._remoteDataSource, this._localDataSource);
 
   final UserRemoteDataSource _remoteDataSource;
+  final UserLocalDataSource _localDataSource;
 
   @override
   ResultFuture<Users> getUsers() async {
@@ -51,13 +55,36 @@ class UserRepoImplementation implements UserRepository {
   }
 
   @override
+  ResultFuture<Organizations> getOrganizations() async {
+    try {
+      final Organizations result = await _localDataSource.getOrganizations();
+      return Right<Failure, Organizations>(result);
+    } on APIException catch (e) {
+      return Left<Failure, Organizations>(APIFailure.fromException(e));
+    }
+  }
+
+  @override
   ResultFuture<UserResponse> createOrganization({
     required Map<String, dynamic> values,
   }) async {
     try {
-      final UserResponse result = await _remoteDataSource.createOrganization(
-        values: values,
-      );
+      final UserResponse result = await sl<AppBloc>().state.when(
+            authenticated: (User user) async =>
+                await _remoteDataSource.createOrganization(
+              values: values,
+            ),
+            notAuthenticated: () {
+              throw const APIException(
+                message: 'Unknown error occured',
+                statusCode: 400,
+              );
+            },
+            offline: (Organization organization) async =>
+                await _localDataSource.createOrganization(
+              values: values,
+            ),
+          );
       return Right<Failure, UserResponse>(result);
     } on APIException catch (e) {
       return Left<Failure, UserResponse>(APIFailure.fromException(e));
@@ -80,10 +107,25 @@ class UserRepoImplementation implements UserRepository {
     required Map<String, dynamic> values,
   }) async {
     try {
-      final UserResponse result = await _remoteDataSource.updateOrganization(
-        id,
-        values: values,
-      );
+      final UserResponse result = await sl<AppBloc>().state.when(
+            authenticated: (User user) async =>
+                await _remoteDataSource.updateOrganization(
+              id,
+              values: values,
+            ),
+            notAuthenticated: () {
+              throw const APIException(
+                message: 'Unknown error occured',
+                statusCode: 400,
+              );
+            },
+            offline: (Organization organization) async =>
+                await _localDataSource.updateOrganization(
+              id,
+              values: values,
+            ),
+          );
+
       return Right<Failure, UserResponse>(result);
     } on APIException catch (e) {
       return Left<Failure, UserResponse>(APIFailure.fromException(e));
@@ -130,10 +172,8 @@ class UserRepoImplementation implements UserRepository {
     required Map<String, dynamic> values,
   }) async {
     try {
-      final UserResponse result = await _remoteDataSource.sendInvitation(
-        organizationId,
-        values: values
-      );
+      final UserResponse result = await _remoteDataSource
+          .sendInvitation(organizationId, values: values);
       return Right<Failure, UserResponse>(result);
     } on APIException catch (e) {
       return Left<Failure, UserResponse>(APIFailure.fromException(e));

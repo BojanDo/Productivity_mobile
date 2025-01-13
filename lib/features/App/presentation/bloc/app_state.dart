@@ -4,4 +4,5 @@ part of 'app_bloc.dart';
 class AppState with _$AppState {
   const factory AppState.authenticated({required User user}) = _AppStateAuthenticated;
   const factory AppState.notAuthenticated() = _AppStateNotAuthenticated;
+  const factory AppState.offline({required Organization organization}) = _AppStateOffline;
 }

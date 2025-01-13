@@ -11,6 +11,7 @@ import 'features/App/presentation/bloc/app_bloc.dart';
 import 'features/App/presentation/widgets/listeners.dart';
 import 'features/Auth/presentation/views/auth.dart';
 import 'features/Notifications/presentation/views/notifications.dart';
+import 'features/User/domain/entities/organizations.dart';
 import 'features/User/domain/entities/users.dart';
 import 'features/User/presentation/bloc/user_bloc.dart';
 import 'inner.dart';
@@ -62,11 +63,12 @@ class MyApp extends StatelessWidget {
                       ),
                     ],
                     child: GlobalPopScope.defaultScope(
-                      child:/*HomePage1(), */authenticatedNavigator(context),
+                      child: authenticatedNavigator(context),
                     ),
                   ),
                   notAuthenticated: () =>
                       GlobalPopScope.authScope(child: const AuthPage()),
+                  offline: (Organization organization) => SizedBox.shrink(),
                 ),
               ),
             ),
@@ -88,33 +90,4 @@ class MyApp extends StatelessWidget {
           return MaterialPageRoute<dynamic>(builder: builder);
         },
       );
-}
-
-
-class HomePage1 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final ThemeBloc themeBloc = BlocProvider.of<ThemeBloc>(context);
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Custom Theme"),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              themeBloc.state.isDarkMode
-                  ? Icons.light_mode
-                  : Icons.dark_mode,
-            ),
-            onPressed: () {
-              themeBloc.add(const ThemeEvent.toggle());
-            },
-          ),
-        ],
-      ),
-      body: const Center(
-        child: Text("Hello, Theme!"),
-      ),
-    );
-  }
 }
