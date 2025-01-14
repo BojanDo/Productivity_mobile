@@ -6,11 +6,19 @@ import '../../../../core/utils/typedef.dart';
 import '../../domain/entities/project_response.dart';
 import '../../domain/entities/projects.dart';
 
+const List<String> projectLocalDataSourceField = <String>[
+  'id',
+  'title',
+  'description',
+  'organizationId',
+];
+
 abstract class ProjectLocalDataSource {
   Future<Projects> getProjects(int organizationId);
 
   Future<ProjectResponse> createProject({
     required Map<String, dynamic> values,
+    required int organizationId,
   });
 
   Future<ProjectResponse> updateProject(
@@ -49,9 +57,19 @@ class ProjectLocalDataSourceImplementation implements ProjectLocalDataSource {
   @override
   Future<ProjectResponse> createProject({
     required Map<String, dynamic> values,
+    required int organizationId,
   }) async {
     try {
-      await _sqlManager.storeData(kProjectsTable, values);
+      values['organizationId'] = organizationId;
+      final Map<String, dynamic> filteredValues =
+          Map<String, dynamic>.fromEntries(
+        values.entries.where(
+          (MapEntry<String, dynamic> entry) =>
+              projectLocalDataSourceField.contains(entry.key),
+        ),
+      );
+
+      await _sqlManager.storeData(kProjectsTable, filteredValues);
       return const ProjectResponse(message: 'Successfully created project');
     } on APIException {
       rethrow;
@@ -64,7 +82,14 @@ class ProjectLocalDataSourceImplementation implements ProjectLocalDataSource {
     required Map<String, dynamic> values,
   }) async {
     try {
-      await _sqlManager.updateData(kProjectsTable, values, id);
+      final Map<String, dynamic> filteredValues =
+      Map<String, dynamic>.fromEntries(
+        values.entries.where(
+              (MapEntry<String, dynamic> entry) =>
+              projectLocalDataSourceField.contains(entry.key),
+        ),
+      );
+      await _sqlManager.updateData(kProjectsTable, filteredValues, id);
       return const ProjectResponse(message: 'Successfully updated project');
     } on APIException {
       rethrow;

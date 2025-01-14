@@ -51,7 +51,13 @@ class DocumentsRepoImplementation implements DocumentsRepository {
     required String filePath,
   }) async {
     try {
-      await _remoteDataSource.downloadFile(url: url, filePath: filePath);
+      await sl<AppBloc>().state.when(
+            authenticated: (User user) async => await _remoteDataSource
+                .downloadFile(url: url, filePath: filePath),
+            notAuthenticated: () {},
+            offline: (Organization organization) {},
+          );
+
       return const Right<Failure, void>(null);
     } on APIException catch (e) {
       return Left<Failure, void>(APIFailure.fromException(e));

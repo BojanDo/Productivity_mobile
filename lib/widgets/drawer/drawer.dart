@@ -6,6 +6,7 @@ import '../../core/config/routes.dart';
 import '../../core/functions/routes.dart';
 import '../../core/services/injection_container.dart';
 import '../../features/App/presentation/bloc/app_bloc.dart';
+import '../../features/User/domain/entities/organizations.dart';
 import '../../features/User/domain/entities/users.dart';
 import '../../features/User/presentation/bloc/user_bloc.dart';
 import '../profile_picture.dart';
@@ -108,12 +109,19 @@ class _GlobalDrawerState extends State<GlobalDrawer>
   ];
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<UserBloc, UserState>(
-        builder: (BuildContext context, UserState state) =>
-            _drawer(context, state.user),
+  Widget build(BuildContext context) => BlocBuilder<AppBloc, AppState>(
+        builder: (BuildContext context, AppState state) => state.when(
+          authenticated: (_) => BlocBuilder<UserBloc, UserState>(
+            builder: (BuildContext context, UserState state) =>
+                _drawerUser(context, state.user),
+          ),
+          notAuthenticated: () => const SizedBox.shrink(),
+          offline: (Organization organization) =>
+              _drawerOrganization(context, organization),
+        ),
       );
 
-  Drawer _drawer(BuildContext context, User user) => Drawer(
+  Drawer _drawerUser(BuildContext context, User user) => Drawer(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           verticalDirection: VerticalDirection.up,
@@ -121,7 +129,12 @@ class _GlobalDrawerState extends State<GlobalDrawer>
             Expanded(
               child: Stack(
                 children: <Widget>[
-                  _list(user.organizationId==null?[_firstList.first]:_firstList, DrawerVisibleList.first),
+                  _list(
+                    user.organizationId == null
+                        ? <DrawerElement>[_firstList.first]
+                        : _firstList,
+                    DrawerVisibleList.first,
+                  ),
                   SlideTransition(
                     position: _slideAnimation,
                     child: Container(
@@ -145,7 +158,9 @@ class _GlobalDrawerState extends State<GlobalDrawer>
                                     .read<AppBloc>()
                                     .add(const AppEvent.toNotAuthenticated());
                                 routePopAllPushReplacement(
-                                    widget.outerNavigator, kAuthRoute);
+                                  widget.outerNavigator,
+                                  kAuthRoute,
+                                );
                               },
                             ),
                           ),
@@ -156,81 +171,64 @@ class _GlobalDrawerState extends State<GlobalDrawer>
                 ],
               ),
             ),
-            _header(user),
+            DrawerHeaderWidget.user(user, _toggleList),
           ],
         ),
       );
 
-  Widget _header(User user) => BlocBuilder<DrawerBloc, DrawerState>(
-        builder: (BuildContext context, DrawerState state) => SizedBox(
-          height: MediaQuery.paddingOf(context).top + 80,
-          child: DrawerHeader(
-            margin: EdgeInsets.zero,
-            decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    SizedBox(
-                      width: 40,
-                      height: 40,
-                      child: ProfilePicture.user(user),
-                    ),
-                    const SizedBox(width: 16.0),
-                    Expanded(
+  Drawer _drawerOrganization(BuildContext context, Organization organization) =>
+      Drawer(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          verticalDirection: VerticalDirection.up,
+          children: <Widget>[
+            Expanded(
+              child: Stack(
+                children: <Widget>[
+                  _list(
+                    _firstList
+                        .where(
+                          (DrawerElement el) => el.route != kTasksUserRoute && el.route != kProjectsRoute,
+                        )
+                        .toList(),
+                    DrawerVisibleList.first,
+                  ),
+                  SlideTransition(
+                    position: _slideAnimation,
+                    child: Container(
+                      color: Theme.of(context).colorScheme.secondary,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          Text(
-                            '${user.firstname} ${user.lastname}',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).colorScheme.onSecondary,
+                          Expanded(
+                            child: _listItem(
+                              const DrawerElement(
+                                title: 'Logout',
+                                route: '/logut',
+                                icon: Icons.logout_outlined,
+                              ),
+                              '',
+                              DrawerVisibleList.second,
+                              () {
+                                context
+                                    .read<AppBloc>()
+                                    .add(const AppEvent.toNotAuthenticated());
+                                routePopAllPushReplacement(
+                                  widget.outerNavigator,
+                                  kAuthRoute,
+                                );
+                              },
                             ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            user.roleName.displayName ?? '',
-                            style: const TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
                           ),
                         ],
                       ),
                     ),
-                    BlocBuilder<DrawerBloc, DrawerState>(
-                      builder: (BuildContext context, DrawerState state) =>
-                          GestureDetector(
-                        onTap: _toggleList,
-                        child: AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 300),
-                          transitionBuilder:
-                              (Widget child, Animation<double> animation) =>
-                                  ScaleTransition(
-                            scale: animation,
-                            child: child,
-                          ),
-                          child: Icon(
-                            state.visibleList == DrawerVisibleList.second
-                                ? Icons.keyboard_arrow_up_sharp
-                                : Icons.keyboard_arrow_down_sharp,
-                            color: Theme.of(context).colorScheme.onSecondary,
-                            size: 30,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
-          ),
+            DrawerHeaderWidget.organization(organization, _toggleList),
+          ],
         ),
       );
 
@@ -286,6 +284,156 @@ class _GlobalDrawerState extends State<GlobalDrawer>
       onTap: onTap,
     );
   }
+}
+
+class DrawerHeaderWidget extends StatelessWidget {
+  const DrawerHeaderWidget({super.key, required this.body});
+
+  final Widget body;
+
+  factory DrawerHeaderWidget.user(User user, VoidCallback toggleList) =>
+      DrawerHeaderWidget(
+        body: Builder(
+          builder: (BuildContext context) => Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: 40,
+                    height: 40,
+                    child: ProfilePicture.user(user),
+                  ),
+                  const SizedBox(width: 16.0),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          '${user.firstname} ${user.lastname}',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.onSecondary,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          user.roleName.displayName ?? '',
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ],
+                    ),
+                  ),
+                  BlocBuilder<DrawerBloc, DrawerState>(
+                    builder: (BuildContext context, DrawerState state) =>
+                        GestureDetector(
+                      onTap: toggleList,
+                      child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 300),
+                        transitionBuilder:
+                            (Widget child, Animation<double> animation) =>
+                                ScaleTransition(
+                          scale: animation,
+                          child: child,
+                        ),
+                        child: Icon(
+                          state.visibleList == DrawerVisibleList.second
+                              ? Icons.keyboard_arrow_up_sharp
+                              : Icons.keyboard_arrow_down_sharp,
+                          color: Theme.of(context).colorScheme.onSecondary,
+                          size: 30,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+
+  factory DrawerHeaderWidget.organization(
+    Organization organization,
+    VoidCallback toggleList,
+  ) =>
+      DrawerHeaderWidget(
+        body: Builder(
+          builder: (BuildContext context) => Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: 40,
+                    height: 40,
+                    child: ProfilePicture.organization(organization),
+                  ),
+                  const SizedBox(width: 16.0),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          organization.name,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.onSecondary,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ],
+                    ),
+                  ),
+                  BlocBuilder<DrawerBloc, DrawerState>(
+                    builder: (BuildContext context, DrawerState state) =>
+                        GestureDetector(
+                      onTap: toggleList,
+                      child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 300),
+                        transitionBuilder:
+                            (Widget child, Animation<double> animation) =>
+                                ScaleTransition(
+                          scale: animation,
+                          child: child,
+                        ),
+                        child: Icon(
+                          state.visibleList == DrawerVisibleList.second
+                              ? Icons.keyboard_arrow_up_sharp
+                              : Icons.keyboard_arrow_down_sharp,
+                          color: Theme.of(context).colorScheme.onSecondary,
+                          size: 30,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+
+  @override
+  Widget build(BuildContext context) => BlocBuilder<DrawerBloc, DrawerState>(
+        builder: (BuildContext context, DrawerState state) => SizedBox(
+          height: MediaQuery.paddingOf(context).top + 80,
+          child: DrawerHeader(
+            margin: EdgeInsets.zero,
+            decoration:
+                BoxDecoration(color: Theme.of(context).colorScheme.secondary),
+            child: body,
+          ),
+        ),
+      );
 }
 
 class DrawerElement {

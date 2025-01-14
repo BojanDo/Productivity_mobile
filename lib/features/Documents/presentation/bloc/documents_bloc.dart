@@ -32,7 +32,7 @@ class DocumentsBloc extends Bloc<DocumentsEvent, DocumentsState> {
               items: List<Document>.generate(
                 10,
                 (int index) => const Document(
-                  id:0,
+                  id: 0,
                   title: 'This is a document title',
                   path: '<path>',
                 ),
@@ -60,7 +60,8 @@ class DocumentsBloc extends Bloc<DocumentsEvent, DocumentsState> {
           project,
           emit,
         ),
-        downloadFile: (Document document) => _downloadFileHandler(document, emit),
+        downloadFile: (Document document) =>
+            _downloadFileHandler(document, emit),
       ),
     );
   }
@@ -116,36 +117,45 @@ class DocumentsBloc extends Bloc<DocumentsEvent, DocumentsState> {
     );
   }
 
-
   final String _fileError = 'Error opening the file';
+
   Future<void> _downloadFileHandler(
     Document document,
     Emitter<DocumentsState> emit,
   ) async {
-    final Directory tempDir = await getTemporaryDirectory();
-    final String lastPart = Uri.parse(document.path).pathSegments.last;
-    final String filePath = '${tempDir.path}/$lastPart';
+    await sl<AppBloc>().state.maybeWhen(
+      authenticated: (_) async {
+        final Directory tempDir = await getTemporaryDirectory();
+        final String lastPart = Uri.parse(document.path).pathSegments.last;
+        final String filePath = '${tempDir.path}/$lastPart';
 
-    final Either<Failure, void> result = await _downloadFile(
-      DownloadFileParams(url: document.path, filePath: filePath),
-    );
+        final Either<Failure, void> result = await _downloadFile(
+          DownloadFileParams(url: document.path, filePath: filePath),
+        );
 
-    result.fold(
-      (Failure failure) =>
-          sl<AppBloc>().add(AppEvent.error(message: failure.message)),
-      (_) async {
-        try{
-          final OpenResult result = await OpenFilex.open(filePath);
-          if (result.type != ResultType.done) {
-            throw 'Error';
-          }
-        }catch(e){
-          sl<AppBloc>().add(AppEvent.error(message: _fileError));
-        }
-
-
+        result.fold(
+          (Failure failure) =>
+              sl<AppBloc>().add(AppEvent.error(message: failure.message)),
+          (_) async {
+            openFile(filePath);
+          },
+        );
+      },
+      orElse: () {
+        openFile(document.path);
       },
     );
+  }
+
+  void openFile(String filePath) async{
+    try {
+      final OpenResult result = await OpenFilex.open(filePath);
+      if (result.type != ResultType.done) {
+        throw 'Error';
+      }
+    } catch (e) {
+      sl<AppBloc>().add(AppEvent.error(message: _fileError));
+    }
   }
 
   final GetDocuments _getDocuments;

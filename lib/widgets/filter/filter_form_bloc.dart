@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
 import '../../core/errors/failure.dart';
+import '../../core/services/injection_container.dart';
+import '../../features/App/presentation/bloc/app_bloc.dart';
 import '../../features/Projects/domain/entities/projects.dart';
 import '../../features/Projects/domain/usecases/get_projects.dart';
 import '../../features/Tasks/domain/entities/tasks.dart';
@@ -31,7 +33,8 @@ class FilterFormBloc extends FormBloc<String, String> {
   }
 
   static Validator<DateTime?> _validateDateRange(
-          InputFieldBloc<DateTime?, dynamic> dateStartBloc) =>
+    InputFieldBloc<DateTime?, dynamic> dateStartBloc,
+  ) =>
       (DateTime? endDate) {
         final DateTime? startDate = dateStartBloc.value;
 
@@ -43,7 +46,8 @@ class FilterFormBloc extends FormBloc<String, String> {
         return null;
       };
 
-  void initialize(VoidCallback onInit,{
+  void initialize(
+    VoidCallback onInit, {
     List<int>? projects,
     List<int>? assigned,
     List<Status>? statuses,
@@ -51,31 +55,35 @@ class FilterFormBloc extends FormBloc<String, String> {
     String? dateStart,
     String? dateEnd,
   }) async {
-    final Either<Failure, Projects> result = await _getProjects();
-    result.fold(
-      (Failure failure) {},
-      (Projects data) {
-        final List<Project> filteredProjects = projects != null
-            ? data.items
-                .where((Project item) => projects.contains(item.id))
-                .toList()
-            : data.items;
-        this.projects.updateItems(data.items);
-        this.projects.updateInitialValue(filteredProjects);
-      },
-    );
+    await sl<AppBloc>().state.whenOrNull(
+      authenticated: (_) async {
+        final Either<Failure, Projects> result = await _getProjects();
+        result.fold(
+          (Failure failure) {},
+          (Projects data) {
+            final List<Project> filteredProjects = projects != null
+                ? data.items
+                    .where((Project item) => projects.contains(item.id))
+                    .toList()
+                : data.items;
+            this.projects.updateItems(data.items);
+            this.projects.updateInitialValue(filteredProjects);
+          },
+        );
 
-    final Either<Failure, Users> resultUsers = await _getUsers();
-    resultUsers.fold(
-      (Failure failure) {},
-      (Users data) {
-        final List<User> filteredAssigned = assigned != null
-            ? data.items
-                .where((User item) => assigned.contains(item.id))
-                .toList()
-            : data.items;
-        this.assigned.updateItems(data.items);
-        this.assigned.updateInitialValue(filteredAssigned);
+        final Either<Failure, Users> resultUsers = await _getUsers();
+        resultUsers.fold(
+          (Failure failure) {},
+          (Users data) {
+            final List<User> filteredAssigned = assigned != null
+                ? data.items
+                    .where((User item) => assigned.contains(item.id))
+                    .toList()
+                : data.items;
+            this.assigned.updateItems(data.items);
+            this.assigned.updateInitialValue(filteredAssigned);
+          },
+        );
       },
     );
 

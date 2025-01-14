@@ -5,6 +5,12 @@ import '../../../../core/utils/typedef.dart';
 import '../../domain/entities/organizations.dart';
 import '../../domain/entities/user_response.dart';
 
+const List<String> userLocalDataSourceField = <String>[
+  'id',
+  'name',
+  'description',
+];
+
 abstract class UserLocalDataSource {
   Future<UserResponse> createOrganization({
     required Map<String, dynamic> values,
@@ -28,7 +34,15 @@ class UserLocalDataSourceImplementation implements UserLocalDataSource {
     required Map<String, dynamic> values,
   }) async {
     try {
-      await _sqlManager.storeData(kOrganizationsTable, values);
+      final Map<String, dynamic> filteredValues =
+          Map<String, dynamic>.fromEntries(
+        values.entries.where(
+          (MapEntry<String, dynamic> entry) =>
+              userLocalDataSourceField.contains(entry.key),
+        ),
+      );
+
+      await _sqlManager.storeData(kOrganizationsTable, filteredValues);
       return const UserResponse(message: 'Successfully created organization');
     } on APIException {
       rethrow;
@@ -59,7 +73,15 @@ class UserLocalDataSourceImplementation implements UserLocalDataSource {
     required Map<String, dynamic> values,
   }) async {
     try {
-      await _sqlManager.updateData(kOrganizationsTable, values, id);
+      final Map<String, dynamic> filteredValues =
+          Map<String, dynamic>.fromEntries(
+        values.entries.where(
+          (MapEntry<String, dynamic> entry) =>
+              userLocalDataSourceField.contains(entry.key),
+        ),
+      );
+
+      await _sqlManager.updateData(kOrganizationsTable, filteredValues, id);
       return const UserResponse(message: 'Successfully updated organization');
     } on APIException {
       rethrow;

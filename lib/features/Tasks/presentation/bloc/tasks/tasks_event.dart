@@ -12,5 +12,7 @@ class TasksEvent with _$TasksEvent {
 
   const factory TasksEvent.delete({
     required int id,
+    int? projectId,
+    int? assignedId,
   }) = _TasksEventDelete;
 }

@@ -60,9 +60,10 @@ _$TaskSlimImpl _$$TaskSlimImplFromJson(Map<String, dynamic> json) =>
       label: $enumDecode(_$LabelEnumMap, json['label']),
       date: json['due_date'] as String,
       taskNumber: json['task_number'] as String,
-      assigned: (json['assigned'] as List<dynamic>)
-          .map((e) => (e as num).toInt())
-          .toList(),
+      assigned: (json['assigned'] as List<dynamic>?)
+              ?.map((e) => (e as num).toInt())
+              .toList() ??
+          const <int>[],
     );
 
 Map<String, dynamic> _$$TaskSlimImplToJson(_$TaskSlimImpl instance) =>

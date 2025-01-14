@@ -67,7 +67,8 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
         get: (int? projectId, int? assignedId) async =>
             await _getTasksHandler(projectId, assignedId, emit),
         filter: () async => await _filterTasksHandler(emit),
-        delete: (int id) async => await _deleteTaskHandler(id, emit),
+        delete: (int id, int? projectId, int? assignedId) async =>
+            await _deleteTaskHandler(id, projectId, assignedId, emit),
       ),
     );
   }
@@ -91,21 +92,40 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
         assigned: assigned,
       ),
     );
-    final Either<Failure, Users> resultUsers = await _getUsers();
-    resultTasks.fold(
-      (Failure failure) => emit(const TasksState.error()),
-      (Tasks tasks) async {
-        resultUsers.fold(
+
+    await sl<AppBloc>().state.maybeWhen(
+      authenticated: (_) async {
+        final Either<Failure, Users> resultUsers = await _getUsers();
+        resultTasks.fold(
           (Failure failure) => emit(const TasksState.error()),
-          (Users users) => emit(
-            TasksState.loaded(
+          (Tasks tasks) async {
+            resultUsers.fold(
+              (Failure failure) => emit(const TasksState.error()),
+              (Users users) => emit(
+                TasksState.loaded(
+                  tasks: tasks,
+                  seperatedTasks: _filterTasks(
+                    tasks,
+                  ),
+                  users: users,
+                ),
+              ),
+            );
+          },
+        );
+      },
+      orElse: () {
+        resultTasks.fold(
+          (Failure failure) => emit(const TasksState.error()),
+          (Tasks tasks) async {
+            emit(TasksState.loaded(
               tasks: tasks,
               seperatedTasks: _filterTasks(
                 tasks,
               ),
-              users: users,
-            ),
-          ),
+              users: const Users(items: <User>[], total: 0),
+            ));
+          },
         );
       },
     );
@@ -126,6 +146,8 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
 
   Future<void> _deleteTaskHandler(
     int id,
+    int? projectId,
+    int? assignedId,
     Emitter<TasksState> emit,
   ) async {
     sl<AppBloc>().add(const AppEvent.overlayAdd());
@@ -138,7 +160,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       },
       (TaskResponse response) {
         sl<AppBloc>().add(AppEvent.success(message: response.message));
-        add(const TasksEvent.get());
+        add(TasksEvent.get(projectId: projectId, assignedId: assignedId));
       },
     );
   }
@@ -146,14 +168,19 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   Map<Status, List<TaskSlim>> _filterTasks(Tasks tasks) {
     final List<TaskSlim> filteredTasks = <TaskSlim>[];
 
+    bool skipFilters =
+        sl<AppBloc>().state.maybeMap(offline: (_) => true, orElse: () => false);
+
     for (TaskSlim task in tasks.items) {
-      if (!filterFormBloc.projects.value
-          .any((Project project) => project.id == task.projectId)) {
-        continue;
-      }
-      if (!filterFormBloc.assigned.value
-          .any((User user) => task.assigned.contains(user.id))) {
-        continue;
+      if (!skipFilters) {
+        if (!filterFormBloc.projects.value
+            .any((Project project) => project.id == task.projectId)) {
+          continue;
+        }
+        if (!filterFormBloc.assigned.value
+            .any((User user) => task.assigned.contains(user.id))) {
+          continue;
+        }
       }
       if (!filterFormBloc.statuses.value
           .any((Status status) => status == task.status)) {
@@ -164,20 +191,20 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
         continue;
       }
       final DateTime? date = DateTime.tryParse(task.date);
-      if (date == null ||
-          filterFormBloc.dateStart.value == null ||
-          filterFormBloc.dateEnd.value == null) {
+      if (date == null) {
         filteredTasks.add(task);
         continue;
       }
-      if (date.isBefore(filterFormBloc.dateStart.value!) ||
+      if (filterFormBloc.dateStart.value != null &&
+          date.isBefore(filterFormBloc.dateStart.value!)) {
+        continue;
+      }
+
+      if (filterFormBloc.dateEnd.value != null &&
           date.isAfter(filterFormBloc.dateEnd.value!)) {
         continue;
       }
       filteredTasks.add(task);
-    }
-    if(filteredTasks.isEmpty){
-      _filterTasks(tasks);
     }
     return TasksBloc._seperateTasks(
       Tasks(items: filteredTasks, total: filteredTasks.length),

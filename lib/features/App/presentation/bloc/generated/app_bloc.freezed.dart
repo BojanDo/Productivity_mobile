@@ -20,7 +20,7 @@ mixin _$AppEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) toAuthenticated,
     required TResult Function() toNotAuthenticated,
-    required TResult Function(int organizationId) toOffline,
+    required TResult Function(Organization organization) toOffline,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -31,7 +31,7 @@ mixin _$AppEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? toAuthenticated,
     TResult? Function()? toNotAuthenticated,
-    TResult? Function(int organizationId)? toOffline,
+    TResult? Function(Organization organization)? toOffline,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -42,7 +42,7 @@ mixin _$AppEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? toAuthenticated,
     TResult Function()? toNotAuthenticated,
-    TResult Function(int organizationId)? toOffline,
+    TResult Function(Organization organization)? toOffline,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -192,7 +192,7 @@ class _$AppEventToAuthenticatedImpl implements _AppEventToAuthenticated {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) toAuthenticated,
     required TResult Function() toNotAuthenticated,
-    required TResult Function(int organizationId) toOffline,
+    required TResult Function(Organization organization) toOffline,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -206,7 +206,7 @@ class _$AppEventToAuthenticatedImpl implements _AppEventToAuthenticated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? toAuthenticated,
     TResult? Function()? toNotAuthenticated,
-    TResult? Function(int organizationId)? toOffline,
+    TResult? Function(Organization organization)? toOffline,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -220,7 +220,7 @@ class _$AppEventToAuthenticatedImpl implements _AppEventToAuthenticated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? toAuthenticated,
     TResult Function()? toNotAuthenticated,
-    TResult Function(int organizationId)? toOffline,
+    TResult Function(Organization organization)? toOffline,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -340,7 +340,7 @@ class _$AppEventToNotAuthenticatedImpl implements _AppEventToNotAuthenticated {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) toAuthenticated,
     required TResult Function() toNotAuthenticated,
-    required TResult Function(int organizationId) toOffline,
+    required TResult Function(Organization organization) toOffline,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -354,7 +354,7 @@ class _$AppEventToNotAuthenticatedImpl implements _AppEventToNotAuthenticated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? toAuthenticated,
     TResult? Function()? toNotAuthenticated,
-    TResult? Function(int organizationId)? toOffline,
+    TResult? Function(Organization organization)? toOffline,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -368,7 +368,7 @@ class _$AppEventToNotAuthenticatedImpl implements _AppEventToNotAuthenticated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? toAuthenticated,
     TResult Function()? toNotAuthenticated,
-    TResult Function(int organizationId)? toOffline,
+    TResult Function(Organization organization)? toOffline,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -440,7 +440,9 @@ abstract class _$$AppEventToOfflineImplCopyWith<$Res> {
           $Res Function(_$AppEventToOfflineImpl) then) =
       __$$AppEventToOfflineImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int organizationId});
+  $Res call({Organization organization});
+
+  $OrganizationCopyWith<$Res> get organization;
 }
 
 /// @nodoc
@@ -456,28 +458,38 @@ class __$$AppEventToOfflineImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? organizationId = null,
+    Object? organization = null,
   }) {
     return _then(_$AppEventToOfflineImpl(
-      organizationId: null == organizationId
-          ? _value.organizationId
-          : organizationId // ignore: cast_nullable_to_non_nullable
-              as int,
+      organization: null == organization
+          ? _value.organization
+          : organization // ignore: cast_nullable_to_non_nullable
+              as Organization,
     ));
+  }
+
+  /// Create a copy of AppEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $OrganizationCopyWith<$Res> get organization {
+    return $OrganizationCopyWith<$Res>(_value.organization, (value) {
+      return _then(_value.copyWith(organization: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$AppEventToOfflineImpl implements _AppEventToOffline {
-  const _$AppEventToOfflineImpl({required this.organizationId});
+  const _$AppEventToOfflineImpl({required this.organization});
 
   @override
-  final int organizationId;
+  final Organization organization;
 
   @override
   String toString() {
-    return 'AppEvent.toOffline(organizationId: $organizationId)';
+    return 'AppEvent.toOffline(organization: $organization)';
   }
 
   @override
@@ -485,12 +497,12 @@ class _$AppEventToOfflineImpl implements _AppEventToOffline {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppEventToOfflineImpl &&
-            (identical(other.organizationId, organizationId) ||
-                other.organizationId == organizationId));
+            (identical(other.organization, organization) ||
+                other.organization == organization));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, organizationId);
+  int get hashCode => Object.hash(runtimeType, organization);
 
   /// Create a copy of AppEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -506,13 +518,13 @@ class _$AppEventToOfflineImpl implements _AppEventToOffline {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) toAuthenticated,
     required TResult Function() toNotAuthenticated,
-    required TResult Function(int organizationId) toOffline,
+    required TResult Function(Organization organization) toOffline,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
     required TResult Function() overlayRemove,
   }) {
-    return toOffline(organizationId);
+    return toOffline(organization);
   }
 
   @override
@@ -520,13 +532,13 @@ class _$AppEventToOfflineImpl implements _AppEventToOffline {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? toAuthenticated,
     TResult? Function()? toNotAuthenticated,
-    TResult? Function(int organizationId)? toOffline,
+    TResult? Function(Organization organization)? toOffline,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
     TResult? Function()? overlayRemove,
   }) {
-    return toOffline?.call(organizationId);
+    return toOffline?.call(organization);
   }
 
   @override
@@ -534,7 +546,7 @@ class _$AppEventToOfflineImpl implements _AppEventToOffline {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? toAuthenticated,
     TResult Function()? toNotAuthenticated,
-    TResult Function(int organizationId)? toOffline,
+    TResult Function(Organization organization)? toOffline,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -542,7 +554,7 @@ class _$AppEventToOfflineImpl implements _AppEventToOffline {
     required TResult orElse(),
   }) {
     if (toOffline != null) {
-      return toOffline(organizationId);
+      return toOffline(organization);
     }
     return orElse();
   }
@@ -596,10 +608,10 @@ class _$AppEventToOfflineImpl implements _AppEventToOffline {
 }
 
 abstract class _AppEventToOffline implements AppEvent {
-  const factory _AppEventToOffline({required final int organizationId}) =
+  const factory _AppEventToOffline({required final Organization organization}) =
       _$AppEventToOfflineImpl;
 
-  int get organizationId;
+  Organization get organization;
 
   /// Create a copy of AppEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -678,7 +690,7 @@ class _$AppEventErrorImpl implements _AppEventError {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) toAuthenticated,
     required TResult Function() toNotAuthenticated,
-    required TResult Function(int organizationId) toOffline,
+    required TResult Function(Organization organization) toOffline,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -692,7 +704,7 @@ class _$AppEventErrorImpl implements _AppEventError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? toAuthenticated,
     TResult? Function()? toNotAuthenticated,
-    TResult? Function(int organizationId)? toOffline,
+    TResult? Function(Organization organization)? toOffline,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -706,7 +718,7 @@ class _$AppEventErrorImpl implements _AppEventError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? toAuthenticated,
     TResult Function()? toNotAuthenticated,
-    TResult Function(int organizationId)? toOffline,
+    TResult Function(Organization organization)? toOffline,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -851,7 +863,7 @@ class _$AppEventSuccessImpl implements _AppEventSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) toAuthenticated,
     required TResult Function() toNotAuthenticated,
-    required TResult Function(int organizationId) toOffline,
+    required TResult Function(Organization organization) toOffline,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -865,7 +877,7 @@ class _$AppEventSuccessImpl implements _AppEventSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? toAuthenticated,
     TResult? Function()? toNotAuthenticated,
-    TResult? Function(int organizationId)? toOffline,
+    TResult? Function(Organization organization)? toOffline,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -879,7 +891,7 @@ class _$AppEventSuccessImpl implements _AppEventSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? toAuthenticated,
     TResult Function()? toNotAuthenticated,
-    TResult Function(int organizationId)? toOffline,
+    TResult Function(Organization organization)? toOffline,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -1024,7 +1036,7 @@ class _$AppEventOverlayAddImpl implements _AppEventOverlayAdd {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) toAuthenticated,
     required TResult Function() toNotAuthenticated,
-    required TResult Function(int organizationId) toOffline,
+    required TResult Function(Organization organization) toOffline,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -1038,7 +1050,7 @@ class _$AppEventOverlayAddImpl implements _AppEventOverlayAdd {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? toAuthenticated,
     TResult? Function()? toNotAuthenticated,
-    TResult? Function(int organizationId)? toOffline,
+    TResult? Function(Organization organization)? toOffline,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -1052,7 +1064,7 @@ class _$AppEventOverlayAddImpl implements _AppEventOverlayAdd {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? toAuthenticated,
     TResult Function()? toNotAuthenticated,
-    TResult Function(int organizationId)? toOffline,
+    TResult Function(Organization organization)? toOffline,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,
@@ -1171,7 +1183,7 @@ class _$AppEventOverlayRemoveImpl implements _AppEventOverlayRemove {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) toAuthenticated,
     required TResult Function() toNotAuthenticated,
-    required TResult Function(int organizationId) toOffline,
+    required TResult Function(Organization organization) toOffline,
     required TResult Function(String message) error,
     required TResult Function(String message) success,
     required TResult Function(Widget? content) overlayAdd,
@@ -1185,7 +1197,7 @@ class _$AppEventOverlayRemoveImpl implements _AppEventOverlayRemove {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(User user)? toAuthenticated,
     TResult? Function()? toNotAuthenticated,
-    TResult? Function(int organizationId)? toOffline,
+    TResult? Function(Organization organization)? toOffline,
     TResult? Function(String message)? error,
     TResult? Function(String message)? success,
     TResult? Function(Widget? content)? overlayAdd,
@@ -1199,7 +1211,7 @@ class _$AppEventOverlayRemoveImpl implements _AppEventOverlayRemove {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? toAuthenticated,
     TResult Function()? toNotAuthenticated,
-    TResult Function(int organizationId)? toOffline,
+    TResult Function(Organization organization)? toOffline,
     TResult Function(String message)? error,
     TResult Function(String message)? success,
     TResult Function(Widget? content)? overlayAdd,

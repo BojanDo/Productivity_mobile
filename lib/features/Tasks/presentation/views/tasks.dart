@@ -108,7 +108,11 @@ class _TasksPageInnerState extends State<TasksPageInner> {
   }
 
   void _deleteTask(int id) => context.read<TasksBloc>().add(
-        TasksEvent.delete(id: id),
+        TasksEvent.delete(
+          id: id,
+          projectId: widget.projectId,
+          assignedId: widget.assignedId,
+        ),
       );
 
   void _editTask(int id, Users users) =>
@@ -147,7 +151,14 @@ class _TasksPageInnerState extends State<TasksPageInner> {
               Users users,
             ) =>
                 _skeletonizer(seperatedTasks, users, isEnabled, tasks.total),
-            error: () => const Placeholder(),
+            error: () => const Scaffold(
+              appBar: GlobalAppBar(
+                title: 'Tasks',
+              ),
+              body: Center(
+                child: Text('There was an error getting your tasks'),
+              ),
+            ),
           );
         },
       );

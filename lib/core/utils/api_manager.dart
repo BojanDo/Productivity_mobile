@@ -129,13 +129,11 @@ class APIManager {
     Map<String, dynamic> data,
   ) async {
     try {
-      print('Sent delete request');
       final Response<dynamic> response = await dio.delete(
         _getUrl(baseUrl, endpoint),
         data: jsonEncode(data),
         options: options,
       );
-      print('Sent delete request');
       return response.data;
     } on APIException {
       rethrow;
@@ -147,13 +145,11 @@ class APIManager {
   Future<dynamic> put(
       String baseUrl, String endpoint, Map<String, dynamic> data) async {
     try {
-      print('Sent put request');
       final Response<dynamic> response = await dio.post(
         _getUrl(baseUrl, endpoint),
         data: FormData.fromMap({...data, '_method': 'PUT'}),
         options: options,
       );
-      print('Sent put request');
       return response.data;
     } on APIException {
       rethrow;

@@ -49,7 +49,13 @@ class TaskFormBloc extends FormBloc<String, String> {
   })  : _createTask = createTask,
         _updateTask = updateTask {
     assigned.updateItems(users.items);
-
+    sl<AppBloc>().state.whenOrNull(
+      authenticated: (_) {
+        assigned.addValidators(<Validator<List<User>>>[
+          FieldBlocValidators.required,
+        ]);
+      },
+    );
     if (task != null) {
       title.updateInitialValue(task!.title);
       description.updateInitialValue(
@@ -121,11 +127,7 @@ class TaskFormBloc extends FormBloc<String, String> {
   );
 
   final MultiSelectFieldBloc<User, dynamic> assigned =
-      MultiSelectFieldBloc<User, dynamic>(
-    validators: <Validator<List<User>>>[
-      FieldBlocValidators.required,
-    ],
-  );
+      MultiSelectFieldBloc<User, dynamic>();
 
   final InputFieldBloc<AttachmentManager, dynamic> attachments =
       InputFieldBloc<AttachmentManager, dynamic>(

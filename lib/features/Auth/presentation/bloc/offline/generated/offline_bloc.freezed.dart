@@ -19,32 +19,43 @@ mixin _$OfflineEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() get,
+    required TResult Function(
+            Organization? organization, OrganizationFormMode mode)
+        loadOrganization,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? get,
+    TResult? Function(Organization? organization, OrganizationFormMode mode)?
+        loadOrganization,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? get,
+    TResult Function(Organization? organization, OrganizationFormMode mode)?
+        loadOrganization,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OfflineEventGet value) get,
+    required TResult Function(_OfflineEventLoadOrganization value)
+        loadOrganization,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OfflineEventGet value)? get,
+    TResult? Function(_OfflineEventLoadOrganization value)? loadOrganization,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OfflineEventGet value)? get,
+    TResult Function(_OfflineEventLoadOrganization value)? loadOrganization,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +124,9 @@ class _$OfflineEventGetImpl implements _OfflineEventGet {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() get,
+    required TResult Function(
+            Organization? organization, OrganizationFormMode mode)
+        loadOrganization,
   }) {
     return get();
   }
@@ -121,6 +135,8 @@ class _$OfflineEventGetImpl implements _OfflineEventGet {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? get,
+    TResult? Function(Organization? organization, OrganizationFormMode mode)?
+        loadOrganization,
   }) {
     return get?.call();
   }
@@ -129,6 +145,8 @@ class _$OfflineEventGetImpl implements _OfflineEventGet {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? get,
+    TResult Function(Organization? organization, OrganizationFormMode mode)?
+        loadOrganization,
     required TResult orElse(),
   }) {
     if (get != null) {
@@ -141,6 +159,8 @@ class _$OfflineEventGetImpl implements _OfflineEventGet {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_OfflineEventGet value) get,
+    required TResult Function(_OfflineEventLoadOrganization value)
+        loadOrganization,
   }) {
     return get(this);
   }
@@ -149,6 +169,7 @@ class _$OfflineEventGetImpl implements _OfflineEventGet {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OfflineEventGet value)? get,
+    TResult? Function(_OfflineEventLoadOrganization value)? loadOrganization,
   }) {
     return get?.call(this);
   }
@@ -157,6 +178,7 @@ class _$OfflineEventGetImpl implements _OfflineEventGet {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OfflineEventGet value)? get,
+    TResult Function(_OfflineEventLoadOrganization value)? loadOrganization,
     required TResult orElse(),
   }) {
     if (get != null) {
@@ -168,6 +190,187 @@ class _$OfflineEventGetImpl implements _OfflineEventGet {
 
 abstract class _OfflineEventGet implements OfflineEvent {
   const factory _OfflineEventGet() = _$OfflineEventGetImpl;
+}
+
+/// @nodoc
+abstract class _$$OfflineEventLoadOrganizationImplCopyWith<$Res> {
+  factory _$$OfflineEventLoadOrganizationImplCopyWith(
+          _$OfflineEventLoadOrganizationImpl value,
+          $Res Function(_$OfflineEventLoadOrganizationImpl) then) =
+      __$$OfflineEventLoadOrganizationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Organization? organization, OrganizationFormMode mode});
+
+  $OrganizationCopyWith<$Res>? get organization;
+}
+
+/// @nodoc
+class __$$OfflineEventLoadOrganizationImplCopyWithImpl<$Res>
+    extends _$OfflineEventCopyWithImpl<$Res, _$OfflineEventLoadOrganizationImpl>
+    implements _$$OfflineEventLoadOrganizationImplCopyWith<$Res> {
+  __$$OfflineEventLoadOrganizationImplCopyWithImpl(
+      _$OfflineEventLoadOrganizationImpl _value,
+      $Res Function(_$OfflineEventLoadOrganizationImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of OfflineEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? organization = freezed,
+    Object? mode = null,
+  }) {
+    return _then(_$OfflineEventLoadOrganizationImpl(
+      organization: freezed == organization
+          ? _value.organization
+          : organization // ignore: cast_nullable_to_non_nullable
+              as Organization?,
+      mode: null == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as OrganizationFormMode,
+    ));
+  }
+
+  /// Create a copy of OfflineEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $OrganizationCopyWith<$Res>? get organization {
+    if (_value.organization == null) {
+      return null;
+    }
+
+    return $OrganizationCopyWith<$Res>(_value.organization!, (value) {
+      return _then(_value.copyWith(organization: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$OfflineEventLoadOrganizationImpl
+    implements _OfflineEventLoadOrganization {
+  const _$OfflineEventLoadOrganizationImpl(
+      {required this.organization, required this.mode});
+
+  @override
+  final Organization? organization;
+  @override
+  final OrganizationFormMode mode;
+
+  @override
+  String toString() {
+    return 'OfflineEvent.loadOrganization(organization: $organization, mode: $mode)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OfflineEventLoadOrganizationImpl &&
+            (identical(other.organization, organization) ||
+                other.organization == organization) &&
+            (identical(other.mode, mode) || other.mode == mode));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, organization, mode);
+
+  /// Create a copy of OfflineEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OfflineEventLoadOrganizationImplCopyWith<
+          _$OfflineEventLoadOrganizationImpl>
+      get copyWith => __$$OfflineEventLoadOrganizationImplCopyWithImpl<
+          _$OfflineEventLoadOrganizationImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() get,
+    required TResult Function(
+            Organization? organization, OrganizationFormMode mode)
+        loadOrganization,
+  }) {
+    return loadOrganization(organization, mode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? get,
+    TResult? Function(Organization? organization, OrganizationFormMode mode)?
+        loadOrganization,
+  }) {
+    return loadOrganization?.call(organization, mode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? get,
+    TResult Function(Organization? organization, OrganizationFormMode mode)?
+        loadOrganization,
+    required TResult orElse(),
+  }) {
+    if (loadOrganization != null) {
+      return loadOrganization(organization, mode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OfflineEventGet value) get,
+    required TResult Function(_OfflineEventLoadOrganization value)
+        loadOrganization,
+  }) {
+    return loadOrganization(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OfflineEventGet value)? get,
+    TResult? Function(_OfflineEventLoadOrganization value)? loadOrganization,
+  }) {
+    return loadOrganization?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OfflineEventGet value)? get,
+    TResult Function(_OfflineEventLoadOrganization value)? loadOrganization,
+    required TResult orElse(),
+  }) {
+    if (loadOrganization != null) {
+      return loadOrganization(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OfflineEventLoadOrganization implements OfflineEvent {
+  const factory _OfflineEventLoadOrganization(
+          {required final Organization? organization,
+          required final OrganizationFormMode mode}) =
+      _$OfflineEventLoadOrganizationImpl;
+
+  Organization? get organization;
+  OrganizationFormMode get mode;
+
+  /// Create a copy of OfflineEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OfflineEventLoadOrganizationImplCopyWith<
+          _$OfflineEventLoadOrganizationImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

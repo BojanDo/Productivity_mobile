@@ -36,8 +36,9 @@ class TaskRepoImplementation implements TaskRepository {
             },
             offline: (Organization organization) async {
               if (values.containsKey('projects') &&
+                  values['projects'] is List<int> &&
                   (values['projects'] as List<int>).isNotEmpty) {
-                return await _localDataSource.getTasks(organization.id);
+                return await _localDataSource.getTasks((values['projects']as List<int>).first);
               }
               throw const APIException(
                 //TODO: maybe do something different
@@ -84,21 +85,20 @@ class TaskRepoImplementation implements TaskRepository {
   ResultFuture<Task> getTask(int id) async {
     try {
       final Task result = await sl<AppBloc>().state.when(
-        authenticated: (User user) async =>
-        await _remoteDataSource.getTask(
-          id,
-        ),
-        notAuthenticated: () {
-          throw const APIException(
-            message: 'Unknown error occured',
-            statusCode: 400,
+            authenticated: (User user) async => await _remoteDataSource.getTask(
+              id,
+            ),
+            notAuthenticated: () {
+              throw const APIException(
+                message: 'Unknown error occured',
+                statusCode: 400,
+              );
+            },
+            offline: (Organization organization) async =>
+                await _localDataSource.getTask(
+              id,
+            ),
           );
-        },
-        offline: (Organization organization) async =>
-        await _localDataSource.getTask(
-          id,
-        ),
-      );
 
       return Right<Failure, Task>(result);
     } on APIException catch (e) {
@@ -113,23 +113,23 @@ class TaskRepoImplementation implements TaskRepository {
   }) async {
     try {
       final TaskResponse result = await sl<AppBloc>().state.when(
-        authenticated: (User user) async =>
-        await _remoteDataSource.updateTask(
-          id,
-          values: values,
-        ),
-        notAuthenticated: () {
-          throw const APIException(
-            message: 'Unknown error occured',
-            statusCode: 400,
+            authenticated: (User user) async =>
+                await _remoteDataSource.updateTask(
+              id,
+              values: values,
+            ),
+            notAuthenticated: () {
+              throw const APIException(
+                message: 'Unknown error occured',
+                statusCode: 400,
+              );
+            },
+            offline: (Organization organization) async =>
+                await _localDataSource.updateTask(
+              id,
+              values: values,
+            ),
           );
-        },
-        offline: (Organization organization) async =>
-        await _localDataSource.updateTask(
-          id,
-          values: values,
-        ),
-      );
 
       return Right<Failure, TaskResponse>(result);
     } on APIException catch (e) {
@@ -141,17 +141,17 @@ class TaskRepoImplementation implements TaskRepository {
   ResultFuture<TaskResponse> deleteTask(int id) async {
     try {
       final TaskResponse result = await sl<AppBloc>().state.when(
-        authenticated: (User user) async =>
-        await _remoteDataSource.deleteTask(id),
-        notAuthenticated: () {
-          throw const APIException(
-            message: 'Unknown error occured',
-            statusCode: 400,
+            authenticated: (User user) async =>
+                await _remoteDataSource.deleteTask(id),
+            notAuthenticated: () {
+              throw const APIException(
+                message: 'Unknown error occured',
+                statusCode: 400,
+              );
+            },
+            offline: (Organization organization) async =>
+                await _localDataSource.deleteTask(id),
           );
-        },
-        offline: (Organization organization) async =>
-        await _localDataSource.deleteTask(id),
-      );
 
       return Right<Failure, TaskResponse>(result);
     } on APIException catch (e) {

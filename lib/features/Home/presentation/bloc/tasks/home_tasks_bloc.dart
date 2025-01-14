@@ -39,22 +39,39 @@ class HomeTasksBloc extends Bloc<HomeTasksEvent, HomeTasksState> {
           );
           final Either<Failure, Tasks> resultTasks =
               await _getTasks(GetTasksParams(assigned: <int>[id]));
-          final Either<Failure, Users> resultUsers = await _getUsers();
 
-          resultTasks.fold(
-            (Failure failure) => _errorState(emit),
-            (Tasks tasks) {
-              resultUsers.fold(
-                (Failure failure) => _errorState(emit),
-                (Users users) => emit(
-                  HomeTasksState.loaded(
-                    tasks: _sortAndFilterTasks(tasks),
-                    users: users,
-                  ),
-                ),
+          await sl<AppBloc>().state.when(
+                authenticated: (_) async{
+                  final Either<Failure, Users> resultUsers = await _getUsers();
+
+                  resultTasks.fold(
+                    (Failure failure) => _errorState(emit),
+                    (Tasks tasks) {
+                      resultUsers.fold(
+                        (Failure failure) => _errorState(emit),
+                        (Users users) => emit(
+                          HomeTasksState.loaded(
+                            tasks: _sortAndFilterTasks(tasks),
+                            users: users,
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+                notAuthenticated: () {},
+                offline: (_) {
+                  resultTasks.fold(
+                    (Failure failure) => _errorState(emit),
+                    (Tasks tasks) {
+                      HomeTasksState.loaded(
+                        tasks: _sortAndFilterTasks(tasks),
+                        users: const Users(items: [], total: 0),
+                      );
+                    },
+                  );
+                },
               );
-            },
-          );
         },
       ),
     );
@@ -115,7 +132,9 @@ class HomeTasksBloc extends Bloc<HomeTasksEvent, HomeTasksState> {
             status: Status.todo,
             label: Label.bug,
             date: '9999-01-01',
-            taskNumber: '#123', assigned: <int>[], projectId: 0,
+            taskNumber: '#123',
+            assigned: <int>[],
+            projectId: 0,
           ),
         ),
         total: 10,

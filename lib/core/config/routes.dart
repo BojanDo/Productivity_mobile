@@ -15,3 +15,5 @@ const String kProjectRoute = '/project';
 const String kTasksProjectRoute = '/tasks-project';
 const String kTasksUserRoute = '/tasks-user';
 const String kTaskRoute = '/task';
+//Offline mode
+const String kOfflineOrganizationRoute = '/organization-offline';

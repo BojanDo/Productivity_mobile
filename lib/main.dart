@@ -27,7 +27,7 @@ void main() async {
   await initFeatures();
   await initBlocs();
   FlutterNativeSplash.remove();
-  runApp(BlocProvider(
+  runApp(BlocProvider<ThemeBloc>(
     create: (_) => ThemeBloc(),
     child: const MyApp(),
   ));
@@ -68,7 +68,16 @@ class MyApp extends StatelessWidget {
                   ),
                   notAuthenticated: () =>
                       GlobalPopScope.authScope(child: const AuthPage()),
-                  offline: (Organization organization) => SizedBox.shrink(),
+                  offline: (Organization organization) => MultiBlocProvider(
+                    providers: <SingleChildWidget>[
+                      BlocProvider<DrawerBloc>(
+                        create: (BuildContext context) => sl<DrawerBloc>(),
+                      ),
+                    ],
+                    child: GlobalPopScope.defaultScope(
+                      child: authenticatedNavigator(context),
+                    ),
+                  ),
                 ),
               ),
             ),

@@ -65,8 +65,14 @@ class TaskPageInner extends StatefulWidget {
 }
 
 class _TaskPageInnerState extends State<TaskPageInner> {
+  late bool isOnline;
+
   @override
   void initState() {
+    isOnline = context.read<AppBloc>().state.maybeMap(
+          offline: (_) => false,
+          orElse: () => true,
+        );
     context.read<TaskBloc>().add(TaskEvent.get(id: widget.id));
     super.initState();
   }
@@ -109,8 +115,8 @@ class _TaskPageInnerState extends State<TaskPageInner> {
           fields: <Widget>[
             TextFieldBlocBuilder(
               textColor: WidgetStateProperty.resolveWith<Color>(
-                    (Set<WidgetState> states) =>
-                Theme.of(context).colorScheme.onSecondary,
+                (Set<WidgetState> states) =>
+                    Theme.of(context).colorScheme.onSecondary,
               ),
               textFieldBloc: taskFormBloc.title,
               keyboardType: TextInputType.text,
@@ -130,8 +136,8 @@ class _TaskPageInnerState extends State<TaskPageInner> {
             const SizedBox(height: 16),
             DropdownFieldBlocBuilder<Status>(
               textColor: WidgetStateProperty.resolveWith<Color>(
-                    (Set<WidgetState> states) =>
-                Theme.of(context).colorScheme.onSecondary,
+                (Set<WidgetState> states) =>
+                    Theme.of(context).colorScheme.onSecondary,
               ),
               selectFieldBloc: taskFormBloc.status,
               decoration: const InputDecoration(
@@ -144,8 +150,8 @@ class _TaskPageInnerState extends State<TaskPageInner> {
             ),
             DropdownFieldBlocBuilder<String>(
               textColor: WidgetStateProperty.resolveWith<Color>(
-                    (Set<WidgetState> states) =>
-                Theme.of(context).colorScheme.onSecondary,
+                (Set<WidgetState> states) =>
+                    Theme.of(context).colorScheme.onSecondary,
               ),
               selectFieldBloc: taskFormBloc.label,
               decoration: const InputDecoration(
@@ -158,8 +164,8 @@ class _TaskPageInnerState extends State<TaskPageInner> {
             ),
             DateTimeFieldBlocBuilder(
               textColor: WidgetStateProperty.resolveWith<Color>(
-                    (Set<WidgetState> states) =>
-                Theme.of(context).colorScheme.onSecondary,
+                (Set<WidgetState> states) =>
+                    Theme.of(context).colorScheme.onSecondary,
               ),
               dateTimeFieldBloc: taskFormBloc.date,
               format: DateFormat('dd.MM.yyyy'),
@@ -171,16 +177,20 @@ class _TaskPageInnerState extends State<TaskPageInner> {
                 floatingLabelBehavior: FloatingLabelBehavior.always,
               ),
             ),
-            const SizedBox(height: 8),
-            MultiselectFieldUsers(formBloc: taskFormBloc.assigned),
-            const SizedBox(height: 16),
-            if (taskFormBloc.task != null &&
-                taskFormBloc.mode == TaskFormMode.edit)
-              state.when(
-                getting: (Task? task) => const SizedBox.shrink(),
-                loaded: (Task? task) => _comments(taskFormBloc.task!),
-              ),
-            //_listBuilder(),
+            if (isOnline)
+              Column(
+                children: [
+                  const SizedBox(height: 8),
+                  MultiselectFieldUsers(formBloc: taskFormBloc.assigned),
+                  const SizedBox(height: 16),
+                  if (taskFormBloc.task != null &&
+                      taskFormBloc.mode == TaskFormMode.edit)
+                    state.when(
+                      getting: (Task? task) => const SizedBox.shrink(),
+                      loaded: (Task? task) => _comments(taskFormBloc.task!),
+                    ),
+                ],
+              ), //_listBuilder(),
           ],
         ),
       );

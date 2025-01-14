@@ -6,6 +6,7 @@ import '../../../../core/services/injection_container.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/offline/offline_bloc.dart';
 import 'login.dart';
+import 'organization.dart';
 import 'organizations.dart';
 import 'register.dart';
 
@@ -35,6 +36,7 @@ class _AuthPageState extends State<AuthPage> {
               LoginPage(),
               RegisterPage(),
               OfflineOrganizationsPage(),
+              OfflineOrganizationPage(),
             ],
           ),
         ),

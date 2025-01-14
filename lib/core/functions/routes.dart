@@ -51,3 +51,7 @@ void animateToPage(PageController pageController, int index) {
     curve: Curves.ease,
   );
 }
+
+void jumpToPage(PageController pageController, int index) {
+  pageController.jumpToPage(index);
+}

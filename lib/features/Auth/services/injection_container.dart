@@ -17,7 +17,7 @@ Future<void> initAuthBlocs(GetIt sl) async {
     () => AuthBloc(loginFormBloc: sl(), registerFormBloc: sl()),
   );
   sl.registerFactory(
-    () => OfflineBloc(sl()),
+    () => OfflineBloc(sl(),sl()),
   );
   sl.registerFactory(
     () => LoginFormBloc(

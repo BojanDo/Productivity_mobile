@@ -6,8 +6,7 @@ class OrganizationFormBloc extends FormBloc<String, String> {
   OrganizationFormBloc({
     required CreateOrganization createOrganization,
     required UpdateOrganization updateOrganization,
-  })
-      : _createOrganization = createOrganization,
+  })  : _createOrganization = createOrganization,
         _updateOrganization = updateOrganization {
     addFieldBlocs(
       fieldBlocs: <FieldBloc<FieldBlocStateBase>>[
@@ -21,13 +20,16 @@ class OrganizationFormBloc extends FormBloc<String, String> {
   final CreateOrganization _createOrganization;
   final UpdateOrganization _updateOrganization;
 
-
   final InputFieldBloc<int?, dynamic> id = InputFieldBloc<int?, dynamic>(
+    initialValue: null,
+  );
+  final InputFieldBloc<Organization?, dynamic> organization =
+      InputFieldBloc<Organization?, dynamic>(
     initialValue: null,
   );
 
   final InputFieldBloc<OrganizationFormMode, dynamic> mode =
-  InputFieldBloc<OrganizationFormMode, dynamic>(
+      InputFieldBloc<OrganizationFormMode, dynamic>(
     initialValue: OrganizationFormMode.create,
   );
 
@@ -42,15 +44,15 @@ class OrganizationFormBloc extends FormBloc<String, String> {
     ],
   );
   final InputFieldBloc<File?, ProfilePicture> profilePicture =
-  InputFieldBloc<File?, ProfilePicture>(
+      InputFieldBloc<File?, ProfilePicture>(
     initialValue: null,
   );
-
 
   bool isViewMode() => mode.value == OrganizationFormMode.view;
 
   void resetFields() {
     mode.updateValue(OrganizationFormMode.create);
+    organization.updateValue(null);
     id.updateValue(null);
     name.updateInitialValue('');
     description.updateInitialValue('');
@@ -58,7 +60,12 @@ class OrganizationFormBloc extends FormBloc<String, String> {
   }
 
   void setFields(Organization organization, Role userRole) {
-    mode.updateValue(userRole == Role.developer ? OrganizationFormMode.view : OrganizationFormMode.edit);
+    mode.updateValue(
+      userRole == Role.developer
+          ? OrganizationFormMode.view
+          : OrganizationFormMode.edit,
+    );
+    this.organization.updateValue(organization);
     id.updateValue(organization.id);
     name.updateInitialValue(organization.name);
     description.updateInitialValue(organization.description);
@@ -69,6 +76,17 @@ class OrganizationFormBloc extends FormBloc<String, String> {
           current: organization.profilePicture!,
         ),
       );
+    }
+  }
+
+  void initialize(Organization? organization, OrganizationFormMode mode) {
+    resetFields();
+    this.mode.updateValue(mode);
+    if (mode != OrganizationFormMode.create) {
+      this.organization.updateValue(organization);
+      id.updateValue(organization!.id);
+      name.updateValue(organization.name);
+      description.updateValue(organization.description);
     }
   }
 
@@ -99,8 +117,8 @@ class OrganizationFormBloc extends FormBloc<String, String> {
     }
 
     result.fold(
-          (Failure failure) => emitFailure(failureResponse: failure.message),
-          (UserResponse response) {
+      (Failure failure) => emitFailure(failureResponse: failure.message),
+      (UserResponse response) {
         emitSuccess(successResponse: response.message);
       },
     );

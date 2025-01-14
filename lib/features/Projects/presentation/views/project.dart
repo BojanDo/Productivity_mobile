@@ -45,7 +45,7 @@ class _ProjectPageState extends State<ProjectPage> {
           title: 'Project',
           onSuccess: isEnabled
               ? () {
-                  routePopWithResult(sl<AppBloc>().innerNavigator,true);
+                  routePopWithResult(sl<AppBloc>().innerNavigator, true);
                 }
               : null,
           formBloc: projectFormBloc,
@@ -55,17 +55,20 @@ class _ProjectPageState extends State<ProjectPage> {
 
   List<Widget> _fields(bool isEnabled, ProjectFormBloc projectFormBloc) =>
       <Widget>[
-        ImagePickerFieldBlocBuilder(
-          isEnabled: isEnabled,
-          fileFieldBloc: projectFormBloc.profilePicture,
-          decoration: const InputDecoration(
-            labelText: 'Project picture',
-          ),
-        ),
+        context.read<AppBloc>().state.mapOrNull(
+                  authenticated: (_) => ImagePickerFieldBlocBuilder(
+                    isEnabled: isEnabled,
+                    fileFieldBloc: projectFormBloc.profilePicture,
+                    decoration: const InputDecoration(
+                      labelText: 'Project picture',
+                    ),
+                  ),
+                ) ??
+            const SizedBox.shrink(),
         TextFieldBlocBuilder(
           textColor: WidgetStateProperty.resolveWith<Color>(
-                (Set<WidgetState> states) =>
-            Theme.of(context).colorScheme.onSecondary,
+            (Set<WidgetState> states) =>
+                Theme.of(context).colorScheme.onSecondary,
           ),
           isEnabled: isEnabled,
           textFieldBloc: projectFormBloc.title,
@@ -78,8 +81,8 @@ class _ProjectPageState extends State<ProjectPage> {
         ),
         TextFieldBlocBuilder(
           textColor: WidgetStateProperty.resolveWith<Color>(
-                (Set<WidgetState> states) =>
-            Theme.of(context).colorScheme.onSecondary,
+            (Set<WidgetState> states) =>
+                Theme.of(context).colorScheme.onSecondary,
           ),
           isEnabled: isEnabled,
           minLines: 1,

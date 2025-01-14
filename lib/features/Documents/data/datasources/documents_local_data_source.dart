@@ -23,10 +23,13 @@ class DocumentsLocalDataSourceImplementation
   @override
   Future<Documents> getDocuments(int organizationId) async {
     try {
-      final List<Map<String, dynamic>> result =
-      await _sqlManager.getData(
-        kDocumentsTable,
-        where: <String, dynamic>{'organizationId': organizationId},
+      final List<Map<String, dynamic>> result = await _sqlManager.rawQuery(
+        'SELECT d.id,d.title,d.path '
+        'FROM $kDocumentsTable d, $kTaskTable t, $kProjectsTable p '
+        'WHERE d.taskId=t.id '
+        'AND t.project_id=p.id '
+        'AND p.organizationId=? ',
+        arguments: <Object?>[organizationId],
       );
       final DataMap response = <String, dynamic>{
         'items': result,
@@ -34,7 +37,7 @@ class DocumentsLocalDataSourceImplementation
       };
       return Documents.fromJson(
         response,
-            (Object? item) => Document.fromJson(item as DataMap),
+        (Object? item) => Document.fromJson(item as DataMap),
       );
     } on APIException {
       rethrow;

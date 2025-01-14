@@ -130,7 +130,7 @@ class TaskSlim with _$TaskSlim{
     required Label label,
     @JsonKey(name: 'due_date') required String date,
     @JsonKey(name: 'task_number') required String taskNumber,
-    required List<int> assigned,
+    @Default(<int>[]) List<int> assigned,
   }) = _TaskSlim;
 
   factory TaskSlim.fromJson(Map<String, dynamic> json) => _$TaskSlimFromJson(json);

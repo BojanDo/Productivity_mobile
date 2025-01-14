@@ -666,7 +666,7 @@ class _$TaskSlimImpl implements _TaskSlim {
       required this.label,
       @JsonKey(name: 'due_date') required this.date,
       @JsonKey(name: 'task_number') required this.taskNumber,
-      required final List<int> assigned})
+      final List<int> assigned = const <int>[]})
       : _assigned = assigned;
 
   factory _$TaskSlimImpl.fromJson(Map<String, dynamic> json) =>
@@ -691,6 +691,7 @@ class _$TaskSlimImpl implements _TaskSlim {
   final String taskNumber;
   final List<int> _assigned;
   @override
+  @JsonKey()
   List<int> get assigned {
     if (_assigned is EqualUnmodifiableListView) return _assigned;
     // ignore: implicit_dynamic_type
@@ -749,7 +750,7 @@ abstract class _TaskSlim implements TaskSlim {
       required final Label label,
       @JsonKey(name: 'due_date') required final String date,
       @JsonKey(name: 'task_number') required final String taskNumber,
-      required final List<int> assigned}) = _$TaskSlimImpl;
+      final List<int> assigned}) = _$TaskSlimImpl;
 
   factory _TaskSlim.fromJson(Map<String, dynamic> json) =
       _$TaskSlimImpl.fromJson;

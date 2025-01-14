@@ -62,7 +62,7 @@ class AuthBox<BlocT extends StateStreamable<BlocState>,
             if (useOfflineText != null && useOfflinePageId != null)
               GestureDetector(
                 onTap: () {
-                  animateToPage(
+                  jumpToPage(
                     context.read<AuthBloc>().pageController,
                     useOfflinePageId!,
                   );

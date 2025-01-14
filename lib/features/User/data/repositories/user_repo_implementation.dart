@@ -74,12 +74,8 @@ class UserRepoImplementation implements UserRepository {
                 await _remoteDataSource.createOrganization(
               values: values,
             ),
-            notAuthenticated: () {
-              throw const APIException(
-                message: 'Unknown error occured',
-                statusCode: 400,
-              );
-            },
+            notAuthenticated: () async =>
+                await _localDataSource.createOrganization(values: values),
             offline: (Organization organization) async =>
                 await _localDataSource.createOrganization(
               values: values,
@@ -113,12 +109,11 @@ class UserRepoImplementation implements UserRepository {
               id,
               values: values,
             ),
-            notAuthenticated: () {
-              throw const APIException(
-                message: 'Unknown error occured',
-                statusCode: 400,
-              );
-            },
+            notAuthenticated: () async =>
+            await _localDataSource.updateOrganization(
+              id,
+              values: values,
+            ),
             offline: (Organization organization) async =>
                 await _localDataSource.updateOrganization(
               id,

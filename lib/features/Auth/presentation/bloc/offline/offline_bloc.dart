@@ -4,8 +4,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../core/entities/paginated_list.dart';
 import '../../../../../core/errors/failure.dart';
+import '../../../../../core/services/injection_container.dart';
+import '../../../../App/presentation/bloc/app_bloc.dart';
 import '../../../../User/domain/entities/organizations.dart';
 import '../../../../User/domain/usecases/get_organizations.dart';
+import '../../../../User/presentation/bloc/user_bloc.dart';
 
 part 'offline_event.dart';
 
@@ -14,7 +17,7 @@ part 'offline_state.dart';
 part 'generated/offline_bloc.freezed.dart';
 
 class OfflineBloc extends Bloc<OfflineEvent, OfflineState> {
-  OfflineBloc(GetOrganizations getOrganizations)
+  OfflineBloc(GetOrganizations getOrganizations, this.organizationFormBloc)
       : _getOrganizations = getOrganizations,
         super(
           OfflineState.getting(
@@ -43,9 +46,21 @@ class OfflineBloc extends Bloc<OfflineEvent, OfflineState> {
           );
           return null;
         },
+        loadOrganization:
+            (Organization? organization, OrganizationFormMode mode) =>
+                _handleLoadOrganization(organization, mode, emit),
       ),
     );
   }
 
+  Future<void> _handleLoadOrganization(
+    Organization? organization,
+    OrganizationFormMode mode,
+    Emitter<OfflineState> emit,
+  ) async {
+    organizationFormBloc.initialize(organization, mode);
+  }
+
   final GetOrganizations _getOrganizations;
+  final OrganizationFormBloc organizationFormBloc;
 }

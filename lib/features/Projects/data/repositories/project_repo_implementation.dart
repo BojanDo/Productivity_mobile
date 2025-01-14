@@ -62,6 +62,7 @@ class ProjectRepoImplementation implements ProjectRepository {
             offline: (Organization organization) async =>
                 await _localDataSource.createProject(
               values: values,
+              organizationId: organization.id,
             ),
           );
 

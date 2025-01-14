@@ -10,6 +10,7 @@ class SQLManager {
   SQLManager();
 
   Future<void> _initializeDatabase() async {
+    //await deleteDatabase('database.db');
     _db = await openDatabase(
       'database.db',
       version: 1,
@@ -33,14 +34,14 @@ class SQLManager {
         await db.execute('''
         CREATE TABLE task (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
-          taskNumber INTEGER,
+          project_id INTEGER,
+          task_number TEXT,
           title TEXT,
           description TEXT,
           status TEXT,
           label TEXT,
-          date TEXT,
-          projectId INTEGER,
-          FOREIGN KEY (projectId) REFERENCES project (id)
+          due_date TEXT,
+          FOREIGN KEY (project_id) REFERENCES project (id)
         )
       ''');
         await db.execute('''
@@ -59,27 +60,73 @@ class SQLManager {
         await db.insert('organization', <String, Object?>{
           'name': 'Green Builders',
           'description':
-          'A construction company with a focus on eco-friendly projects.',
+              'A construction company with a focus on eco-friendly projects.',
         });
         await db.insert('organization', <String, Object?>{
           'name': 'EduCore',
           'description':
-          'An organization dedicated to educational technologies.',
+              'An organization dedicated to educational technologies.',
+        });
+        await db.insert('project', <String, Object?>{
+          'title': 'Project',
+          'description':
+              'An organization dedicated to educational technologies.',
+          'organizationId': 1,
+        });
+        await db.insert('project', <String, Object?>{
+          'title': 'Project 2',
+          'description':
+              'An organization dedicated to educational technologies.',
+          'organizationId': 1,
+        });
+        await db.insert('project', <String, Object?>{
+          'title': 'Project 3',
+          'description':
+              'An organization dedicated to educational technologies.',
+          'organizationId': 2,
+        });
+        await db.insert('task', <String, Object?>{
+          'title': 'Task 1',
+          'description': '[{"insert":"gsagsah\nhas\nh\nas\nhas\n\n"}]',
+          'task_number': '#1',
+          'status': 'ToDo',
+          'label': 'BUG',
+          'due_date': '2025-01-01',
+          'project_id': 1,
+        });
+        await db.insert('task', <String, Object?>{
+          'title': 'Task 2',
+          'description': '[{"insert":"gsagsah\nhas\nh\nas\nhas\n\n"}]',
+          'task_number': '#2',
+          'status': 'ToDo',
+          'label': 'BUG',
+          'due_date': '2025-01-01',
+          'project_id': 1,
+        });
+        await db.insert('task', <String, Object?>{
+          'title': 'Task 2',
+          'description': '[{"insert":"gsagsah\nhas\nh\nas\nhas\n\n"}]',
+          'task_number': '#3',
+          'status': 'Closed',
+          'label': 'BUG',
+          'due_date': '2025-01-01',
+          'project_id': 1,
         });
       },
     );
   }
 
-
-  Future<void> storeData(String table, Map<String, dynamic> data) async {
+  Future<int> storeData(String table, Map<String, dynamic> data) async {
     try {
-      await _db.insert(
+      final int id = await _db.insert(
         table,
         data,
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
+      return id;
     } catch (e) {
       throwSQLException(e);
+      rethrow;
     }
   }
 
@@ -99,10 +146,11 @@ class SQLManager {
     }
     throw const APIException(message: 'Unknown error occured', statusCode: 500);
   }
+
   Future<Map<String, dynamic>> getSingle(
-      String table, {
-        Map<String, dynamic>? where,
-      }) async {
+    String table, {
+    Map<String, dynamic>? where,
+  }) async {
     try {
       final List<Map<String, dynamic>> result = await _db.query(
         table,
@@ -117,6 +165,23 @@ class SQLManager {
       }
 
       return result.first;
+    } catch (e) {
+      throwSQLException(e);
+    }
+    throw const APIException(message: 'Unknown error occured', statusCode: 500);
+  }
+
+
+  Future<List<Map<String, dynamic>>> rawQuery(
+      String sql, {
+        List<Object?>? arguments,
+      }) async {
+    try {
+      final List<Map<String, dynamic>> result = await _db.rawQuery(
+        sql,
+        arguments,
+      );
+      return result;
     } catch (e) {
       throwSQLException(e);
     }

@@ -49,7 +49,7 @@ class AppBloc extends SideEffectBloc<AppEvent, AppState, AppSideEffect> {
         ),
         overlayRemove: () =>
             produceSideEffect(const AppSideEffect.overlayRemove()),
-        toOffline: (int organizationId) {},
+        toOffline: (Organization organization) =>emit(AppState.offline(organization: organization)),
       ),
     );
 

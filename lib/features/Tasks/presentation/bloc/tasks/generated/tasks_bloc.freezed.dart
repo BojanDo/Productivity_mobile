@@ -20,21 +20,21 @@ mixin _$TasksEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(int? projectId, int? assignedId) get,
     required TResult Function() filter,
-    required TResult Function(int id) delete,
+    required TResult Function(int id, int? projectId, int? assignedId) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int? projectId, int? assignedId)? get,
     TResult? Function()? filter,
-    TResult? Function(int id)? delete,
+    TResult? Function(int id, int? projectId, int? assignedId)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int? projectId, int? assignedId)? get,
     TResult Function()? filter,
-    TResult Function(int id)? delete,
+    TResult Function(int id, int? projectId, int? assignedId)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -163,7 +163,7 @@ class _$TasksEventGetImpl implements _TasksEventGet {
   TResult when<TResult extends Object?>({
     required TResult Function(int? projectId, int? assignedId) get,
     required TResult Function() filter,
-    required TResult Function(int id) delete,
+    required TResult Function(int id, int? projectId, int? assignedId) delete,
   }) {
     return get(projectId, assignedId);
   }
@@ -173,7 +173,7 @@ class _$TasksEventGetImpl implements _TasksEventGet {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int? projectId, int? assignedId)? get,
     TResult? Function()? filter,
-    TResult? Function(int id)? delete,
+    TResult? Function(int id, int? projectId, int? assignedId)? delete,
   }) {
     return get?.call(projectId, assignedId);
   }
@@ -183,7 +183,7 @@ class _$TasksEventGetImpl implements _TasksEventGet {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int? projectId, int? assignedId)? get,
     TResult Function()? filter,
-    TResult Function(int id)? delete,
+    TResult Function(int id, int? projectId, int? assignedId)? delete,
     required TResult orElse(),
   }) {
     if (get != null) {
@@ -284,7 +284,7 @@ class _$TasksEventFilterImpl implements _TasksEventFilter {
   TResult when<TResult extends Object?>({
     required TResult Function(int? projectId, int? assignedId) get,
     required TResult Function() filter,
-    required TResult Function(int id) delete,
+    required TResult Function(int id, int? projectId, int? assignedId) delete,
   }) {
     return filter();
   }
@@ -294,7 +294,7 @@ class _$TasksEventFilterImpl implements _TasksEventFilter {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int? projectId, int? assignedId)? get,
     TResult? Function()? filter,
-    TResult? Function(int id)? delete,
+    TResult? Function(int id, int? projectId, int? assignedId)? delete,
   }) {
     return filter?.call();
   }
@@ -304,7 +304,7 @@ class _$TasksEventFilterImpl implements _TasksEventFilter {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int? projectId, int? assignedId)? get,
     TResult Function()? filter,
-    TResult Function(int id)? delete,
+    TResult Function(int id, int? projectId, int? assignedId)? delete,
     required TResult orElse(),
   }) {
     if (filter != null) {
@@ -358,7 +358,7 @@ abstract class _$$TasksEventDeleteImplCopyWith<$Res> {
           $Res Function(_$TasksEventDeleteImpl) then) =
       __$$TasksEventDeleteImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int id});
+  $Res call({int id, int? projectId, int? assignedId});
 }
 
 /// @nodoc
@@ -375,12 +375,22 @@ class __$$TasksEventDeleteImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? projectId = freezed,
+    Object? assignedId = freezed,
   }) {
     return _then(_$TasksEventDeleteImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      assignedId: freezed == assignedId
+          ? _value.assignedId
+          : assignedId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -388,14 +398,19 @@ class __$$TasksEventDeleteImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TasksEventDeleteImpl implements _TasksEventDelete {
-  const _$TasksEventDeleteImpl({required this.id});
+  const _$TasksEventDeleteImpl(
+      {required this.id, this.projectId, this.assignedId});
 
   @override
   final int id;
+  @override
+  final int? projectId;
+  @override
+  final int? assignedId;
 
   @override
   String toString() {
-    return 'TasksEvent.delete(id: $id)';
+    return 'TasksEvent.delete(id: $id, projectId: $projectId, assignedId: $assignedId)';
   }
 
   @override
@@ -403,11 +418,15 @@ class _$TasksEventDeleteImpl implements _TasksEventDelete {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TasksEventDeleteImpl &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.assignedId, assignedId) ||
+                other.assignedId == assignedId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id);
+  int get hashCode => Object.hash(runtimeType, id, projectId, assignedId);
 
   /// Create a copy of TasksEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -423,9 +442,9 @@ class _$TasksEventDeleteImpl implements _TasksEventDelete {
   TResult when<TResult extends Object?>({
     required TResult Function(int? projectId, int? assignedId) get,
     required TResult Function() filter,
-    required TResult Function(int id) delete,
+    required TResult Function(int id, int? projectId, int? assignedId) delete,
   }) {
-    return delete(id);
+    return delete(id, projectId, assignedId);
   }
 
   @override
@@ -433,9 +452,9 @@ class _$TasksEventDeleteImpl implements _TasksEventDelete {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int? projectId, int? assignedId)? get,
     TResult? Function()? filter,
-    TResult? Function(int id)? delete,
+    TResult? Function(int id, int? projectId, int? assignedId)? delete,
   }) {
-    return delete?.call(id);
+    return delete?.call(id, projectId, assignedId);
   }
 
   @override
@@ -443,11 +462,11 @@ class _$TasksEventDeleteImpl implements _TasksEventDelete {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int? projectId, int? assignedId)? get,
     TResult Function()? filter,
-    TResult Function(int id)? delete,
+    TResult Function(int id, int? projectId, int? assignedId)? delete,
     required TResult orElse(),
   }) {
     if (delete != null) {
-      return delete(id);
+      return delete(id, projectId, assignedId);
     }
     return orElse();
   }
@@ -488,10 +507,14 @@ class _$TasksEventDeleteImpl implements _TasksEventDelete {
 }
 
 abstract class _TasksEventDelete implements TasksEvent {
-  const factory _TasksEventDelete({required final int id}) =
-      _$TasksEventDeleteImpl;
+  const factory _TasksEventDelete(
+      {required final int id,
+      final int? projectId,
+      final int? assignedId}) = _$TasksEventDeleteImpl;
 
   int get id;
+  int? get projectId;
+  int? get assignedId;
 
   /// Create a copy of TasksEvent
   /// with the given fields replaced by the non-null parameter values.
