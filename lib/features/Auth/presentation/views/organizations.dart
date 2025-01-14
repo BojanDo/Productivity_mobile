@@ -8,6 +8,8 @@ import '../../../../core/functions/routes.dart';
 import '../../../../widgets/profile_picture.dart';
 import '../../../User/domain/entities/organizations.dart';
 import '../../../User/presentation/bloc/user_bloc.dart';
+import '../../../lifecycledemo/first.dart';
+import '../../../lifecycledemo/second.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/offline/offline_bloc.dart';
 import '../widgets/box.dart';
@@ -27,13 +29,16 @@ class _OfflineOrganizationsPageState extends State<OfflineOrganizationsPage> {
     super.initState();
   }
 
-  void _toOrganizationPage(Organization? organization, OrganizationFormMode mode){
+  void _toOrganizationPage(
+    Organization? organization,
+    OrganizationFormMode mode,
+  ) {
     context.read<OfflineBloc>().add(
-      OfflineEvent.loadOrganization(
-        organization: organization,
-        mode: mode,
-      ),
-    );
+          OfflineEvent.loadOrganization(
+            organization: organization,
+            mode: mode,
+          ),
+        );
     animateToPage(
       context.read<AuthBloc>().pageController,
       3,
@@ -53,7 +58,7 @@ class _OfflineOrganizationsPageState extends State<OfflineOrganizationsPage> {
               child: Skeletonizer(
                 enabled: isEnabled,
                 child: Column(
-                  children: [
+                  children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: Text(
@@ -86,7 +91,10 @@ class _OfflineOrganizationsPageState extends State<OfflineOrganizationsPage> {
                             ),
                           ),
                           onTap: () {
-                            _toOrganizationPage(organization,OrganizationFormMode.edit);
+                            _toOrganizationPage(
+                              organization,
+                              OrganizationFormMode.edit,
+                            );
                           },
                         );
                       },
@@ -97,7 +105,7 @@ class _OfflineOrganizationsPageState extends State<OfflineOrganizationsPage> {
                     SizedBox(
                       width: double.infinity,
                       child: _button('Create organization', () {
-                        _toOrganizationPage(null,OrganizationFormMode.create);
+                        _toOrganizationPage(null, OrganizationFormMode.create);
                       }),
                     ),
                     const SizedBox(
@@ -119,7 +127,46 @@ class _OfflineOrganizationsPageState extends State<OfflineOrganizationsPage> {
                       ),
                     ),
                     const SizedBox(
+                      height: 60,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const FirstDemoPage(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'First LifeCycle demo page',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSecondary,
+                          fontSize: 14.0,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
                       height: 16,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const SecondDemoPage(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Second LifeCycle demo page',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSecondary,
+                          fontSize: 14.0,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -129,21 +176,20 @@ class _OfflineOrganizationsPageState extends State<OfflineOrganizationsPage> {
         },
       );
 
-  Widget _button(String text, VoidCallback action) =>
-      ElevatedButton(
+  Widget _button(String text, VoidCallback action) => ElevatedButton(
         onPressed: action,
         style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
-          backgroundColor: WidgetStateProperty.resolveWith<Color>(
+              backgroundColor: WidgetStateProperty.resolveWith<Color>(
                   (Set<WidgetState> states) {
                 if (states.contains(WidgetState.disabled)) {
                   return kPrimaryColor.withOpacity(0.4);
                 }
                 return kPrimaryColor;
               }),
-          foregroundColor: WidgetStateProperty.resolveWith<Color>(
+              foregroundColor: WidgetStateProperty.resolveWith<Color>(
                 (Set<WidgetState> states) => Colors.white,
-          ),
-        ),
+              ),
+            ),
         child: Text(
           text,
           style: const TextStyle(fontSize: 16),

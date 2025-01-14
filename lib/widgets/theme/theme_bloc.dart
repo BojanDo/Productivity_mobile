@@ -33,7 +33,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         },
       ),
     );
-/*
+
     ambientLightService.startListening((double lux) {
       const double lightThreshold = 2;
       final bool isDark = state.isDarkMode;
@@ -44,7 +44,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         add(const ThemeEvent.toggleLight());
       }
     });
-    */
+
 
   }
 
